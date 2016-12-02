@@ -1,0 +1,48 @@
+Regular_hours{
+	mon      - 4:00 pm - 8:00  pm
+	tues     - 8:00 pm - 12:00 pm
+	wendsday - 4:00 pm - 8:00  pm
+	thursday - 4:00 pm - 8:00  pm
+	friday   - 4:00 pm - 10:00 pm
+	saturday - 8:00 am - 6:00  pm
+	sunday   - 8:00 am - 6:00  pm
+}
+Monday (December 5th 2005)
+4:00 pm - 5:30 pm
+
+became more oriented with the site
+
+Fixed 2 typos
+
+moved the applicants and employers arround on the front page
+
+Tues (December 6th 2005)
+9:00 pm - 12:00 pm
+
+Setup dreamweaver site connection
+
+fixed noted problems in e-mail from <tmayer@personnelplus-inc.com>
+
+fixed typo in privacy policy page.
+
+Got an understanding of how the database is being used.
+
+Recoded the index page to fix button issue. Decreased the filesize by 1,000 bits (probably about 100 characters) by reducing redundency.
+
+Wednessday
+7:00 pm - 8:00 pm
+
+fixed 1 typo in privacy policy page.
+
+made altered index page to see available design issues dealt with.
+
+page by page - ended in company folder.
+
+Thusrday
+6:00 - 1:00
+95 typos/gramatical errors
+
+Friday
+4:00 - 7:00
+Figured out where the meta tag was being taken from.
+Researched ways of increasing hits on the site.

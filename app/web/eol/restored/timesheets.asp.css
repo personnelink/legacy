@@ -1,0 +1,11 @@
+/* CSS Document */
+
+#updateStatus {display:none;}
+.hide {display: none;}
+.show {display: block;}
+select {width:100px;height:19px;}
+input {width:20px;margin:0 4px;}
+.timeTable {margin:0;margin-left:-9px;border:none;width:606px;}
+.timeTable table tr th {background-color:#99CCFF;text-decoration:underline;font-weight:normaltext-align:center;;}
+.period {text-align:left; color:#000000;}
+@import url(/include/functions/calendar/calendar-blue2.css);
