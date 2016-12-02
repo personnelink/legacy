@@ -1,0 +1,278 @@
+<?xml version="1.0"?>
+<data>
+  <question id="1">
+    <qtext>With regard to lifting and carrying, you should not do what?</qtext>
+    <choices>
+    	<choice>Lift without twisting the body.</choice>
+    	<choice>Lift gradually, without jerking, to minimize the effects of acceleration.</choice>
+    	<choice>Bend over to pick up a light object.</choice>
+    	<choice>Never overexert yourself when lifting.  if the load is thought to be more than one person can handle, ask for help.</choice>
+    	<choice>Keep the load close to the body.</choice>
+    	<choice>Follow safe lifting procedures.</choice>
+    </choices>
+  	<answer>3</answer>
+  </question>
+  <question id="2">
+    <qtext>True or false: Only trained personnel should be allowed to operate industrial trucks.  Lift truck operating rules must be posted and strictly enforced by the client company at which you will work.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>1</answer>
+  </question>
+  <question id="3">
+    <qtext>True or false: It is okay to drive a truck by anyone that is standing in front of a bench or other fixed object.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>2</answer>
+  </question>
+  <question id="4">
+    <qtext>What is the correct six-step procedure to control hazardous energy?</qtext>
+    <choices>
+    	<choice>1. Preparation for shutdown  2. Equipment isolation  3. Equipment -- isolation verification  4. Equipment shutdown  5. Control of stored energy  6. Application of lockout/tagout devices</choice>
+    	<choice>1. Preparation for shutdown  2. Equipment isolation  3. Equipment -- isolation verification  4. Application of lockout/tagout devices  5. Equipment shutdown  6. Control of stored energy</choice>
+    	<choice>1. Preparation for shutdown  2. Equipment shutdown  3. Equipment isolation  4. Application of lockout/tagout devices  5. Control of stored energy  6. Equipment -- isolation verification</choice>
+    	<choice>1. Preparation for shutdown  2. Application of lockout/tagout devices  3. Control of stored energy  4. Equipment shutdown  5. Equipment isolation  6. Equipment -- isolation verification</choice>
+    	<choice>1. Preparation for shutdown  2. Equipment shutdown  3. Equipment isolation  4. Equipment -- isolation verification  5. Application of lockout/tagout devices  6. Control of stored energy</choice>
+    	<choice>1. Preparation for shutdown  2. Application of lockout/tagout devices  3. Equipment shutdown  4. Equipment isolation  5. Control of stored energy  6. Equipment -- isolation verification</choice>
+    </choices>
+  	<answer>3</answer>
+  </question>
+  <question id="5">
+    <qtext>Which one of the following is not listed as a common sense rule?</qtext>
+    <choices>
+    	<choice>Respect all precautions -- don't take chances.</choice>
+    	<choice>Follow company safety rules and guidelines.</choice>
+    	<choice>Identify and protect yourself against hazards before you start a job.</choice>
+    	<choice>Know how and when to get help.</choice>
+    	<choice>Know where the fire extinguisher is.</choice>
+    	<choice>When in doubt, ask your supervisor.</choice>
+    </choices>
+  	<answer>5</answer>
+  </question>
+  <question id="6">
+    <qtext>Before removing the lock, you do not need to...</qtext>
+    <choices>
+    	<choice>Check to make sure it is plugged in.</choice>
+    	<choice>Conduct a head count.</choice>
+    	<choice>Make sure equipment is safe.</choice>
+    	<choice>Notify all affected personnel that lockout is being removed.</choice>
+    </choices>
+  	<answer>1</answer>
+  </question>
+  <question id="7">
+    <qtext>When using a hand/portable power tool, you must</qtext>
+    <choices>
+    	<choice>Use the tool that may work for the job.</choice>
+    	<choice>Try to repair the tool yourself.</choice>
+    	<choice>Wear protective equipment if available.</choice>
+    	<choice>Know why tools are designed only for certain jobs.</choice>
+    </choices>
+  	<answer>4</answer>
+  </question>
+  <question id="8">
+    <qtext>What does PPE stand for?</qtext>
+    <choices>
+    	<choice>Personal Projector Equipment</choice>
+    	<choice>Personal Protective Equipment</choice>
+    	<choice>Private Protective Equipment</choice>
+    	<choice>Provacative Pay Enhancement</choice>
+    	<choice>Proactive Protective Equipment</choice>
+    	<choice>Personnel Plus Enhanced</choice>
+    </choices>
+  	<answer>2</answer>
+  </question>
+  <question id="9">
+    <qtext>True or false: An Emergency Action Plan will have primary and secondary escape routes for every area of the building.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>1</answer>
+  </question>
+  <question id="10">
+    <qtext>True or false: When manually handling material, keep a relaxed grip so the material does not cut you.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>2</answer>
+  </question>
+  <question id="11">
+    <qtext>Which one of the following is not part of the OSHA Orientation General Labor program elements?</qtext>
+    <choices>
+    	<choice>Material Handleing</choice>
+    	<choice>Lockout/Tagout</choice>
+    	<choice>Personal protective equipment</choice>
+    	<choice>Hazard Communication</choice>
+    	<choice>Private protective equipment</choice>
+    	<choice>Machine Guarding</choice>
+    	<choice>Emergency Procedures</choice>
+    	<choice>Hand/portable power tools and equipment</choice>
+    	<choice>Forklifts</choice>
+    </choices>
+  	<answer>5</answer>
+  </question>
+  <question id="12">
+    <qtext>Hazard Communication cannot protect you if you...</qtext>
+    <choices>
+    	<choice>Ask an OHSE operator</choice>
+    	<choice>Follow instructions and warnings</choice>
+    	<choice>Practice sensible, safe work habits</choice>
+    	<choice>Know where to find information about your chemicals</choice>
+    	<choice>Read labels and Material Safety Data Sheets</choice>
+    	<choice>Learn emergency procedures</choice>
+    </choices>
+  	<answer>1</answer>
+  </question>
+  <question id="13">
+    <qtext>True or false: When handling lumber, pipe, or other long objects, keep hands near the ends to even the load.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>2</answer>
+  </question>
+  <question id="14">
+    <qtext>True or false: When evacuating a burning building, the last person out should lock the door to prevent others from entering.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>2</answer>
+  </question>
+  <question id="15">
+    <qtext>You may be assigned to a job that involves working with moving parts of machinery.  if so, you need to understand the client company's machine guarding policy.  Which one of the following will not help protect you?</qtext>
+    <choices>
+    	<choice>Be alert for the unexpected.  Think ahead and realize what you're telling your wrists, hands and fingers to do.</choice>
+    	<choice>Follow procedures for operating and maintaining equipment.  Never bypass safety features, but take short cuts to be more productive.</choice>
+    	<choice>Make sure guards or shields are in place before using machinery.  Don't wear rings, watches or bracelets to work.  They can easily get caught on surface edges, machinery and moving parts, and may cause injury to a finger or hand.</choice>
+    	<choice>Notify your supervisor about guards that are inoperable or do not protect at the point of operation.</choice>
+    </choices>
+  	<answer>2</answer>
+  </question>
+  <question id="16">
+    <qtext>True or false: When evacuating a burning building, you should try to cover your mouth with a damp cloth to help you breathe.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>1</answer>
+  </question>
+  <question id="17">
+    <qtext>True or false: Emergency Action Leaders should be assigned specific duties, such as verifying that all workers have evacuated.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>1</answer>
+  </question>
+  <question id="18">
+    <qtext>True or false: You can use the forklift truck to help open or close freight doors, as long as it will not damage the truck.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>2</answer>
+  </question>
+  <question id="19">
+    <qtext>True or false: When evacuating a burning building, if the stairs are crowded, it is best to use the elevator.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>2</answer>
+  </question>
+  <question id="20">
+    <qtext>True or false: When evacuating a burning building, stay low to avoid smoke and toxic gases.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer></answer>
+  </question>
+  <question id="21">
+    <qtext>True or false: Disabledworkers and those with known medical problems, such as heart disease or epilepsy, should each be assigned an Emergency Action Leader to guide them to safety.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>1</answer>
+  </question>
+  <question id="22">
+    <qtext>True or false: It is okay to pass under the elevated portion of a forklift truck as long as it is empty.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>2</answer>
+  </question>
+  <question id="23">
+    <qtext>True or false: When handling certain materials, it is important to keep your hands greasy to keep the material from rusting.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>2</answer>
+  </question>
+  <question id="24">
+    <qtext>True or false: You chould check the tools for any play or wiggle.  if it isn't too much, then it is okay to use them.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>2</answer>
+  </question>
+  <question id="25">
+    <qtext>True or false: After exiting a burning building, you should go home because the facility will be shut down untill repaired.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>1</answer>
+  </question>
+  <question id="26">
+    <qtext>When lockout/tagout procedures are in effect, special situations to be aware of are not:</qtext>
+    <choices>
+    	<choice>Outside contractors</choice>
+    	<choice>Servicing that lasts more than one shift</choice>
+    	<choice>Removal of lockout by personnel who did not apply</choice>
+    	<choice>Don't take your lunch untill the procedure is finished</choice>
+    </choices>
+  	<answer>4</answer>
+  </question>
+  <question id="27">
+    <qtext>True or false: It is not necesary to keep your fingers and hands away from pinch-points as long as you are wearing gloves.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>2</answer>
+  </question>
+  <question id="28">
+    <qtext>True or false: When exiting a burning building, after you are in the stairwell, procede to the roof so the fire department can evacuate you with thier helicopter.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>2</answer>
+  </question>
+  <question id="29">
+    <qtext>True or false: It is okay to use a tool with a dull bit as long as you are careful.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>2</answer>
+  </question>
+  <question id="30">
+    <qtext>True or false: Your PPE may consist of: gloves, hand pads, barrier creams, etc.</qtext>
+    <choices>
+    	<choice>True</choice>
+    	<choice>false</choice>
+    </choices>
+  	<answer>1</answer>
+  </question>
+</data>
