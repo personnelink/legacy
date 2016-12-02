@@ -1,0 +1,255 @@
+@media print, handheld {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+
+/* redefine global id */
+#contentcolumn {width:79.1em;border-left:none;padding-left:0em;padding-right:0.4em;margin:0;padding-top:0}
+#leftSideMenu {display:none;}
+/* done redefining global id's */
+
+a:hover {text-decoration:none}
+
+#formOptions {width:45em; padding: 0 1em; margin-bottom:1em;}
+
+#whoseHereForm select { width:20em; text-align:left; margin-bottom:2em; }
+
+#whoseHereList { min-height:40em; background: url('/include/images/excitedToWork.jpg') no-repeat bottom right; }
+#whoseHereList  { margin-top:1em; padding:2em; }
+#whoseHereList td { padding-bottom:0.2em }
+
+
+#button {
+	width: 12em;
+	border-right: 1px solid #000;
+	padding: 0 0 1em 0;
+	margin-bottom: 1em;
+	font-family: 'Trebuchet MS', 'Lucida Grande',
+	  Verdana, Lucida, Geneva, Helvetica, 
+	  Arial, sans-serif;
+	background-color: #90bade;
+	color: #333;
+	}
+	
+
+.altNavPageRecords {float: none; clear:both; margin:1.6em auto; width:60em; text-align:left !important; }
+.altNavPageRecords a {font-weight:bold; width:6em;display:block;float:left;}
+.altNavPageRecords a:hover {font-weight:bold; text-decoration:none; }
+
+#topPageRecords {float:left; clear:both; }
+
+span.select {
+   position: absolute;
+   width: 208px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+   height: 21px;
+   padding: 0 24px 0 8px;
+   color: #fff;
+   font: 12px/21px arial,sans-serif;
+   background: url('/include/style/images/forms/select.gif') no-repeat;
+   overflow: hidden;
+
+ }
+
+#weekending ul li {margin:auto 4em}  
+#weekending ul li li,
+#weekending ul li ul{ list-style: none; list-style-type: none; maring-left: 1em; margin-bottom:1em; display:inline }
+
+
+.changeView {width:10em; float:right; clear:left; margin-bottom:0.6em; }
+#appResults { padding:0 1em 0 0em; clear:both; }
+.onlineApps { }
+
+.appView, .appID, th.appName, .appSSN {
+	text-align:center;
+}
+
+.appDate , th.appLocation {
+	text-align:right;
+}
+td.appName, td.appLocation {
+	padding-left:0em;
+}
+.appCompanies { width:16%; }
+.appCompany { width:4%; }
+
+.appName { width:28%; }
+.appSSN { width:8%; }
+.appLocation { width:24%; }
+.appDate { width:20%; }
+
+div#doneInsertingApp { margin:2em; }
+#whatWasInserted { background: url('') no-repeat bottom right; }
+#whatWasInserted  { padding:2em; }
+#whatWasInserted td { padding-bottom:0.2em }
+
+/* searchJobs.asp */
+#jobSearchForm select { width:20em; text-align:left; margin-bottom:2em; }
+#jobsList { min-height:40em;}
+#jobsList  { margin-top:1em; padding:2em; }
+#jobsList td { padding-bottom:0.2em }
+
+table.jobPost {
+	width:100%;
+	padding:0.6em;
+	margin-bottom:1em;
+	border-width: 0;
+	border-spacing: 0;
+	border-style: none;
+	border-color: #9CBAD9 #7BA5D1 #7BA5D1 #9CBAD9;
+	border-collapse: separate;
+	background-color:#fff;
+}
+table.jobPost th {
+	border-width: 0px 0px 0px 0px;
+	padding: 1px 1px 1px 1px;
+	border-style: none none none none;
+	border-color: #fff;
+	background-color: white;
+}
+table.jobPost td {
+	border-width: 3px;
+	padding: 1px;
+	border-style: double;
+	border-color: white;
+}
+
+.description {width:35%; text-align:left}
+.posted {width:15%;}
+.location {width:20%;}
+.startpay {width:15%;}
+.jobid {width:15%;}
+.jobid a {color:#FB0000; }
+.jobdescription {padding:0.2em 0 1.4em}
+
+a.inSystem { color:#cccccc; }
+td.notInSystem a,
+a.notInSystem,
+td.notInSystem {font-weight:bold; }
+
+.notSubmitted,
+a.notSubmitted,
+td.notSubmitted { font-style:italic;color:red }
+
+.branchHours {width:98.5%; clear:both; }
+.branchHours th {text-align:center}
+.burley,
+.ida {background-color:#CCFFCC}
+.boise,
+.twinfalls  {background-color:#CCFFFF}
+
+th { text-align:center }
+
+table.generalTable,
+table.placementTbl {margin:0.4em 0 0.6em; padding:0.2em;border-top: 5px solid #003466; width:100% }
+table.generalTable th,
+table.placementTbl th { text-align:left}
+table.generalTable .dateAndTime,
+table.placementTbl .dateAndTime { width:30%; }
+table.generalTable .customer,
+table.placementTbl .customer { width:35%; }
+table.generalTable .user,
+table.placementTbl .user { width:15%; }
+table.generalTable .reason,
+table.placementTbl .reason { width:15%; }
+
+.whApplicant { width:20%; }
+.whAddress { width:29%; }
+.whContact { width:14%; }
+.whSignIn { width:2%; }
+.whComments { width:35%; }
+
+table.catCustomer { background-color:#3399FF; padding: 0.6em; }
+table.catCustomer td { color:#FFFFFF; }
+table.catActivity { background-color: #FFFF99; border-top:1px solid inset #333333; }
+table.catActivity td, 
+table.catActivity th { color:#333333; }
+
+.padQuarter { width:25%; }
+.TypeZ { width:15%; text-align:right }
+.TypeZname { width:35%; text-align:left; }
+
+.Week,
+.Hours { text-align:right; }
+which_dates
+.LightBlueZ { background-color:#e0f6fd; }
+.YellowZ { background-color:#FEFFF1; }
+/* .DarkYellowZ { background-color:#FCFFCE; } */
+.DarkYellowZ { background-color:#FFCC00; }
+.WhiteZ { background-color:#FFFFFF; }
+.DarkWhiteZ { background-color:#F8F8F8; }
+
+.status { text-align:center; }
+
+p {clear:both;}
+#lookup {background:url('/include/system/images/look-up.png') no-repeat; width:24px; height:24px;float:left;margin:1em 0.6em 0 0; }
+#whoseHereForm p label {text-align:left}
+#sign_in {float:left;margin-top:1.5em;}
+#signInComment {width:26em}
+#applicant_name {margin:0 0 1em 2em;width:100%;clear:both;}
+#clear_list {float:left; margin:0 1em 0 0}
+#older_than {width:3em; text-align:center;}
+
+/* follow unemployment */
+.flcl {float:left;clear:left;}
+
+p.optionselects { display:inline;float:left;clear:left;}
+
+p.optionselects label,
+p.optionselects input { display:block;float:left;clear:left;}
+
+
+/* follow activities */
+ul.what_activities {display:inline;overflow:hidden;}
+ul.what_activities li { list-style-type: none; float:left; margin:0 0.4em 0.4em; display:inline;}
+
+ul.what_activities li label {display:block; width:10em; text-align:left; padding: 0 0 0 2em; text-indent:-2em;
+
+}
+
+div#what_activities p {margin:0 0 0.4em;}
+ul.what_activities li input {
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin:0 0.6em 0 0;
+    vertical-align: bottom;
+}
+
+ul#which_dates {width:8em;}
+ul#which_dates * label {width:6.5em; !important}
+
+ul.what_activites li a {
+	display: block;
+	width: 50px;
+	height: 60px;
+	background:url('/include/system/tools/timecards/images/savedTime.png') #ffffff no-repeat;
+	color: #333;
+	text-decoration: none; 
+	text-align: center;
+	padding: 20px 0 0 0;
+	font-size: 13px;
+	text-transform: uppercase;
+	line-height : 1;font-weight: bold;
+			}
+ul.what_activites li a span	{ font-size: 10px; font-weight:normal; }

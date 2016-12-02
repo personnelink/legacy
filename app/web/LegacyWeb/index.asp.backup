@@ -1,0 +1,181 @@
+<!-- #INCLUDE VIRTUAL='/inc/dbconn.asp' -->
+<!-- #INCLUDE VIRTUAL='/inc/checkCookies.asp' -->
+<HTML>
+<HEAD>
+<!-- #INCLUDE VIRTUAL='/inc/head.asp' -->
+<META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+<TITLE>Welcome to Personnel Plus! Idaho's Total Staffing Solution</TITLE>
+</HEAD>
+<NOSCRIPT>Your internet browser does not support scripting on this page. Please be sure you have the most current browser version installed</NOSCRIPT>
+<!-- #INCLUDE VIRTUAL='/inc/navi_top.asp' -->
+<!-- NAVI TOP START CLSP8 -->
+<div align="center">
+	<table border="0" width="746">
+		<tr>
+			<td colspan="2" align="center" height="35" width="740">
+				<H2>Welcome to Personnel Plus!</H2>
+			</td>
+<!-- PLACE RIGHT COLUMN HERE -->
+<!-- #INCLUDE VIRTUAL='/inc/navi_right_main.asp' -->
+		</tr>
+		<tr>
+			<td align="center">
+				<TABLE border="0" cellpadding="3" cellspacing="0" width="576">
+				<% If session("UserName") <> "" Then %>
+					<TR>
+						<td align="center" BGCOLOR="#eee8aa" STYLE="border: 1px solid #eee8aa;"><FONT COLOR="#003366"><strong>Welcome,  <%=session("firstName")%>&nbsp;<%=session("lastName")%></strong></FONT></td>
+					</TR>
+					<TR>
+						<td align="center" height="25"><A HREF="/seekers/registered/index.asp?who=2&?#app"><strong>Go To Account</strong></a></td>
+					</TR>
+				<% end if %>
+				<% If session("UserName") = "" Then %>
+					<TR>
+						<td align="center" BGCOLOR="#C7D2E0" width="570" height="35">
+							<FONT SIZE="+1" FACE="Verdana" COLOR="#003366"><a href="/index2.asp?who=2&?#app">
+							<span style="text-decoration: none">APPLICANTS!</span></a></FONT>
+							Job Seekers, see what<br><strong>Personnel Plus</strong> has to offer...
+						</td>
+					</TR>
+					<TR>
+						<TD STYLE="border: 1px solid #C7D2E0;" height="103" width="568" align="center">
+							<div style="position: absolute; width: 100px; height: 19px; z-index: 2; left: 472px; top: 205px" id="layer2">
+								<form method="POST" action="/index2.asp?who=2&?#app">
+									<p><input type="submit" value="Applicant, Login" STYLE="background:#339900; border:1 #333333 solid; font-size:9px; color:#FFFFFF"></p>
+								</form>
+							</div>
+							<font color="#BD1429"><a href="/seekers/new/applyDirect.asp?who=2"><b><span style="text-decoration: none"><font color="#BD1429">You Can Try Your Job First!!!</font></span></b></a></font>
+							<br>
+							<br>
+							*One Stop Shop for Jobs VS. Dropping
+							off <strong>Many </strong>Resumes *<br>* Variety of Jobs and Work Environments *<br>* Your Choice of the Job and the Hours *<br>
+							* Try the Employer First! *<br><br><i>Full / Part-Time Work</i><br><br>
+							<form method="POST" action="/seekers/new/applyDirect.asp?who=2">
+								<input align="middle" type="submit" value="Apply Now!!!" STYLE="background:#339900; border:1 #333333 solid; font-size:9px; color:#FFFFFF"><br>
+							</form>
+							Three Convenient Ways to Receive Pay:<br>
+							<ul>
+<!-- BEGIN SCROLLING SCRIPT -->                 
+<script language="JavaScript1.2">
+
+//configure the below five variables to change the style of the scroller
+var scrollerwidth=400
+var scrollerheight=20
+var scrollerbgcolor=''
+//set below to '' if you don't wish to use a background image
+var scrollerbackground=''
+
+//configure the below variable to change the contents of the scroller
+var messages=new Array()
+messages[0]="<a href='/company/payment.asp' target='_blank'><font face='Arial' color='#AF0000'><b><LI>Check</LI></b></font></a>"
+messages[1]="<a href='/company/payment.asp' target='_blank'><font face='Arial' color='#00AF00'><b><LI>Direct Deposit</li></b></font></a>"
+messages[2]="<a href='/company/payment.asp' target='_blank'><font face='Arial' color='#0000AF'><b><li>IPAY Debit Card</li></b></font></a>"
+
+</script>
+
+<!-- #INCLUDE VIRTUAL='/js/scroll.js' -->
+
+<!-- END SCROLLING SCRIPT 001B -->
+                    </ul>
+                    <br>
+                    <font color="#BD1429"><a href="/index2.asp?who=2&?#applicant"><b>
+                    <span style="text-decoration: none"><font color="#BD1429">
+                    Click here for more info...</a>
+                </TD>
+                </TR>   
+<% end if %>
+<td height="13">
+            <TR>
+                <td align="center" BGCOLOR="#C7D2E0" width="570" height="34">
+                    <FONT SIZE="+1" FACE="Verdana" COLOR="#003366"><!--a href="/orientation/index.asp?who=2"-->
+                    <span style="text-decoration: none">ORIENTATION</span><!--/a--></FONT></td>
+            </TR>       
+            <TR>
+                <TD STYLE="border: 1px solid #C7D2E0;" height="103" width="568" align="center">
+                    <font color="#BD1429"><b>Here you will find all the Orientation information you need to start your new job.</b></font><br>
+                    <br><a href="/orientation/rules.asp" target="_blank">Rules to Remember</a><br>
+                    <a href="/orientation/rights.asp" target="_blank">Your Right to Know</a><br>
+                    <% if request.cookies("OSHATEST") <> "DONE" then %>
+                        <a href="/orientation/company/OSHA/OSHA.asp">OSHA</a><br>
+                    <% else %>
+                        You have already taken the OSHA training courses needed<br>
+                    <% end if %>
+                    <!--a href="/orientation/index.asp?who=2">Click here to start your orientation...</a-->
+                </TD>
+                </TR>   
+</td>
+ </td>
+                                </tr></table>
+            <TABLE border="0" cellpadding="3" cellspacing="0" width="576">
+                                <% If session("companyUserName") <> "" Then %>
+                                 <TR>
+                                  <td align="center" BGCOLOR="#eee8aa" STYLE="border: 1px solid #eee8aa;" valign="top">
+                                      <FONT COLOR="#003366"><strong>Welcome,  <%=session("companyAgent")%></strong></FONT>
+                                  </td>
+                                  <td align="center" BGCOLOR="#eee8aa" STYLE="border: 1px solid #eee8aa;" valign="top">&nbsp;</td>
+                                 </TR>
+                                 <TR>
+                                     <td align="center" valign="top" colspan="2"><A HREF="/employers/registered/index.asp?who=1&?#applicant"><strong>Go To Account</strong></a></td>
+                                 </TR>
+                                <% end if %>        
+                                <% If session("companyUserName") = "" Then %>   
+            <TR>
+                <td align="center" BGCOLOR="#C7D2E0" width="564" height="35" valign="top" colspan="2"><FONT SIZE="+1" FACE="Verdana" COLOR="#003366"><a href="/index2.asp?who=1&?#applicant">
+                <span style="text-decoration: none">EMPLOYERS!</span></a></FONT> We Have Quality Employees...</td>
+            </TR>       
+            <TR>
+                <TD STYLE="border: 1px solid #C7D2E0;" height="103" width="560" colspan="2">
+                                <div style="position: absolute; width: 100px; height: 25px; z-index: 1; left: 473px; top: 669px" id="layer1">
+                                        <form method="POST" action="/index2.asp?who=1&?#applicant">
+                                            <p><input type="submit" value="Employer, Login" STYLE="background:#339900; border:1 #333333 solid; font-size:9px; color:#FFFFFF"></p>
+                                        </form> 
+                                </div>
+                    <p align="center"><a href="/company/benefits.asp" target="_blank"><span style="text-decoration: none">
+                    <font color="#BD1429"><b>Screened and Ready to Work!</b></font></span></a><br><br>
+                    * General Labor * Manufacturing * Construction * Warehouse *<br>* Call Center * Office /
+                    Clerical * Bookkeeping * Janitorial *<br><br><i>Temporary or Permanent * Full / Part-
+                    Time</i><font color="#bd1429"><br><br>
+                    <form method="POST" action="/employers/email_job/jobmail.asp?page=1" target="_blank">
+                        <input align="middle" type="submit" value="Order Employees" STYLE="background:#339900; border:1 #333333 solid; font-size:9px; color:#FFFFFF">
+                    </form>
+                    <form method="post" action="/employers/email_job/jobmail.asp?page=2" target="_blank">
+                        <input align="middle" type="submit" value="Email Your Job Openings" style="background:#339900; border:1 #333333 solid; font-size:9px; color:#ffffff"><br>
+                    </form>
+                    Workers Comp.   Coverage Bonded & Insured<br><br>
+                    <span style="text-decoration: none"><a href="/company/post.asp" target="_blank">
+                    Click here for more info...</a></span></p>
+                </TD>
+            </TR>
+                               <% End If %>    
+           </td>
+       </tr>
+</table>
+&nbsp;
+                                <p>
+
+<IMG SRC="/img/shake.jpg" ALT="" WIDTH="150" HEIGHT="85" BORDER="0" ALIGN="left" hspace="0"></p>
+                                <TABLE border="0" cellpadding="3" cellspacing="0" width="426">
+                                <TR>
+                                    <TD STYLE="border: 1px solid #C7D2E0;" width="418">
+&nbsp;<strong>Our Mission</strong>: To provide quality human resource solutions 
+through a network that profits our associates, customers, and communities. 
+<p></p>
+<DIV ALIGN="center"><EM>&quot;Your Total Staffing Solution&quot;</EM>
+</DIV>                                  
+                                    </TD>
+                                </TR>
+                                </TABLE>
+                                <p>
+                <a href="http://www.staffingtoday.net/aboutasa/index.html" target="_blank">
+                    <img src="/img/asa.gif" alt="" width="264" height="48" border="0">
+                </a>
+            </td>           
+        </tr>
+        </table>
+</div>
+<!-- End Main Content -->           
+        
+<!-- NAVI BTM START CLSP10 -->
+<!-- #INCLUDE VIRTUAL='/inc/navi_btm.asp' -->
+</BODY>
+</HTML>

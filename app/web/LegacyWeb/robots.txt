@@ -1,0 +1,11 @@
+# Robots.txt file from http://www.personnelplus-inc.com
+
+User-agent: *
+Disallow: /employer/
+Disallow: /seeker/
+Disallow: /upload/
+Disallow: /img/
+Disallow: /inc/
+Disallow: /jobdata/
+Disallow: /messages/
+Disallow: /style/

@@ -1,0 +1,142 @@
+@media print {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+
+/* post */
+
+#manageBugForm {height:51em;}
+#blogFormContent,
+#bugFormContent {min-height:40em; margin:2em; }
+#blogFormContent textarea,
+#bugFormContent textarea { height:23em; margin-bottom:0.6em; }
+#blogFormContent label,
+#bugFormContent label { float: left;text-align: left;width:16em; margin-bottom:0.4em;clear:both }
+#blogFormContent input, #blogFormContent textarea,
+#bugFormContent input, #bugFormContent textarea {width:50em;}
+#blogFormContent textarea {}
+#postMessageButton { margin:1em 2.4em 1em auto; height:2em;}
+
+p#blogFormat label {width:12em; 
+        line-height:12px;
+        vertical-align:middle;
+}
+p#blogFormat input {width:3em;vertical-align:middle;}
+
+div.notes {
+  float: right;
+  width: 18em;
+  height: auto;
+  margin: 0 1em 1em 1em;
+  padding: 5px;
+  border: 1px solid #666666;
+  background-color: #ffffe1;
+  color: #666666;
+  font-size: 88%;
+}
+
+div.notes h4 {
+  background-image: url('/include/style/images/forms/icon_info.gif');
+  background-repeat: no-repeat;
+  background-position: top left;
+  padding: 3px 0 3px 2.6em;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: #666666;
+  color: #666666;
+  font-size: 110%;
+}
+
+div.notes p {
+  margin: 0em 0em 1.2em 0em;
+  color: #666666;
+}
+
+div.notes p.last {
+  margin: 0em;
+}
+
+span.checkbox { 
+    width: 19px;
+    height: 25px;
+    padding: 0 5px 0 0;
+	margin:-5px 0 0;
+    background: url('/include/style/images/forms/checkbox.gif') no-repeat;
+    display: block;
+    clear: left;
+    float: left;
+	
+  }
+span.radio {
+   width: 19px;
+     height: 25px;
+    padding: 0 5px 0 0;
+	margin:-5px 0 0;
+    background: url('/include/style/images/forms/radio.gif') no-repeat;
+	display:inline;
+    clear: left;
+	float:left;
+  }
+  
+ span.select {
+   position: absolute;
+   width: 208px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+   height: 21px;
+   padding: 0 24px 0 8px;
+   color: #fff;
+   font: 12px/21px arial,sans-serif;
+   background: url('/include/style/images/forms/select.gif') no-repeat;
+   overflow: hidden;
+ }
+
+.squarebutton {margin-left:0.6em;}
+
+#PersonalInformation ul li  {width:18em; height:3em; display:block; vertical-align:middle;}
+#PersonalInformation label, #PersonalInformation input {width:16em}
+
+#WorkPreferences textarea {width:48em}
+#WorkPreferences ul li {width:26em; height:3em; display:block; vertical-align:middle;}
+#WorkPreferences label {width:48em} 
+#WorkPreferences input {width:23em}
+#workPreferenceQuestions label {width:24em} 
+#workPreferenceQuestions ul li {padding-right:0.25em} 
+#workPreferenceQuestions input {width:2em}
+
+#WorkReferences ul li, #WorkReferences  ul li{width:26em; height:3em; display:block; vertical-align:middle;}
+#WorkReferences label, #WorkReferences input {width:24em}
+
+/* div p {display: block;} */
+
+/* Global for short forms */
+
+.fieldIsBad {color:#FF0000; padding-left:25em;}
+.fieldIsBad span {
+	visibility:visible;
+	margin-left:1em;
+	height:1.2em;
+	padding-left:1.5em;
+	float: none;
+	background: transparent url('/include/images/mainsite/icon_err.gif') no-repeat;}
+
+#bugFormContent { height:8em }
