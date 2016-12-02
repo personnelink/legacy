@@ -1,1 +1,0 @@
-robocopy "\\twin-fs\w$\web services\vms" "C:\inetpub\wwwroot" /xo /fft /xd eol %1 /xf web.config *.mdb *.zip *.log /e /w:0 /r:0 /mt:32
