@@ -1,0 +1,162 @@
+BODY  {
+	margin-left : 0px;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 0px;	
+	background-color : #FFFFFF;	
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 8pt;
+	color : #000000;	
+}
+
+TD  {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 8pt;
+	color : #000000;
+}
+
+
+
+.legal  {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 7pt;
+	color : #999999;
+	margin-left : 16px;
+	margin-right : 16px;
+}
+
+.menu  {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 9pt;
+	font-weight : bold;
+	color : #000000;
+}
+
+
+
+
+.header  {
+	font-size : 8pt;
+	font-family : Arial, Helvetica, sans-serif;
+	color : #ffffff;
+	font-weight: bold;
+}
+
+.footer  {
+	font-size : 7pt;
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : #000000;
+	padding-top: 2px; padding-bottom: 2px
+}
+
+.req_entry {
+	background: #E7E7E7;
+}
+
+.req_label {
+	font-size: 8pt;
+	font-weight : bold;	
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : #000000;
+}
+.navLinks { 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 7pt
+}
+
+
+
+.sideMenu {  
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 9px; 
+	color: #666666
+}
+
+.headmenu { 
+	font-size : 8pt; 
+	font-family : Arial, Helvetica, sans-serif; 
+	color : #ffffff; 
+	font-weight: bold; 
+	padding-top: 5px; 
+	padding-bottom: 5px
+}
+
+a:hover { 
+	text-decoration: underline;
+	font-weight : bold;	 
+}
+
+a { 
+text-decoration: none; 
+color: #5187CA;
+font-weight : bold;
+ }
+
+.desc {  
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px; 
+	line-height: 20px; 
+	color: #333333
+}
+
+a:link {  }
+.help { cursor: help }
+.hand { cursor: hand }
+.buttons { font-size : 8pt; font-family : Arial, Helvetica, sans-serif; color : #FFFFFF; ; font-weight: bold }
+.smallDesc { font-family: Arial, Helvetica, sans-serif; font-size: 11px; line-height: 15px; color: #333333}
+
+
+.empJobMgrHead  {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 11px;
+	font-weight : bold;
+	color: #FFFFFF;
+	background: url(/images/bkg_e22b.gif);
+}
+.empJobMgrList {  
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px; 
+	font-weight : none;	
+	color: #000000
+}
+
+.resTitle {
+	font-family : Arial, Verdana, Helvetica, sans-serif;
+	font-size : 11pt;
+	font-weight : bold;
+	color: #000000;
+}
+.jobTitle {
+	font-family : Arial, Verdana, Helvetica, sans-serif;
+	font-size : 11pt;
+	color: #000000;
+}
+.msgTitle {  
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px; 
+	color: #000000
+}
+.middleMenu {  
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 11px; 
+	color: #000000
+}
+
+.hlpHeading {  
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 11pt; 
+	color: #000000
+}
+
+.sideLink {  
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 9px; 
+
+}
+
+.jobSearchTitle {  
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 11px; 
+	font-weight : none;	
+	color: #5187CA
+}
