@@ -1,0 +1,41 @@
+@media print, handheld {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+
+.blognail {margin: 0 1em 1em;}
+
+ul.providers { width:20.6em;float:left;margin:0 0 3em 0}
+ul.providers { display:inline;}
+ul.providers li { display:block;width:20.1em;height:15em;overflow:hidden;}
+ul.providers span {display:block;float:left;clear:left;padding:0 0 0 0em;}
+
+ul.providers li span h4 { margin:1px 1px 0.4em 1px; ;padding:0.2em 0 0.2em 0.2em; font-weight:heavy; width:18em;}
+
+.provider_address,
+.provider_cityline,
+.provider_phone {margin: 0 0 0.1em 0.8em}
+
+.provider_web {margin: 0 0 0.1em 0.8em}
+
+.provider_hours { font-style:italic;margin: 0.8em 0 0.3em 0.8em}

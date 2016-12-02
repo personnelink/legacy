@@ -1,0 +1,74 @@
+﻿.clsBODY 
+{
+    BACKGROUND-COLOR: white;
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial, Helvetica, 'SANS SERIF';
+    FONT-SIZE: 10pt;
+}
+.requiredInput
+{
+	color: Red;
+	font-size: 10pt;
+	font-family: Verdana, Arial, Helvetica, 'SANS SERIF';
+}
+TD
+{
+    FONT-FAMILY: Verdana, Arial, Helvetica, 'SANS SERIF';
+    FONT-SIZE: 10pt;
+}
+H2
+{
+    FONT-FAMILY: Verdana, Arial, Helvetica, 'SANS SERIF';
+	FONT-SIZE: 18pt	
+}
+H5
+{
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal;
+    PADDING-BOTTOM: 0px
+}
+INPUT
+{
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial, Helvetica, 'SANS SERIF';
+    FONT-SIZE: 10pt;
+}
+H6
+{
+    FONT-SIZE: 10pt
+}
+.BUTTON
+{
+    BACKGROUND-COLOR: #993366;
+    COLOR: black;
+    FONT-SIZE: 12pt;
+    FONT-WEIGHT: normal
+}
+A
+{
+    TEXT-DECORATION: underline
+}
+
+TABLE.clsFooter
+{
+	font-size:10pt;
+}
+
+.clsError
+{
+    FONT-WEIGHT: bold;
+    COLOR: red
+}
+.clsHighlight
+{
+    FONT-WEIGHT: bold;
+    COLOR: red
+}
+
+.boxBorder{
+  border-right: #6e6d6d 1pt solid;  
+  border-left: #6e6d6d 1pt solid;
+  border-top: #6e6d6d 1pt solid;
+  border-bottom: #6e6d6d 1pt solid;
+  background-color: #FFFFFF;
+}

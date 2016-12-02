@@ -1,0 +1,51 @@
+@media print, handheld {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+
+/* redefine global id */
+#contentcolumn {width:79.1em;border-left:none;padding-left:0em;padding-right:0.4em;margin:0;padding-top:0}
+#leftSideMenu {display:none;}
+/* done redefining global id's */
+
+.blognail {margin: 0 1em 1em;}
+
+div.storylink { width:31em;float:left;margin:0 0 3em 1em;}
+div.storylink ul { display:inline;}
+div.storylink li { display:block;width:29em;height:15.4em;overflow:hidden;}
+
+div.storylink img { width:78px;height:78px;overflow:hidden;float:left; margin: 0 0.6em 0 0; border:1px solid #003366; padding:1px; }
+div.storylink h4 { padding:0.2em 0 0.2em 0.4em; font-weight:heavy; }
+
+
+
+
+
+
+div#storylink div ul li img {margin-right:5px}
+div#storylink label { margin-left: 0.5em; margin-bottom: 0.5em; display: block; color: #464646;font-weight: bold;}
+div#storylink input { float: left; margin-left: 0.5em; padding: 0.6em; width: 72%; font-size: 0.5em;border: solid 1px #889EB6; background-color: #FFF; color: #898989; }
+div#storylink .button { float: right; }
+
+

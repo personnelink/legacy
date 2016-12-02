@@ -1,0 +1,66 @@
+
+/* redefine global id */
+#contentcolumn {width:79.1em;border-left:none;padding-left:0em;padding-right:0.4em;margin:0;padding-top:0}
+#leftSideMenu {display:none;}
+/* done redefining global id's */
+
+.blogDate {float:right; display:block;margin:0 0.8em 0 0; color:#c5d1dd;}
+
+.delBlog { float:left; display:block; }
+.editBlog { float:right; display:block;}
+
+div.notes {
+  float: right;
+  clear:none;
+  width: 18em;
+  height: auto;
+  margin: 0 1em 1em 1em;
+  padding: 5px;
+  border: 1px solid #666666;
+  background-color: #ffffe1;
+  color: #666666;
+  font-size: 88%;
+}
+
+div.notes h4 {
+  background-image: url('/include/style/images/forms/icon_info.gif');
+  background-repeat: no-repeat;
+  background-position: top left;
+  padding: 3px 0 3px 2.6em;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: #666666;
+  color: #666666;
+  font-size: 110%;
+}
+
+div.notes p {
+  margin: 0em 0em 1.2em 0em;
+  color: #666666;
+}
+
+div.notes p.last {
+  margin: 0em;
+}
+
+div.blog{margin:0 1em;}
+div.reply hr {border:0;color:#ededed ;background-color:#ededed;margin:1em 1.2em 0.4em}
+div.reply p  {padding:0.2em 0.4em 2em 1em}
+.replydate {color:grey}
+
+p#signature,
+div#blogback {background: url('bestofbest.jpg') no-repeat top left;height:28em;position:relative;}
+
+p#signature {background-position:bottom right; float:right;vertical-align:top;height:4.5em;width:14em;}
+div#publicBlog {padding:0 1em 3em 25%;background-color:transparent;}
+
+div#introBlog p {margin:0 0 0.6em;background-color:transparent;}
+div#postmessage {position:absolute;bottom:0;margin:0 1em 0.4em;background-color: transparent;}
+
+#homeBlogSpot {clear:both;}
+.transparent
+{
+   filter:alpha(opacity=85); 
+   -moz-opacity: 0.85; 
+   opacity: 0.85; 
+}
