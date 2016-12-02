@@ -1,0 +1,149 @@
+#whoseHereForm select { width:20em; text-align:left; margin-bottom:2em; }
+
+#whoseHereList { min-height:40em; background: url('/include/images/excitedToWork.jpg') no-repeat bottom right; }
+#whoseHereList  { margin-top:1em; padding:2em; }
+#whoseHereList td { padding-bottom:0.2em }
+
+#accountActivityDetail { min-height:40em; }
+#accountActivityDetail  { margin-top:1em; padding:2em; }
+#accountActivityDetail td { padding-bottom:0.2em }
+#accountActivityDetail label { float:left; clear: right; vertical-align:middle; margin-bottom:1em; }
+#accountActivityDetail input { float:left; clear: right; vertical-align:middle; margin-bottom:1em; }
+
+#viewActivityForm {min-height:40em}
+#viewActivityForm p {width:100%; text-align:center;padding-top:1em}
+#viewActivityForm p span {margin:0 1em 0; padding-top:.1em; padding-left:1em;}
+
+ul.guide {
+    list-style: none;
+    margin: 0.4em 0;
+    padding: 0;
+}
+
+ul.guide li {
+    font-weight: bold;
+    margin: 0;
+    padding: 0.2em 0em 0.2em 0em;
+    border-bottom: 1px solid #ccc;
+    color: #666;
+}
+
+ul.guide li:hover {
+    color: #000;
+    background-color: #ddd;
+}
+
+#button {
+	width: 12em;
+	border-right: 1px solid #000;
+	padding: 0 0 1em 0;
+	margin-bottom: 1em;
+	font-family: 'Trebuchet MS', 'Lucida Grande',
+	  Verdana, Lucida, Geneva, Helvetica, 
+	  Arial, sans-serif;
+	background-color: #90bade;
+	color: #333;
+	}
+	
+
+
+li.label_checkbox_pair {
+clear: both;
+float: none;
+}
+li.label_checkbox_pair input {
+clear: right;
+float: right;
+margin-left: 0em;
+}
+
+.navPageRecords {float: none; clear:both; margin:1.6em auto;width:24em; text-align:center; }
+.navPageRecords a {font-weight:bold}
+span.select {
+   position: absolute;
+   width: 208px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+   height: 21px;
+   padding: 0 24px 0 8px;
+   color: #fff;
+   font: 12px/21px arial,sans-serif;
+   background: url('/include/style/images/forms/select.gif') no-repeat;
+   overflow: hidden;
+
+ }
+
+#weekending ul li {margin:auto 4em}  
+#weekending ul li li,
+#weekending ul li ul{ list-style: none; list-style-type: none; maring-left: 1em; margin-bottom:1em; display:inline }
+
+
+.changeView {width:10em; float:right; clear:left; margin-bottom:1.6em; }
+#appResults { padding:0 1em 0 0em; clear:both; }
+.onlineApps { }
+
+.appView, .appID, th.appName, .appSSN {
+	text-align:center;
+}
+
+.appDate , th.appLocation {
+	text-align:right;
+}
+td.appName, td.appLocation {
+	padding-left:0em;
+}
+.appCompanies { width:16%; }
+.appCompany { width:4%; }
+
+.appName { width:28%; }
+.appSSN { width:8%; }
+.appLocation { width:24%; }
+.appDate { width:20%; }
+
+#whatWasInserted { background: url('/pdfServer/pdfApplication/appInjected.jpg') no-repeat bottom right; }
+#whatWasInserted  { margin-top:1em; padding:2em; }
+#whatWasInserted td { padding-bottom:0.2em }
+
+/* searchJobs.asp */
+#jobSearchForm select { width:20em; text-align:left; margin-bottom:2em; }
+#jobsList { min-height:40em;}
+#jobsList  { margin-top:1em; padding:2em; }
+#jobsList td { padding-bottom:0.2em }
+
+table.jobPost {
+	width:100%;
+	padding:0.6em;
+	margin-bottom:1em;
+	border-width: 0;
+	border-spacing: 0;
+	border-style: none;
+	border-color: #9CBAD9 #7BA5D1 #7BA5D1 #9CBAD9;
+	border-collapse: separate;
+	background-color:#fff;
+}
+table.jobPost th {
+	border-width: 0px 0px 0px 0px;
+	padding: 1px 1px 1px 1px;
+	border-style: none none none none;
+	border-color: #fff;
+	background-color: white;
+}
+table.jobPost td {
+	border-width: 3px;
+	padding: 1px;
+	border-style: double;
+	border-color: white;
+}
+
+.description {width:35%; text-align:left}
+.posted {width:15%;}
+.location {width:20%;}
+.startpay {width:15%;}
+.jobid {width:15%;}
+.jobid a {color:#FB0000; }
+.jobdescription {padding:0.2em 0 1.4em}
+
+.posted, .location, .startpay, .jobid {text-align:center}
+
+a.inSystem { color:#cccccc; }
+td.notInSystem a,
+a.notInSystem,
+td.notInSystem { font-weight:bold; }

@@ -1,0 +1,96 @@
+/* Element Definitions */
+#pageBanner, #pageNavigation, #pageWrapper, #pageFooter, #suckerFish {width:80%;margin:1em auto 1em;text-align:center;background-color:#003466;}
+#pageBanner {margin-bottom:-3px; background: transparent url(/include/style/images/navigation/topBanner.gif) no-repeat;height:100px;}
+#pageNavigation {margin-top:1px;padding:0;}
+#pageFooter {margin:0;text-align:center;clear:both;padding-top:.5em;}
+#pageFooter div div {background: url(images/tbkg_navi_btm.gif) repeat-x top;height:1.5em;border: 1px solid #003466}
+
+#pageNavigation {background: transparent url(/include/style/images/navigation/buttonUp.jpg) repeat-x;border-top: 1px solid #285291;}
+#pageNavigation div {margin:-1px 0 .8em;clear:both; min-height:2.8em}
+#pageNavigation div a {display: inline;clear:right;float:left;background: transparent url(/include/style/images/navigation/buttonUp.jpg) repeat-x;}
+#pageNavigation div a {border-right: 1px solid #003466;color:#F3F3D7;border-top: 1px solid #285291;font-size:1em;padding:.5em 1.45em 1em;margin-top:-1px; }
+#pageNavigation div a:hover {background: transparent url(/include/style/images/navigation/buttonDown.jpg) repeat-x;border-top:1px solid #003466;margin-top:-1px;text-decoration:none}
+#applicationTools {border-left:1px solid #003466; float:right !important;}
+
+#pageFooter a, #pageFooter a:link, #pageFooter a:visited {color:#fffccc;padding-top:1em;}
+#pageFooter div div {padding-top:.25em;}
+#pageFooter div p {padding-top:.25em;color:#fff;text-align:center;margin:1em 0 2.5em;}
+#pageFooter a:hover {color:#ffff99;}
+
+
+#suckerFish {background: transparent url(/include/style/images/navigation/buttonUp.jpg) repeat-x;border-top: 1px solid #285291;margin-top:1px;padding:0;}
+#suckerFish {clear:both; min-height:2.8em}
+#suckerFish ul a {display: inline;clear:right;float:left;}
+#suckerFish ul a {border-right: 1px solid #003466;color:#F3F3D7;border-top: 1px solid #285291;font-size:1em;padding:.5em 1.45em 1em;margin-top:-1px; }
+#suckerFish ul a:hover {background: transparent url(/include/style/images/navigation/buttonDown.jpg) repeat-x;border-top:1px solid #003466;margin-top:-1px;text-decoration:none}
+
+#suckerFish ul {padding: 0;margin: 0;list-style: none; }
+#suckerFish li { float: right; position: relative;}
+#suckerFish li.minow {  }
+#suckerFish li ul { display: none; position: absolute; top: 1em; right: 0; }
+#suckerFish li > ul {top: auto;left: auto; }
+#suckerFish ul.minow {margin-top:2.7em; }
+#suckerFish ul.minow li {width: 12.45em;background: transparent url(/include/style/images/navigation/buttonDown.jpg) repeat-x;border-top:1px solid #003466;}
+#suckerFish ul.minow li a:hover {background: transparent url(/include/style/images/navigation/buttonUp.jpg) repeat-x;border-top:1px solid #285291;}
+#suckerFish li:hover ul, #suckerFish li.over ul{ display: block; }
+
+
+/* Check Sign In */
+input#checkSignIn {padding: .2em .2em .1em;margin-bottom:.5em;height:1.4em;}
+label#checkSignIn {float:left;text-align:left;margin-right: 0.5em;display: block}
+label#checkSignIn, input#checkSignIn  {width:18em}
+#SignIn input{text-align:left;margin-bottom:0;height:1.6em;}
+
+/* Log In and Sign Up Tabs */
+div#account {float:right; padding-top:67px; }
+div#account ul#loginTabs li a:hover { text-decoration: none; }
+
+/* TABS - NOT SELECTED */
+div#account ul#loginTabs li h2, 
+div#account ul#loginTabs li {background: url(/include/content/images/mainsite/cornersSheet.png) left -68px; }
+div#account ul#loginTabs li h2 { background-position: right -68px; font-size:12px;}
+div#account ul#loginTabs li a { background-color: #cce0f4; color: #464646; }
+div#account ul#loginTabs li a:hover { color: #CC0000; }
+
+/* TABS - SELECTED */
+div#account ul#loginTabs li.selected { background-position: left -17px; }
+div#account ul#loginTabs li.selected h2 { background-position: right -17px; font-size:12px;}
+div#account ul#loginTabs li.selected a { background: transparent url(/include/content/images/mainsite/bgSheet.png) repeat-x; color: #FFF; }
+div#account ul#loginTabs li.selected a:hover { color: #FFF; }
+
+/* TABS ACCOUNT LOGIN */
+div#account h2 { margin: 0; padding: 0; }
+div#account ul#loginTabs li { float: left; margin-right: 0.3em; }
+div#account ul#loginTabs li a { display: block; padding: 0.5em .5em; margin: 0 6px; }
+div#account ul#loginTabs li.selected a { padding-bottom: 0.8em; } 
+div#account div.selected { display: block; }
+
+/* Content Areas */
+.pageContent {float:right;width:78%;margin:1em auto 0}
+.pageSubContent {margin:1em;background-color:#003466;width:75%}
+.pageSubContent p label {width: 20%;float: left;text-align: right;display: block}
+.pageSubContent p input,
+.pageSubContent p select,
+.pageSubContent p textarea {margin:0;padding:0;;text-align:left;width:30em}
+.pageSubContent div p label {width: 275px;float: left;text-align: right;display: block}
+.pageSubContent div p input {margin:0;padding:0;float:left;text-align:left;width:300px}
+.pageSubContent div p select {margin:0;padding:0;float:left;text-align:left;width:75px}
+.pageSubContent div p {clear:both}
+.subContent {position:relative;width:80%;height:auto;visibility:visible;padding:0;border:1px solid #C7D2E0;margin: 0 0 1em 1em;line-height:100%;}
+.subContent ul li {line-height:100%;}
+
+/* TABS */
+div.tabsWrap { border: 1px solid #bbb;margin:.1em .5em .1em}
+ul.tabs { background:  url(/include/content/images/mainsite/bgSheet.png) repeat-x left -1026px; }
+ul.tabs li { border-right: 1px solid #bbb; }
+ul.tabs li.selected a, 
+ul.tabs li a:hover { background: url(/include/content/images/mainsite/moduleBg.gif) repeat-x; color: #747474; }
+ul.tabs li a:hover { color: #039; }
+
+/* TABS */
+ul.tabs li { float: left; margin-bottom: -1px; }
+ul.tabs li a { display: block; padding: 0.8em 1em;font-weight: bold; font-size: 0.91em; text-align: center;  }
+ul.tabs li.selected a:hover { padding-bottom: 0.8em; }
+ul.tabs li.selected { margin-bottom: -1px; }
+ul.tabs li a:hover { text-decoration: none; }
+

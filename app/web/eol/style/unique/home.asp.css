@@ -1,0 +1,35 @@
+/* Home.asp Elements */
+
+div#employees div p, div#employees div ul { text-align:left;}
+div#employees div ul li img {margin-right:5px}
+div#employees label { margin-left: 0.5em; margin-bottom: 0.5em; display: block; color: #464646;font-weight: bold;}
+div#employees input { float: left; margin-left: 0.5em; padding: 0.6em; width: 72%; font-size: 0.5em;border: solid 1px #889EB6; background-color: #FFF; color: #898989; }
+div#employees .button { float: right; }
+
+div#employers div p, div#employers div ul { text-align:left;}
+div#employers div ul li img {margin-right:5px}
+div#employers label { margin-left: 0.5em; margin-bottom: 0.5em; display: block; color: #464646;font-weight: bold;}
+div#employers input { float: left; margin-left: 0.5em; padding: 0.6em; width: 72%; font-size: 0.5em;border: solid 1px #889EB6; background-color: #FFF; color: #898989; }
+div#employers .button { float: right; }
+
+div#orientation div p, div#orientation div ul { text-align:left;}
+div#orientation div ul li img {margin-right:5px}
+div#orientation label { margin-left: 0.5em; margin-bottom: 0.5em; display: block; color: #464646;font-weight: bold;}
+div#orientation input { float: left; margin-left: 0.5em; padding: 0.6em; width: 72%; font-size: 0.5em;border: solid 1px #889EB6; background-color: #FFF; color: #898989; }
+div#orientation .button { float: right; }
+
+div#newToPersonnelPlus { margin-top:10px;}
+div#newToPersonnelPlus div p, div#newToPersonnelPlus div ul { text-align:left;}
+div#newToPersonnelPlus div ul li img {margin-right:5px}
+div#newToPersonnelPlus label { margin-left: 0.5em; margin-bottom: 0.5em; display: block; color: #464646;font-weight: bold;}
+div#newToPersonnelPlus input { float: left; margin-left: 0.5em; padding: 0.6em; width: 72%; font-size: 0.5em;border: solid 1px #889EB6; background-color: #FFF; color: #898989; }
+div#newToPersonnelPlus .button { float: right; }
+div#newToPersonnelPlus div#tourLinkWrap { margin-top: 1.5em; padding: 1em; clear: both; }
+
+div#ourMission { margin-top:10px;}
+div#ourMission div p, div#ourMission div ul { text-align:left;}
+div#ourMission div ul li img {margin-right:5px}
+
+div#affiliations { margin-top:10px;}
+div#affiliations div p, div#affiliations div ul { text-align:left;}
+div#affiliations div ul li img {margin-right:5px}

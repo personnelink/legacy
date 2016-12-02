@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:od="urn:schemas-microsoft-com:officedata">
+      <xsd:element name="dataroot">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="fullApplication" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+          <xsd:attribute name="generated" type="xsd:dateTime"/>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="fullApplication">
+        <xsd:annotation>
+          <xsd:appinfo/>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="tbl_applications.applicationID" minOccurs="1" od:jetType="autonumber" od:sqlSType="int" od:autoUnique="yes" od:nonNullable="yes" type="xsd:int"/>
+            <xsd:element name="tbl_applications.userID" minOccurs="0" od:jetType="longinteger" od:sqlSType="int" type="xsd:int"/>
+            <xsd:element name="emailupdates" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="desiredWageAmount" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="minWageAmount" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="workTypeDesired" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="workAuth" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="workAuthProof" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="workAge" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="workValidLicense" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="workLicenseType" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="workRelocate" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="workConviction" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="workConvictionExplain" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="eduLevel" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="additionalInfo" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="skillsClerical" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="skillsCustomerSvc" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="skillsIndustrial" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="skillsGeneralLabor" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="skillsConstruction" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="skillsSkilledLabor" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="skillsBookkeeping" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="skillsSales" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="skillsManagement" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="skillsTechnical" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="skillsFoodService" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="skillsSoftware" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="employerNameHistOne" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistAddOne" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistStateOne" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistPhoneOne" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistCityOne" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistZipOne" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistSupervisorOne" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistFromDateOne" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="JobHistToDateOne" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobDutiesOne" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobReasonOne" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="employerNameHistTwo" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistAddTwo" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistStateTwo" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistZipTwo" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistSupervisorTwo" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistPhoneTwo" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistFromDateTwo" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="JobHistToDateTwo" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistCityTwo" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobDutiesTwo" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobReasonTwo" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="employerNameHistThree" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistAddThree" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistPhoneThree" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistCityThree" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistStateThree" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistZipThree" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobDutiesThree" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistSupervisorThree" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobHistFromDateThree" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="JobHistToDateThree" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="jobReasonThree" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="255"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="tbl_applications.modifiedDate" minOccurs="0" od:jetType="datetime" od:sqlSType="datetime" type="xsd:dateTime"/>
+            <xsd:element name="tbl_applications.creationDate" minOccurs="0" od:jetType="datetime" od:sqlSType="datetime" type="xsd:dateTime"/>
+            <xsd:element name="tbl_users.userID" minOccurs="1" od:jetType="autonumber" od:sqlSType="int" od:autoUnique="yes" od:nonNullable="yes" type="xsd:int"/>
+            <xsd:element name="tbl_users.applicationID" minOccurs="0" od:jetType="longinteger" od:sqlSType="int" type="xsd:int"/>
+            <xsd:element name="tbl_users.addressID" minOccurs="0" od:jetType="longinteger" od:sqlSType="int" type="xsd:int"/>
+            <xsd:element name="tbl_users.companyID" minOccurs="0" od:jetType="longinteger" od:sqlSType="int" type="xsd:int"/>
+            <xsd:element name="departmentID" minOccurs="0" od:jetType="longinteger" od:sqlSType="int" type="xsd:int"/>
+            <xsd:element name="userName" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="userPassword" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="userLevel" minOccurs="0" od:jetType="longinteger" od:sqlSType="int" type="xsd:int"/>
+            <xsd:element name="userEmail" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="UserAlternateEmail" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="userPhone" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="13"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="userSPhone" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="title" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="firstName" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="lastName" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="tbl_users.modifiedDate" minOccurs="0" od:jetType="datetime" od:sqlSType="datetime" type="xsd:dateTime"/>
+            <xsd:element name="tbl_users.creationDate" minOccurs="0" od:jetType="datetime" od:sqlSType="datetime" type="xsd:dateTime"/>
+            <xsd:element name="tbl_addresses.addressID" minOccurs="1" od:jetType="autonumber" od:sqlSType="int" od:autoUnique="yes" od:nonNullable="yes" type="xsd:int"/>
+            <xsd:element name="tbl_addresses.companyID" minOccurs="0" od:jetType="longinteger" od:sqlSType="int" type="xsd:int"/>
+            <xsd:element name="tbl_addresses.userID" minOccurs="0" od:jetType="longinteger" od:sqlSType="int" type="xsd:int"/>
+            <xsd:element name="addressName" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="address" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="addressTwo" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="city" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="state" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="zip" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="country" minOccurs="0" od:jetType="text" od:sqlSType="nvarchar">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:maxLength value="50"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="tbl_addresses.modifiedDate" minOccurs="0" od:jetType="datetime" od:sqlSType="datetime" type="xsd:dateTime"/>
+            <xsd:element name="tbl_addresses.creationDate" minOccurs="0" od:jetType="datetime" od:sqlSType="datetime" type="xsd:dateTime"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
