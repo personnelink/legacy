@@ -255,3 +255,7 @@ paket-files/
 # Mark-ii Customs
 **/_notes
 **/.hg
+*.bts
+* (?).*
+*.lnk
+

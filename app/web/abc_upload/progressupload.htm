@@ -1,0 +1,22 @@
+<html>
+<body>
+
+<script language="javascript">
+<!--
+function DoUpload() {
+	theFeats = "height=120,width=500,location=no,menubar=no,resizable=no,scrollbars=no,status=no,toolbar=no";
+	theUniqueID = (new Date()).getTime() % 1000000000;
+	window.open("progressbar.asp?ID=" + theUniqueID, theUniqueID, theFeats);
+	document.myform.action = "progressupload.asp?ID=" + theUniqueID;
+	document.myform.submit();
+}
+//-->
+</script>
+
+<form name="myform" method="post" action="progressupload.asp" enctype="multipart/form-data">
+<input type="file" name="filefield1"><br>
+<input type="button" name="dosubmit" value="Upload" OnClick="DoUpload()"><br>
+</form>
+
+</body>
+</html>
