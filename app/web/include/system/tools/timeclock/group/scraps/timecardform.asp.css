@@ -1,0 +1,267 @@
+@media print {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+.altNavPageRecords a {width:6em; display:block; float:left; }
+#topPageRecords { padding:1em 0 0 0;}
+
+/* Timecard form dashboard */
+
+ul.dashboard {clear:both;display:block;margin-left:3em; margin-bottom:1em;}
+ul.dashboard li {display:inline; float:left; width:18em; text-align:center;}
+
+/* ul.weekending {display:inline;margin-bottom:1em;}
+ul.weekending li {display:inline;float:left;text-align:center; }
+
+ul.weekending li a {display:block;vertical-align:bottom;background: url('/include/system/tools/timecards/images/savedTime.png') no-repeat; height:4em; width:8em;} */
+ul.weekending {display:inline;}
+ul.weekending li { list-style-type: none; float:left; margin:0 1em 0; display:inline;}
+ul.weekending li a {
+	display: block;
+	width: 50px;
+	height: 60px;
+	background:url('/include/system/tools/timecards/images/savedTime.png') #ffffff no-repeat;
+	color: #333;
+	text-decoration: none; 
+	text-align: center;
+	padding: 20px 0 0 0;
+	font-size: 13px;
+	text-transform: uppercase;
+	line-height : 1;font-weight: bold;
+			}
+ul.weekending li a span	{ font-size: 10px; font-weight:normal; }
+
+.past,
+.saved { background-image: url(smallPic.jpg); background-position: 30% 30%;}
+
+#timecardSaved { background: url('/include/system/tools/timecards/images/timecardSaved.jpg') no-repeat top left; padding-left:8em; height:8em }
+#timecardSaved * span { font-weight:bold; font-size:larger; }
+
+#getLastFour { background: url('/include/system/tools/timecards/images/needMoreData.png') no-repeat top left; padding-left:15em; height:15em }
+#getLastFour * em { font-weight:bold; font-size:larger; }
+
+.approvalNotes {margin-left:1em; width:24em; height:4em;;}
+
+/* Employee time card form */
+
+#form p { clear:both; margin-top:1em; }
+
+#overTimeNote { margin:2em; padding:1em; border:1px solid #A8A8A8; background-color:#FFF8D1; }
+div.weekEndingDate p { padding-left:1em; margin-bottom:1em;}
+div.weekEndingDate li { display:inline; float:left; width:12em; }
+
+/* div.dayOfTheWeek tr { display:inline; float:left; }
+div.dayOfTheWeek td { display:inline; float:left; } */
+div.dayOfTheWeek td { width:9em; }
+div.dayOfTheWeek td.title { width:3.4em; font-weight:bold; text-align:right; padding-right:0.5em; }
+div.dayOfTheWeek td.tally { width:4.4em; text-align:center }
+div.dayOfTheWeek td.othertype { width:5em; text-align:center }
+div.dayOfTheWeek td.othertype select { width:4em; text-align:left }
+div.dayOfTheWeek td select  { float:left; width:7em; }
+div.dayOfTheWeek * input  { width:3em; font-size:1em }
+
+div.dayOfTheWeek ul { display:inline; float:left; }
+div.dayOfTheWeek li { display:inline; float:left; }
+div.dayOfTheWeek li { width:9em; }
+div.dayOfTheWeek li.title { width:3.4em; font-weight:bold; text-align:right; padding-right:0.5em; }
+div.dayOfTheWeek li.tally { width:4.4em; text-align:center }
+div.dayOfTheWeek li.othertype { width:5em; text-align:center }
+div.dayOfTheWeek li.othertype select { width:4em; text-align:left }
+div.dayOfTheWeek li select  { float:left; width:7em; }
+div.dayOfTheWeek * input  { width:3em; font-size:1em }
+
+.squarebutton { margin:2em 0.5em 0.5em 0.5em; }
+
+.totalhours { padding-top:0.2em; }
+.othertype {width:6em}
+.controls {width:3em}
+td.totalhours input { text-align:center; }
+
+div.comments { padding-top:2em; clear:both; padding-left:4em }
+div.comments * textarea { width:56em; height:8em; font-size:1em }
+
+
+p#form1  { margin-top:1em; }
+
+table#timecards {border:1px solid blue;margin:1em;padding:1px;width:60em; }
+table#timecards tr td {border:1px solid grey;padding:2px; }
+
+div#orderDetails img,
+div#placementDetails img { margin-left:1em; }
+#orderDetails table tr th,
+#placementDetails table tr th { padding:.8em 0 .3em; }
+#orderDetails table,
+#placementDetails table { width:80%; float:right; margin-bottom:1.4em; }
+
+/* Supervisor Timecard views */
+
+table.jobOrder,
+table.JobPlacements {
+	width:100%;
+	background-color:#fffff0;
+}
+table.jobOrder {
+	border-width: 1px 1px 1px 1px;
+	border-spacing: 2px;
+	border-style: solid;
+	border-color: #9CBAD9 #7BA5D1 #7BA5D1 #9CBAD9;
+	border-collapse: separate;
+	margin-bottom:1em;
+	-moz-border-radius: 0.4em 0.4em 0.4em 0.8em;
+}
+
+table.JobPlacements {
+	padding:0.6em;
+}
+table.jobOrder th, 
+table.JobPlacements th {
+	border-width: 0px 0px 0px 0px;
+	padding: 1px 1px 1px 1px;
+	border-style: none none none none;
+	border-color: #fffff0;
+	background-color: white;
+	-moz-border-radius: 3px 3px 0px 0px;
+}
+table.jobOrder td, 
+table.JobPlacements td {
+	border-width: 3px;
+	padding: 1px;
+	border-style: double;
+	border-color: #eeeeee;
+	-moz-border-radius: 0px 0px 0px 0px;
+	vertical-align:middle;
+}
+
+th.jobdescription {width:45%;}
+th.jobnumber{width:10%;}
+th.jobreference{width:10%}
+th.jobworksite{width:35%;text-align:right;}
+input.JobOrderDescription(margin:0; width:100%;)
+
+
+.description {width:35%; text-align:left}
+.posted {width:15%;}
+.location {width:20%;}
+.startpay {width:15%;}
+.jobid {width:15%;}
+.jobid a {color:#FB0000; }
+.jobdescription {}
+
+.lastnamefirst { width:12em; }
+td.dayofweek input,
+td.dayofweek { width:1.8em;  }
+.weektotal { width:2.4em }
+.weekending { width:7em }
+textarea.comment { width:15em }
+
+th.dayofweek, th.weektotal, .weekending  { text-align:center; }
+th.lastnamefirst, th.comment { text-align:left; }
+
+input {background-image:none; background-color:#fffff0; }
+.posted, .location, .startpay, .jobid {text-align:center}
+
+.odd { background-color:#ffffc4 }
+.even { background-color:fffff0 }
+
+/* Time card detail report */
+#jobSearchForm select { width:20em; text-align:left; margin-bottom:2em; }
+#listTimeDetails { min-height:40em; /*  background: url('/include/images/jobsGIGO.jpg') no-repeat bottom right;*/ }
+#jobsList  { margin-top:1em; padding:2em; }
+#jobsList td { padding-bottom:0.2em }
+
+table.timeSheet {
+	width:100%;
+	padding:0.6em;
+	margin-bottom:1em;
+	border-width: 1px 1px 1px 1px;
+	border-spacing: 2px;
+	border-style: solid;
+	border-color: #9CBAD9 #7BA5D1 #7BA5D1 #9CBAD9;
+	border-collapse: separate;
+	background-color:#fffff0;
+	-moz-border-radius: 0.4em 0.4em 0.4em 0.8em;
+}
+table.timeSheet th {
+	border-width: 0px 0px 0px 0px;
+	padding: 1px 1px 1px 1px;
+	border-style: none none none none;
+	border-color: #fffff0;
+	background-color: white;
+	-moz-border-radius: 3px 3px 0px 0px;
+}
+table.timeSheet td {
+	border-width: 3px;
+	padding: 1px;
+	border-style: double;
+	border-color: white;
+	-moz-border-radius: 0px 0px 0px 0px;
+}
+
+
+.employee {width:20%; text-align:left}
+.address {width:25%;}
+.created {width:20%;}
+.modified {width:20%;}
+.status {width:10%;}
+.toggledetail {width:5%;}
+
+.timeDetails { width:100%;}
+.detailside, .commentside { display:none; }
+.commentonly { display:block; }
+
+.hours { width:50em; }
+.comments { width:30em; }
+
+.dayname { width:12%; }
+.intimeout { width:12%; }
+.tally { width:12%; }
+.othertype { width:12%; }
+.totalofhours { text-align:right; }
+
+.jobid a {color:#FB0000; }
+.jobdescription {padding:0.2em 0 1.4em}
+
+
+/* showTimeDetail.asp */
+td.totalhours input {width:4em;}
+
+
+/* getClientOrders.asp */
+table.JobOrderDetails {width:100%;}
+table.JobOrderDetails tr {padding:0;margin:0}
+
+
+
+
+
+/* Company Code Selector */
+div#compCodeSelections {
+margin: 0.5em 1em 0 1em;
+
+}
+div#compCodes {
+	height:40em;
+	overflow:auto;
+	margin:0.1em 0 0 1em;
+}

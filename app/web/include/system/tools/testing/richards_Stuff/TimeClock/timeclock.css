@@ -1,0 +1,23 @@
+body{
+	max-width:480px; 
+	max-height:720px;
+	min-width:480px; 
+	min-height:720px;
+}
+#primary{
+	background:#0B0B61;
+	color:#FFF;
+	min-width:480px; 
+	min-height:720px;	
+}
+li{
+	list-style-type:none;
+}
+fieldset{
+	padding-left:10px; 
+	width:50%; 
+	margin-left:10px;
+}
+input.timecard{
+	width:2em;
+}

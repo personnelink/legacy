@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<!--Created by Richard 2014.08.26-->
+  <!--Client Time Card Email-->
+<head>
+	<style>
+      table
+      {
+          width: 100%;
+          border-collapse: collapse;
+          page-break-inside:auto;
+      }
+      
+      td
+      {
+          text-align: center;
+          border: none;
+      }
+      
+      
+      th
+      {
+          text-align: left;
+          font-size: 1.1em;
+          font-weight: bolder;
+          padding-left: 4px;
+          background-color: darkblue;
+          color: #fff;
+      }
+      
+      tr:nth-of-type(even)
+      {
+          background-color: white;
+      }
+      
+      tr:nth-of-type(odd)
+      {
+          background-color: lightsteelblue;
+      }
+      
+      tr    
+      {
+           page-break-inside:avoid;
+           page-break-after:auto;
+      }
+      thead 
+      {
+           display:table-header-group
+      }
+      tfoot
+      {
+          display: table-footer-group;
+      }
+      tr.head{background-color: white}
+      td.headlabel{float: left; clear: left}
+      
+      /* time change audit row */
+      .auditrow {text-align:left;font-style:italic}
+    </style>
+</head>
+  
+  
+  
+<table>
+      <thead>
+          <tr>
+              <th>Employee
+              </th>
+              <th>Dept/Cost Center
+              </th>
+              <th>Work Date
+              </th>
+              <th>Day
+              </th>
+              <th >In Time
+              </th>
+              <th>Day
+              </th>
+              <th>Out Time
+              </th>
+              <th>Actual Daily Reg. Time
+              </th>            
+              <th>Payable Daily Reg. Time
+              </th>
+              <th>OT Hrs
+              </th>
+              <th>Total Payable Hours</th>
+           </tr>
+      </thead>
+      
+      <tbody>
+         
+  					<tr>
+                          <td>%employee%</td>
+                          <td>%department%</td>
+                          <td>%workdate%</td>
+                          <td>%dayin%</td>
+                          <td>%timein%</td>
+                          <td>%dayout%</td>
+                          <td>%timeout%</td>
+                          <td>%actreg%</td>
+                          <td>%payreg%</td>
+                          <td>0.00</td>
+                        <td>%totalpayhrs%</td>
+                      </tr>
+          			<tr>
+                      	<td colspan="13" class="auditrow">&nbsp;&nbsp;*&nbsp;%auditdate%, edited by %editbyfirst%&nbsp;%editbylast%, reason: "%editwhy%", previous value: "%prevvalue%"
+  							</td>
+  						</tr>
+  						
+  						<tr style="border-bottom: solid black">
+                              <td colspan="7">
+                                  <b>Employee Total:</b>
+                              </td>
+                              <td><!--Reg Hours total for employee-->
+                              <b>%tactreghrs%</b></td>
+                              <td><b>%tpayreghrs%</b>
+                              </td>
+                              <td>
+                              <b>0.00</b></td>
+                              <td><b>%etpayhrs%</b></td>
+                              
+                          </tr>
+         
+      </tbody>
+      
+</table>
+ 
+<div>
+ 
+   <p align="center"><a href="https://www.personnelinc.com/include/system/tools/timecards/group/approval/employee/" style="background:#11356D;color:white;display:inline-block;width:95%; text-align:center;font-weight:bold;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;text-decoration:none;border:10px solid #11356D;-moz-box-shadow: 3px 0 0 0 #ccc; -webkit-box-shadow: 3px 0 0 0 #ccc; box-shadow: 3px 0 0 0 #ccc; ">Approve</a></p>
+    
+    <p align="center"><a href="https://www.personnelinc.com/include/system/tools/timecards/group/approval/employee/" style="background:#A00000;color:white;display:inline-block;width:80%; text-align:center;font-weight:bold;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;text-decoration:none;border:10px solid #A00000 ;-moz-box-shadow: 3px 0 0 0 #ccc; -webkit-box-shadow: 3px 0 0 0 #ccc; box-shadow: 3px 0 0 0 #ccc; ">Manage</a></p> 
+    
+</div>

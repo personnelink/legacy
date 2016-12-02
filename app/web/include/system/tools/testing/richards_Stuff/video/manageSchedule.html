@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Manage Schedule</title>
+</head>
+<body>
+    <form id="manSchedule">
+        <div>
+        <h1>Manage Schedule</h1>
+            <p>
+                <input id="autoLunch" type="checkbox" />
+                <label for="autoLunch">Automatic Lunch Deduction</label><br />
+                <input name="timeDed" style="margin-left: 40px;" type="radio" value="-.5" />30 Min.<br />
+                <input name="timeDed" style="margin-left: 40px;" type="radio" value="-1" />60 Min.
+
+            </p>
+            <p>
+                <input id="allowEarly" type="checkbox" />
+                <label for="allowEarly">Allow Early Clock In's</label><br />           
+                <select style="margin-left: 40px" name="earlyClockThresh" id="earlyClockThresh">
+                    <option value="1">1 min</option>
+                    <option value="2">2 min</option>
+                    <option value="3">3 min</option>
+                    <option value="4">4 min</option>
+                    <option value="5">5 min</option>
+                    <option value="6">6 min</option>
+                    <option value="7">7 min</option>
+                    <option value="8">8 min</option>
+                    <option value="9">9 min</option>
+                    <option value="10">10 min</option>
+                    <option value="11">11 min</option>
+                    <option value="12">12 min</option>
+                    <option value="13">13 min</option>
+                    <option value="14">14 min</option>
+                    <option value="15">15 min</option>
+                </select> 
+                <label for="earlyClockThresh">Early Clock In Threshold</label>
+                     
+            </p>
+            <p>
+                <input id="roundClockUp" type="checkbox" />
+                <label for="roundClockUp">Enforce Round Up</label><br /> 
+                <select style="margin-left: 40px" name="roundUpThresh" id="roundUpThresh">
+                    <option value="1">1 min</option>
+                    <option value="2">2 min</option>
+                    <option value="3">3 min</option>
+                    <option value="4">4 min</option>
+                    <option value="5">5 min</option>
+                    <option value="6">6 min</option>
+                    <option value="7">7 min</option>
+                    <option value="8">8 min</option>
+                    <option value="9">9 min</option>
+                    <option value="10">10 min</option>
+                    <option value="11">11 min</option>
+                    <option value="12">12 min</option>
+                    <option value="13">13 min</option>
+                    <option value="14">14 min</option>
+                    <option value="15">15 min</option>
+                </select>
+                <label for="roundUpThresh">Round Up Threshold</label>
+            </p>
+            
+
+        </div>
+    </form>
+</body>
+</html>
