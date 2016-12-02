@@ -1,0 +1,76 @@
+DIV[class="Part"] {
+ text-align:left;
+ margin-bottom:0px;
+ margin-top:0px;
+ margin-right:0px;
+ text-indent:0px;
+ direction:ltr
+}
+H1 {
+ text-align:left;
+ margin-bottom:0px;
+ margin-top:0px;
+ margin-right:0px;
+ text-indent:0px;
+ direction:ltr
+}
+SPAN {
+ font-family:'Arial','Arial',sans-serif;
+ font-size:25.9pt;
+ font-style:normal;
+ font-weight:bold
+}
+IMG {
+ text-align:right;
+ vertical-align:top;
+ margin-bottom:16px;
+ margin-top:0px;
+ margin-right:0px;
+ margin-left:0px;
+ direction:ltr
+}
+DIV[class="Sect"] {
+ text-align:left;
+ margin-bottom:0px;
+ margin-top:0px;
+ margin-right:0px;
+ text-indent:0px;
+ direction:ltr
+}
+P {
+ text-align:justify;
+ margin-bottom:0px;
+ margin-top:0px;
+ margin-right:0px;
+ margin-left:4px;
+ text-indent:0px;
+ direction:ltr
+}
+TABLE {
+ border-width:thin;
+ border-collapse:collapse;
+ padding:3px;
+ text-align:center;
+ vertical-align:top;
+ margin-bottom:0px;
+ margin-top:0px;
+ margin-right:0px;
+ margin-left:0px;
+ direction:ltr;
+ width:auto;
+ height:auto;
+ display:table;
+ float:none
+}
+TR {
+ vertical-align:top;
+ height:auto
+}
+TH {
+ text-align:left;
+ vertical-align:bottom
+}
+TD { 
+ text-align:left;
+ vertical-align:top
+}
