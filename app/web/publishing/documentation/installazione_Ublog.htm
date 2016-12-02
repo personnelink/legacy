@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>Ublog - MySQL version</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK href="../include/styles.css" rel=stylesheet>
+</head>
+
+<body>
+<table width="760" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td colspan="2" align="right"><img src="../immagini/logo.gif" hspace="5" vspace="10"></td>
+  </tr>
+  <tr> 
+    <td>
+      Seleziona la lingua
+      &nbsp;<img src="../immagini/freccia.gif"><img src="../immagini/freccia.gif">&nbsp; 
+      <a href="installazione_Ublog.htm"><img src="../immagini/italian.gif"  border="0" alt="versione italiana" align="absmiddle"></a>&nbsp; 
+      <a href="installing_Ublog.htm"><img src="../immagini/english.gif" border="0" alt="versione inglese" align="absmiddle"></a> 
+    </td>
+    <td align="right">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td colspan="2"><hr class="green" noshade size="1" width="100%"></td>
+  </tr>
+  <tr> 
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td colspan="2"><p align="center"><strong><font class="arancio">COME INSTALLARE 
+        Ublog - MySQL version</font></strong></p>
+      <p><strong>Requisiti:<br>
+        <br>
+        </strong>- server web con supporto ASP e database MySQL server</p>
+      <p>L'installazione di Ublog &egrave; molto semplice e comprende pochi passaggi:</p>
+      <p><strong>1)</strong></p>
+      <p>- decomprimere tutti i file lasciando intatta la struttura della directory.<br>
+        - aprire il file &quot;common.asp&quot;, contenuto nella cartella &quot;include&quot;, 
+        ed editare le righe 25-30:</p>
+      <p> MySQLSVR = &quot;xxx.xxx.xxx.xxx&quot; ( indirizzo IP oppure nome dell'host 
+        su cui risiede MySQL server )<br>
+        MySQLPRT = 3306 ( porta di MySQL - default 3306 )<br>
+        MySQLUID = &quot;username&quot; ( nome utente MySQL )<br>
+        MySQLPWD = &quot;password&quot; ( password MySQL )<br>
+        MySQLDB = &quot;UblogMySQL&quot; ( nome del database MySQL ) <br>
+        MySQLOPT = 16386 ( MyODBC valore opzionale )</p>
+      <p> inserendo una connessione al db valida.<br>
+        - sempre nel file &quot;common.asp&quot; editare le righe 45-51 inerenti 
+        alla localizzazione della cartella per l'upload delle immagini. <strong>Tale 
+        cartella deve avere i permessi di scrittura abilitati.</strong><br>
+        - copiare tutti i file e le cartelle &quot;include&quot; ed &quot;immagini&quot; 
+        sullo spazio web.<br>
+        - uploadare il file &quot;UblogMySQL.sql&quot;, contenuto nella cartella 
+        &quot;database&quot;, su MySQL server.</p>
+      <p> <strong>ATTENZIONE il file in questione include esclusivamente la creazione 
+        delle tabelle necessarie al db ma non la creazione ex-novo del db!</strong></p>
+      <p><strong>2)</strong></p>
+      <p>- raggiungere tramite browser l'indirizzo http://www.tuosito.com/configura.asp 
+        ed accedere alla sezione amministrativa di Ublog con i seguenti username 
+        e password: </p>
+      <ul>
+        <li><strong>username</strong> : admin</li>
+        <li><strong>password</strong> : admin</li>
+      </ul>
+      - configurare il weblog.<br>
+      <br> <br> <strong>Note:<br>
+      <br>
+      </strong>- si consiglia di modificare subito username e password di accesso 
+      alla sezione amministrativa.<br>
+      - se si abilita la notifica via email di avvenuto inserimento di nuovo blog 
+      o nuovo commento &egrave; necessario aver installato un componente apposito 
+      (CDonts).
+<p><strong>3) </strong></p>
+      <p><strong>- per la configurazione dell'aspetto grafico &egrave; sufficiente 
+        editare il file <font color="#FF9900">styles.css</font> inserito nella 
+        cartella &quot;include&quot; e modificare colori e tipologia di font.<br>
+        - i file <font color="#FF9900">header.asp</font>, <font color="#FF9900">footer.asp</font> 
+        e <font color="#FF9900">metatag.in</font>, inseriti nella cartella &quot;include&quot;, 
+        consentono una migliore integrazione dell'applicazione nel proprio sito.</strong></p>
+      <p></p>
+      <p>Per maggiori informazioni sull'applicazione non esitate a contattarmi 
+        all'indirizzo <a href="mailto:pragma@uapplication.com">pragma@uapplication.com</a></p>
+      <p>oppure nel forum dedicato all'applicazione in questione:<br>
+        <a href="http://www.uapplication.com/forum/">http://www.uapplication.com/forum/</a></p>
+		<p><b>Questa applicazione rappresenta un software opensource rilasciato sotto la <a href="http://www.gnu.org/licenses/gpl.html">Licenza Pubblica Generica</a> ( GPL ) .</b></p>
+      <p>Cordiali saluti<br>
+        <font class="green"><strong>Pragma</strong></font><br>
+      </p>
+      </td>
+  </tr>
+</table>
+</body>
+</html>
