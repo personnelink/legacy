@@ -1,0 +1,396 @@
+﻿<!--Created by Gus & Richard 2014.09.10 v1.0-->
+
+
+<form id="viewTimeArchiveForm" name="viewTimeArchiveForm" action="#" method="get">
+    <table id="formOptions">
+        <tr class="head">
+            <td>
+                <label for="fromDate" class="headlabel">From:</label>
+                <input class="inbox" name="fromDate" id="fromDate" type="text" value="<%=fromDate%>" onkeypress="return submitenter(this,event)" />
+            </td>
+            <td>
+                <label for="toDate" class="headlabel">To:</label>
+                <input class="inbox" name="toDate" id="toDate" type="text" value="<%=toDate%>" onkeypress="return submitenter(this,event)" />
+            </td>
+            <td>
+                <label for="employee" class="employee">Employee:</label>
+                <input class="inbox" name="employee" id="employee" type="text" value="<%=request.querystring("employee")%>" onkeypress="return submitenter(this,event)" />
+            </td>
+            <td>
+			<% if userLevelRequired (userLevelPPlusStaff) then %>
+
+					<label for="searchbox" class="headlabel">Customer Code:</label>
+					<input class="inbox" name="searchbox" maxlength="6" size="12" value="<%=request.querystring("searchbox")%>" id="searchbox" type="text" onblur="company.clear(this);" onkeyup="company.lookup(this);" /><div id="CompanyLookUp"></div>
+			<% else %>
+					<input name="searchbox" value="<%=g_company_custcode.CustomerCode%>" id="searchbox" type="hidden" />
+			<% end if %>
+			</td>
+            <td>
+                <div class="viewbutton">
+                    <button type="submit" id="viewbutton" onclick="javascript:document.viewTimeArchiveForm.submit();">View Report</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<table style="margin: 1em 0 0 0">
+    <thead>
+        <tr>
+            <th>ID
+            </th>
+            <th>Employee
+            </th>
+            <th>Cust
+            </th>
+            <th>Dept/Cost Center
+            </th>
+            <th>Work Date
+            </th>
+            <th>Day
+            </th>
+            <th>In Time
+            </th>
+            <th>Day
+            </th>
+            <th>Out Time
+            </th>
+            <th>Reg. Hrs
+            </th>
+            <th>OT Hrs
+            </th>
+            <th>Total Hrs
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <%
+
+
+			dim searchemployee
+				searchemployee = request.querystring("employee")
+			
+			dim pid, workday, showRow
+
+			dim blnFirstLoop, strPreviousEmployee, strCurrentEmployee 'change flags
+			dim strPreviousDepartment, strCurrentDepartment 'change flags
+			dim iPreviousTotal
+				blnFirstLoop = true
+
+			dim intRegHours, intOTHours, dblBilled
+
+			dim intTotalHours, dblTotalBill, dblGrandTotal, dblOTGrandTotal, dblGrandBill 'total buckets
+			dim intTotalOTHours
+			dim nDepartmentHours, nDepartmentOTHours, nDepartmentBill, strPreviousDepartmentDescription 'department total buckets
+				dblTotalBill = 0
+				nDepartmentBill = 0
+				
+			dim day_number, dayout, dayin, outtime, intime
+			
+			dim rsChangeAudit, strChangeWhysHTML
+			dim rsHours
+            dim strBootTime
+			
+			do while not rs.eof
+				pid = rs("placementid")
+				
+				showRow = true
+
+				'retired and offloaded to sql
+				'
+				'if  len(searchbox) > 0 then
+				'	if lcase(trim(searchbox)) <> lcase(trim(CustomerCode(pid))) then
+				'		showRow = false
+				'	end if
+				'elseif not userLevelRequired(userLevelPPlusStaff) then
+				'	showRow = false
+				'end if
+
+				strCurrentEmployee = rs("lastName") & ", " & rs("firstName")
+				strCurrentDepartment = rs("department")
+
+				if len(searchemployee) > 0 then
+					if instr(lcase(strCurrentEmployee), lcase(trim(searchemployee))) = 0 then 
+						showRow = false
+					end if
+				end if
+
+				if showRow then
+					'print "show true"
+					rsHours = rs("hours")
+					if not vartype(rsHours) = 0 and not vartype(rsHours) = 1 then
+						intRegHours = Round(cdbl(rs("hours")), 2)
+					end if
+					
+					
+					dblGrandTotal = dblGrandTotal + intRegHours
+					dblBilled = cdbl(BillRate(pid))*Round(intRegHours, 2)
+					'dblGrandBill = dblGrandBill  + (cdbl(BillRate(pid))*intRegHours)
+					dblGrandBill = dblGrandBill  + dblBilled
+
+					'initialize previous employee flag
+					if blnFirstLoop then
+						strPreviousEmployee = strCurrentEmployee
+						strPreviousDepartment = strCurrentDepartment
+						blnFirstLoop = false
+					end if
+
+					if strCurrentEmployee <> strPreviousEmployee then
+
+						'dblGrandBill = dblGrandBill  + dblTotalBill
+						
+					if intTotalHours > 40 then
+						intTotalOTHours = intTotalHours - 40
+						intTotalHours = 40
+						dblOTGrandTotal = dblOTGrandTotal + intTotalOTHours
+					else
+						intTotalOTHours = 0
+					end if
+	
+						%>
+
+						<tr class="EmpTotalRow">
+                            <td colspan="9" class="alignR">
+                                <b>Total for <%=strPreviousEmployee%>:</b>
+                            </td>
+                            <td><b><%=TwoDecimals(Round(intTotalHours, 2))%></b>
+                                <!--Reg Hours total for employee-->
+                            </td>
+                            <td><b><%=TwoDecimals(Round(intTotalOTHours, 2))%></b>
+                                <!--OT Hours total for employee-->
+                            </td>
+                            <td><b><%=TwoDecimals(Round(intTotalHours + intTotalOTHours, 2))%></b>
+                                <!--Total hours for employee-->
+                            </td>
+                            <td></td>
+                            <!--<!--<td style="text-align: end"><b>$<%=TwoDecimals(dblTotalBill)%></b>
+                                <!--Total Billed for employee-->
+                            <!--</td>-->
+                        </tr>
+						
+						<%
+						nDepartmentBill = nDepartmentBill + dblTotalBill
+						nDepartmentHours = nDepartmentHours + intTotalHours
+						nDepartmentOTHours = nDepartmentOTHours + intTotalOTHours
+						
+						dblTotalBill = 0
+						intTotalHours = 0
+						intTotalOTHours = 0
+
+						
+						if strCurrentDepartment <> strPreviousDepartment then
+						
+							%>
+						
+							<tr class="CostCenterRow">
+								<td colspan="9" class="alignR">
+									<b>Total for <%=strPreviousDepartmentDescription%>, department <%=strPreviousDepartment%>:</b>
+								</td>
+								<td><b><%=TwoDecimals(Round(nDepartmentHours, 2))%></b>
+									<!--Reg Hours total for employee-->
+								</td>
+								<td><b><%=TwoDecimals(Round(nDepartmentOTHours, 2))%></b>
+									<!--OT Hours total for employee-->
+								</td>
+								<td><b><%=TwoDecimals(Round(nDepartmentOTHours + nDepartmentHours, 2))%></b>
+									<!--Total hours for employee-->
+								</td>
+								<td></td>
+								<!--<!--<td style="text-align: end"><b>$<%=TwoDecimals(dblTotalBill)%></b>
+									<!--Total Billed for employee-->
+								<!--</td>-->
+							</tr>
+							<%
+							
+							nDepartmentBill = 0
+							nDepartmentHours = 0
+							nDepartmentOTHours = 0
+							
+						end if
+						
+					end if
+
+					intTotalHours = intTotalHours + intRegHours
+					intTotalOTHours = intTotalOTHours + intOTHours
+					
+					dblTotalBill = dblTotalBill + (cdbl(BillRate(pid))*Round(intRegHours, 2))
+					
+
+					outtime = rs("timeout")
+					intime = rs("timein")
+					day_number = rs("workday")
+					workday = rs("weekending")
+					
+					'correct for sunday
+					if day_number = 1 then day_number = day_number + 7
+					
+					if not isnull(workday) and not isnull(day_number) then
+						workday = DateAdd("d", (-7 + (day_number-1)), rs("weekending"))
+						'print ("weekending: " & rs("weekending") & ", day_number: " & day_number & ", company weekends: " & company_weekends)
+					end if
+					
+					dayin = WeekDayLabel(Weekday(workday))
+					
+					if ConvertHoursIntoDecimal(outtime) < ConvertHoursIntoDecimal(intime) then
+
+						dayout = WeekDayLabel(Weekday(workday + 1))
+					else
+						dayout = WeekDayLabel(Weekday(workday))
+					end if
+					
+					if userLevelRequired(userLevelPPlusStaff) then 
+						strBootTime="<span class=""boot_time"" class=""summary_" & rs("summaryid") & """ onclick=""approval.boot('" & rs("summaryid") & "');"">&nbsp;</span>"
+                    else
+                    	strBootTime=""
+                    end if
+                    
+
+					'check for change
+					cmd.CommandText = "" &_
+						"SELECT time_change_audits.*, tbl_users.lastName, tbl_users.firstName " &_
+						"FROM time_change_audits LEFT JOIN tbl_users ON time_change_audits.changedby = tbl_users.userid " &_
+						"WHERE detailid=" & rs("id") & " ORDER By date_changed DESC;"
+
+					set rsChangeAudit = cmd.Execute()
+					strChangeWhysHTML = ""
+					do while not rsChangeAudit.eof
+						strChangeWhysHTML = strChangeWhysHTML & _
+						"<tr>" & _
+							"<td colspan=""13"" class=""auditrow"">* " & rsChangeAudit("date_changed") & _
+								", edited by " & rsChangeAudit("firstName") & "&nbsp;" & rsChangeAudit("lastName") & ", reason: '" & _
+									rsChangeAudit("changed_why") & "', previous value: '" & rsChangeAudit("previous_value") & "' " & _
+							"</td>" & _
+						"</tr>"
+										
+						rsChangeAudit.movenext
+					loop
+
+					
+					
+					
+                    %>
+					<tr title="<%=Replace(ClearHTMLTags(strChangeWhysHTML, 2), """", "&quot;")%>">
+                        <td style="padding-right: 10px"><%=pid%><% if len(strChangeWhysHTML) > 0 then %>*<% else %>&nbsp;<% end if %>
+                        </td>
+                        <td style="text-align: left"><div class="namediv"><%=strCurrentEmployee%></div>
+                        </td>
+                        <td><%=rs("customer")%></td>
+                        <td><div class="ccdiv"><%=Department(pid)%></div>
+                        </td>
+                        <td><%=DatePart("m",workday) & "." & DatePart("d",workday) & "." & DatePart("yyyy",workday)%>
+                        </td>
+                        <td><%=dayin%>
+                        </td>
+                        <td><%=StripSeconds(intime)%>
+                        </td>
+                        <td><%=dayout%>
+                        </td>
+                        <td><%=StripSeconds(outtime)%>
+                        </td>
+                        <td><%=TwoDecimals(intRegHours)%>
+                        </td>
+                        <td>0.00<!--OT Hours-->
+                        </td>
+                        <td><%=TwoDecimals(Round(intRegHours, 2))%><%=strBootTime%>
+                            <!--Total Hours-->
+                        </td> 
+
+                    </tr>
+        <%
+				end if
+
+				
+
+		strPreviousEmployee = strCurrentEmployee
+		strPreviousDepartment = strCurrentDepartment
+		strPreviousDepartmentDescription = rs("cc_description")
+		
+		rs.movenext
+
+			loop
+
+						if intTotalHours > 40 then
+							intTotalOTHours = intTotalHours - 40
+							intTotalHours = 40
+							dblOTGrandTotal = dblOTGrandTotal + intTotalOTHours
+						else
+							intTotalOTHours = 0
+						end if
+
+				
+						nDepartmentBill = nDepartmentBill + dblTotalBill
+						nDepartmentHours = nDepartmentHours + intTotalHours
+						nDepartmentOTHours = nDepartmentOTHours + intTotalOTHours
+
+ %>
+						<tr class="EmpTotalRow">
+                            <td colspan="9" class="alignR">
+                                <b>Total for <%=strPreviousEmployee%>:</b>
+                            </td>
+                            <td><b><%=TwoDecimals(Round(intTotalHours, 2))%></b>
+                                <!--Reg Hours total for employee-->
+                            </td>
+                            <td><b><%=TwoDecimals(Round(intTotalOTHours, 2))%></b>
+                                <!--OT Hours total for employee-->
+                            </td>
+                            <td><b><%=TwoDecimals(Round(intTotalHours + intTotalOTHours, 2))%></b>
+                                <!--Total hours for employee-->
+                            </td>
+                            <td></td>
+                            <!--<td style="text-align: end"><b>$<%=TwoDecimals(Round(dblTotalBill, 2))%></b>
+                                <!--Total Billed for employee-->
+                            <!--</td>-->
+                        </tr>
+						
+						
+						<tr class="CostCenterRow">
+							<td colspan="9" class="alignR">
+								<b>Total for <%=strPreviousDepartmentDescription%>, department <%=strPreviousDepartment%>:</b>
+							</td>
+							<td><b><%=TwoDecimals(Round(nDepartmentHours, 2))%></b>
+								<!--Reg Hours total for employee-->
+							</td>
+							<td><b><%=TwoDecimals(Round(nDepartmentOTHours, 2))%></b>
+								<!--OT Hours total for employee-->
+							</td>
+							<td><b><%=TwoDecimals(Round(nDepartmentOTHours + nDepartmentHours, 2))%></b>
+								<!--Total hours for employee-->
+							</td>
+							<td></td>
+							<!--<!--<td style="text-align: end"><b>$<%=TwoDecimals(dblTotalBill)%></b>
+								<!--Total Billed for employee-->
+							<!--</td>-->
+						</tr>
+<%
+							
+						nDepartmentBill = 0
+						nDepartmentHours = 0
+						nDepartmentOTHours = 0
+	
+						dblTotalBill = 0
+						intTotalHours = 0
+
+						%>
+    </tbody>
+    <tfoot>
+
+        <tr>
+            <td colspan="9" class="alignR">
+                <b>Grand Total:</b>
+            </td>
+            <td style="font-size: larger"><b><%=TwoDecimals(Round(dblGrandTotal, 2))%></b>
+                <!--Reg Hours total for employee-->
+            </td>
+            <td style="font-size: larger"><b><%=TwoDecimals(Round(dblOTGrandTotal, 2))%></b>
+                <!--OT Hours total for employee-->
+            </td>
+            <td style="font-size: larger"><b><%=TwoDecimals(Round(dblGrandTotal + dblOTGrandTotal, 2))%></b>
+                <!--Total hours for employee-->
+            </td>
+            <td></td>
+            <!--<td style="text-align: end; font-size: larger"><b>$<%=TwoDecimals(Round(dblGrandBill, 2))%></b>
+                <!--Total Billed for employee-->
+            <!--</td>-->
+        </tr>
+    </tfoot>
+</table>

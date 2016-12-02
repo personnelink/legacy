@@ -1,0 +1,276 @@
+@media print, handheld {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+
+/* redefine global id */
+#contentcolumn {width:79.1em;border-left:none;padding-left:0em;padding-right:0.4em;margin:0;padding-top:0}
+#leftSideMenu {display:none;}
+/* done redefining global id's */
+
+a:hover {text-decoration:none}
+
+#formOptions {width:45em; padding: 0 1em; margin-bottom:1em;}
+
+#whoseHereForm select { width:20em; text-align:left; margin-bottom:2em; }
+
+#whoseHereList { min-height:40em; margin-top:1em; padding:2em 0.5em; }
+#whoseHereList td { padding-bottom:0.2em }
+
+#button {
+	width: 12em;
+	border-right: 1px solid #000;
+	padding: 0 0 1em 0;
+	margin-bottom: 1em;
+	font-family: 'Trebuchet MS', 'Lucida Grande',
+	  Verdana, Lucida, Geneva, Helvetica, 
+	  Arial, sans-serif;
+	background-color: #90bade;
+	color: #333;
+}
+
+.altNavPageRecords {float: left; clear:right; margin:1.6em auto; width:18em; text-align:left !important; }
+.altNavPageRecords a {font-weight:bold; width:16em;display:block;float:left;}
+.altNavPageRecords a:hover {font-weight:bold; text-decoration:none; }
+
+#topPageRecords {float:left; clear:both; }
+div#topPageRecordsByOrder, 
+div#topPageRecordsByCust {margin:0 1em 0 0; width:25em;}
+
+.status_row,
+.status_row_summary,
+.details_row_details,
+.details_row {width:100%;}
+
+.details_row th {font-size:90%;font-weight:normal;text-align:left;}
+
+.joborder,
+.applicant,
+.customer {width:33%}
+
+.status_row tr,
+.status_row_summary tr,
+.details_row_details tr,
+.details_row  tr {background-color:#f2f6fb;}
+
+.status_row tr:hover,
+.status_row_summary tr:hover,
+.details_row_details tr:hover,
+.details_row tr:hover {background-color:#fbf2aa;}
+
+.status_row_summary th {font-weight:normal;}
+
+td.details_firsttwo {width:36%; overflow:hidden;}
+td.details_last {width:28%; overflow:hidden;}
+
+.status_row_summary td {border:1px solid white;padding:0.1em;}
+.details_row td,
+.details_row th,
+.details_row_details td,
+.details_row_details th {border:1px solid white;padding:0.1em;}
+
+.details_row tr {background-color:#f2f6fb;}
+.details_row_details tr {background-color:#deedfb;}
+
+.details_row tr:hover {background-color:#deedfb;}
+.details_row_details tr:hover {background-color:#f2f6fb;}
+
+
+.status_row tr,
+.status_row_summary tr {background-color:#deedfb}
+
+.status_row th,
+.status_row_summary {text-align:center;margin:auto; font-size:90%; }
+.status_row td {border:1px solid white;padding:0.1em;}
+
+.scheduled,
+.entereddate {width:22%}
+.status {width:15%}
+.reason {width:20%}
+.assigned,
+.entered {width:10%}
+
+th.scheduled,
+th.entereddate,
+th.status,
+th.reason,
+th.assigned,
+th.entered {font-weight:bold;1px border white;}
+
+.nohover {background-color:#deedfb;}
+
+
+div#scrollOrders,
+div#scrollCustomers {height:12em; overflow:auto; overflow-X:hidden;}
+
+/* span.mapit {
+	position:absolute;
+	width: 14px;
+	height: 14px;
+	padding: 0 0 0 0;
+	background: url('followActivities.sprites.png') no-repeat;
+	overflow:hidden;} */
+	
+span.nomapofit,
+span.mapit {height:14px;width:14px;display:block;float:left;margin:0 0.2em 0 0;}
+span.mapit {background:url('followActivities.sprites.png') no-repeat; cursor:pointer;}
+
+span.select {
+   position: absolute;
+   width: 208px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+   height: 21px;
+   padding: 0 24px 0 8px;
+   color: #fff;
+   font: 12px/21px arial,sans-serif;
+   background: url('/include/style/images/forms/select.gif') no-repeat;
+   overflow: hidden;}
+
+#weekending ul li {margin:auto 4em}  
+#weekending ul li li,
+#weekending ul li ul{ list-style: none; list-style-type: none; maring-left: 1em; margin-bottom:1em; display:inline }
+
+
+.changeView {width:10em; float:right; clear:left; margin-bottom:0.6em; }
+#appResults { padding:0 1em 0 0em; clear:both; }
+.onlineApps { }
+
+
+th { text-align:center }
+
+table.generalTable,
+table.placementTbl {margin:0.4em 0 0.6em; padding:0.2em; width:100% }
+
+table.generalTable,
+table.placementTbl {border-top: 5px solid #003466;}
+
+table.generalTable th,
+table.placementTbl th { text-align:left}
+table.generalTable .dateAndTime { width:30%; }
+table.placementTbl .dateAndTime { width:15%; }
+table.generalTable .customer,
+table.placementTbl .customer { width:35%; }
+table.generalTable .user,
+table.placementTbl .user { width:15%; }
+table.generalTable .reason,
+table.placementTbl .reason { width:15%; }
+
+/* follow activities */
+ul.what_activities {display:inline;overflow:hidden;}
+ul.what_activities { list-style-type: none;}
+ul.what_activities li { list-style-type: none; margin:0 0.4em 0.4em; display:inline-block;}
+
+ul.what_activities li label {display:block; width:8.4em; text-align:left; padding: 0 0 0 2em; text-indent:-2em;}
+ul.what_dates li label {width:5.4em!important;}
+
+div#what_activities p {margin:0 0 0.4em;}
+ul.what_activities li input {
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin:0 0.6em 0 0;
+    vertical-align: bottom;
+}
+
+ul#which_dates {display:block;width:55em;margin:1em 0 0;}
+ul#which_dates * label {width:6.5em; !important;}
+
+table#enter_dates {margin:0; float:right; width:20em;margin-right:2em;}
+table#enter_dates td {margin:0 1em 0 !important;}
+ul.what_activites li a {
+	display: block;
+	width: 50px;
+	height: 60px;
+	background:url('/include/system/tools/timecards/images/savedTime.png') #ffffff no-repeat;
+	color: #333;
+	text-decoration: none; 
+	text-align: center;
+	padding: 20px 0 0 0;
+	font-size: 13px;
+	text-transform: uppercase;
+	line-height : 1;font-weight: bold;
+			}
+ul.what_activites li a span	{ font-size: 10px; font-weight:normal; }
+
+div#what_activities {width:98%; overflow: hidden;float:left;clear:both;margin: 0;}
+
+/* Set Disposition */
+span.idle,
+span.working ,
+span.showdispos,
+span.disposition  {margin:0;padding:0;display:block;overflow:hidden;cursor:pointer;width:8em;white-space:nowrap;}
+span.disposition select {margin:0;padding:0;}
+
+/* span.working {width:16px; height:15px;display:block;margin:0 1px 0 0;} */
+
+span.whichcompany{display:block;float:left;width:15em;height:1em;}
+span#activeonly, span#reverse_order {display:block;float:left;clear:left;height:2em;width:25em;}
+span#activeonly input,
+span#activeonly label, 
+span#activeonly input,
+span#activeonly label {vertical-align:middle;height:1em;}
+
+
+span#reverse_order input,
+span#activeonly input {margin-right:0.2em;border:none;}
+
+div#filtering_options, div#more_filtering_options {clear:both;}
+
+div#show_basic_filters,
+div#show_what_activities,
+div#show_system_activities,
+p#hide_system_activities,
+div#hide_basic_filters,
+p#hide_what_activities {cursor:pointer; color:#003366;}
+/* ajax inputs in filtering optionsdiv */
+
+div#ajax_inputs {width:100%; clear:both}
+div.search {width:11em;float:left;clear:right;margin:0 1em 0 0;text-align:left;}
+div.search label,
+div.search input {display:block;float:left;clear:left;width:10em;text-align:left;}
+div#lookup_response {clear:both; width:100%;background-color:white;}
+
+
+[contenteditable="true"]:active,
+[contenteditable="true"]:focus {
+	border:none;
+	outline:none;
+}
+
+
+[contenteditable="true"]:focus > style {
+	display:block;
+}
+
+[contenteditable="true"]:focus > style {
+	display:block;
+	font-size: .75em;
+	color: blue;
+	font-family: courier, sans-serif;
+	background: #fff;
+	line-height: 1.5;
+	position:relative;
+	right: -36em;
+	top:-2em;
+}
+	

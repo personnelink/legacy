@@ -1,0 +1,119 @@
+@media print, handheld {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+
+a:hover {text-decoration:none}
+
+#formOptions {width:45em; padding: 0 1em; margin-bottom:1em;}
+
+#whoseHereForm select { width:20em; text-align:left; margin-bottom:2em; }
+
+#whoseHereList { min-height:40em; }
+#whoseHereList  { margin-top:1em; padding:2em; }
+#whoseHereList td { padding-bottom:0.2em }
+
+
+#button {
+	width: 12em;
+	border-right: 1px solid #000;
+	padding: 0 0 1em 0;
+	margin-bottom: 1em;
+	font-family: 'Trebuchet MS', 'Lucida Grande',
+	  Verdana, Lucida, Geneva, Helvetica, 
+	  Arial, sans-serif;
+	background-color: #90bade;
+	color: #333;
+	}
+
+
+.altNavPageRecords {float: none; clear:both; margin:1.6em auto; width:60em; text-align:left !important; }
+.altNavPageRecords a {font-weight:bold; width:6em;display:block;float:left;}
+.altNavPageRecords a:hover {font-weight:bold; text-decoration:none; }
+
+#topPageRecords {float:left; clear:both; }
+
+span.select {
+   position: absolute;
+   width: 208px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+   height: 22px;
+   padding: 0 24px 0 8px;
+   color: #fff;
+   font: 12px/21px arial,sans-serif;
+   background: url('/include/style/images/forms/select.gif') no-repeat;
+   overflow: hidden;
+
+ }
+
+table.placements {margin:0.4em 0 0.6em; padding:0.2em;border-top: 5px solid #003466; width:100%;table-layout:fixed;}
+
+
+table.placements th {text-align:left}
+table.placements th {overflow:hidden;white-space:nowrap;}
+
+th.date{width:37%;}
+th.applicant{width:31%;}
+th.reason{width:19%;margin:0;padding:0;}
+th.foruser{width:13%;}
+
+th.customer,
+th.joborder,
+th.status,
+th.for,
+th.date,
+th.applicant,
+th.reason,
+th.foruser,
+span.memo{margin:0;padding:0;font-size:90%;border:1px solid white;padding:0.1em;}
+
+span.memo{font-weight:bold;}
+
+table.placements tr.heading {background-color:#ddecf9;height:1em;}
+table.placements tr.details {background-color:#f2f6fb;height:1em;}
+table.placements tr.footer {background-color:#fffce2;height:1em;}
+span.memo {background-color:#fffce2}
+span.description{font-size:102%;font-style:italic;}
+
+table.placements tr.heading:hover {background-color:#c0def8;}
+table.placements tr.details:hover {background-color:#e4eff9;}
+table.placements tr.footer :hover{background-color:#fffbd6;}
+span.memo:hover {background-color:#fffbd6}
+
+div.nowrap {overflow:hidden;display:block;width:100%;}
+
+span.working,
+span.idle,
+span.showdispos,
+span.disposition  {margin:0;padding:0;display:block;height:1.2em;width:10em;overflow:hidden;cursor:pointer;}
+span.disposition select {margin:0;padding:0;}
+
+
+/* span.working {position:absolute;right:0;top:0;width:16px; height:15px;display:block;margin:0 1px 0 0;} */
+
+span.working {background: url('ajax/working.gif') no-repeat right;}
+span.whichcompany{display:block;float:left;width:15em;height:1em;}
+span#activeonly {display:block;float:right;clear:left;height:1em;width:25em;}
+span#activeonly input,
+span#activeonly label {vertical-align:middle;height:1em;}
+span#activeonly input {margin-right:0.2em;border:none;}

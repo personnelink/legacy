@@ -1,0 +1,229 @@
+@media print {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+#accountActivityDetail,
+#viewActivityForm {min-height:5em;}
+
+#likeName {width: 20em;}
+.changeView {width:10em; float:right; clear:left; margin-bottom:0; }
+
+#viewActivityForm p {width:100%; text-align:center;padding:1em 0 0}
+#viewActivityForm p span {margin:0 1em 0; padding:0.1em 0 0 1em;}
+
+#formOptions {width:45em; padding: 0 1em;}
+
+table#formOptions tr td input, 
+table#formOptions tr td label { float:left; clear:left; } 
+
+
+/* current_ledger.asp */
+
+.sh {background-color:#FFFFFF;} /* Row color, shade high and shade low */
+.sl {background-color:#EFF5FA;}
+
+table.even tr td {background-color:#FFFFFF;} /* Row color, shade high and shade low */
+table.odd tr td {background-color:#F7F7FF;}
+
+tr.br td.nl,
+tr.br td.ad {white-space:nowrap; overflow:hidden}
+th#appid { text-align:center; width:5em;}
+
+#account_group {width:60em; border:1px solid #ffCCCC;clear:both; }
+
+#account_balance {height:5em;}
+
+#account_balance,
+#make_payment {width:58em; border:1px solid #DCD3F8; overflow:hidden; margin:0 0 1.4em 0; padding:1em 2em;}
+
+a#mkPayment {
+	display:block;
+	background:url('mkPayment.png') no-repeat;
+	padding:0.2em 0 0 2.6em;
+	float:left;
+	clear:left;
+	margin:1em 0 1em;
+	text-decoration:underline;
+	width:10em;
+	height:2.2em;
+
+}
+
+span.getpdf {
+	display:block;
+	background:url('../getpdf.gif') no-repeat;
+	width:16px;
+	height:16px;
+}
+
+td.rememberpayment label {
+    display: block;
+    padding-left: 1.8em;
+    text-indent: -1.6em;
+}
+
+td.rememberpayment input {
+    width: 1.3em;
+    height: 1.3em;
+    padding: 0;
+    margin:0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+}
+
+.processpayment {width:13em;margin:2em 0 0 0; float:right;}
+
+p#accntbal { margin:auto 0 auto 0; float:left;clear:left;width:24em;text-align:left; }
+.detail_summary,
+table.account_activity {clear:both; overflow:hidden; width:100% !important;}
+
+table.detail_summary tr,
+table.account_activity tr {border:1px solid #08386B; border-width:1px 0 1px 0;}
+
+#make_payment {}
+table#paymentOptions {width:55em;margin:0 0 1.4em;}
+table#paymentOptions tr td {margin:0;border:red;height:1.2em;}
+td#billinginfo {
+	font-weight:bold;
+}
+td#billinginfo span {
+	display: block;
+	color: #333;
+	text-decoration: none; 
+	text-align: left;
+	padding: 0 0 0.2em 0;
+	font-size: 13px;
+	font-weight: bolder;}
+
+td#paymentoptions ul {
+	display:block;
+	width:30em; }
+
+td#paymentoptions ul {
+	display:block;
+	width:30em; }
+
+
+/* reference code 	
+ul.weekending {display:inline;}
+ul.weekending li { list-style-type: none; float:left; margin:0 1em 0; display:inline;}
+ul.weekending li a {
+	display: block;
+	width: 50px;
+	height: 60px;
+	background:url('/include/system/tools/timecards/images/savedTime.png') #ffffff no-repeat;
+	color: #333;
+	text-decoration: none; 
+	text-align: center;
+	padding: 20px 0 0 0;
+	font-size: 13px;
+	text-transform: uppercase;
+	line-height : 1;font-weight: bold;
+			}
+ul.weekending li a span	{ font-size: 10px; font-weight:normal; }	*/
+	
+	
+#paypalopt {}
+#achopt {}
+
+input#todata,
+input#fromdata {width:14em}
+input#amount {width:6em}
+
+div.apayment {clear:both;}
+div.apayment span {
+	display:block;
+	float:left;
+	clear:left;
+	padding:1em 0 0 1em;
+	margin:0 0 1em;
+	text-align:left important!;
+}
+div.apayment img {
+	float:left;
+	clear:left;
+	height:40px;
+	width:40px;
+	background-image:url('../widgets.gif');
+background-position:-0px -18px;
+background-repeat:none;
+}
+
+table.detail_summary td,
+table.account_activity td {vertical-align:middle; height:2em;}
+
+table.detail_summary tr {border-top:1px solid #DEE3DE;}
+
+/* table.account_activity td {width:16.67%} */
+
+table.headings {background-color:#FFF7E7; height:3em; vertical-align:middle; overflow:hidden}
+table.headings th {font-weight:normal; border:1px solid #DEE3DE; background-color:#FFF7E7; height:3em; vertical-align:middle; overflow:hidden}
+
+.ba, .bb, .bc, .aa, td.ca, td.ac {text-align:left}
+
+th.ca, th.cc, .ab, th.ac, .ad, th.ae, th.af,
+.bd, .be, .cb,
+.cc, .ce, .cf, .cg, th.ag {text-align:center;}
+
+.ag, .cg {width:4%}
+.aa, .ca {width:8%}
+.ab, .cb {width:14%;}
+.ac, .cc {width:28%}
+.ad, .cd {width:22%}
+.ae, .ce {width:12%}
+.af, .cf {width:4%}
+.ag, .cg {width:4%}
+.ah, .ch {width:4%}
+
+.plusexpand,
+.minusshrink {background-image:url('../widgets.gif'); padding:7px 6px;}
+
+/* .plusexpand {background-position:-41px 8px;}
+.minusshrink {background-position:-24px 8px;} */
+
+.plusexpand {background-position:-92px 8px;}
+.minusshrink {background-position:-106px 8px;}
+
+.cd, td.ae, td.af, .bf, .bg, .bh, td.ce, td.cf {text-align:right;}
+
+td.ce, td.cf {padding-right:0.8em;}
+input#ck_all,
+td.cg input {margin:0.4em 0;border:none;}
+table.inv_detail {width:57em; margin:0 1.5em 0 1.5em; float:right;clear:both}
+th.ba {width:12%;}
+th.bb {width:28%;}
+th.bc {width:29%;}
+th.bd {width:5%;}
+th.be {width:8%;}
+th.bg {width:8%;}
+th.bh {wdith:10;}
+
+td.bb {white-space:nowrap; overflow:hidden}
+
+input.inv_chk {width:0.8em;height:0.8em;}
+.loading {min-height:2.8m;display:block;border: 1px solid #A38EEB; background:#ffffff url('/include/ajax/loading.gif') no-repeat center center !important;} 
+.loaded {border-bottom:none;overflow:hidden;background-image:none;margin-top:0.2em;}
+/* div#line_0_detail {background-image: url("/include/ajax/loading.gif");} */

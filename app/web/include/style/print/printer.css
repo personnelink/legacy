@@ -1,0 +1,5 @@
+@charset "UTF-8";
+/* Element Definitions */
+#pageBanner, #pageNavigation, #pageFooter {display:none;}
+
+#pageWrapper {margin-top:1.4em; margin-bottom:2em;padding:0.8em 0 1em;}

@@ -1,0 +1,144 @@
+/* redefine global id */
+#contentcolumn {width:79.1em;border-left:none;padding-left:0em;padding-right:0.4em;margin:0;padding-top:0}
+#leftSideMenu {display:none;}
+/* done redefining global id's */
+
+/* userHome.asp */
+#hmMessagesSpot {width:25em;float:left;margin-bottom:0.6em}
+#hmAppointmentsSpot {width:37em;float:left;margin:0; }
+#homeBlogSpot { clear:both}
+
+#hmMessagesSpot * p { margin:1em 1em 1em }
+#hmMessagesSpot * span p { margin:1em 3em 1em }
+#hmMessagesSpot * span ul { margin:1em 4em 1.5em }
+#messages {height:11.2em; overflow:auto;}
+
+#homeBlogSpot * p { margin:1em 1em 1em }
+#homeBlogSpot * span p { margin:1em 3em 1em }
+#homeBlogSpot * span ul { margin:1em 4em 1.5em }
+
+#empTimecard {}
+
+.icon {background:url('/include/images/iconSheet.png') no-repeat; width:48px; height:48px; margin: 1em; }
+.viewapp {background:url('/include/images/iconSheet.png') no-repeat; width:48px; height:48px; margin: 1em; background-position:0px 0px}
+
+/* #homeBlogSpot * a { margin:-0.1em 0.5em 0; float:right; }
+#homeBlogSpot * a:hover img { margin-top:0.2em; } */
+
+.delBlog { float:left; display:block; }
+.editBlog { float:right; display:block;}
+
+.blogDate {float:right; display:block;margin:0 0.8em 0 0; color:#c5d1dd;}
+
+#orientationVideos * ul li { margin-bottom:.6em; }
+
+#helpFAQ h2,
+#privacyPolicy h2 { font-size:1.6em; font-weight:bold; background:none; color:#333333; width:100%; padding:0 0.8em 0.2em; }
+#helpFAQ h2 span,
+#privacyPolicy h2 span { border-bottom:1px solid #cccccc;}
+#helpFAQ img,
+#privacyPolicy img { float:right; }
+#helpFAQ p,
+#privacyPolicy p { padding:0 1.4em 1em 2.2em; text-align:left; }
+
+div.blog{margin:0 1em;}
+div.reply hr {border:0;color:#ededed ;background-color:#ededed;margin:1em 1.2em 0.4em}
+div.reply p  {padding:0.2em 0.4em 2em 1em}
+.replydate {color:grey}
+
+div.notes {
+  float: right;
+  clear:none;
+  width: 18em;
+  height: auto;
+  margin: 0 1em 1em 1em;
+  padding: 5px;
+  border: 1px solid #666666;
+  background-color: #ffffe1;
+  color: #666666;
+  font-size: 88%;
+}
+
+div.notes h4 {
+  background-image: url('/include/style/images/forms/icon_info.gif');
+  background-repeat: no-repeat;
+  background-position: top left;
+  padding: 3px 0 3px 2.6em;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: #666666;
+  color: #666666;
+  font-size: 110%;
+}
+
+div.notes p {
+  margin: 0em 0em 1.2em 0em;
+  color: #666666;
+}
+
+div.notes p.last {
+  margin: 0em;
+}
+
+span.checkbox {
+    width: 19px;
+    height: 25px;
+    padding: 0 5px 0 0;
+	margin:-5px 0 0;
+    background: url('/include/style/images/forms/checkbox.gif') no-repeat;
+    display: block;
+    clear: left;
+    float: left;
+  }
+  
+#ResetForm * table {width:40em; margin:2em 4em 10em;}
+#ResetForm * table tr td {padding-bottom:0.6em;}
+
+.homeLinks {min-height:6em; text-align:left;}
+.homeLinks a:hover,
+.homeLinks a {text-decoration:none; padding:0; margin:0; float:left; display:inline}
+.homeLinks a img {margin:0; padding:0;}
+
+
+#CityField { width:12em; }
+#ZipField { width:8em; }
+#StateLbl { width:6em !important;}
+
+.CityStateZip {clear:both;}
+.CityStateZip label,
+.CityStateZip select,
+.CityStateZip input { float:left;}
+
+li.mirrors td {padding:0 0.2em 0;}
+.mirrors a:link,
+.mirrors a:visited,
+.mirrors a:hover,
+.mirrors a {font-style:normal;font-weight:bolder;color:#003366;text-decoration:none;}
+
+.mirrors a:hover {color:#003669;}
+
+div#employer31-1 p {margin: 0 0 0.8em;line-height:125%}
+div#employer31-1 h3 {background-image:none;color:#003366; font-weight:bolder; font-size:1.5em; margin:0 0 0.2em;padding:0;}
+div.contacts {margin:0; padding:0}
+
+div#employmentopportunity p {margin:0 1em 1em; font-size:1.2em;}
+form#opportunityform {width:40em;margin:0 0 0 1em;font-size:1.2em;}
+
+#locateCandidate {width:96%;margin:0 0 0 1em;}
+
+form#opportunityform table tr td {vertical-align:middle; height:2em;margin:0 0 0.2em;}
+
+p.security {width:100%; height:1.6em;}
+p.security label,
+p.security input {vertical-align:middle}
+p.security label {margin:0 1em 0;}
+p.security input {margin:0 0.5em 0;}
+
+
+/* close placement object */
+
+span.Idle,
+span.Working {height:16px;width:16px;display:block;float:left;margin:0.4em 2px 0 0;}
+
+span.Working {background:url('ajax/working.gif') no-repeat;}
+

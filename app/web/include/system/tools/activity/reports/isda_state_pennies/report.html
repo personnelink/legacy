@@ -1,0 +1,184 @@
+﻿<!--[if lt IE 9]>
+<script src="./IE9.js"></script>
+<![endif]-->
+
+<!--Created by Gus & Richard 2013.12.11 v1.0-->
+
+<form id="viewTimeArchiveForm" name="viewTimeArchiveForm" action="#" method="get">
+    <table id="formOptions">
+        <tr class="head">
+            <td>
+                <label for="fromDate" class="headlabel">From:</label>
+                <input class="inbox" name="fromDate" id="fromDate" type="date" value="<%=fromDate%>" onkeypress="return submitenter(this,event)" />
+            </td>
+            <td>
+                <label for="toDate" class="headlabel">To:</label>
+                <input class="inbox" name="toDate" id="toDate" type="date" value="<%=toDate%>" onkeypress="return submitenter(this,event)" />
+            </td>
+            <td><% if userLevelRequired (userLevelPPlusStaff) then %>
+
+					<label for="searchbox" class="headlabel">Customer Code:</label>
+                <input class="inbox" name="searchbox" maxlength="6" size="12" value="BPO 1832" id="searchbox" type="text" onblur="company.clear(this);" onkeyup="company.lookup(this);" /><div id="CompanyLookUp"></div>
+                <% else %>
+					<input name="searchbox" value="BPO 1832" id="searchbox" type="hidden" />
+                <% end if %>
+            </td>
+            <td>
+                <div class="viewbutton">
+                    <button type="submit" id="viewbutton" onclick="javascript:document.viewTimeArchiveForm.submit();">View Report</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<table style="margin: 1em 0 0 0">
+    <thead>
+        <tr>
+            <th>Employee
+            </th>
+            <th>Type
+            </th>
+            <th>Hours
+            </th>
+            <th>Pay Rate
+            </th>
+            <th>Bill Rate
+            </th>
+            <th>St of Id
+            </th>
+            <th>Difference
+            </th>
+            <th>Total St Diff
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <%
+			dim searchbox
+			if userLevelRequired(userLevelPPlusStaff) then
+				searchbox = request.querystring("searchbox")
+			elseif userLevelRequired(userLevelSupervisor) then
+				searchbox = g_company_custcode.CustomerCode
+			end if
+
+			dim previousName, currentName, displayName
+
+			dim evenOrOddShade
+			dim firstLoop : firstLoop = true
+			dim payType
+			dim billRate
+			dim stateBillRate
+			dim payrate
+			dim stateDiff
+			dim totStateDiff
+			dim grandTotal
+			dim empTotal
+
+			do while not rs.eof
+					payType = rs("Type")
+
+					'
+
+					billRate = cdbl(rs("Billrate"))
+					stateBillRate = ((billRate/1.306)*1.29)+0.005
+					payrate = rs("Payrate")
+					stateDiff = TwoDecimals((billRate-((billRate/1.306)*1.29))+0.005)
+
+					'print payType
+					if payType = "4" then
+						stateBillRate = payrate
+						totStateDiff = ((billRate * 1.25)+0.005)*0.01
+						stateDiff = totStateDiff
+					else
+						'totStateDiff = (((billRate-((billRate/1.306)*1.29)))*cdbl(rs("SumOfQuantity")))+0.005
+						totStateDiff = cdbl(TwoDecimals(stateDiff*cdbl(TwoDecimals(rs("SumOfQuantity")))+0.005))
+
+					end if
+
+					grandTotal = grandTotal + totStateDiff
+
+					currentName = rs("LastnameFirst")
+					if currentName <> previousName then
+						if firstLoop then
+							firstLoop = false
+							evenOrOddShade = "even"
+						else
+							%>
+								<tr class="<%=evenOrOddShade%>">
+                                    <td colspan="8" style="text-shadow: #999 0.14em 0.14em 0.2em; text-align: right; padding-bottom: 0.2em;">&nbsp;</td>
+                                </tr>
+        <%
+							if evenOrOddShade = "even" then
+								evenOrOddShade = "odd"
+							else
+								evenOrOddShade = "even"
+							end if
+						end if
+
+						displayName = currentName
+						empTotal = totStateDiff
+					else
+						displayName = ""
+						empTotal = empTotal + totStateDiff
+					end if
+
+				%>
+					<tr class="<%=evenOrOddShade%>">
+                        <td style="padding-right: 1em; text-align: left;"><%=displayName%>
+                        </td>
+                        <td style="text-align: left"><%=HoursType(rs("Type"))%>
+                        </td>
+                        <td><%=TwoDecimals(rs("SumOfQuantity"))%>
+                        </td>
+                        <td>$<%=TwoDecimals(payrate)%>
+                        </td>
+                        <td>$<%=TwoDecimals(stateBillRate)%>
+                        </td>
+                        <td>$<%=TwoDecimals(billRate+0.005)%>
+                        </td>
+                        <td>$<%=TwoDecimals(stateDiff)%>
+                        </td>
+                        <td>$<%=TwoDecimals(totStateDiff)%>
+                        </td>
+                    </tr>
+        <%
+
+					if previousName <> currentName then
+						response.write
+						previousName = currentName
+					end if
+
+				rs.movenext
+				response.flush
+
+			loop
+
+			'toggle grandTotal row shade
+			if evenOrOddShade = "even" then
+				evenOrOddShade = "odd"
+			else
+				evenOrOddShade = "even"
+			end if
+
+						%>
+    </tbody>
+    <tfoot>
+
+        <tr class="<%=evenOrOddShade%>">
+            <td colspan="7" style="text-shadow: #999 0.14em 0.14em 0.2em; text-align: right; padding-bottom: 1em; font-size: large">
+                <b>Grand Total:</b>
+            </td>
+            <td style="font-size: larger"><b>$<%=TwoDecimals(grandTotal+0.005)%></b>
+                <!--OT Hours total for employee-->
+            </td>
+            <!--<td style="text-align: end; font-size: larger"><b>$</b>
+                <!--Total Billed for employee-->
+            <!--</td>-->
+        </tr>
+        <tr>
+            <td colspan="8" style="text-align: left; font-style: italic; font-size: smaller; padding: 1em; border: 1px solid #003366;">Legend: <em>Difference</em> is Admin Fee 1.25% on the hour. <em>Hours</em> multiplied by <em>BillRate</em> and <em>Hours</em> multiplied by <em>St of Id</em> minus each other is <em>Total St Diff</em>. Mileage <em>Pay Rate</em> and <em>Bill Rate</em> are equal as there is no markup. <em>Mileage Bill Rate</em> multiplied by 1.25% is <em>State of Id. St of Idaho</em> minus <em>Bill Rate</em> equals <em>Difference</em> and <em>Total St. Diff.</em>
+            </td>
+        </tr>
+    </tfoot>
+</table>

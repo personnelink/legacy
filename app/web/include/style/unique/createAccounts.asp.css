@@ -1,0 +1,76 @@
+#problemsInNewCompany { }
+#problemsInNewCompanyBlog { }
+#basicCompanyInfo { background:url('/include/user/images/createCompany.png') no-repeat top left #FFFFFF; }
+
+#problemsInAppImage { background: url('/include/user/application/problem.gif') no-repeat left; padding-left:8em; height:7em; }
+#problemsInApp p {margin:0.5em auto 1em 1.5em;}
+
+.fieldIsGood {color:#000;}
+/* .fieldIsGood span {visibility:hidden} */
+
+.fieldIsBad {color:#FF0000}
+.fieldIsBad span {
+	visibility:visible;
+	margin-left:1em;
+	height:1.2em;
+	padding-left:1.5em;
+	float: none;
+	background: transparent url('/include/images/mainsite/icon_err.gif') no-repeat;}
+
+
+form#createNewCompany * input, form#createNewCompany * label, form#createNewCompany * select {float:left;margin-top:0.8em;}
+form#createNewCompany * label, form#createNewCompany * select {height:1.4em;} 
+form#createNewCompany * select {width:10em; clear:none; float:left;}
+form#createNewCompany * input, form#createNewCompany * label {width:30em}
+form#createNewCompany * label {width:24em;}
+form#createNewCompany * p {display:block;clear:both;}
+
+#createAccount a,
+#createAccount a:hover,
+#createAccount a:visited,
+#createAccount a:link,
+#createAccount a:active {Color:blue; font-size:1.4em;text-decoration:underline}
+
+#createAccount { min-height:40em;}
+#createManage {height:15em; width:15em; float:right; clear:right; background: url('/include/user/images/createAccount.png') no-repeat ;  }
+#whatKindOfAccount { float:left; }
+#whatKindOfAccount ul { margin:5em 0 0 10em; }
+#whatKindOfAccount img { vertical-align:middle; }
+
+h5 {border:1px solid #003466; }
+
+#createAccountNotes { margin:2em 0 5em 0 ; }
+
+div.notes {
+  float: right;
+  width: 18em;
+  height: auto;
+  margin: 0 1em 1em 1em;
+  padding: 5px;
+  border: 1px solid #666666;
+  background-color: #ffffe1;
+  color: #666666;
+  font-size: 88%;
+}
+
+div.notes h4 {
+  background-image: url('/include/style/images/forms/icon_info.gif');
+  background-repeat: no-repeat;
+  background-position: top left;
+  padding: 3px 0 3px 2.6em;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: #666666;
+  color: #666666;
+  font-size: 110%;
+}
+
+div.notes p {
+  margin: 0em 0em 1.2em 0em;
+  color: #666666;
+}
+
+div.notes p.last {
+  margin: 0em;
+}
+
