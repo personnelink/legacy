@@ -1,0 +1,109 @@
+/* definiamo il colore dello sfondo e della barra di scorrimento (IE6) */
+/* background colour and property of sliding bar (IE6) */
+BODY {
+	background: #ffffff; SCROLLBAR-FACE-COLOR: #ff9900; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; SCROLLBAR-SHADOW-COLOR: #ffffff; SCROLLBAR-3DLIGHT-COLOR: #ff9900; SCROLLBAR-ARROW-COLOR: #ffffff; SCROLLBAR-TRACK-COLOR: #99cc00; SCROLLBAR-DARKSHADOW-COLOR: #ff9900; SCROLLBAR-BASE-COLOR: #99cc00
+}
+
+/* definiamo la tipolgia di font e la dimensione per i tag fondamentali */
+/* kind of font and size relating to the basic tags */
+TD {
+	FONT:  9px verdana, arial, helvetica, sans-serif
+}
+P {
+	FONT:  9px verdana, arial, helvetica, sans-serif
+}
+DIV {
+	FONT:  9px verdana, arial, helvetica, sans-serif
+}
+
+/* caratteristiche dei link di base*/
+/* property of basic hyperlinks*/
+A {
+	COLOR: #ff9900; CURSOR: hand; FONT: 9px verdana, arial, helvetica, sans-serif; TEXT-DECORATION: underline
+}
+A:hover {
+	COLOR: #ff9900; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #ff9900
+}
+
+/* tale classe definisce gli style per i tag relativi ai moduli ( input, select )*/
+/* this class is related to the form tags ( input, select )*/
+.form  {
+	font-size : 9px;
+	font-family : verdana;
+	color : #000000;
+	border-width : 1;
+	border-style : solid;
+	border-color : #ff9900;
+	background-color : #ffffff;
+}
+
+/* tale classe definisce gli style per i bordi tabelle, dove definiti */
+/*  this class is related to the edges of the tables, where defined */
+.tablemenu  {
+	border-width : 1;
+	border-style : solid;
+	border-color : #ff9900;
+}
+
+/* questa classe individua il giorno corrente nel calendario nel caso
+in cui ci siano blog associati a quel giorno*/
+/* this class define the current day in the calendar in the case in which  
+blogs are present*/
+.back A:link {
+	COLOR: #99cc00; FONT:  9px verdana, arial, helvetica, sans-serif; TEXT-DECORATION: none;  border-width : 1;border-style : solid;border-color : #ff9900
+}
+.back A:visited {
+	COLOR: #99cc00; FONT:  9px verdana, arial, helvetica, sans-serif; TEXT-DECORATION: none;  border-width : 1;border-style : solid;border-color : #ff9900
+}
+.back A:hover {
+	COLOR: #ff9900; FONT:  9px verdana, arial, helvetica, sans-serif; TEXT-DECORATION: none ; border-width : 1;border-style : solid;border-color : #ff9900
+}
+.back A:active {
+	COLOR: #99cc00; FONT:  9px verdana, arial, helvetica, sans-serif; TEXT-DECORATION: none;  border-width : 1;border-style : solid;border-color : #ff9900
+}
+
+/* questa classe individua un giorno generico nel calendario nel caso
+in cui ci siano blog associati a quel giorno*/
+/* this class define a general day in the calendar in the case in which  
+blogs are present*/
+.back2 A:link {
+	COLOR: #99cc00; FONT:  9px verdana, arial, helvetica, sans-serif; TEXT-DECORATION: none
+}
+.back2 A:visited {
+	COLOR: #99cc00; FONT:  9px verdana, arial, helvetica, sans-serif; TEXT-DECORATION: none
+}
+.back2 A:hover {
+	COLOR: #ff9900; FONT:  9px verdana, arial, helvetica, sans-serif; TEXT-DECORATION: none
+}
+.back2 A:active {
+	COLOR: #99cc00; FONT:  9px verdana, arial, helvetica, sans-serif; TEXT-DECORATION: none
+}
+
+/* tale classe definisce uno dei due colori base ovvero il verde */
+/* basic colour: green */
+.green {
+	COLOR: #99cc00
+}
+
+/* tale classe definisce l'altro colore base ovvero l'arancione */
+/* basic colour: orange */
+.arancio{
+	COLOR: #ff9900
+}
+
+/* questa classe individua il giorno corrente nel calendario nel caso
+in cui nessun blog risulti associato a quel giorno*/
+/* this class define a current day in the calendar in the case in which  
+no blogs are present*/
+.giornocorrente{
+	COLOR: #ffffff; background : #99cc00
+}
+
+/* queste classi simulano il tag hr per evitare incompatibilità con browser diversi da IE */
+/* these classes simulate the tag hr in order to avoid problems with browser various from IE */
+/* Thanks ..:: gico ::.. */
+.hrgreen { margin-top: 7px; margin-bottom: 7px; background-color: #99cc00}
+.hrarancio { margin-top: 7px; margin-bottom: 7px; background-color: #ff9900}

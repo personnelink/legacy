@@ -1,0 +1,11 @@
+NLucene Change Log
+
+
+1.2b2, 2002-07-17
+
+NLucene is under ASF license now.
+
+
+1.2b, 2002-07-12
+
+First open source release.
