@@ -1,0 +1,11 @@
+<INLINEXML_HELP>Either you have requested this help or there have been an error trying to use the InlineXml macro.<HOW_TO_USE><![CDATA[<inlinexml(PUT PARAMETER HERE)>]]><EXAMPLE>This code displays a stylesheet from skin default!<CODE><![CDATA[<inlinexml(ow/skins/default/mystyle.xsl)>]]></CODE>
+		</EXAMPLE>
+	</HOW_TO_USE>
+	<BUILDIN_PARAMETERS><![CDATA[<inlinexml(PUT PARAMETER HERE)>]]>List of buildin parameters below<owvariables>Dump of (safe) OW Variables (not implemented yet!)</owvariables>
+		<about>Display info about the plugin</about>
+		<help>Display this Help msg</help>
+	</BUILDIN_PARAMETERS>
+	<NOTES>
+		<EXPERIMENTAL>pt. The plugin is in an experimental state - So have patience ;) --/sEi</EXPERIMENTAL>
+	</NOTES>
+</INLINEXML_HELP>

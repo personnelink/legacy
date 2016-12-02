@@ -1,0 +1,197 @@
+HTML BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; 
+	BACKGROUND: url(images/sides_body.gif) #e1d4c0 repeat-y center top; 
+	PADDING-BOTTOM: 0px; MARGIN: 0px; FONT: small "Trebuchet MS",Verdana,Arial,Sans-serif; 
+	COLOR: #333; PADDING-TOP: 0px; TEXT-ALIGN: center
+}
+#body {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 15px; 
+	MARGIN: 0px auto; WIDTH: 710px; PADDING-TOP: 10px; TEXT-ALIGN: left
+}
+.pop #body {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; 
+	PADDING-BOTTOM: 15px; WIDTH: auto; PADDING-TOP: 10px
+}
+BODY.sp #primary {
+	FLOAT: right; MARGIN-RIGHT: 0px
+}
+.ms #main-wrap {
+	FLOAT: left
+}
+.ms #main-wrap {
+	WIDTH: 710px
+}
+.ms #main {
+	FLOAT: left; BACKGROUND-IMAGE: url(images/c_top.gif); WIDTH: 710px
+}
+.ms #m2 {
+	BACKGROUND-IMAGE: url(images/c_bot.gif)
+}
+.ms #m3 {
+	WIDTH: 710px
+}
+#m2 {
+	BACKGROUND: url(images/c_bot.gif) no-repeat left bottom; 
+	FLOAT: left; PADDING-BOTTOM: 15px; WIDTH: 100%
+}
+#m3 {
+	BORDER-RIGHT: #e1d4c0 5px solid; PADDING-RIGHT: 15px; 
+	BORDER-TOP: #e1d4c0 0px solid; PADDING-LEFT: 15px; 
+	FLOAT: left; PADDING-BOTTOM: 0px; BORDER-LEFT: #e1d4c0 5px solid; 
+	WIDTH: 710px; PADDING-TOP: 0px; BORDER-BOTTOM: #e1d4c0 0px solid
+}
+.sm #m2 {
+	BACKGROUND-IMAGE: url(images/c_bot.gif)
+}
+.sm #m3 {
+	WIDTH: 710px
+}
+.sm #main-wrap {
+	WIDTH: 710px
+}
+.sm #main-wrap {
+	FLOAT: right
+}
+#main {
+	BACKGROUND: url(images/c_top.gif) #fff no-repeat left top; 
+	FLOAT: left; WIDTH: 100%; PADDING-TOP: 15px
+}
+.sm #main {
+	FLOAT: left; BACKGROUND-IMAGE: url(images/c_top.gif); WIDTH: 710px
+}
+.ms #m2 {
+	BACKGROUND-IMAGE: url(images/c_bot.gif)
+}
+.sm #m2 {
+	BACKGROUND-IMAGE: url(images/c_bot.gif)
+}
+.ms #m3 {
+	WIDTH: 710px
+}
+.sm #m3 {
+	WIDTH: 710px
+}
+HTML #header {
+	BORDER-TOP-WIDTH: 0px; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BORDER-LEFT-WIDTH: 0px; BACKGROUND: url(images/sides_head.gif) #025 repeat-y center top; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; BORDER-BOTTOM: #47d 4px solid; POSITION: relative; TOP: -4px; BORDER-RIGHT-WIDTH: 0px
+}
+#header h1 {
+    background:url(logo.png") no-repeat top left;
+    font-size:28pt;color:#FFFFF;font-weight:bold;height:32px;padding:3px 0 8px 43px;margin:0;
+}
+.pop #header {
+	BORDER-LEFT-COLOR: #69f; BACKGROUND: #036; BORDER-BOTTOM-COLOR: #69f; BORDER-TOP-COLOR: #69f; POSITION: static; BORDER-RIGHT-COLOR: #69f
+}
+#header A {
+	PADDING-RIGHT: 0.1em; PADDING-LEFT: 0.1em; FONT-WEIGHT: bold; PADDING-BOTTOM: 0px; COLOR: #9cf; PADDING-TOP: 0px; TEXT-DECORATION: none
+}
+#header #logo {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; TEXT-DECORATION: none
+}
+#header #tag {
+	BACKGROUND: url(images/tag.gif) no-repeat 100% 70%; FLOAT: right; MARGIN: 0px; WIDTH: 165px; HEIGHT: 40px
+}
+#header #tag EM {
+	LEFT: -2500px; POSITION: absolute
+}
+#header #user {
+	FONT-SIZE: 88%; FLOAT: right; MARGIN: 0px; WIDTH: 400px; COLOR: #369; TEXT-ALIGN: right
+}
+#user STRONG {
+	DISPLAY: block; FONT-SIZE: 115%; COLOR: #fff; LINE-HEIGHT: 1.2em
+}
+#header FORM {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; FONT-SIZE: 93%; BACKGROUND: url(images/bg_login.jpg) no-repeat left top; FLOAT: right; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 290px; COLOR: #369; LINE-HEIGHT: 1.2em; PADDING-TOP: 12px
+}
+#header FORM H2 {
+	FONT-SIZE: 100%; MARGIN: 0px; COLOR: #fff
+}
+#header FORM DIV {
+	FLOAT: left; MARGIN: 0.4em 0.5em 0px 0px; WIDTH: 47%; WHITE-SPACE: nowrap
+}
+#header P {
+	FLOAT: left; MARGIN: 0.3em 0px 0px; WIDTH: 95%; COLOR: #369
+}
+#header LABEL {
+	COLOR: #69c
+}
+#h2 {
+	POSITION: relative; TOP: 4px
+}
+#h3 {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 20px; BACKGROUND: url(images/bg_logo.gif) no-repeat left top; PADDING-BOTTOM: 14px; MARGIN: 0px auto; WIDTH: 490px; PADDING-TOP: 15px; BORDER-BOTTOM: #69f 4px solid; TEXT-ALIGN: left
+}
+H2 {
+	FONT-WEIGHT: normal; FONT-SIZE: 60%; MARGIN: 1em 0px 0.5em; COLOR: #826c55; LINE-HEIGHT: 1.3em
+}
+#main H2 STRONG {	COLOR: #f60}
+
+H3 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 93%; PADDING-BOTTOM: 0.25em; MARGIN: 1em 0px 0.25em; TEXT-TRANSFORM: uppercase; COLOR: #baa68e; PADDING-TOP: 0.25em; LETTER-SPACING: 0.1em
+}
+
+#sidebar P {
+	FONT-SIZE: 93%
+}
+#sidebar {
+	DISPLAY: none
+}
+
+
+.ms #sidebar {
+	DISPLAY: block; WIDTH: 200px
+}
+.sm #sidebar {
+	DISPLAY: block; WIDTH: 200px
+}
+.sm #sidebar {
+	FLOAT: left
+}
+.ms #sidebar {
+	FLOAT: right
+}
+
+#sidebar .mod {
+	BACKGROUND: url(images/bg_mod_bot.gif) no-repeat left bottom
+}
+#sidebar .mod2 {
+	BACKGROUND: url(images/bg_mod_top.gif) no-repeat left top
+}
+#sidebar .mod3 {
+	BORDER-RIGHT: #e1d4c0 2px solid; PADDING-RIGHT: 10px; BORDER-TOP: #e1d4c0 0px solid; PADDING-LEFT: 10px; PADDING-BOTTOM: 2px; BORDER-LEFT: #e1d4c0 2px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #f5ede3 1px solid
+}
+#sidebar .mod H2 {
+	MARGIN-TOP: 0px; COLOR: #333
+}
+#sidebar H2 STRONG {
+	COLOR: #826c55
+}
+.mod {
+	MARGIN-BOTTOM: 15px; PADDING-BOTTOM: 6px
+}
+.mod2 {
+	PADDING-TOP: 6px
+}
+#sidebar .bmod .mod2 {
+	BACKGROUND: url(images/bg_bmod_top.gif) no-repeat left top
+}
+#sidebar .bmod .mod3 {
+	BORDER-RIGHT: #154890 2px solid; PADDING-RIGHT: 10px; BORDER-TOP: #154890 0px solid; PADDING-LEFT: 10px; PADDING-BOTTOM: 2px; BORDER-LEFT: #154890 2px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #154890 0px solid
+}
+#sidebar .bmod {
+	BACKGROUND: url(images/bg_bmod_bot.gif) #69f no-repeat left bottom
+}
+#sidebar .bmod .text {
+	BORDER-RIGHT: #036 1px solid; BORDER-TOP: #036 1px solid; BORDER-LEFT: #036 1px solid; BORDER-BOTTOM: #036 1px solid
+}
+#sidebar .bmod A {
+	COLOR: #036
+}
+A {
+	FONT-WEIGHT: normal; COLOR: #36c
+}
+A:hover {
+	COLOR: #f60; TEXT-DECORATION: underline
+}
+A IMG {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <system.web>
+	<httpRuntime maxUrlLength="10999" maxQueryStringLength="2097151" />
+    <compilation debug="true" targetFramework="4.0" />
+  </system.web>
+    <system.webServer>
+	    <security>
+		  <requestFiltering>
+			<requestLimits maxUrl="10999" maxQueryString="9999" />
+		  </requestFiltering>
+		</security>
+        <httpErrors errorMode="Detailed" />
+        <defaultDocument>
+            <files>
+                <remove value="main.asp" />
+                <remove value="Default.htm" />
+                <add value="main.asp" />
+            </files>
+        </defaultDocument>
+        <httpRedirect enabled="false" destination="https://www.personnelinc.com/" />
+        <directoryBrowse enabled="false" />
+    </system.webServer>
+</configuration>

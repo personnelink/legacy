@@ -1,0 +1,220 @@
+        /*  
+        
+        For the WikiEditor
+        Version 1 (27 February 2005)
+        
+        */
+#toolbar	{	
+			margin: 0;
+			padding: 0;
+			width:650px;
+			background-color: buttonface;
+			border-top: 1px solid buttonhighlight;
+			border-left: 1px solid buttonhighlight;
+			border-bottom: 1px solid buttonshadow;
+			border-right: 1px solid buttonshadow;
+			text-align:left;
+			vertical-align: middle;
+					  	}
+	
+	   /*  
+       The select drop down menu's
+        */
+        
+#interwikicolour
+			{
+			}
+#macrosformat
+			{
+			}
+
+#macros	{
+			width:350px;
+			}
+			
+#format	{
+			width:175px;
+			}
+
+	   /*  
+       The clickable buttons
+        */
+        
+ 		
+#editbuttons	{	
+			
+			position: relative;
+ 			top: 0;
+			float:left;
+		  	}
+		  	
+	  /*  
+       The 3d effects for the buttons
+        */
+
+		  			
+.button 	{
+			background: buttonface; 
+			border: 1px solid buttonface;
+			margin: 1px; 
+			text-align: center;
+        		vertical-align:middle;
+        		cursor: hand;
+			}
+
+.select		{
+			border: 1px solid buttonface;
+			margin: 1px  5px 1px 1px; 
+			width: 100px;
+         		background-color: white; 
+			font-size: 8pt;
+			font-family: courier; 
+			vertical-align: middle;
+			cursor: hand;
+			}
+			
+.raised		{ 
+			border-top: 1px solid buttonhighlight;
+			border-left: 1px solid buttonhighlight;
+			border-bottom: 1px solid buttonshadow;
+			border-right: 1px solid buttonshadow;
+			background: buttonface;
+			margin: 1px;
+			}
+			
+.pressed	{
+			border-top: 1px solid buttonshadow;
+			border-left: 1px solid buttonshadow;
+			border-bottom: 1px solid buttonhighlight;
+			border-right: 1px solid buttonhighlight;
+			background: buttonface;
+			margin: 1px;
+			}
+
+.img		{
+			cursor: normal;
+			height: 22px; 
+			width: 23px;
+			cursor: hand;
+			vertical-align:  75%;
+
+			}
+
+
+ 		 /*  
+       The toolbar
+        */
+
+div.toolbarWrapper {
+        border: 1px solid;
+        border-color: buttonshadow buttonhighlight buttonhighlight buttonshadow;
+        width: 100%;
+       
+      }
+      
+     
+div.toolbarBody {
+        height: 28px;
+        border: 1px solid;
+        border-color: buttonhighlight buttonshadow buttonshadow buttonhighlight;
+        padding: 1px;
+        background: buttonface;
+        vertical-align: 75%;
+        overflow: hidden;
+        line-height:28px
+      }
+
+ 		 /*  
+       The raised bumps at the ends of the tool bars
+        */
+
+span.handle {
+        height: 20px;
+        width: 2px;
+        background: buttonface;
+        border: 1px solid;
+        margin: 0px 3px 0px 1px;
+        border-color: buttonhighlight buttonshadow buttonshadow buttonhighlight;
+        vertical-align: middle;
+        overflow: hidden;
+      }
+      
+      
+        /*  
+       The dividers between different sections of the tool bars
+        */
+span.separator {
+         height: 20px;
+        width: 2px;
+        background: buttonface;
+        border: 1px solid;
+        margin: 0px 3px 0px 0px;
+        border-color: buttonface buttonshadow buttonface buttonface;
+        vertical-align: middle;
+        overflow: hidden;
+              }
+
+      
+   /*
+   
+   This is how the dividers are supposed to be, unfortunatley this doesn't work properly with FireFox if used between other similar spans (ie span.handle)
+   A chocolate fish to the first person to work out why.
+   
+span.separator {
+        height: 20px;
+        width: 2px;
+        background: buttonface;
+        border: 1px solid;
+        margin: 0px 3px 0px 0px;
+        border-color: buttonshadow buttonhighlight buttonhighlight buttonshadow;
+        vertical-align: middle;
+        overflow: hidden;
+      }
+      */
+      
+      
+        /*  
+       backgrounds to menu items in selects
+        */
+
+.contrast1	{
+			background-color: #EEE8AA;
+				}
+			
+.contrast2 	{
+			background-color: #CCCC99;
+				}
+		
+  /*  
+       Colours for backgrounds to colour select items
+    */
+	
+.redtext {color:#ff0000;}
+.darkredtext {color:#800000;}
+.greentext {color:#00ff00;}
+.darkgreentext {color:#008000;}
+.bluetext {color:#0000ff;}
+.darkbluetext {color:#000080;}
+.markerpentext {font-weight:bold;color:#000000;background-color:#ffff00;}     
+        
+        
+        /*  
+        
+        Not used
+        
+        
+ span.button {
+        border: 1px solid buttonface;
+        background: buttonface;
+        padding: 1px;
+        height: 25px;
+        width: 24px;
+        text-align: center;
+        vertical-align: middle;
+        cursor: hand;
+        margin: 0px 0px 0px 0px;
+        
+        */
+
+
+ 

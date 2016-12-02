@@ -1,0 +1,19 @@
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by abc (abc) -->
+<doc>
+	<label>My hobbies</label>
+	<title>What really interest me</title>
+	<pages>
+		<page>
+			<label>Fishing</label>
+			<title>Deep see and from shores</title>
+		</page>
+		<page>
+			<label>Music</label>
+			<title>I mostly like to play...</title>
+		</page>
+		<page>
+			<label>Computer</label>
+			<title>I just love to do IT</title>
+		</page>
+	</pages>
+</doc>

@@ -1,0 +1,31 @@
+
+/*~~~~~ MacroShowSharedImages ~~~~~~ PiiXiieeS 20060318 ~~~~~~*/
+div.figure {
+  float: left;
+  width: 100px;
+  height: 90px;
+  border: 1px silver solid;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+div.figure p {
+  text-align: center;
+  font-family: arial;
+  font-size:10px;
+  text-indent: 0;
+  width: 100px;
+  height: 30px;
+}
+
+div.magnify {
+    background-position: 100% 100%;
+    padding-left: 30px;
+    background-image: url(images/magnify-clip.png);
+    background-repeat: no-repeat;
+    float: right;
+}
+
+img.scaled {
+  width: 100%;
+}
+/*~~~~~ MacroShowSharedImages ~~~~~~ PiiXiieeS 20060318 ~~~~~~*/

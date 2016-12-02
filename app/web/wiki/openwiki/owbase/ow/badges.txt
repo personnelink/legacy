@@ -1,0 +1,12 @@
+&badge1=BADGE 1
+&badge1_url=http://www.openwiking.com/helpwiki
+&badge2=BADGE 2
+&badge2_url=http://www.openwiking.com/helpwiki/?p=helpwiki|a=xml
+&badge3=BADGE 3
+&badge3_url=http://www.openwiking.com/helpwiki/?p=helpwiki|a=changes
+&badge4=SPELL/n CORRECT
+&badge4_url=http://www.google.com/search?num[eq]100[and]hl[eq]xx-elmer[and]ie[eq]UTF-8[and]newwindow[eq]1[and]q[eq]MyWhateverBadge[and]btnG[eq]Seawch
+&DevWiki=DevWiki
+&DevWiki_url=http://www.openwiking.com/DevWiki
+&SomethingName=SomethingName
+&SomethingName_url=SomethingName_url

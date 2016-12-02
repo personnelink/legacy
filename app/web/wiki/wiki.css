@@ -1,0 +1,181 @@
+/* general */
+#ads  { display: none; }  
+
+/* this portion should come from vms:master.css
+
+body 
+{
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    background-color: white;
+    margin-right: 0pt;
+    margin-left:0;
+    margin-top:0;
+}
+*/
+
+/* the portion below the banner */
+
+.wikibody
+{
+ margin-left:10pt;
+ margin-right:10pt;
+}
+
+/* general table style */
+
+.tabular
+{
+    BORDER-RIGHT: 1px solid;
+    BORDER-TOP: 1px solid;
+    BORDER-LEFT: 1px solid;
+    BORDER-BOTTOM: 1px solid
+}
+
+/* this portion should come from vms:master.css
+TD, INPUT, TABLE
+{
+    FONT-SIZE: 10pt
+}
+*/
+
+/* definitions for anchor */
+
+.NoWikiYet
+{
+   color: Purple;
+   text-decoration: none;
+}
+
+/* this portion should come from vms:master.cssa
+ {
+   text-decoration:none;
+}
+
+a:hover {
+   font: bold;
+   border-bottom: 1px dashed royalblue;
+   text-decoration: none;
+}
+
+*/
+
+a.create {
+   color: black;
+   text-decoration:none;
+}
+
+a.create:hover {
+   color:  Olive;
+   text-decoration: none;
+   border-bottom: 0px;
+}
+
+
+
+/* Lists */
+/* this portion should come from vms:master.css
+
+ol {
+   list-style: lower-alpha;
+}
+
+
+li
+{
+   
+   font-size: 9pt;
+   line-height: 1.2em;
+   margin-top: 2px;
+   padding-top:2px;
+   padding-bottom: 2px;
+   margin-bottom: 2px;
+}
+
+*/
+
+/* Headers using == */
+/* this portion should come from vms:master.css
+h2 {font: 20px Tahoma, Verdana;  font-weight: bold; color      : #1E9ABE; border-top: 1px #1E9ABE dashed solid; }
+h3 {font: 18px Tahoma, Verdana;  font-weight: bold; color      : #FF9944; border-top: 1px #FF9944 dashed solid; }
+h4 {font-size  : 16px;  font-weight: bold; color      : #1E9ABE; }
+h5 {font-size  : 12px;  font-weight: bold; color      : #10900a;  }
+h6 {font-size  : 11px;  font-weight: bold; color      : black; }
+
+*/
+
+/*   Definitions for the banner portion   replaces H1background*/
+
+
+.cssBannerTable 
+{
+    BORDER-RIGHT: 0;
+    BORDER-TOP: 0;
+    BORDER-LEFT: 0;
+    BORDER-BOTTOM: 10px solid #006600;
+    width: 100%;
+    color:  White;
+    /* background: url(plantgreen.jpg);   */
+    background: #eeFFE5;
+     /* try to remove this filter and see what happens */
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#FFFFE5', endColorStr='#006600', gradientType='1'); 
+    
+
+
+}
+
+.cssBannerCellIcon 
+{
+   width: 12px;    
+   padding:10px;
+   padding-right:15px;
+}
+
+.cssBannerSpanText a
+{
+   FONT-SIZE: 38pt; 
+   color:  #1155ff;
+   text-decoration: none;
+   font-family: sans serif, Tahoma;
+}
+
+.cssBannerCellText 
+{
+
+   filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=3,OffY=3,Color=darkred,Positive='true');
+   text-align: left;
+}
+
+
+
+/* preformatted text */
+pre
+{
+   font-size: 8pt;
+   font-family: Courier New;
+   background-color: #f7f7f7;
+}
+
+pre_old {
+   margin-left: .15in;
+   padding-top: 6px;
+   padding-bottom: 6px;
+   line-height: 1.25em;
+   background: #f7f7f7;
+   border: 1px  #f7f7f7 solid;
+   font-size: 8pt;
+   font-family: Courier New;
+}
+
+
+/* Tables using the || notation */
+
+.TableClass { background-color: #f8f8f8; border: #505050 1px solid; border-collapse: collapse;font-size: 8pt; }
+
+.TableCell  { border: #909090 1px solid; border-collapse: collapse;padding-left:  6px;padding-right: 6px;   padding-bottom: 3px; font-size: 8pt; }
+
+.TableRow1  { background-color: #ccffff ; border: #505050 1px solid; border-collapse: collapse;   font-size: 8pt; }
+
+.TableRow2  { background-color: #FFEACC ; border: #505050 1px solid; border-collapse: collapse;   font-size: 8pt; }
+
+.TableRow3  { background-color: #EDF8ED ; border: #505050 1px solid; border-collapse: collapse;   font-size: 8pt; }

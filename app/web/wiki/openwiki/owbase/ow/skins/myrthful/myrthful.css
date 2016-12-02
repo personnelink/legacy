@@ -1,0 +1,84 @@
+body,p {
+	margin: 0px;
+	}
+body {
+	background-color:#070d70; 
+	font-family: verdana;
+	font-size: .8em; 
+	}
+
+#titlebar, #footer {
+	background-color:#e5bb52;
+	border:1px solid black;
+	margin-left: 216px;
+	margin-right:124px;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	margin-left: 217px;
+	margin-right:125px;
+	}
+#titlebar {
+	height:70px;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	height:69px;
+	}
+#footer p, #footer form {
+	padding: 5px;
+	}
+#titlebar p, #titlebar h1 {
+	padding: 0 10px 0 10px;
+	font-size:25px;
+	}
+
+#leftcontent {
+	position: absolute;
+	left:10px;
+	top:72px;
+	width:206px;
+	}
+#leftcontent.wiki {
+	background-color: #e5bb52;
+	}
+#leftcontent p {
+	padding: 5px;
+	}
+
+#maincontent {
+	background-color:#ccd3ff;
+	border:1px solid black; 
+	margin-left: 216px;
+	margin-right:124px;
+	padding:5px;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	margin-left: 217px;
+	margin-right:125px;
+	}
+html>body #maincontent {
+	margin-left: 217px;
+	margin-right:125px;
+	}
+#maincontent p {
+	margin-bottom:1em;
+	}
+
+#rightcontent {
+	position: absolute;
+	right:10px;
+	top:71px;
+	width:115px;
+	}
+#rightcontent p {
+	padding: 5px;
+	border: 1px solid black; 
+	}
+
+.sticky {
+	color:#000;
+	background-color:#ffc;
+	}
+.darksticky {
+	color:#000;
+	background-color:#e5bb52;
+	}

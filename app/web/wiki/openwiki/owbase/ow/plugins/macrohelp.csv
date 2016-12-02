@@ -1,0 +1,67 @@
+macro_name,macro_builtin,macro_numparams,macro_description,macro_param1,macro_param2,macro_param3,macro_comment
+Abbr,1,2,Displays the abbreviation and a tooltip of the expanded text,Abbreviation,Expanded Text,,
+Acronym,1,2,Displays the acronym and a tooltip of the expanded text,Acronym,Expanded Text,,
+ActiveSkin,1,12,Switches page skin on-the-fly,"Valid skin name (required),1=Display skin info | 2=Display Macro itself",,,"Only the current page is affected.  Without the macro present, pages will use the system-defined skin"
+AddBookmarks,1,12,Adds one or more bookmarks to the page in which the macro is declared,(required) Pagenames separated by spaces,"Cutomised Menu Heading (optional) if present, overrides default heading of 'Page Bookmarks",,
+Aggregate,1,1,Displays a number of RSS feeds from other pages,The name of the page containing the <syndicate> macros,,,
+AllPageHits,0,0,Displays the total number of visits for all pages in this Wiki,,,,
+Anchor,1,11,Places a named anchor link on the page,User-chosen name for the anchor,,,"To link to the anchor, use the syntax PageName#AnchorName. To link to an anchor on the same page, use @this#Anchorname"
+BackLink,1,11,Displays a link to the last page visited with the text 'Back',Optional text to display (default=Back),,,
+Badge,1,2,Displays a badge. Possible to use it for linking direct to other pages or use hardcoded 'badges' from a text file. NOTE: The Badge macro have complex functionality!,Required,Optional,,Require cAllowFlash=1 - (additional info will be produced before release of OpenWiking --/sEi)
+BadLinkList,0,0,Displays a list of all items in the Bad Link List,,,,
+br,1,0,Forces a line-break - similar to the HTML tag <br>,,,,
+CategoryIndex,1,0,Displays an index of all categorised pages,,,,Pages without an assigned category will not be shown
+CategorySearch,1,0,Displays a drop-down list of all configured categories and a search button,,,,If no category is chosen this macro will display all pages that have been assigned a category
+CreatePage,1,12,Displays an input editbox which will accept the name of a new page to create,Template name on which to base the new page,Optional page name,,Both parameters will accept @tokens and child sibling syntax
+CreateHomePage,1,1,Displays an input editbox which will accept the name of a new page to create,Template name on which to base the new home page,,,The suggested pagename will be HomePages/Username (where Username is the current user alias)
+Date,1,0,Displays the current date,,,,
+DateTime,1,0,Displays the current date and time,,,,
+DeprecatedPages,1,11,Returns number of pages deprecated,Number of days (see comments),,,This is a demonstration macro from myMacros.asp. No Parameter = use OPENWIKI_DAYSTOKEEP. +ve number=Returns pages deprecated more than NumDays days ago. -ve number=Returns pages deprecated in the last NumDays days.
+Files,1,1,Displays a local file listing,Local folder to list,,,Will not accept root paths
+FirstnameLastName,1,12,"Returns ""My name is"" + Parameter(s)",1st String,2nd String,,This is a demonstration macro from myMacros.asp
+Footnote,1,1,Displays a footnote index which when clicked displays the text,The text to display as a footnote,,,
+FullSearch,1,11,To show an input editbox that will do a full text search through all the pages in this wiki,Text to search for.,,,The parameter Help will show all pages containing with the word 'Help'
+Glossary,1,1,Displays an index of all pages containing the specified word,Word to index,,,
+GoTo,1,0,Displays an input editbox which will accept the name of a new page to create,,,,
+HighLight,1,11,Displays a form which takes a word to highlight on the given page,Page name on which to highlight the word,,,"With no parameter, the current page will be used."
+Icon,1,0,Displays a named image from the /ow/images/icons folder,Image filename (with or without the extension),,,
+IconList,1,0,Displays a listing of all the gif files in the /ow/images/icons folder,,,,
+Image,1,1,Displays a named image from the /ow/images folder,Image filename (with or without the extension),,,
+ImageList,1,0,Displays a listing of all the gif files in the /ow/images folder,,,,
+Include,1,2,Displays annother page inline with the current page,Name of the page to include,"(optional) if present, suppress display of [goto original page]",,"<include(pagename)> on its own is OK.  <include(pagename,1)> suppresses the [goto originalpage] display"
+IncludeOpenWikiPage,1,2,Displays a page on a remotely-hosted OpenWiki server,Remote server root,Pagename on remote server,,The remote server root MUST start with 'http://' and end with a slash ('/') - example:'http://www.bamber.com/openwiking/'
+InlineXml,0,1,Displays a XML file on the page. The file requested needs to be a valid xhtml document!,Relative Fileurl (eg: ow/skins/default/mystyle.xsl),,,Plugin is still in EXPERIMENTAL phase!
+InterWiki,1,0,Displays an unordered list of all InterWikis available,,,,
+IP,1,11,Displays the IP address of the current user. Optionally the DNS name if ReverseDNS is enabled,Host,,,
+ListEmoticons,1,0,Displays an unordered list of all emoticon images + their syntax,,,,
+MacroHelp,0,11,Displays help information about a macro,Parameter can be a macroname or a question mark.  No parameter displays help on MacroHelp,,,
+Month,1,11,Displays a calendar. Clicking a date will create a new page,"Month number to display (1=January,2=February etc)",,,
+MostPopularPage,0,0,Displays the pagename with the most number of visits,,,,
+PageChanged,1,11,Displays the Date and Time the page was edited,Page name,,,
+PageCount,1,0,Displays the total number of pages in this Wiki,,,,
+PageHits,0,11,Displays the number of visits to the page,Page name,,,"If no parameter, current page is used"
+PageTool,0,0,Assorted tools for the User/Admin/Developer...,,,,Plugin is still in EXPERIMENTAL phase!
+ProgressBar,1,2,Displays a graphical progress bar,Width in pixels,Percent complete,,
+RandomPage,1,11,Displays Random Page(s) as an unordered list,Number of random pages in the list,,,
+RecentChanges,1,12,Shows a list of changed pages,Number of days to show. (default=OPENWIKI_RCDAYS),Max number of changes to show (Default=9999),,
+RecentChangesLong,1,0,Shows a detailed list of changed pages,,,,
+RecentChangesSearch,1,12,Shows a detailed list of changed pages by search term.,Search Term,Packed 2 parameters: Num Days to Show  |  Num Pages to Show,,RecentChangesSearch is ideal for monitoring web pages with particular topics of interest.
+Referer,0,0,Displays a link to the last page visited,,,,
+RefererList,0,0,Displays a clickable ordered list of all URLs that have accessed this Wiki,,,,The most recent referral is at the top of the list.  No duplicates.
+ResetAllPageHits,0,0,Resets the visit-count for all pages to zero,,,,
+ResetPageHits,0,11,Resets the visit-count for the page to zero,Page Name,,,"If no parameter, current page is used"
+ShowLinks,1,0,Displays a list of OpenWiki links,,,,Used on the About page
+ShowMacroList,1,11,Displays a list of all macros on this Wiki,The parameter ? Will also show this information,,,
+ShowPlugins,1,0,Displays information about the plugins for this Wiki as a table,,,,
+Syndicate,1,2,Displays an RSS feed,The full URL of the feed surrounded by quote characters,Number of hours between automatic refreshes,,
+SystemInfo,1,11,Displays a table of information about the system,buildnumber | skin | plugins | pages | revisions | pagehits | mostpopularpage | uploadmethod | database | version | title | timezone | deprecatedays | bookmarks | attachments | imagelibrary | html |imageextensions | docextensions,,,Parameter is optional and case-insensitive
+TableOfContents,1,11,Displays an unordered list of all the headings on the current page,1=Only use headings after the placement of the macro.,,,"With no parameter, all headings are included"
+TextSearch,1,11,To show an input editbox that will do a full text search through all the pages and text in this wiki,Text to search for.,,,
+Time,1,0,Displays the current time,,,,
+TitleHitIndex,0,1,Displays an ordered list of pages according to visit-count,Number of pages to include in the list,,,
+TitleIndex,1,0,Displays a full Index of all pages on this Wiki,,,,
+TitleSearch,1,11,To show an input editbox that will do a search through all the titles of the pages in this wiki ,Text to search for.,,,The pattern ^Help will show all titles beginning with the word 'Help'
+UserName,1,0,Displays the current UserName as defined in UserPreferences,,,,"If no username is defined, displays 'Anonymous'"
+UserPreferences,1,0,Displays the User Preferences form,,
+WebFrame,1,12,Displays a webpage URL in an IFRAME,Valis URL of a web page,"(optional)big=use an 800 x 600 frame, else use a 640 x 480 frame"
+WordIndex,1,0,Displays a full index of all words used in this Wiki,,

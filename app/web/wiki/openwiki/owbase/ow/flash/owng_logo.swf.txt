@@ -1,0 +1,11 @@
+---------------------------------------------------------
+ owng_logo.swf
+---------------------------------------------------------
+
+Is a Open Source project.
+
+See: http://sourceforge.net/projects/wikiflashplugin/
+
+Here you can download the FLA and you can participate in further development if you are interested.
+
+/sEi'2005

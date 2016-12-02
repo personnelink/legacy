@@ -1,0 +1,674 @@
+﻿
+/*	
+  $Log: ow.css,v $
+  Revision 1.6  2006/08/15 13:44:58  piixiiees
+  Transform OpenWikiNG to UTF-8 enconding:
+  1. ow/owconfig_default.asp
+  OPENWIKI_ENCODING = "UTF-8"
+  Unicode (UTF-8 with signature) - Codepage 65001
+  2. ow.asp and default.asp
+  Unicode (UTF-8 with signature) - Codepage 65001
+  3. (Pending) owadmin/deprecate.asp.htm
+  Unicode (UTF-8 with signature) - Codepage 65001
+  4. ow/plugins/owplugin_WYSIWYG.xsl
+  <?xml version="1.0" encoding="UTF-8"?>
+  5. ow/skins/default/ow.xsl ToDo? with all the skins
+  <?xml version="1.0" encoding="UTF-8"?>
+  Bug of broken symbols in preview windows fixed: sourceforge.net bug 1362452
+
+   
+*/
+/*
+Skin Name: Evolution
+Skin URI: http://openwiking.com/devwiki/skins/evolution
+Description: Web2.0 concept skin for OpenWikiNG. Share and distribute.
+Version: Alpha 1.0
+Author: Jose Gascon
+Author URI: http://openwiki.com/devwiki/piixiiees
+
+	All elements of this theme are protected by the GPL:
+	http://www.opensource.org/licenses/gpl-license.php
+
+	Support questions go here:
+	http://www.openwiking.com/devwiki/evolution/
+
+	Evolution uses Fam Fam Fam Silk Icons: 
+	http://www.famfamfam.com/lab/icons/silk/
+
+	IMPORTANT: This is a beta release. While it is more or less feature complete,
+	it is sure to still contain a few bugs here and there. Use at your own risk
+	
+
+-->	CSS OVERVIEW
+	
+	There are sections throughout, roughly describing 
+	the contents inside each section. To step through each
+	section, do a search for '/ * -' (without spaces) and
+	repeat the search until you find the section you need.
+	
+	The use of selectors has been exagerrated in some places,
+	so as to make it easier for people to gain an overview
+	of what classes belong where in the hierarchy.
+	
+	It is suggested, that you copy whatever changes you want
+	to make, into a new CSS file, save it in the styles dir
+	and select it from the K2 Options panel. So as to keep
+	this file intact and make it easier for yourself to debug
+	any potential problems as well as upgrade to future K2's.
+*/
+
+
+/*- Page Structure */
+body {
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    font-size:10pt; 
+    margin: 0px;
+    color: #000000;
+    padding-top: 0px;
+    font-family: Verdana,'Trebuchet MS', Arial;
+    background-color: #ffffff;
+}
+p, .n {    
+    font-size:10pt; 
+	color:#000000; 
+	background-color:#ffffff;
+}
+
+/*- Headings */
+
+h1, h2, h3, h4 {
+    font-family: 'Trebuchet MS', Verdana, Arial;
+    FONT-WEIGHT: normal;
+}
+	
+h1
+{
+    FONT-SIZE: 24px;
+    COLOR: #4b82af;
+}
+h2
+{
+    FONT-SIZE: 18px;
+    COLOR: #4b82af;
+    BACKGROUND-COLOR: #e6ebf5;
+    TEXT-DECORATION: none
+}
+h3
+{
+    FONT-SIZE: 18px;
+    COLOR: #4b82af;
+    border-bottom: 1px solid #99c
+}
+h4
+{
+    FONT-SIZE: 16px;
+    COLOR: #4b82af;
+    padding-bottom: 0px;
+    margin: 0px;
+}
+h5
+{
+    FONT-SIZE: 14px;
+    COLOR: #4b82af
+}
+.EventTitle
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 14px;
+    COLOR: #f0aa3c;
+    FONT-FAMILY: DIN-Medium, Arial
+}
+.soussousrubrique
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 11px;
+    COLOR: #000000;
+    FONT-FAMILY: Arial;
+    TEXT-DECORATION: none
+}
+.texto    {
+	color:#333333;
+	background-color : #DCDCDC;
+	width:100%;
+	border : 1px solid #708090;
+}
+table.regions
+{
+        padding-right: 0px;
+        padding-left: 0px;
+        padding-bottom: 0px;
+        margin: 0px;
+        width: 100%;
+        padding-top: 0px;
+        height: 100%;
+}
+td.regionheader { height: 12px }
+td.regionfooter { height: 6px }
+td.regionleft { width: 15px }
+td.regionright { width: 15px }
+
+table.regionmiddle {height:100%; width:100%}
+
+table.searchbox
+{
+        padding-right: 0px;
+        padding-left: 0px;
+        padding-bottom: 0px;
+        margin: 0px;
+        padding-top: 0px;
+        height: 40px;
+}
+
+table.systeminfo
+{
+        border-right: silver 1px solid;
+        border-top: silver 1px solid;
+        border-left: silver 1px solid;
+        border-bottom: silver 1px solid;
+        padding-right: 0px;
+        padding-left: 0px;
+        padding-bottom: 0px;
+        margin: 0px;
+        padding-top: 0px;
+}
+
+
+
+form        {margin-bottom:-5px;}
+textarea    {
+	color:#333333;
+	background-color:#ffffff;
+	width:100%;
+	border : 1px solid #708090;
+}
+table       {
+	font-size:14px;
+}
+
+/*- Special tables (new syntax) */
+/*- Table Style1 */
+#style1 table {
+    font-size: 1.1em;
+    padding: 5px;
+    margin: 0px;
+    border-collapse: collapse;
+}
+#style1 tr.usertablefirstrow {
+    font-size: 1.1em;
+    padding: 5px;
+    margin: 0px;
+    background: red;
+    border-collapse: collapse;
+}
+#style1 td.firstcell {
+    font-size: 1.1em;
+    padding: 5px;
+    margin: 0px;
+    background: blue    ;
+    border-collapse: collapse;
+}
+#style1 td.firstcol {
+    font-size: 1.1em;
+    padding: 5px;
+    margin: 0px;
+    background: red;
+    border-collapse: collapse;
+}
+#style1 td.firstrow {
+    font-size: 1.2em;
+    padding: 5px;
+    margin: 0px;
+    background: yellow;
+    border-collapse: collapse;
+}
+#style1 td.middle
+{
+    padding: 2px;
+    margin: 0px;
+    border : 1px solid gray;
+    background: green;
+}
+#style1 td.middleold
+{
+    padding: 2px;
+    margin: 0px;
+    border : 1px solid gray;
+    background: yellow;
+}
+
+/*- Table Style2 */
+#style2 table {
+    font-size: 1em;
+    padding: 5px;
+    margin: 0px;
+    border-collapse: collapse;
+}
+#style2 td.firstcell {
+    font-size: 1.1em;
+    padding: 5px;
+    margin: 0px;
+    background-color: LightGrey;
+    border : 1px solid gray;
+    border-collapse: collapse;
+}
+#style2 td.firstrow {
+    font-size: 1.1em;
+    padding: 5px;
+    margin: 0px;
+    background-color: LightGrey;
+    border : 1px solid gray;
+    border-collapse: collapse;
+}
+#style2 td.firstcol {
+    font-size: 1.1em;
+    padding: 5px;
+    margin: 0px;
+    vertical-align: top;
+    border : 1px solid gray;
+    border-collapse: collapse;
+}
+#style2 td.middle {
+    padding: 2px;
+    margin: 0px;
+    vertical-align: top;
+    /*text-align: center;*/
+    border : 1px solid gray;
+}
+#style2 td.middleold {
+    padding: 2px;
+    margin: 0px;
+    border : 1px solid gray;
+    background: yellow;
+}
+
+/*- Table Style3 */
+#style3 table {
+    font-size: .8em;
+    padding: 5px;
+    margin: 0px;
+    border-collapse: collapse;
+}
+#style3 td.firstcell {
+    font-size: 1.1em;
+    padding: 5px;
+    margin: 0px;
+    border-collapse: collapse;
+}
+#style3 td.firstrow {
+    font-size: 1.1em;
+    padding: 5px;
+    margin: 0px;
+    background-color: LightGrey;
+    border : 2px solid gray;
+    border-collapse: collapse;
+}
+#style3 td.firstcol {
+    font-size: 1.1em;
+    padding: 5px;
+    margin: 0px;
+    vertical-align: top;
+    background-color: LightGrey;
+    border : 2px solid gray;
+    border-collapse: collapse;
+}
+#style3 td.middle {
+    padding: 2px;
+    margin: 0px;
+    vertical-align: top;
+    /*text-align: center;*/
+    border : 1px solid gray;
+}
+#style3 td.middleold {
+    padding: 2px;
+    margin: 0px;
+    border : 1px solid gray;
+    background: yellow;
+}
+
+table.usertable
+{
+    font-size: 1em;
+    padding: 1em;
+    margin: 0px;
+    border-collapse: collapse;
+}
+tr.usertablefirstrow
+{
+    font-size: 1em;
+    padding: 10px;
+    margin: 0px;
+    background: white;
+}
+
+td.usertablefirstcol
+{
+    border : 1px solid gray;
+    background: white;
+}
+td.usertablefirstcell
+{
+    border : 1px solid gray;
+    background: white;
+}
+td.usertablemiddle
+{
+    padding: 2px;
+    margin: 0px;
+    border : 1px solid gray;
+    background: white;
+}
+
+/*- Special tables (old syntax) */
+table.oldtable
+{
+	border : 1px solid #4b82aa;
+	padding: 0px;
+    font-size: 10px;
+    vertical-align: top;
+    margin: 0px;
+    font-family: DIN-Medium, verdana,arial,helvetica;
+}
+td.wiki
+{
+	border : 1px solid #4b82aa;
+	padding: 3px;
+	vertical-align: top;
+    font-size: 13px;
+    margin: 0px;
+    font-family: DIN-Medium, Verdana, Arial,helvetica;	
+}
+
+dl,ul,ol    {margin-top: 2pt; margin-bottom: 2pt;}
+u.diff      {color:#0000ff; background-color:#ffffff;}
+strike.diff {color:#ff0000; background-color:#ffffff;}
+tt, pre     
+{
+	font-family:Lucida Console,Courier New,Courier,monospace; 
+	font-size: 10pt;
+	color:#666666; 
+	background-color:#ffffff;
+} /* margin-bottom: 0;}*/
+.redtext {color:#ff0000;}
+.darkredtext {color:#800000;}
+.greentext {color:#00ff00;}
+.darkgreentext {color:#008000;}
+.bluetext {color:#0000ff;}
+.darkbluetext {color:#006699;}
+.markerpentext
+{
+    font-weight: bold;
+    color: #000000;
+    background-color: #ffff00;
+}
+
+
+pre.code {
+    border: 1px dashed #DDD;
+    background-color: whitesmoke;
+    font-family: 'Courier New' , Courier, monospace;
+    font-size: 0.7em;
+    padding: 0 1em;
+    margin: 0.4em 0;
+    overflow: auto;
+    width: 500pt;
+}
+
+a:link      {
+        color: #4b82af;
+        text-decoration : none;
+        border-bottom : 1px dashed;		
+}
+a:visited   {
+        color: #4b82af;
+        text-decoration : none;
+        border-bottom : 1px dashed;		
+}
+a:active    {
+        color: #4b82af;
+		text-decoration : none;
+        border-bottom : 1px dashed;		
+}
+a:hover     {
+        color: #4b82af;
+        text-decoration : none;
+        border-bottom : 1px solid;
+}
+
+/*- Functions Menu in the footer */
+a.functions {
+    font-family: Arial, Verdana;
+    color: #4b82af;
+    text-decoration : none;
+    font-size : 9pt;
+}
+
+
+/*- Bookmarks */
+
+a.bookmarks           {
+        text-decoration : none;
+}
+a.bookmarks:Hover {
+	text-decoration:none;
+	background-color : #E6E6FA;
+	color : Navy;
+}
+
+a.helpon           {
+        font-size:7pt;
+        color: #4b82af;
+        border-bottom : none;
+        text-decoration : none;
+}
+
+a.trail           {
+        color: #4b82af;
+        border-bottom : 1px dashed;
+        text-decoration : none;
+}
+
+a.same            {color:#4b82af; text-decoration:none;border-bottom: 1px #4b82af;}
+a.same:Visited    {color:#4b82af; text-decoration:none;border-bottom: 1px #4b82af;}
+a.same:Active   {color:#4b82af; text-decoration:none;border-bottom: 1px #4b82af;}
+a.same:Hover     {text-decoration:none; border-bottom: 1px solid royalblue;}
+a.nonexistent {
+	font-weight: bold;
+	background-color: #F8F8F8;
+	color: #A52A2A;
+}
+a.nonexistent:Active {
+    background-color: #F8F8F8;
+    color: #FF2222;
+}
+a.nonexistent:Visited {
+    background-color: #F8F8F8;
+    color: #FF2222;
+}
+a.nonexistent:Hover {background:#ffa;}
+
+
+.external              {
+        font-size:10pt;
+        font-family: verdana,arial,helvetica;
+        color:#4b82af;
+        background-color:#ffffff;
+        text-decoration:none;
+}
+a.external             {
+        font-size:10pt;
+        font-family: verdana,arial,helvetica;
+        color:#4b82af;
+        background-color:#ffffff;
+        text-decoration:none;
+}
+a.external:Visited     {
+        font-size:10pt;
+        font-family: verdana,arial,helvetica;
+        color:#4b82af;
+        background-color:#ffffff;
+        text-decoration:none;
+}
+a.external:Active      {
+        font-size:10pt;
+        font-family: verdana,arial,helvetica;
+        color:#4b82af;
+        background-color:#ffffff;
+        text-decoration:none;
+}
+a.external:Hover       {
+        font-size:10pt;
+        font-family: verdana,arial,helvetica;
+        color:blue;
+        background-color:#ffffff;
+        text-decoration:underline;
+}
+
+.rss              {font-family:verdana,arial,helvetica; font-size:11px; color:#800000; background-color:#ffffff; }
+a.rss             {font-family:verdana,arial,helvetica; font-size:11px; color:#800000; background-color:#ffffff; }
+a.rss:Visited     {font-family:verdana,arial,helvetica; font-size:11px; color:#006600; background-color:#ffffff; }
+a.rss:Active      {font-family:verdana,arial,helvetica; font-size:11px; color:#800000; background-color:#ffffff; }
+a.rss:Hover       {font-family:verdana,arial,helvetica; font-size:11px; color:#0000ff; background-color: #FFEBCD; }
+
+
+.sidebarlink           {font-size:11px; font-family:ms sans serif,Verdana,Geneva,Arial; line-height:16px; color:#666666; background-color:#ffffff; text-decoration:none;}
+a.sidebarlink          {font-size:11px; font-family:ms sans serif,Verdana,Geneva,Arial; line-height:16px; color:#666666; background-color:#ffffff; text-decoration:none;}
+a.sidebarlink:Visited  {font-size:11px; font-family:ms sans serif,Verdana,Geneva,Arial; line-height:16px; color:#666666; background-color:#ffffff; text-decoration:none;}
+a.sidebarlink:Active   {font-size:11px; font-family:ms sans serif,Verdana,Geneva,Arial; line-height:16px; color:#666666; background-color:#ffffff; text-decoration:none;}
+a.sidebarlink:Hover    {font-size:11px; font-family:ms sans serif,Verdana,Geneva,Arial; line-height:16px; color:#000000; background-color:#ffffff; text-decoration:underline;}
+
+
+.pullquote       {font-family:arial,helvetica,geneva; font-size:18px; color:#990000; background-color: #ffffff;}
+.new             {font-family:arial,helvetica; font-size:10px; font-weight:bold; color:#ff0000; background-color: #ffffff;}
+.deprecated      {font-family:verdana,arial,helvetica; font-size:10px; font-weight:bold; color:#ff0000; background-color: #ffffff;}
+.wiki            {font-family:DIN-Medium,verdana,arial,helvetica; font-size:12px;}
+
+/* Recent Changes */
+.rc {
+    font-family: Verdana, Arial, Helvetica;
+    font-size:12pt
+}
+
+/* Comments */
+.comment {
+    font-family:arial,helvetica; 
+    font-size:10pt; 
+    font-style:italic; 
+    color:#006699; 
+    background-color:#ffffff
+}
+
+.fileattr        {font-family:sans-serif,verdana,arial,helvetica; font-size:11px; padding:1px 2px; color:#000000; text-decoration:none;}
+
+
+/*  ========== styles for the menu and website =============*/
+
+.topmenu{
+        background-color : #6495ED;
+        color : White;
+}
+
+.topmenulink{
+        background-color : #6495ED;
+        color : White;
+        padding-top : 3px;
+        padding-bottom : 3px;
+        text-decoration : none;
+        padding-left : 3px;
+        padding-right : 3px;
+}
+
+a.topmenulink{
+        background-color : #6495ED;
+        color : White;
+        padding-top : 3px;
+        padding-bottom : 3px;
+        padding-left : 3px;
+        padding-right : 3px;
+        font-weight : bold;
+}
+
+a.topmenulink:Visited{
+        background-color : #6495ED;
+    color : White;
+        padding-top : 3px;
+        padding-bottom :3px;
+}
+
+a.topmenulink:Hover{
+        background-color : #96B7F3;
+        color : #112056;
+}
+a.topmenulink:Active{
+        background-color : #6495ED;
+    color : White;
+}
+
+.bottommenu{
+        background-color : #6495ED;
+        color : White;
+        padding-top : 3px;
+        padding-bottom : 3px;
+        text-decoration : none;
+        padding-left : 3px;
+        padding-right : 3px;
+        font-size : 8pt;
+}
+
+a.bottommenu{
+        background-color : #6495ED;
+        color : White;
+        padding-top : 1px;
+        padding-bottom : 1px;
+        padding-left : 3px;
+        padding-right : 3px;
+        font-weight : bold;
+        font-size : 8pt;
+}
+
+a.bottommenu:Visited{
+        background-color : #6495ED;
+    color : White;
+        padding-top : 1px;
+        padding-bottom : 1px;
+        font-size : 8pt;
+}
+
+a.bottommenu:Hover{
+        background-color : #96B7F3;
+        color : #112056;
+        font-size : 8pt;
+}
+a.bottommenu:Active{
+        background-color : #6495ED;
+    color : White;
+}
+.box
+{
+    BORDER-RIGHT: #000000 1px dashed;
+    PADDING-RIGHT: 10px;
+    BORDER-TOP: #000000 1px dashed;
+    MARGIN-TOP: 10px;
+    MARGIN-BOTTOM: 10px;
+    PADDING-LEFT: 10px;
+    PADDING-BOTTOM: 10px;
+    BORDER-LEFT: #000000 1px dashed;
+    PADDING-TOP: 10px;
+    BORDER-BOTTOM: #000000 1px dashed;
+}
+.quote
+{
+    font-family: 'Trebuchet MS', Verdana, Sans-Serif;
+    font-size: 12pt;
+    background-position: 0% 0%;
+    padding-left: 30px;
+    background-image: url(images/blockquote.gif);
+    margin-left: 35px;
+    background-repeat: no-repeat;
+}
+pre.box {
+        border:1px dashed black;
+        padding:3px;
+        }
+

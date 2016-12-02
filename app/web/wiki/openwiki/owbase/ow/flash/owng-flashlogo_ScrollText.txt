@@ -1,0 +1,3 @@
+ScrollText=TIP: Rightclick logo for menu
+This is a line from: owng-flashlogo_scrolltext.txt
+You can write your own scrolltext

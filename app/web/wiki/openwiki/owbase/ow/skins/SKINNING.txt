@@ -1,0 +1,12 @@
+Skinning OpenWikiNG is simple!
+
+1) Copy the entire contents of the \skins\default directory to \skins\myskin
+
+2) Update the OPENWIKI_ACTIVESKIN variable in owconfig_default.asp
+Change the var to the new directory name:
+
+OPENWIKI_ACTIVESKIN		 = "myskin"
+
+
+
+Your done!

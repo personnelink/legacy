@@ -1,0 +1,65 @@
+== Setting up openwikiNG on your system ==
+
+= What you need =
+
+1) A web server that will run Microsoft ASP (Active Scripting Pages)
+
+This can be:
+a) Windows Server with IIS5 or IIS6
+b) Windows XP with IIS installed
+c) Personal Web Server from Microsoft
+note: this application has not been tested with Chillisoft ASP add-on
+
+2) A database connection
+
+This can be:
+a) Microsoft SQL Server V7, 2000 or 2003 or MSDE
+b) Microsoft Access (you don't need the program, just the drivers)
+note: If you have MS Office installed, this should be enough
+
+= What to do =
+
+1) Unzip all the files to an empty folder
+note: be sure to preserve the paths when unzipping
+
+2) Point your web server, or make a virtual directory thet points to
+ the openwiking/owbase folder
+
+3) Make sure that the account the web server uses has full permissions
+ on the openwiking/owbase/data folder
+
+If you are using the MSAccess database, your Wiki should now work!
+
+= If you are using MS SQL Server ==
+
+1) Make a new database: Initial size:20MB Log size:10MB autogrow=true
+
+2) Use the SQL script: /openwiki/data/OpenWiki-SqlServer.sql to initialise
+ the new database.  Be sure the web account has full dbo permissions.
+
+3) Make an new ODBC connection called 'openwiking' to point to it
+
+4) Edit the file /openwiking/owbase/ow/owconig_default.asp
+ lines 70 and 71.  Remove the apostrophes at the start
+OPENWIKI_DB = "openwiking" ' Override earlier setting
+OPENWIKI_DB_SYNTAX = DB_SQLSERVER ' Override earlier setting
+
+Your Wiki should now work!
+
+= Configuring your new openwikiNG =
+
+The file /openwiking/owbase/ow/owconig_default.asp is the config file
+
+1 ) Back it up!
+
+2) Use a text editor like 'NotePad' to view and edit it
+
+
+=========================
+Gordon Bamber 20051210
+http://www.openwiking.com
+=========================
+
+
+=== ENDOFFILE ===
+

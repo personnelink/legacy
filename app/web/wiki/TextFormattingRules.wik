@@ -1,0 +1,198 @@
+===Creating a new Wiki page
+>'''Method 1'''. Writing a Wiki''''''Word automatically creates a link to an editable the page.
+ * Edit a page (by Edit button or by double clicking a page)
+ * Simply type any WikiWord ( which is a joined capitalized word like-> ThisIsWikiWord ) in the page and click Save. 
+ * The WikiWord becomes a hyperlink to create a new page.
+ Examples:  ThisIsWikiPage,  MyVacation,  MyAlbumIn2005
+>'''Method 2'''. Use  [''''''[  and  ]''''''] to enclose just about any  page topic
+ Examples:  [''''''[The Old Wise Man of Fantasia]'''''']
+            [''''''[2006-02-15 Birth of my cousin]'''''']
+>'''Method 3'''. Use  [''''''=  and  ]  works similar to method 2
+ Examples:  [''''''=The Old Wise Man of Fantasia]
+            [''''''=2006-02-15 Birth of my cousin]
+
+===Basic Formatting   
+
+'''Paragraphs''' [1]
+ * '''Avoid indenting''' paragraphs.
+ * '''Use blank lines''' to separate paragraphs.
+ * You can use {'''br'''} to insert line break within a paragraph.   {red}'''NEW'''!{/red}
+
+'''Monospace'''
+	* Starting a line with space makes the whole line monospaced.
+ This is an example of a monospaced line.
+
+'''Lists'''
+ * This is unnumbered list using '''space-asterisk''' 
+ * You can also use '''tab-space'''. (If you can't type a TAB, use 8 spaces).  Or better yet just use  1 space.
+
+Numbered List example:
+
+ :* This is numbered list using '''tab-colon-asterisk'''.
+ :* You can start a line with <space>:*<space>  
+ :* or <space>:*<space> or <space>1.<space>  for lists.
+
+
+'''Horizontal Line'''
+	* Four dashes at the left margin: ''''''--''''''--
+
+'''Emphasis'''
+	* Use doubled single-quotes ('') for emphasis (usually italics)
+	* Use tripled single-quotes (''') for strong emphasis (usually bold)
+	* Use five single-quotes ('''''), or triples within doubles, for some other emphasis 
+	* Use Six single-quotes, or triples within triples, to Break''''''Up Long''''''Bumpy''''''Words so that they do not become Wiki Name''''''s.
+	* You can also use them to separate suffixes (like 's') from Wiki Name''''''s.  
+	* Emphasis can be used multiple times within a line, but cannot cross line boundaries.
+	* Use "-''_''" and "''_''-" for  -_underlining_-.
+
+'''References'''
+	* JoinCapitalizedWords to make local references. If the page is NOT YET created the link will LookLikeThis.
+	* You can also use '''double brackets''' to create wiki words, for example, the format would be  '''[['''Wiki Word''']]''' [3]
+	* Precede URLs with "http:" to create links automatically as in: http://www.c2.com/ 
+	* Other kinds of links are mailto:my@email.com, ftp://www.ftp.com, news://ggroup.com
+	* ISBN and Amazon(c) book link, use ISBN'':''0672320681 for example ISBN:0672320681
+
+'''Imbedded Images'''
+ * Imbedded images preceding url with '''img:''' like this:
+  img''':'''http''':'''//c2.com/sig/wiki.gif  or image''':'''http''':'''//c2.com/sig/wiki.gif
+img:http://c2.com/sig/wiki.gif 
+
+'''Referencing files relative to the document root. (Local reference shortcut) {red}NEW!!12/2005{/red}'''
+ * Note: '''local''': is not followed by slash characters.  For example, writing...
+ 1. link local file examples  
+ 
+   writing... {blue}local'''''':wiki.css{/blue}      results to this link ->  local:wiki.css
+   writing... {blue}local'''''':icon.png{/blue}      results to this link-->  local:icon.png
+   If file is sub folder , simply write like this --> {blue}local'''''':images\icons\icon.png{/blue} 
+
+ 2. local image examples    
+ 
+   writing... {blue}image'''''':local:icon.png{/blue} results to this --> image:local:icon.png  
+   writing... {blue}imageleft'''''':local:icon.png and  imageright'''''':local:icon.png{/blue} work as follows...
+imageleft:local:icon.png  
+imageright:local:icon.png
+
+
+
+{br}
+'''Footnotes'''
+	* You can use numeric and square bracket for a footnote. [2]
+	* At the bottom, just add square bracket at first character of a line and the number.
+
+===Other Types of Formatting
+	* Three blank lines creates 1 blank line
+	* '==','===','====' at the start of line creates Topic
+	* Coloring text for {red}red{/red}, {green}green{/green}, {blue}blue{/blue} and {black}black{/black} are allowed but must be kept at minimum.  Remember wiki is not about fancy presentation but more about quality content.
+	* Use ">" to indent a paragraph (first level).   You can  also use ">>" for second level. ">>>" for third level indentation or block quote. ''' Formerly, the pipe character '|' was used for this purpose.'''  Pipe character is now used for tables. see below.
+	* Use also '''{'''italic'''}''' or '''{'''bold'''}''' to {italic}highlight longer texts or paragraphs.{/italic}
+	* Precede url with image with  '''Imageleft:''' or '''Imageright:'''  or '''Imagecenter:'''to justify image.
+
+===Alternate Labels to Links and Wiki Words
+ * Use alternate label to hide URL or hyperlink  like this...
+ #@91;Go to Cnn News|http''''''://cnn.com#@93;
+yields this...   [Go to Cnn News|http://cnn.com] !!!
+ * Use alternate label to hide WikiWord like this:  
+ #@91;Go to my Wiki homepage=wikiasp#@93;
+yields this...
+[Go to my Wiki homepage=Wikiasp] !!!
+
+===InterWiki Links
+Examples:
+ #@91;My Website=ElreySite::Vacation''''''Page#@93;   -> ''Goes to the page VacationPage of database ElreySite using My Website as link alias.''
+ #@91;My Website=Elrey''''''Site::#@93;               -> ''Goes to default start page of database ElreySite using My Website as link alias.'' 
+ #@91;Elrey''''''Site::Vacation''''''Page#@93;              -> ''Goes to the page VacationPage of database ElreySite using no link alias.''
+ #@91;Elrey''''''Site::#@93;                          -> ''Goes to default start page of database ElreySite using no link alias.''
+
+===Clickable Images
+ * Use same technique above to create clickable (note the space aroung the img link)
+ #@91; img'''''':http''''''://c2.com/sig/wiki.gif |http''''''://c2.com#@93;
+yields this...
+[ img:http://c2.com/sig/wiki.gif |http://c2.com]
+
+===Tables
+ * {red}'''NEW'''!{/red} - Use '||' character to construct tables.  Each row can have a color scheme by using '|!', '!|', or '!!'. Each row need not end with '||'. For example
+
+|| This is || Ordinary Row || a New WikiAsp Feature
+!| This color scheme || Sample || One
+|! This color scheme || Sample || Two
+!! This color scheme || Sample || Three
+|| Great feature 
+
+|! S|| M|| T|| W|| T|| F|| S
+||  ||  || 1|| 2|| 3|| 4|| 5
+|| 6|| 7|| 8|| 9||10||11||12
+||13||14||15||16||17||18||19
+||20||21||22||23||24||25||26
+||27||28||29||30||31||  || 
+
+===Sample HTML ({red}'''NEW'''!{/red})
+
+If you know HTML, you can also enter it and tailor your wiki pages to your heart's desire.
+
+>This is useful for imbedding Source Code and programs.  [Search Google for the utility|http://www.google.com/search?q=CopySourceAsHTML]
+
+<div style="font-family: Excalibur Monospace; font-size: 9pt; color: black; background: white;">
+<p style="margin: 0px;"><span style="color: #2b91af;">   22</span> <span style="color: blue;">    <</span><span style="color: maroon;">microsoft.web</span><span style="color: blue;">></span></p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   23</span> <span style="color: blue;">        <</span><span style="color: maroon;">converters</span><span style="color: blue;">></span></p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   24</span> <span style="color: blue;">            <</span><span style="color: maroon;">add</span><span style="color: blue;"> </span><span style="color: red;">type</span><span style="color: blue;">=</span>"<span style="color: blue;">Microsoft.Web.Script.Serialization.Converters.DataSetConverter</span>"<span style="color: blue;">/></span></p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   25</span> <span style="color: blue;">            <</span><span style="color: maroon;">add</span><span style="color: blue;"> </span><span style="color: red;">type</span><span style="color: blue;">=</span>"<span style="color: blue;">Microsoft.Web.Script.Serialization.Converters.DataRowConverter</span>"<span style="color: blue;">/></span></p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   26</span> <span style="color: blue;">            <</span><span style="color: maroon;">add</span><span style="color: blue;"> </span><span style="color: red;">type</span><span style="color: blue;">=</span>"<span style="color: blue;">Microsoft.Web.Script.Serialization.Converters.DataTableConverter</span>"<span style="color: blue;">/></span></p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   27</span> <span style="color: blue;">        </</span><span style="color: maroon;">converters</span><span style="color: blue;">></span></p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   28</span> <span style="color: blue;">    </</span><span style="color: maroon;">microsoft.web</span><span style="color: blue;">></span></p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   29</span> <span style="color: blue;">    <</span><span style="color: maroon;">appSettings</span><span style="color: blue;">/></span></p>
+</div>
+
+
+>CopySourceAsHTML is a utility that preserves syntax coloring
+
+
+<div style="font-family: Excalibur Monospace; font-size: 9pt; color: black; background: white;">
+<p style="margin: 0px;"><span style="color: #2b91af;">    9</span> <span style="color: blue;">using</span> System.Web.UI.WebControls.WebParts;</p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   10</span> <span style="color: blue;">using</span> System.Web.UI.HtmlControls;</p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   11</span> </p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   12</span> <span style="color: blue;">public</span> <span style="color: blue;">partial</span> <span style="color: blue;">class</span> <span style="color: teal;">AddData</span> : System.Web.UI.<span style="color: teal;">Page</span> {</p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   13</span> </p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   14</span>     <span style="color: blue;">protected</span> <span style="color: blue;">void</span> Button1_Click(<span style="color: blue;">object</span> sender, <span style="color: teal;">EventArgs</span> e) {</p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   15</span> </p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   16</span>         <span style="color: blue;">int</span> numItemsToAdd = <span style="color: teal;">Int32</span>.Parse(NumAdd.Text);</p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   17</span>         <span style="color: blue;">string</span> categoryName = Server.HtmlDecode(Category.Text);</p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   18</span> </p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   19</span>         <span style="color: teal;">ListManager</span> lists = <span style="color: blue;">new</span> <span style="color: teal;">ListManager</span>();</p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   20</span> </p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   21</span>         <span style="color: blue;">for</span> (<span style="color: blue;">int</span> i = 0; i < numItemsToAdd; i++) {</p>
+</div>
+
+
+===Collapsible Panel
+
+5/2006 - uses the syntax [Drop#] .. 
+
+[Drop#001## View the code]
+<p style="margin: 0px;"><span style="color: #2b91af;">   14</span>     <span style="color: blue;">protected</span> <span style="color: blue;">void</span> Button1_Click(<span style="color: blue;">object</span> sender, <span style="color: teal;">EventArgs</span> e) {</p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   15</span> </p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   16</span>         <span style="color: blue;">int</span> numItemsToAdd = <span style="color: teal;">Int32</span>.Parse(NumAdd.Text);</p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   17</span>         <span style="color: blue;">string</span> categoryName = Server.HtmlDecode(Category.Text);</p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   18</span> </p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   19</span>         <span style="color: teal;">ListManager</span> lists = <span style="color: blue;">new</span> <span style="color: teal;">ListManager</span>();</p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   20</span> </p>
+<p style="margin: 0px;"><span style="color: #2b91af;">   21</span>         <span style="color: blue;">for</span> (<span style="color: blue;">int</span> i = 0; i < numItemsToAdd; i++) {</p>
+</div>
+[/Drop]
+
+[4]
+
+===NEW bullet list (using the &gt;* notation)
+>*Level 1
+>>*Level 2
+>>>*Level 3
+>>>>*Level 4
+>>>*Level 3
+>>*Level 2
+>*Level 1
+
+
+
+----
+[1] This page was revised to reflect changes by  ElreyRonald.
+[2] A sample footnote. Clicking on this link takes you back and forth between the text and footnote.
+[3] This is not standard in C2.com wiki but implemented in most engines.  Useful for other languages like German.
