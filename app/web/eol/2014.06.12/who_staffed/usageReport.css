@@ -1,0 +1,122 @@
+@media print, handheld {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+
+a:hover {text-decoration:none}
+
+#formOptions {width:45em; padding: 0 0.5em; margin-bottom:1em;}
+
+#mainReportBody { min-height:40em; }
+#mainReportBody  { margin-top:1em; padding:0.5em; }
+#mainReportBody td { padding-bottom:0.2em }
+#mainReportBody p label {text-align:left}
+
+p {clear:both;}
+
+/* customer usage */
+
+tr.heading {}
+
+th.costcenter {width:40%;text-align:left;}
+th.invoice {width:15%;text-align:center;}
+th.date {width:15%;text-align:center;}
+th.hours {width:10%;text-align:center;}
+th.billrate {width:10%;text-align:center;}
+th.billed {width:10%;text-align:right;}
+
+tr.summary {}
+th.lastnamefirst {}
+th.department {}
+th.hours {}
+th.billed {}
+
+tr.details {}
+td.costcenter {text-align:left;}
+td.invoice {text-align:center;}
+td.invoicedate {text-align:center;}
+td.quantity {text-align:center;}
+td.billrate {text-align:center;}
+td.billed {text-align:right;}
+
+span.CustomerCode,
+span.CustomerName {font-size:115%;font-weight:bold;margin: 0 1em 0 0;}
+
+.UsageTable{}
+table.UsageTable{width:100%}
+table.UsageTable th{font-size:85%;vertical-align:bottom;}
+
+.lastnamefirst {width:22%}
+td.lastnamefirst div {overflow:hidden;white-space:nowrap;}
+.EmployeeNumber {width:7%}
+.JobNumber {width:8%}
+
+.PlacementStatus {width:1%}
+.WCDescription {width:22%}
+td.WCDescription div {overflow:hidden;white-space:nowrap;}
+.StartDate  {width:10%}
+.PStopDate {width:9%}
+.WorkCode {width:7%}
+.RegPayRate {width:7%}
+.RegBillRate {width:7%}
+
+/* td.Reference ,.Reference {width:5%} */
+
+td.WCDescription div,
+td.lastnamefirst div {font-size:90%}
+td.EmployeeNumber,
+td.JobNumber,
+td.PlacementStatus,
+td.StartDate,
+td.PStopDate,
+td.WorkCode,
+td.RegPayRate,
+td.RegBillRate {font-size:85%;padding:0 0.1em;}
+
+tr.etcHeader {background-color:#f2f6fb;}
+
+th.EmployeeNumber,
+th.JobNumber,
+th.Reference,
+th.PlacementStatus,
+th.WCDescription,
+th.StartDate,
+th.PStopDate,
+th.WorkCode {border-bottom:1px solid #003366; text-align:center;}
+th.RegPayRate,
+th.RegBillRate {border-bottom:1px solid #003366; text-align:right;}
+
+/* close placement object */
+
+span.OpenPlacement,
+span.ClosePlacement,
+span.ExpectingPlacement {height:12px;width:12px;display:block;float:left;margin:0 2px 0 0;background:url('etc.png') no-repeat; cursor:pointer;}
+
+span.ClosePlacement {background-position: 0px -12px;}
+span.OpenPlacement {background-position: 0px 0px;}
+span.ExpectingPlacement {background-position: 0px -24px;}
+
+span.Working {height:12px;width:12px;display:block;float:left;margin:0 2px 0 0;background:url('ajax/working.gif') no-repeat; cursor:pointer;}
+
+div#helpkey {width:100%;clear:both;}
