@@ -1,0 +1,142 @@
+@media print {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+
+pre {
+	white-space: pre-wrap;       /* css-3 */
+	white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+	white-space: -pre-wrap;      /* Opera 4-6 */
+	white-space: -o-pre-wrap;    /* Opera 7 */
+	word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+/* searchJobs.asp */
+#jobSearchForm select { width:20em; text-align:left; margin-bottom:2em; }
+#jobsList { min-height:40em;}
+#jobsList  { margin-top:1em; padding:2em; }
+#jobsList td { padding-bottom:0.2em }
+
+table.jobPost {
+	width:100%;
+	padding:0.6em;
+	margin-bottom:0;
+	border-width: 0;
+	border-spacing: 0;
+	border-style: none;
+	border-color: #9CBAD9 #7BA5D1 #7BA5D1 #9CBAD9;
+	border-collapse: separate;
+	background-color:#fff;
+}
+table.jobPost th {
+	border-width: 0px 0px 0px 0px;
+	padding: 1px 1px 1px 1px;
+	border-style: none none none none;
+	border-color: #fff;
+	background-color: white;
+}
+table.jobPost td {
+	border-width: 3px;
+	padding: 1px;
+	border-style: double;
+	border-color: white;
+}
+
+#jobdetails{min-height:50em;}
+
+
+.description {width:35%; text-align:left}
+.posted {width:15%;}
+.location {width:20%;}
+.startpay {width:15%;}
+.jobid {width:15%;}
+.jobid a {color:#FB0000; }
+.jobdescription {padding:0.2em 0 1.4em}
+
+a#apply_for_job,
+a#send_resume {display:block;color:#003366; font-weight:bold; text-decoration:none;}
+
+/* a#apply_for_job,
+a#send_resume {background-image:url('applyresume.jpg')}
+*/
+
+a#apply_for_job {float:right;width:125px; height:30px}
+a#send_resume {float:right;width:125px; height:30px}
+
+a#apply_for_job:hover {}
+a#send_resume:hover {}
+
+td#apply_ways {padding:0.4em 0 0}
+
+
+a#send_resume {float:left;}
+.nowrap {white-space:nowrap; overflow:hidden;}
+
+a.inSystem { color:#cccccc; }
+td.notInSystem a,
+a.notInSystem,
+td.notInSystem {font-weight:bold; }
+
+.notSubmitted,
+a.notSubmitted,
+td.notSubmitted { font-style:italic;color:red }
+
+table.onlineApps tr td {overflow:hidden;}
+div#attachments {margin:1.6em 0 0 0;}
+
+.attachment_options {width:72px;}
+
+th.manage_attached a {display:block; float:left;clear:right;width:25px;height:25px;margin:0 0.4em 0 0;}
+td.attachment_options a {display:block; float:left;clear:right;width:15px;height:15px;margin:0 0.4em 0 0;}
+.ripAttachment,
+.getAttachment,
+.delAttachment,
+.editAttachment,
+.newAttachment {background-image:url('/include/system/tools/images/app_sprites.gif')}
+.newAttachment {background-position:-35px -32px;}
+.editAttachment {background-position:-31px 0px;}
+a.editAttachment:hover {background-position:-45px 0px;}
+.delAttachment {background-position:-31px -14px;}
+a.delAttachment:hover {background-position:-45px -14px;}
+.getAttachment {background-position:-31px -57px;}
+a.getAttachment:hover {background-position:-45px -57px;}
+
+
+/* Resume and Apply buttons */
+
+div#thin_blue_line {display:block; width:auto; height:1px; padding:0; margin: 0.2em 0;border-top:1px solid #0000CC; background:#0000FF; padding:1px;}
+
+div#send_resume,
+div#apply_for_job {display:block; width:auto; height: 3.6em; padding:0 0 0 0;margin-top:2em;}
+
+div#send_resume {float:left;}
+div#apply_for_job {float:left;}
+
+div#send_resume a,
+div#apply_for_job a {border:1px solid #0000CC; background:#0000FF; padding:1px; margin: 0em 0.2em 1em; display:block;}
+div#send_resume span,
+div#apply_for_job span {border:1px solid #FFFFFF; width:9.4em; display:block; height:1.4em; color: #ffffff;vertical-align: middle;text-align:center;padding:0.2em 0}
+
+div#send_resume a:hover,
+div#apply_for_job a:hover {background: #00CC00;}

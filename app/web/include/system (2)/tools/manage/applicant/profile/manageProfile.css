@@ -1,0 +1,280 @@
+@media print {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+
+/* copyToIDA.asp */
+form#frmSearch {padding:2em 8em;}
+fieldset#copysource {border:none; padding:0 0 2em;}
+fieldset#copysource input {float:left;clear:left;}
+fieldset#copysource label {float:left;}
+
+
+fieldset#copyfromwhere,
+fieldset#copytowhere {border:none; margin:0 0 2em 0;}
+
+
+fieldset#copytowhere li,
+fieldset#copyfromwhere li {display:block; float:left; width:8em;}
+
+fieldset#copytowhere label,
+fieldset#copyfromwhere label {width:5em; padding:0;}
+fieldset#copytowhere input,
+fieldset#copyfromwhere input {width:3em; vertical-align:middle}
+
+
+/* .searchGuide {width:10em; margin-right:1em; margin-bottom:0.4em; float:left; clear:right; border:1px solid red;} */
+#searchGuide {width:10em; margin:0; padding:0; float:left; cloar:both;border:1px solid red;}
+#search_form {border:1px solid red;}
+#mainSearch {float:right; clear:left; text-align:center; width:45em; border:1px solid red;}
+#searchResults a,
+#searchResults a:hover,
+#searchResults a:visited,
+#searchResults a:link,
+#searchResults a:active {color:blue;font-size:1.2em;text-decoration:underline}
+
+#frmSearch {min-height:30em; width:auto;margin:0;padding:0; width:60em;}
+#frmSearch p {width:100%; text-align:center;padding-top:1em}
+#frmSearch p span {margin:0 1em 0; padding-top:.1em; padding-left:1em;}
+
+#query {width:35em;margin-bottom:0;}
+.searchButton {margin:1em auto 0; width:9em}
+
+#searchResults {padding:1em; clear:both;}
+#searchResults * p {text-align:left; width:100%; padding:0 0 .2em; margin:0;}
+.searchSummary {margin-bottom:1.5em; overflow:hidden;}
+
+#locationView {clear:both; background: url('/include/style/images/createLocation.jpg') no-repeat top left; }
+#confirmDelete {clear:both; background: url('/include/images/areYouSure.png') no-repeat top left; height:6em;padding-left:10em; margin-top:0.6em; }
+#manageLocation input,
+#manageLocation select,
+#manageLocation label {float:left;clear:left;text-align:left;padding-left:0; margin-left:12em;}
+#manageLocation label {width:12em;}
+
+#manageLocation select {width:4em}
+
+#topPageRecords a,
+#pageRecordSet a,
+#bottomPageRecords a,
+#topPageRecords a:hover,
+#pageRecordSet a:hover,
+#bottomPageRecords a:hover {text-decoration:none}
+
+ul.guide {
+    list-style: none;
+    margin: 0.4em 0;
+    padding: 0;
+}
+
+ul.guide li {
+    font-weight: bold;
+    margin: 0;
+    padding: 0.2em 0em 0.2em 0em;
+    border-bottom: 1px solid #ccc;
+    color: #666;
+}
+
+ul.guide li:hover {
+    color: #000;
+    background-color: #ddd;
+}
+
+li.label_checkbox_pair {
+clear: both;
+float: none;
+}
+li.label_checkbox_pair input {
+clear: right;
+float: right;
+margin-left: 0em;
+}
+
+.intraLink {color:green; text-decoration:none}
+
+.intraLink a { text-decoration:underline }
+
+  span.radio {
+  position: absolute;
+   width: 19px;
+     height: 25px;
+    padding:0;
+	margin-top:0px;
+    background: url('/include/style/images/forms/radio.gif') no-repeat;
+  }
+
+/* changePassword.asp */
+
+#changePasswordForm { min-height:25em; }
+
+#changePasswordForm * label
+{
+float: left;
+margin-right: 0.5em;
+display: block;
+padding-top:0.5em;
+}
+
+#changePasswordForm * input { margin-bottom:.5em }
+#changePasswordForm * label, #changePasswordForm * input { width:25em }
+
+/* post */
+
+#blogFormContent,
+#bugFormContent {min-height:40em; margin:2em; }
+#blogFormContent textarea,
+#bugFormContent textarea { height:30em; margin-bottom:0.6em; }
+#blogFormContent label,
+#bugFormContent label { float: left;text-align: left;width:16em; margin-bottom:0.4em;clear:both }
+#blogFormContent input, #blogFormContent textarea,
+#bugFormContent input, #bugFormContent textarea {width:50em}
+#blogFormContent textarea {}
+#postMessageButton { margin:1em 2.4em 1em auto;}
+
+p#blogFormat label {width:12em; 
+        line-height:12px;
+        vertical-align:middle;
+}
+p#blogFormat input {width:3em;vertical-align:middle;}
+
+/* mangeUsers.asp */
+
+#ProfileForm { background: transparent url('/include/style/images/createUser.jpg') no-repeat top left; width:40em; }
+#manageProfileForm p { padding:0.5em 0.45em .5em; clear:both}
+#manageProfileForm p select { width:30em; }
+
+#UsersForm * a, #UsersForm * a:hover, #UsersForm * a:visited, #UsersForm * a:link, #UsersForm * a:active {text-decoration:none; }
+#ProfileForm {padding:0em 1em 1em 2em; float:left; clear:left; padding-left:5em; }
+#UserDetails { float:left;padding-left:4em; margin:0 0 0 0em; width:34em;}
+
+#manageUser input {}
+#ProfileForm label { float:left; clear:left; }
+#ProfileForm label { width:25em; text-align:left; }
+div#ProfileForm table { width:25em; text-align:left; margin:0 0 0.4em 4em;}
+#ProfileForm input { width:25em; text-align:left; }
+#ProfileForm select { width:20em; text-align:left; }
+
+#ProfileForm p,
+#ProfileForm table { clear:both;margin:0;padding:0 0 0 4em;}
+#ProfileForm a { margin:2em 0 2em;}
+#ProfileForm hr {width: 32em; margin:2em 0 2em 1em }
+
+h5 {border:1px solid #003466; }
+
+div.notes {
+  float: right;
+  width: 12em;
+  height: auto;
+  margin: 0 1em 1em 1em;
+  padding: 5px;
+  border: 1px solid #666666;
+  background-color: #ffffe1;
+  color: #666666;
+  font-size: 88%;
+}
+
+div.notes h4 {
+  background-image: url('/include/style/images/forms/icon_info.gif');
+  background-repeat: no-repeat;
+  background-position: top left;
+  padding: 3px 0 3px 2.6em;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: #666666;
+  color: #666666;
+  font-size: 110%;
+}
+
+div.notes p {
+  margin: 0em 0em 1.2em 0em;
+  color: #666666;
+}
+
+div.notes p.last {
+  margin: 0em;
+}
+
+span.checkbox { 
+    width: 19px;
+    height: 25px;
+    padding: 0 5px 0 0;
+	margin:-5px 0 0;
+    background: url('/include/style/images/forms/checkbox.gif') no-repeat;
+    display: block;
+    clear: left;
+    float: left;
+	
+  }
+span.radio {
+   width: 19px;
+    height: 25px;
+    padding: 0 5px 0 0;
+	margin:-5px 0 0;
+    background: url('/include/style/images/forms/radio.gif') no-repeat;
+	display:inline;
+    clear: left;
+	float:left;
+  }
+  
+ span.select {
+	position:absolute;
+	width: 208px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+	height: 21px;
+	padding: 0 24px 0 8px;
+	color: #fff;
+	font: 12px/21px arial,sans-serif;
+	background: url('/include/style/images/forms/select.gif') no-repeat;
+	overflow: hidden;
+ }
+
+.squarebutton {margin:0 0 0 0;}
+
+
+#PersonalInformation ul li  {width:18em; height:3em; display:block; vertical-align:middle;}
+#PersonalInformation label, #PersonalInformation input {width:16em}
+
+#WorkPreferences textarea {width:48em}
+#WorkPreferences ul li {width:26em; height:3em; display:block; vertical-align:middle;}
+#WorkPreferences label {width:48em} 
+#WorkPreferences input {width:23em}
+#workPreferenceQuestions label {width:24em} 
+#workPreferenceQuestions ul li {padding-right:0.25em} 
+#workPreferenceQuestions input {width:2em}
+
+#WorkReferences ul li, #WorkReferences  ul li{width:26em; height:3em; display:block; vertical-align:middle;}
+#WorkReferences label, #WorkReferences input {width:24em}
+
+/* div p {display: block;} */
+
+/* Global for short forms */
+
+.fieldIsBad {color:#FF0000; padding-left:25em;}
+.fieldIsBad span {
+	visibility:visible;
+	margin-left:1em;
+	height:1.2em;
+	padding-left:1.5em;
+	float: none;
+	background: transparent url('/include/images/mainsite/icon_err.gif') no-repeat;}
+
+#bugFormContent { height:8em }

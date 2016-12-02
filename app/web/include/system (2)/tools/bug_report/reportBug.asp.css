@@ -1,0 +1,70 @@
+@media print {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+
+
+/* post */
+
+#manageBugForm {height:51em;}
+#blogFormContent,
+#bugFormContent {min-height:40em; margin:2em; }
+#blogFormContent textarea,
+#bugFormContent textarea { height:23em; margin-bottom:0.6em; }
+#blogFormContent input, #blogFormContent textarea,
+#bugFormContent input, #bugFormContent textarea {width:50em;}
+#blogFormContent textarea {}
+#postMessageButton { margin:1em 2.4em 1em auto; height:2em;}
+
+p#blogFormat label {width:12em; 
+        line-height:12px;
+        vertical-align:middle;
+}
+p#blogFormat input {width:3em;vertical-align:middle;}
+
+#bugFormContent label { 	margin-left:-1.4em;	padding:0 0 3px 1.4em;height:1em; float: left;text-align: left;width:16em; margin-bottom:0.4em;clear:both }
+
+.fieldIsBad {
+	color:#FF0000;
+	background: transparent url('/include/images/mainsite/icon_err.gif') no-repeat 0 1px;
+}
+
+.badFields {
+	color:#FF0000;
+	visibility:visible;
+	margin:0;
+	height:1.8em;
+	padding-left:0.5em;
+	float: none;
+}
+
+div#missed_items {
+	padding:0 1em 0.6em;
+}
+span#review {
+	display:block;
+	margin:0.6em 0 0.4em;
+}
+
+#bugFormContent { height:8em }

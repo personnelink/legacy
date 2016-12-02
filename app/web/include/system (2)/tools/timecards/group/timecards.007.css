@@ -1,0 +1,472 @@
+@media print, handheld {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+
+/* redefine global id */
+#contentcolumn {width:79.1em;border-left:none;padding-left:0em;padding-right:0.4em;margin:0;padding-top:0}
+#leftSideMenu {display:none;}
+/* done redefining global id's */
+
+a:hover {text-decoration:none}
+
+#formOptions {width:45em; padding: 0 0.5em; margin-bottom:1em;}
+
+#whoseHereForm select { width:20em; text-align:left; margin-bottom:2em; }
+
+#whoseHereList { min-height:40em; margin-top:0em; padding:0 0.5em 0.5em;}
+#whoseHereList td { padding-bottom:0.2em }
+
+
+#button {
+	width: 12em;
+	border-right: 1px solid #000;
+	padding: 0 0 1em 0;
+	margin-bottom: 1em;
+	font-family: 'Trebuchet MS', 'Lucida Grande',
+	  Verdana, Lucida, Geneva, Helvetica, 
+	  Arial, sans-serif;
+	background-color: #90bade;
+	color: #333;
+	}
+	
+
+.altNavPageRecords {float: left; clear:right; margin:1.6em auto; width:18em; text-align:left !important; }
+.altNavPageRecords a {font-weight:bold; width:16em;display:block;float:left;}
+.altNavPageRecords a:hover {font-weight:bold; text-decoration:none; }
+
+#topPageRecords {float:left; clear:both; }
+div#topPageRecordsByOrder, 
+div#topPageRecordsByCust {margin:0 1em 0 0;}
+
+div#scrollOrders,
+div#scrollCustomers {height:8em; overflow:auto; overflow-X:hidden;}
+
+span.select {
+   position: absolute;
+   width: 208px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+   height: 21px;
+   padding: 0 24px 0 8px;
+   color: #fff;
+   font: 12px/21px arial,sans-serif;
+   background: url('/include/style/images/forms/select.gif') no-repeat;
+   overflow: hidden;
+}
+
+#weekending ul li {margin:auto 4em}  
+#weekending ul li li,
+#weekending ul li ul{ list-style: none; list-style-type: none; margin-left: 0em; display:inline }
+
+.changeView {width:10em; float:right; clear:left; margin-bottom:0.6em; }
+
+p {clear:both;}
+#lookup {background:url('/include/system/images/look-up.png') no-repeat; width:24px; height:24px;float:left;margin:1em 0.6em 0 0; }
+#whoseHereForm p label {text-align:left}
+#sign_in {float:left;margin-top:1.5em;}
+#signInComment {width:26em}
+#applicant_name {margin:0 0 1em 2em;width:100%;clear:both;}
+#clear_list {float:left; margin:0 1em 0 0}
+#older_than {width:3em; text-align:center;}
+
+/* follow activities */
+ul.what_activities {display:inline;overflow:hidden;}
+ul.what_activities li { list-style-type: none; float:left; margin:0 0.4em 0.4em; display:inline;}
+ul.what_activities li label {display:block; width:10em; text-align:left; padding: 0 0 0 2em; text-indent:-2em;
+}
+
+div#what_activities p {margin:0 0 0.4em;}
+ul.what_activities li input {
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin:0 0.6em 0 0;
+    vertical-align: bottom;
+}
+
+ul#which_dates {display:block;width:55em;margin:1em 0 0;}
+ul#which_dates * label {width:6.5em !important}
+
+table#enter_dates {margin:0; float:right; width:15em;}
+table#enter_dates td {margin:0 1em 0 !important;}
+ul.what_activites li a {
+	display: block;
+	width: 50px;
+	height: 60px;
+	background:url('/include/system/tools/timecards/images/savedTime.png') #ffffff no-repeat;
+	color: #333;
+	text-decoration: none; 
+	text-align: center;
+	padding: 20px 0 0 0;
+	font-size: 13px;
+	text-transform: uppercase;
+	line-height : 1;font-weight: bold;
+			}
+ul.what_activites li a span	{ font-size: 10px; font-weight:normal; }
+
+div#what_activities {width:12.4em; overflow: hidden;float:left;margin: 0 0 0 1.6em;}
+
+table.status_row,
+table.details_row_details,
+table.details_row {width:100%;background-color:#f2f6fb;}
+
+td.details_firsttwo {width:36%; overflow:hidden;}
+td.details_last {width:28%; overflow:hidden;}
+
+table.details_row td, table.details_row_details td {width:33.33%;}
+table.details_row td {border:1px solid white;padding:0.1em; background-color:#f2f6fb;}
+table.details_row_details td {border:1px solid white;padding:0.1em; background-color:#deedfb;}
+
+
+table.status_row th {background-color:#deedfb; width:16.67%; text-align:center; margin:auto;}
+table.status_row td {border:1px solid white;padding:0.1em;}
+
+/* expected timecards */
+
+div.groupheader {margin:0;border-top:1px solid #003366;padding:0.2em 0 0.6em;clear:both;width:100%;height:1.2em;overflow:hidden;}
+span.CustomerCode,
+span.CustomerName,
+span.CustomerAddress,
+span.CustomerContact,
+span.CustomerPhone,
+span.DateLastActive {font-size:100%;margin: 0 0.2em 0 0;display:inline-block;padding:0 0 0 0.1em;float:left;clear:right;}
+
+span.CustomerName  {font-weight:bold; width:15em;}
+
+span.CustomerCode {width:5.4em;margin:0 0 0 0.2em;}
+
+span.CustomerCode div,
+span.CustomerName div,
+span.CustomerAddress div,
+span.CustomerContact div,
+span.CustomerPhone div,
+span.DateLastActive div {overflow:hidden;white-space:nowrap;}
+
+span.DateLastActive div {width:5.8em;}
+
+span.CustomerAddress {width:16em;}
+span.CustomerContact {width:10em;}
+span.CustomerPhone {width:9em;}
+
+.etcTable{}
+table.etcdetails{width:100%}
+table.etcdetails th{font-size:95%;vertical-align:bottom;}
+div.timesummarydiv {border-bottom:1px solid #f2f6fb; font-size:100%;vertical-align:bottom;}
+
+
+
+.EmployeeNumber div,
+.ExpenseSummary div,
+.TimeSummary div {overflow:hidden;white-space:nowrap;height:1.4em;}
+
+.ExpenseSummary div span,
+.TimeSummary div span{clear:right;float:left;}
+
+.EmployeeNumber div {width:6em;}
+.ExpenseSummary div {width:5em;}
+.TimeSummary div {width:5em;}
+
+.lastnamefirst {width:18%}
+.EmployeeNumber {width:7%}
+.JobNumber {width:7%}
+.PlacementStatus {width:1%}
+.WCDescription {width:18%}
+.StartDate  {width:8%}
+.PStopDate {width:7%}
+.WorkCode {width:7%}
+.RegBillRate {width:6%}
+.RegPayRate {width:5%}
+.ExpenseSummary {width:8%}
+.TimeSummary {width:7%}
+.OkayApprove {width:1%}
+
+/* job order section */
+
+th.MoreDetail,
+th.OrderDept,
+th.OrderReference,
+th.OrderDescription,
+th.OrderWorkSite,
+th.OrderDate,
+th.OrderStartDate,
+th.OrderStopDate,
+th.OrderPhone {text-align:center;}
+
+
+.MoreDetail {width:2%;}
+.OrderDept {width:5%;}
+.OrderReference {width:5%;}
+.OrderDescription {width:17%;}
+td.OrderDescription div {overflow:hidden;white-space:nowrap;width:12em;}
+.OrderWorkSite {width:18%;}
+td.OrderWorkSite div {overflow:hidden;white-space:nowrap;width:12em;}
+.OrderDate {width:10%;}
+.OrderStartDate {width:8%;}
+td.OrderStartDate div {overflow:hidden;white-space:nowrap;width:5.6em;}
+.OrderStopDate {width:8%;}
+td.OrderStopDate div {overflow:hidden;white-space:nowrap;width:5.6em;}
+.OrderPhone {width:9%;}
+td.OrderPhone div {overflow:hidden;white-space:nowrap;width:8.2em;}
+.OrderActivities {width:18%;}
+td.OrderActivities div {overflow:hidden;white-space:nowrap;width:5.6em;}
+
+
+div.noClosedOrders,
+div.noOpenOrders {height:2.2em;padding:0 0 0 1.4em;}
+
+/* end job order section */
+
+td.GreyOut,
+td.GreyOut div {color:grey;}
+
+input.TimeOkay {width:12px;height:12px;text-align:center; vertical-align: middle;padding:0;margin:0;}
+/* td.Reference ,.Reference {width:5%} */
+
+td.JobNumber,
+td.PlacementStatus,
+td.WCDescription,
+td.StartDate,
+td.PStopDate,
+td.WorkCode,
+td.RegPayRate,
+td.RegBillRate,
+td.lastnamefirst,
+td.EmployeeNumber,
+td.ExpenseSummary,
+td.TimeSummary,
+td.OkayApprove  {padding:0 0.1em;}
+
+td.PStopDate div,
+td.lastnamefirst div,
+td.WCDescription div {padding:0 0 0 0.1em; overflow:hidden;white-space:nowrap;}
+
+td.PStopDate div {width:6em}
+td.lastnamefirst div {width:13.2em;}
+td.WCDescription div {width:13em;}
+
+tr.etcHeader {background-color:#f2f6fb;}
+
+th.EmployeeNumber,
+th.JobNumber,
+th.Reference,
+th.PlacementStatus,
+th.WCDescription,
+th.StartDate,
+th.PStopDate,
+th.WorkCode,
+th.RegPayRate,
+th.RegBillRate,
+th.ExpenseSummary,
+th.TimeSummary,
+th.OkayApprove  {border-bottom:1px solid #003366; text-align:center;}
+
+div.loading {display:block; background: url('ajax/loading.gif') no-repeat center; min-height:20px;}
+
+/* time summary table */
+
+.col_we {width: 10em;}
+.col_we_b {width:9.4em;}
+.col_day {width:4em;}
+.col_spc {width:1.4em;}
+.col_time {width: 2.4em;}
+.col_cntrls {width: 10em;}
+
+div.notes{float:right;width:10em;}
+table.time_summary tr th,
+table.time_detail tr th {text-align:center; font-size:85%;}
+table.time_summary tr td,
+table.time_detail tr td {text-align:center; padding:0; vertical-align:middle;}
+table.time_summary {width:100%;}
+table.time_detail {width:89%;}
+th.delete {width:14em;}
+
+span.table_seperator {display:block;border-bottom:1px solid #f2f6fb; width:71em;float:right;clear:both;margin:0 0 0.4em;}
+
+table.time_summary input {height: 1.2em; width:3.2em;margin:0;}
+table.time_summary input[disabled='disabled'] {background:Silver;color:SlateGray;cursor:default;}
+table.time_summary input.inpWeekEnding {height: 1.2em; width:6.8em;margin:0;}
+
+table.time_detail input {height:1.2em; width:6em; margin-bottom:0;}
+table.time_summary th.weekending {text-align:left;padding-left:0em;}
+/* table.time_summary th.weekending span.weekendinglbl {float:left;display:block; padding-top:0.1em;width: 6em;} */
+table.time_summary td.weekending {text-align:left;padding-left:0em;}
+table.time_summary td.cntrlAddServices {text-align:left;padding-left:0.6em;}
+
+table.time_summary th.cntrlTimeDetail span {display:block; width:6em;}
+table.time_summary td.cntrlTimeDetail {text-align:center}
+table.time_summary td.cntrlAddServices a {display:block;margin:1em 0.4em 0.8em 0; float:left;}
+
+table.time_summary td.cntrlTimeDetail
+table.time_detail th.left_margin,
+table.time_detail td.left_margin {width:3em;}
+
+table.time_detail td.weekday select {width:4.4em;}
+table.time_detail td.timeinput select {width:6.4em;}
+table.time_detail td.hourstotal input {width:4.4em;}
+[disabled] {background:DarkGray;color:SlateGray;cursor:default;}
+
+table.time_detail tr {height:1.4em;}
+table.time_detail tr.userinfo {height:0.6em;}
+div.comments span {display:block; width:75%;float:left;clear:left;}
+table.time_detail tr.userinfo td {font-size: 70%; color:gray; text-align:left; padding:0 0 0.4em 2.6em;}
+
+
+.lbl_time {text-align: right;}
+.add_detail_row {display:block; margin:0.6em 1em 1.2em 0.6em;clear:both;}
+td.delete_time_detail {text-align:left;margin:0; padding:0.4em 0;}
+/* confirmation box */
+div#popup {
+    position:absolute;
+	display:none;
+    top:200px;
+    left:50%;
+    width:500px; 
+    margin-left:-250px;
+    border:1px solid blue; 
+    padding:20px;
+    background-color:white;
+}
+
+.CustomerActivities {width:8.4em; display:inline-block; text-align:right;float:left;clear:right;}
+.OrderActivities {width:8.4em; display:inline-block; text-align:right;float:left;clear:right;}
+/* page image objects */
+
+/* td.ExpenseExpecting span
+td.TimeExpecting span,
+
+
+ */
+ 
+span.HideRow,
+span.ShowMore,
+span.ShowLess,
+span.OpenPlacement,
+span.ClosePlacement,
+span.ExpectingPlacement,
+span.ShowMoreDetail {height:12px;width:14px;display:block;float:left;margin:0.2em 0 0 0;background:url('sprites.png') no-repeat; cursor:pointer;}
+
+span.NotUpdating {height:12px;width:12px;display:block;float:left;margin:2px 2px 0 0; cursor:pointer;}
+
+span.HideRow {background-position: -87px 0px;margin-right:0.1em;height:16px;width:16px;float:left;clear:right;}
+span.ShowMore {background-position: -12px 0px;margin-right:0.1em;}
+span.ShowLess {background-position: -12px -12px;margin-right:0.1em;}
+span.OpenPlacement {background-position: 1px 0px;}
+span.ClosePlacement {background-position: 1px -12px;}
+span.ExpectingPlacement {background-position: 1px -24px;}
+span.ShowMoreDetail {background-position: -60px 0px;}
+
+/* Treeview */
+div.joborders {}
+div.placements {}
+
+div.leftline {border-left:1px solid #f0f0f0;}
+
+div.leftline,
+div.joborders,
+div.timedetails,
+div.weekendings,
+div.placements {margin:0 0 0 0.6em;padding-left:0.6em;background-color: transparent;border-left:1px solid #f0f0f0 ;}
+div.timesummaries {margin:0 0 0 0.8em;padding-left:0.6em;background-color: transparent;border-left:1px solid #f0f0f0;}
+
+div.no_connector {margin:0 0 0 0.6em;padding-left:0.6em;background-color: transparent;border-left:1px solid #fff;}
+
+/* Duplicate Placement element */
+/* span.duplicateplacement {background-position: -0px -70px;height:13px;width:96px;display:block;float:left;margin:0.1em 0 0 0.2em; background-image:url('sprites.png');} */
+div.multiplacement {background-position: 0px -66px;height:16px;width:96px;display:block;float:left;margin:0.1em 0 0 0.2em; background-image:url('sprites.png');}
+
+span.calendarButton {background-position: -28px -31px;height:20px;width:15px;display:block;float:left;margin:0.2em 0.2em 0 0.1em; background-image:url('sprites.png');cursor:pointer;}
+
+
+/* Time and Expense Summary widgets */
+span.Expense,
+span.Time { display:block;}
+
+span.Expense span,
+span.Time span {display:block;float:left;margin:2px 2px 0 0;padding:0;background:url('sprites.png') no-repeat; cursor:pointer;height:12px;width:12px !important;}
+
+span.Expense span.amount,
+span.Time span.amount {display:block; background-image:none; width: 3em !important;}
+
+/* p.ExpenseExpecting span {background-position: -48px 0px;} */
+span.Expense span.Expecting {background-position: -48px 0px;}
+span.Expense span.Grey {background-position: -48px -12px; color:gray;}
+/* td.TimeExpecting span {background-position: -60px 0px;} */
+span.Time span.Expecting {background-position: -60px 0px;}
+span.Time span.Grey {background-position: -60px -12px;color:gray;}
+/* p.ExpenseExpecting span {background-position: -48px 0px;} */
+/* td.TimeExpecting span {background-position: -60px 0px;} */
+
+.ShowMoreDetail {}
+
+
+
+
+span.Working {height:12px;width:12px;display:block;float:left;margin:0 2px 0 0;background:url('ajax/working.gif') no-repeat; cursor:pointer;}
+
+div#helpkey {width:100%;clear:both;}
+
+/* buttons */
+span.button{
+background:transparent url('sprites.png') no-repeat bottom left;
+display:inline-block;
+font:normal 11px Arial,Verdana,Helvetica,sans-serif;
+line-height:18px;/* This value + 4px + 4px (top and bottom padding of SPAN) must equal height of button background (default is 23px) */
+height:22px;/* Height of button background height */
+padding-left:9px;/* Width of left menu image */
+text-decoration:none;
+cursor:pointer;
+color:#ffffff;/*button text color*/
+}
+
+span.button span{
+background:transparent url('sprites.png') no-repeat bottom right;
+display:inline-block;
+padding:2px 9px 2px 0;/*Set 9px below to match value of 'padding-left' value above*/
+}
+
+
+span.greybutton{
+background:transparent url('sprites.png') no-repeat bottom left;
+display:inline-block;
+font:normal 11px Arial,Verdana,Helvetica,sans-serif;
+line-height:18px;/* This value + 4px + 4px (top and bottom padding of SPAN) must equal height of button background (default is 23px) */
+height:22px;/* Height of button background height */
+padding-left:9px;/* Width of left menu image */
+text-decoration:none;
+cursor:pointer;
+color:#ffffff;/*button text color*/
+}
+
+
+span.greybutton span{
+background:transparent url('sprites.png') no-repeat bottom right;
+display:inline-block;
+padding:2px 9px 2px 0;/*Set 9px below to match value of 'padding-left' value above*/
+}
+
+
+span.addtime,
+span.addexpense,
+span.viewother {margin:0 1em 1em 0;}
+span.btnOrderActivity{margin:0 0 0.2em 0;display:inline-block;}
+span.btnCustomerActivity {margin:0 0 0.2em 0;display:inline-block;}

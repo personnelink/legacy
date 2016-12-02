@@ -1,0 +1,243 @@
+@media print {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+
+/* redefine global id */
+#contentcolumn {width:79.1em;border-left:none;padding-left:0em;padding-right:0.4em;margin:0;padding-top:0}
+#leftSideMenu {display:none;}
+
+/* done redefining global id's */
+
+#accountActivityDetail,
+#viewActivityForm {min-height:5em;}
+
+#likeName {width: 20em;}
+.changeView {width:10em; float:right; clear:left; margin-bottom:0; }
+
+#viewActivityForm p {width:100%; text-align:center;padding:1em 0 0}
+#viewActivityForm p span {margin:0 1em 0; padding:0.1em 0 0 1em;}
+
+#formOptions {width:45em; padding: 0 1em;}
+
+table#formOptions tr td input, 
+table#formOptions tr td label { float:left; clear:left; } 
+
+
+/* current_ledger.asp */
+
+.sh {background-color:#FFFFFF;} /* Row color, shade high and shade low */
+.sl {background-color:#EFF5FA;}
+
+table.even tr td {background-color:#FFFFFF;} /* Row color, shade high and shade low */
+
+table.odd tr td {background-color:#f8f8ff;}
+
+table.rOdd tr td,
+table.rOdd tr th {background-color:#F9F9FF;}
+
+tr.br td.nl,
+tr.br td.ad {white-space:nowrap; overflow:hidden}
+th#appid { text-align:center; width:5em;}
+
+#account_group {width:60em; border:1px solid #ffCCCC;clear:both; }
+
+#account_balance {height:5em;}
+
+#account_balance,
+#make_payment {width:58em; border:1px solid #DCD3F8; overflow:hidden; margin:0 0 1.4em 0; padding:1em 2em;}
+
+a#mkPayment {
+	display:block;
+	background:url('mkPayment.png') no-repeat;
+	padding:0.2em 0 0 2.6em;
+	float:left;
+	clear:left;
+	margin:1em 0 1em;
+	text-decoration:underline;
+	width:10em;
+	height:2.2em;
+
+}
+
+span.getpdf {
+	display:block;
+	background:url('../getpdf.gif') no-repeat;
+	width:16px;
+	height:16px;
+}
+
+td.rememberpayment label {
+    display: block;
+    padding-left: 1.8em;
+    text-indent: -1.6em;
+}
+
+td.rememberpayment input {
+    width: 1.3em;
+    height: 1.3em;
+    padding: 0;
+    margin:0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+}
+
+.processpayment {width:13em;margin:2em 0 0 0; float:right;}
+
+p#accntbal { margin:auto 0 auto 0; float:left;clear:left;width:24em;text-align:left; }
+.detail_summary,
+table.account_activity {clear:both; overflow:hidden; width:100% !important;}
+
+table.detail_summary tr,
+table.account_activity tr {border:1px solid #08386B; border-width:1px 0 1px 0;}
+
+input#todata,
+input#fromdata {width:14em}
+input#amount {width:6em}
+
+div.apayment {clear:both;}
+div.apayment span {
+	display:block;
+	float:left;
+	clear:left;
+	padding:1em 0 0 1em;
+	margin:0 0 1em;
+	text-align:left important!;
+}
+div.apayment img {
+	float:left;
+	clear:left;
+	height:40px;
+	width:40px;
+	background-image:url('../widgets.gif');
+background-position:-0px -18px;
+background-repeat:none;
+}
+
+
+table#enter_dates {width:100%;}
+td#fromdate {width:25%;padding-left:1em;}
+td#todate {width:57%;}
+td#refreshview {width:18%;vertical-align:top;padding:0 1em 0 0;}
+td#refreshview a {float:right;}
+
+table.detail_summary td,
+table.account_activity td {vertical-align:middle; height:2em;}
+
+table.department tr td {background-color:#41a2dc;color:#ffffff;font-weight:bold;}
+table.department tr {border-top:1px solid #DEE3DE;margin-bottom:0;}
+td.jobnumber {width:6%;}
+td.jobstatus {width:94%;}
+table.departmenttotal {background-color:#FFF7E7;font-weight:bold;}
+
+table.detail_summary tr {border-top:1px solid #DEE3DE;}
+
+/* table.account_activity td {width:16.67%} */
+
+table.headings {background-color:#FFF7E7; height:3em; vertical-align:middle; overflow:hidden}
+table.headings th {font-weight:normal; border:1px solid #DEE3DE; background-color:#FFF7E7; height:3em; vertical-align:middle; overflow:hidden}
+
+td.description {text-align:left}
+
+
+td.invoice,
+
+td.invoicedate,
+td.hours,
+td.amount,
+td.rtotal,
+td.document {text-align:right}
+
+th.subhours,
+th.subamount {text-align:right; padding-right:0.6em;}
+
+th.invoice,
+th.invoicedate,
+th.description,
+th.document,
+th.hours,
+th.amount,
+th.rtotal {text-align:center;}
+
+th.moredetail, td.moredetail {padding:0 0.6em}
+
+th.moredetail, td.moredetail  {width:4%}
+th.invoice, td.invoice {width:10%}
+th.invoicedate, td.invoicedate {width:14%}
+th.description, td.description {width:22%}
+th.document, td.document {width:12%}
+th.hours, td.hours,th.subhours {width:10%}
+th.amount, td.amount, th.subamount {width:14%}
+th.rtotal, td.rtotal {width:14%}
+
+td.description,
+td.document {padding-left:0.6em;}
+
+td.invoice,
+td.invoicedate,
+td.document,
+td.hours,
+td.amount,
+td.rtotal {padding-right:0.6em;}
+
+.plusexpand,
+.minusshrink {background-image:url('ajax/widgets.gif'); padding:5px 5px 6px 5px;height:10px; width:12px;}
+
+.plusexpand {background-position:-0px 7px;}
+.minusshrink {background-position:-14px 7px;}
+
+/* .plusexpand {background-position:-92px 8px;}
+.minusshrink {background-position:-106px 8px;} */
+
+.cd, td.ae, td.af, .bf, .bg, .bh, td.ce, td.cf {text-align:right;}
+
+td.ce, td.cf {padding-right:0.8em;}
+input#ck_all,
+td.cg input {margin:0.4em 0;border:none;}
+table.inv_detail {width:57em; margin:0 11.4em 0 1.5em;padding-left:0.4em; float:right;clear:both;}
+
+
+th.tQty ,
+td.tQty,
+th.tDollars,
+td.tDollars {font-style:italic;border-top:1px solid #003366;}
+th.tDollars,
+td.tDollars,
+td.tQty {text-align:right;}
+
+td.tQty {}
+td.tDollars {}
+
+th.bd, th.be, th.bg , th.bf, td.be {text-align:center;}
+td.bd  {text-align:right;}
+	
+
+td.bb {white-space:nowrap; overflow:hidden}
+
+input.inv_chk {width:0.8em;height:0.8em;}
+.loading {display:block;border: 1px solid #A38EEB; background:#ffffff url('/include/ajax/loading.gif') no-repeat center center !important;} 
+.loaded {border-bottom:none;overflow:hidden;background-image:none;margin-top:0.2em;}
+/* div#line_0_detail {background-image: url("/include/ajax/loading.gif");} */

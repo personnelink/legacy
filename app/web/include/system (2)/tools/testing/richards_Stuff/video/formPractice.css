@@ -1,0 +1,125 @@
+@media print, handheld, page
+{
+    /* style sheet for print goes here */
+    size.landscape a.squarebutton,
+    a.squarebutton span,
+    .buttonwrapper,
+    .bug,
+    #bread,
+    .squarebutton,
+    #pageBanner,
+    #pageNavigation,
+    #pageFooter,
+    #subBanner,
+    #leftSideMenu,
+    #search
+    {
+        display: none;
+    }
+
+    #subContentWrapper,
+    #pageWrapper,
+    #contentcolumn,
+    #contentwrapper
+    {
+        width: 100%;
+        margin: 0;
+        float: none;
+    }
+
+    body
+    {
+        background: none;
+    }
+}
+
+/* redefine global id */
+#contentcolumn
+{
+    width: 79.1em;
+    border-left: none;
+    padding-left: 0em;
+    padding-right: 0.4em;
+    margin: 0;
+    padding-top: 0;
+}
+
+#leftSideMenu
+{
+    display: none;
+}
+/* done redefining global id's */
+
+table
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td
+{
+    text-align: center;
+    border: none;
+}
+
+
+th
+{
+    text-align: center;
+    font-size: 11.5px;
+    font-weight: bolder;
+    padding-left: 4px;
+    background-color: darkblue;
+    color: #fff;
+}
+
+tr:nth-of-type(even)
+{
+    background-color: white;
+}
+
+tr:nth-of-type(odd)
+{
+    background-color: lightsteelblue;
+}
+
+label
+{
+    float: left;
+    clear: left;
+}
+
+inputbox
+{
+    float: left;
+    clear: left;
+    border-radius: 5px;
+}
+
+button
+{
+    border: thin solid #000000;
+    float: left;
+    text-align: center;
+    background-color: lightgray;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+div#splash
+{
+    position: absolute; 
+    z-index: 20;
+}
+
+
+img#employers
+{
+     position: relative ; float: left;
+}
+
+img#employees
+{
+     position: relative; float: right;
+}
