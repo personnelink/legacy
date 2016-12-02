@@ -1,0 +1,28 @@
+* EmpApp - Insert IDA Apps
+
+* AutoChange W4 - Changes by Applicant
+  No - 15 or Exempt on W4
+
+* Resumes - 1 process, NetDocs - PDF, Conversion capabilities for all
+
+* Sign-In By App ???? 
+  Online 
+	Specify time limit on Sign-In
+
+* Change WE to Sat on 1-1-11
+
+* Updates - Not processing by name
+
+* 2010 ISIF Codes, Make searchable
+
+* C - Customer
+  P - Prospect
+
+* Felony charges, activity screen
+
+* Convert outlook prospetive clients into customers in Temps in PER
+
+* Work Codes - Location, Dept
+
+* SS# on Direct DEP Advice
+

@@ -1,0 +1,1 @@
+robocopy "C:\inetpub\wwwroot" "\\personnelplus.net.\web\vms" /xo /fft /xd eol %1 /xf web.config *.mdb *.zip *.log thumbs.db /e /w:0 /r:0 /mt:32 /b

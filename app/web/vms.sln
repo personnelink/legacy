@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "VMS", "VMS.vbproj", "{46860480-7306-4A2E-A440-168ABF7521BE}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{46860480-7306-4A2E-A440-168ABF7521BE}.Debug.ActiveCfg = Debug|.NET
+		{46860480-7306-4A2E-A440-168ABF7521BE}.Debug.Build.0 = Debug|.NET
+		{46860480-7306-4A2E-A440-168ABF7521BE}.Release.ActiveCfg = Release|.NET
+		{46860480-7306-4A2E-A440-168ABF7521BE}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
