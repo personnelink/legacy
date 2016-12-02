@@ -1,0 +1,10 @@
+h1 {  font-family: Arial, Helvetica, sans-serif; font-size: 16pt; font-weight: bold; text-decoration: underline}
+p {  font-family: Arial, Helvetica, sans-serif; font-size: 10pt}
+.keyword {  font-family: Arial, Helvetica, sans-serif; font-size: 10pt; font-style: italic; color: #FF0000}
+li {  font-family: Arial, Helvetica, sans-serif; font-size: 10pt; line-height: 14pt}
+h2 {  font-family: Arial, Helvetica, sans-serif; font-size: 12pt; font-weight: bold}
+code {  font-family: "Courier New", Courier, mono; font-size: 10pt; background-color: #99FFFF; color: #000000}
+td {  font-family: Arial, Helvetica, sans-serif; font-size: 10pt}
+a {  color: #FF0000; text-decoration: none; font-weight: bold}
+body {  background-color: #CCFFFF}
+h3 {  font-family: Arial, Helvetica, sans-serif; font-size: 10pt; font-weight: bold; font-style: italic}

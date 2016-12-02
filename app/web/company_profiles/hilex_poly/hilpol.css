@@ -1,0 +1,33 @@
+@media print {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+
+/* redefine global id */
+#contentcolumn {width:79.1em;border-left:none;padding-left:0em;padding-right:0.4em;margin:0;padding-top:0}
+#leftSideMenu {display:none;}
+h1 {color:#0c1021;background-image:none;}
+
+div#customerprofilediv{width:100%; overflow:hidden;}
+/* done redefining global id's */

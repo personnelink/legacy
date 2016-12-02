@@ -259,4 +259,6 @@ paket-files/
 *.lnk
 ejder.*
 *.mno
+desktop.ini
+Thumbs.db
 
