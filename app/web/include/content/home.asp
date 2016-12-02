@@ -1,20 +1,7 @@
 <%
 session("add_css") = "home.asp.css,./include/system/tools/applicant/job_postings/searchJobs.css" %>
 <!-- #INCLUDE VIRTUAL='/include/core/init_unsecure_session.asp' -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-62243120-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-<script type="text/javascript" src="/include/js/global.js"></script>
-<script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">stLight.options({publisher: "12a2ed7b-3561-4c90-954d-1e19022309df", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 <script type="text/javascript">
 
     var ids = new Array('employeePane', 'employerPane', 'orientationPane');
@@ -71,39 +58,6 @@ session("add_css") = "home.asp.css,./include/system/tools/applicant/job_postings
         document.getElementById(id).className = 'current'
     }
 
-	
-		
-var jobs = {
-	browse: function(e) {
-		(e.preventDefault) ? e.preventDefault() : e.returnValue = false;
-		console.log('fetching jobs');
-		var PostStr = "do=getjobs&for=";
-		doAJAXCall('/include/system/tools/applicant/job_postings/area_map/', 'GET', '' + PostStr + '', jobs.showmap);
-		return false;
-	},
-	showmap: function(oXML) {
-		smoke.quiz("", function(e){
-			if (e == "Yes"){
-				// doesn't matter, will never get called
-			} else if (e == "No") {
-				// doesn't matter, will never get called
-			}
-		}, {
-			button_1: "Okay",
-			button_2: "No",
-			button_cancel: "Cancel"
-		});
-		console.log("ready to insert map");
-		
-		$("div.dialog-inner").html(oXML.responseText);
-		$(".smoke.dialog").css('top', '5%');
-		$(".smoke.dialog").css('width', '420px');
-	}
-}
-
-	
-	
-	
 </script>
 
 
@@ -207,8 +161,8 @@ dim possibleError
                     <img src="/include/content/images/searchJobs.png" alt="Search Jobs">
                 </div>
             </a></td>
-            <td><a id="browseOurJobs" href="" onclick="jobs.browse(event);">
-                <span class="optionHeading" >Browse Our Jobs</span><br>
+            <td><a href="/include/system/tools/applicant/job_postings/">
+                <span class="optionHeading">Browse Our Jobs</span><br>
                 <strong>Job Postings</strong>
                 <br>
                 Browse through our current job openings and submit your application online</a>
@@ -310,15 +264,7 @@ dim possibleError
 <%=decorateBottom()%>
 
 <%=decorateTop("", "marLR10", "")%>
-<div style="display: inline-block; background: transparent url('https://www.chamberofcommerce.com/Portals/0/images/badges/badges01.jpg') no-repeat; width: 158px; height: 25px; *width: 165px; *height: 50px; line-height: 10px; text-align: left; padding: 25px 0px 0px 7px; margin: 0px 0 0 18px;"><a style="color: #000; font-size: 11px; font-weight: bold; font-family: arial; text-decoration: none;" href="http://www.chamberofcommerce.com/twin-falls-id/medical-diagnostic-laboratories/">Medical & Diagnostic Laboratories in Twin Falls</a>
-</div>
-<div style="display: inline-block; margin-left:25%;">
-<span><a href="https://twitter.com/PersonnelPlus" target="_blank"><img src="../../images/twitter-follow-us.png" alt="Twitter Follow" height="57" width="120"></a></span>
-<span><a href="https://www.linkedin.com/company/personnel-plus-inc-?trk=parent_company_logo" target="_blank"><img src="../../images/linkedin.png" alt="LinkedIn" height="57" width="80"></a></span>
-<span class='st_fblike_vcount' displayText='Facebook Like'></span>
-<span class='st_fbsub_vcount' displayText='Facebook Subscribe'></span>
-<span class='st_plusone_vcount' displayText='Google +1'></span>
-</div>
+<div style="background: transparent url('https://www.chamberofcommerce.com/Portals/0/images/badges/badges01.jpg') no-repeat; width: 158px; height: 25px; *width: 165px; *height: 50px; line-height: 10px; text-align: left; padding: 25px 0px 0px 7px; margin: 0px 0 0 18px;"><a style="color: #000; font-size: 11px; font-weight: bold; font-family: arial; text-decoration: none;" href="http://www.chamberofcommerce.com/twin-falls-id/medical-diagnostic-laboratories/">Medical & Diagnostic Laboratories in Twin Falls</a></div>
 <%=decorateBottom()%>
 
 <!-- End of Site content -->

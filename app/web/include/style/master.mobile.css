@@ -17,7 +17,7 @@ address, caption, cite, code, dfn, em, strong, th, var {font-style:normal;font-w
 h1, h2, h3, h4, h5, h6 {font-size:100%;text-align:left}
 q:before, q:after {content:&quot}
 td, p, table, h1, h2, label, fieldset, label, a, div, .title, .smallTxt, .smallerTxt, .botTitle {text-align:left}
-body {background:#fff;background-image:none;height:100%;text-align:center}
+body {background:#C9D0D6;background:url('/include/style/images/bgBodySheet.gif') repeat;height:100%;text-align:center}
 ul, li {margin-bottom:1px;list-style:none;list-style-type:none}
 input{color:#003466;border:1px solid #97A4B3;padding:.2em .2em .1em;margin-bottom:.5em;height:1.5em}
 label {float:left;text-align:right;margin-right:0.5em;display:inline;padding-top:0.5em}

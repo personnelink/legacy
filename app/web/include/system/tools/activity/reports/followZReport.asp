@@ -19,13 +19,13 @@ end if
 
  %>
 <%=decorateTop("WhoseHereForm", "notToShort marLR10", "Direct Deposit/Debit Report - Deduction Z")%>
-
 <div id="whoseHereList">
-  <form id="whoseHereForm" name="whoseHereForm" action="<%=aspPageName%>" method="post">
-    <p><%=objCompanySelector(whichCompany, false, "javascript:document.manageUsersForm.submit();")%></p>
-  </form>
+
+<form id="whoseHereForm" name="whoseHereForm" action="<%=aspPageName%>" method="post">
+  <p><%=objCompanySelector(whichCompany, false, "javascript:document.manageUsersForm.submit();")%></p>
+</form>
   <%
-	if len(whichCompany & "") > 0 then      'added POC; IDA; & PPI 2013.11.15 *Richard* ORE WYO 2014.12.22
+	if len(whichCompany & "") > 0 then      'added POC; IDA; & PPI 2013.11.15 *Richard*
 		Select Case whichCompany
 		Case "BUR"
 			thisConnection = dsnLessTemps(BUR)
@@ -35,11 +35,7 @@ end if
 			thisConnection = dsnLessTemps(BOI)
         Case "POC"
             thisConnection = dsnLessTemps(POC)
-		Case "ORE"
-            thisConnection = dsnLessTemps(ORE)
-		Case "WYO"
-            thisConnection = dsnLessTemps(WYO)
-        Case "IDA"		
+        Case "IDA"
             thisConnection = dsnLessTemps(IDA)
         Case "PPI"
             thisConnection = dsnLessTemps(PPI)
@@ -58,7 +54,7 @@ end if
 		
 	dim nPage, nItemsPerPage, nPageCount
 	nPage = CInt(Request.QueryString("Page"))
-	nItemsPerPage = 150
+	nItemsPerPage = 100
 	WhoseHere.PageSize = nItemsPerPage
 	nPageCount = WhoseHere.PageCount
 
@@ -75,8 +71,8 @@ end if
 		tableHeader = "<table style=""width:100%""><tr>" &_
 			"<th class=""padQuarter""></th>" &_
 			"<th class=""TypeZname"">Lastname, First</th>" &_
-			"<th style=""text-align:center; padding-bottom:1em;"" class=""TypeZ"">z</th>" &_
-			"<th style=""text-align:center; padding-bottom:1em;"" class=""TypeY"">y</th>" &_
+			"<th style=""text-align:center;"" class=""TypeZ"">z</th>" &_
+			"<th style=""text-align:center;"" class=""TypeY"">y</th>" &_
 			"<th class=""padQuarter""></th>" &_
 			"</tr>"
 	
@@ -112,8 +108,8 @@ end if
 			tableRecord = "<tr>" &_
 				"<td></td>" &_
 				"<td class=""" & Background & """>" & WhoseHere("LastnameFirst") & "</td>" &_
-				"<td class=""alignC " & Background & """>$" & TwoDecimals(TypeZ) & "</td>" &_
-				"<td class=""alignC " & Background & """>$" & TwoDecimals(TypeY) & "</td>" &_
+				"<td class=""alignR " & Background & """>$" & TwoDecimals(TypeZ) & "</td>" &_
+				"<td class=""alignR " & Background & """>$" & TwoDecimals(TypeY) & "</td>" &_
 				"<td></td>" &_
 			"</tr>"
 			
@@ -125,8 +121,8 @@ end if
 
 		tableRecord = "<tr>" &_
 			"<td colspan=2></td>" &_
-			"<td class=""alignL""><b>Total: </b>$" & TwoDecimals(TotalZ) & "</td>" &_
-			"<td class=""alignL""><b>Total: </b>$" & TwoDecimals(TotalY) & "</td>" &_
+			"<td class=""alignC""><b>Total: </b>$" & TwoDecimals(TotalZ) & "</td>" &_
+			"<td class=""alignC""><b>Total: </b>$" & TwoDecimals(TotalY) & "</td>" &_
 			"<td></td>" &_
 			"</tr></table>"
 
