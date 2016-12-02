@@ -1,0 +1,665 @@
+2014.02.11
+* integrated change audit details into time archive report
+
+2014.02.07
+* group time card: fixed detail totalling bug
+* group time card: fixed detail not resetting on direct total entry
+* group time card: corrected military time '000' format caused to crash
+* emp app: fixed bug with pandp slipping through without signature randomly
+* group time card: corrected summaries not totalling after changing detail entries
+
+2014.02.06
+* group time card: corrected military time '0000' format caused to crash
+* group time card: integrated 'prettyTime()' function to format time detail field on focus loss
+* group time card: fixed bug where time entered without minutes and also with a trailing 'p' or 'a' caused script to crash
+* group time card: fixed bug with 1 user being returned by sql as False
+
+2014.02.05
+* group time card: system doesn't prompt when adding a row. Expected behaviour, the design allows blank rows and records to be added and prompts for change info only when time data is entered into fields
+* group time card: corrected time detail inputs getting reset to default on 'add row'
+* group time card: fixed new time entry resetting on focus loss
+* time clock: corrected getCostCenter clock in service not filtering closed placements
+
+2014.02.03
+* group time: completed implementing client side framework for managing which user modified which time piece and gathering additional changedWhy attribute, began bug testing
+
+2014.02.01
+* group time: completed implementing server side framework for exposing supervisor ids for tracking to clients embed as addition html element classes
+
+2014.01.30
+* group time: began building time changed draft framework for auditing supervisor edits using classes
+
+2014.01.29
+* corrected account reset issue with multiple email addresses present
+* reset password, extended to send token to each registered email
+
+2014.01.28
+* add "Approved By" column to time archive report
+
+2014.01.25
+* correct enrollment bug where new empcodes generated vms were only checked against applicant table; script would crash if record existed in employee table
+* corrected skills enrollment issue, skills showed up on vms but not in temps or on application
+* integrated error handler with email notifier for missing / broken skills
+
+2014.01.24
+* restructed skills online with subcategories and broke out main categories
+* incorporated WYO and ORE into core
+
+2014.01.23
+* added W2 downloaded email upon successful W2 download via applicant
+* finalized ISDA pennies report for Christina G.
+
+2014.1.22:
+* check history report tool security too high, regression, again wasn't allowing anyone less than 4096 [pplusStaff] in
+
+[*** change log regression, conflicted and was mowed over with older version at some point ***]
+
+2013.12.12:
+* check history report tool security too high, wasn't allowing anyone less than 4096 [pplusStaff] in
+* mileage rounding bug in isda state pennies report
+* group timecard tool, corrected bug when entering time directly into summary field would go into incorrect day of week as a result of dynamic customer weekending date
+* completed mileage reporting bug and added grand total to isda state pennies report
+* corrected payment processing bug in Current Ledger tool
+
+2013.12.11:
+* fix bug that allowed browsing site without https
+* created isda state pennies web report
+
+2013.12.10:
+* Fixed timeclock timedisplay showing NaN when no internet, set clock to check offset on load and changed server time refresh to 30 minutes
+
+* Removed bill rate and billed column from time report
+
+2013.12.06: Timeclock Report:
+* Completed time clock report and published
+* @media print for lanscape, etc.
+* Apply Customer Security aka hide field	
+* Make a link to report somewhere
+
+2013.12.05: Timeclock report:
+* Add Employee Totals		
+* Add Grand Total	
+* Change 'weekending' to 'created'
+
+
+* Bug in SendPDF service with multiple customer codes
+
+* Corrected bugs in Usage Report services with multiple customer codes per single user and report crashing when no RS return for 90 day range
+
+* Integrated hover text in Usage Report
+
+* Fixed UsageReport bugs with Invoice Total skipping Expense type '4' in Detail Summary service and Invoice total not matching
+
+* Integrated notify() desktop alert function into global.js
+
+* Company_CustCode class built, g_company_custcode object introduced to deprecate company_custcode
+
+* GetTempsDSNbyCode(thisCode): function created and added to global_functions
+
+* Log restarted
+
+--------------- * Return to chronologing history: 2013.02.12 
+
+* dark-age *
+
+--------------- * Enter dark ages starting: 2012.02.25
+
+* integegrated additon db and rs functions into global_functions:
+	- LoadRSFromDB
+	- RunSQL
+	- InsertRecord
+	- SingleQuotes
+	- RandomString
+
+* integrated addition enums constants into Global_Declarations
+
+* refactored Global_function, Global_declarations and PageFooter
+
+* update seachform:
+	- Tab names
+	- Extended search guide to include: california, received, and pocatello
+	
+* corrected tab order in Emergency Contact form
+
+* fixed W4 form not saving [3 and 5]
+
+* fixed sql query issue in EmpApp.doStuff related to creating new user account and updating _srch table
+
+* added 'Activity' track to Update branch of Create User to create an appointment whenever a user is updated
+
+* corrected "update" bug where links in email / blue arrow weren't iterating through companies and only updated PER
+
+* extended "Interview" script to include automatic activity creation for "Initial Interview" and create in each enrolled branch
+
+* Updated "All Activities" framework to include web widgets and ajax methods from Placement report and allow modifying Appointments from there
+
+* Placement Follow up report rebuilt, with classes abstraction and ability to change "Disposition" through web interface, automatic closing of placements for no shows and tracking appointment
+
+* Site editting tool extended and refactored code to handle HTML edits better, suppress messages that have already had an email sent
+
+* Corrected Job Postings sort order so that jobs sort by Branch, City, and posted; reformed how dates are displayed and formatted based on "Today, Yesterday, x days ago, a week ago, or date"; also added groupings by area, with header for each group
+
+* Added mechanism to control 'Private' or 'Public' for blogs
+
+*Expected Timecard Report AJAX extended: completed Close placement and Open placement servic methods and plugged in triggers in form for each; will recycle these later for other timecard tools
+
+*Added questions to Interview Script:
+	- Have you ever worked for a staffing service before?
+	- Make sure W4 has been filled out correctly & signed.
+	- Make sure I9 has been filled out correctly & signed.
+
+* Corrected "Have you ever worked for a staffinf service" questions on Emp_App
+
+* Corrected bug in FollowActivities where system records were being displayed by default regardless of user selection
+
+* Fix record paging in FollowActivites and Manage Users apps
+
+* core: web_sessions functions(): fixed issue with IPv6 vs IPv4 in session init
+
+* added function ClearHTMLTags to global
+
+* added file system debugging flag to query string: debugging=1 triggers logging in file c:\vms_debug.txt
+
+* ajax'd View Applications tool to reduced bandwidth usage, correct users hitting refresh / enrolling people multiple times / creating multiple attachments and make app faster for improved user experience; also moved tool into it's own folder and hid file name [links / book marks will break]
+
+* W2 download tool created and published
+
+* empApp: form w4 - adding scripting to calculate A - G and put total in H; made H readonly and copyied value to number 5. Added error checking for Exempt [number 7] and "Filing Status" on number 3; added code to automatically update filing year to current.
+
+* Added Job Description to emails when someone applys for a job online
+
+* Identified and corrected a ssn.Replace issue with EmpApp that was causing it to crash when Phone numbers, zip code and / or  job history info was left blank
+ 
+* Extended "SendEmail" global function to check for a "<send_as_html>" tag and if present will remove tag and send message as HTML
+
+* Fixed bug where blog posting crashed if user selected format as HTML
+
+* Updated Blog architecture to not show file name, moved into it's own folders [/post/ and /blob/, respectively] and updated links through VMS that referenced blog post tool.
+
+* Integrate send_mail to notify users of new blog posting
+
+* Integrated Manage Profile and Manage Users into Start page, updated icons and integrated system notification message to inform use that profile was updated
+
+* Manage Profile: Completed, published beta for testing
+
+* Manage Users: Completed, published beta for testing
+
+* Bug Report: Corrected IE7 / IE8 compatibility issues
+
+* VMS:Core: html_styles.asp: Extended Add_css function to parse css file string for multiple files denoted by a comma
+
+* Patched up bugs in Current_Ledger and sent out for preview
+* View Applications tool, extended intervew extensions
+* Maintain Applicant tool, plugged in Interview button
+
+2011.5.10
+ * Corrected bug that caused script to crash when a space was passed in [with] the timedata
+2011.5.9
+ * moved branch hours report link to "Reports" section of "Start Page"
+	
+2011.5.5
+ * resumeSearch: corrected catalogues issue and system files being exposed
+ * resumeSearch: corrected script crashing with certain search guide combinations
+
+2011.5.1
+ * paper timecard entry app: continued piecing form together and outlining needed features
+	
+2011.4.30
+ * paper timecard entry app: started
+
+2011.4.26
+ * paper timecard entry app: inception
+
+2011.4.25
+ * manageUsers: finalized form and fixed breaks in form elements
+
+2011.4.24
+ * sendPDF: service creation, exposed service as:
+ 		 site=[numeric site code]
+ 		 simulate_customer = [simulated customer, user_level >=pplusStaff required; or
+ 		 customer = [customer code, must match session code]
+ 		 id = [numeric identifier, meaning changes based on category contect]
+ 		 cat = [service mode flag, available flags are: inv, att and w2 for invoice, attachments and w2, respectively]
+ 		 
+ * getTempsCompCode(thisDSN): created global function to complement getTempsDSN(thisCompCode)
+ * manageCustomerAssociations: completed setting default values for input objects and ajax scripting
+ 
+2011.4.19
+ * customer:billing:current_ledger: pdf download link placed, screen wiget/function for more/less detail, created "pending payment" object
+
+2011.4.18
+ * customer:billing:current_ledger: javascripting bugs on client side
+
+2011.4.12
+ * customer:manageAssociations:continued work
+
+2011.4.11
+ * customer:manageAssociations:worked on ajax functions
+
+2011.4.5
+ * epayment ... continued work
+ * extended globalFunctions: sendEmail, with SendEmailwBCC that essentially sends an email, but with a bcc. :)
+ 
+2011.4.4
+ * epayment ... nearing completion
+ 
+2011.4.3
+ * plugged in notification emails for resumes and application submittals via jobid on job postings page
+ * corrected dissappearing electronic signatures vis new canvas drawing pdf method
+ * worked on viewCustomers & manageCustomers
+  
+2011.3.31
+ * resumes: completed parsing of multipart form and extracted usable form data; integrated such into mail
+ 
+2011.3.30
+ * wiki: inception
+
+2011.3.29
+ * maintainApplicant: extend functionality: search by ssn
+
+2011.3.28
+ * security: bug: Guest was able to gain one time empApp access and users were putting in private/personal data in public viewApplicants
+
+ 2011.3.25
+ * renamed submitapplication.asp to empapp.asp; seperated procedure and presentation; extended w4 section and data gathering routines
+2011.3.24:
+ * followActivities: continued work, namely layout, bugs and adding custom date range selection
+
+2011.3.16
+ * Application issues: moved empapp to its own branch, added sidemenu notes, corrected bugs from list Kelli sent.
+
+2011.3.15
+ * Integrated customer selection mechanism into FollowActivities, replaced Start Page links to point to FollowActivities querystring flags instead of pointing to different scripts [most of them]
+ * Introduced variable: "leftSideMenu" into page footer to allow content injection from application
+ * Finished and published a working mockup of the ebill/epay [More of a recent account activity report]
+ * moved Customers and Applicants out of System/Tools/Reports/ into System/Tools/
+ * moved current_ledger.asp, history_ledger.asp and invoice_summary.asp to /system/tools/customer/billing
+
+2011.3.5
+ * staffblog: created branch in public content
+ * system core: added this "./" as a flag to let add_css allow application unique css to be loaded from same folder app is in
+
+2011.3.4
+ * core system:integrated social networking string blobs into global_functions and dropped into system nav
+ * continued researchand setting up social networking sites: twitter & facebook
+
+2011.3.3
+ * researched marketing information and statistics about social media and micro blogging
+ * setup initial social networking sites: twitter & facebook
+
+2011.3.2
+ * created new branch /include/user/manage/ to contain profile.asp
+
+2011.2.20
+ * followActivities: worked on procedure layer, built client side js for form submitting, published beta
+ * core:userHome - while creating artwork for "followActivities" I combined two http requests by merging user home images into one jpg image, also corrected metric issue with <ul> block not set to inline
+ 
+2011.2.19
+ * core:global_declarations: added dsnLessReports to dsnLess collection, links to reports/vms.mdb; intended to be used as a jet --> mysql conduit
+ * core:navigation and globalfunctions.asp: fixed bug for "Start Page" link rendering with public url instead of secure
+ * followActivities: worked on extending form building a section to select what activity to show in report. Completed presentation layer [css and html form]
+ * employee.asp: fixed bug - "form data blank, only form template"
+ 
+2011.2.10
+ * timecardEmp.asp: fixed and styled saved company timecards section
+ * core:navigation.asp: corrected a bug with "Start Page" link where a user would be presented with VMS perspective through public portal, instead of the secure channel
+ * created zChanges folder, cloaked it and moved change logs into it because I got tired of patching my changelog after each and every site-wide replace!
+ * Production server croaked on MSXML change, corrected via removing trailing version numbering: MSXML2.ServerXMLHTTP
+ * Pulled searchJobs.asp out of secured section and moved into public side so that we might be able to pick up some extra search engine brownie points from it's 'dynamic' content
+ * Apps within VMS started complaining about "msxml3.dll error '80070005'"; research found that a recent update had made an old library not work [I think, it almost makes sense so I'm going with it]; essentially did a site wide swap of this: Microsoft.XMLHTTP to this: MSXML2.ServerXMLHTTP.4.0
+
+2011.2.9
+ * public_web: removed "Job Seekers" link, dropped employee.asp file [hollow shell], put newly built Locate Candidate form in its place and renamed link to "Locate a Candidate"
+ * public_web: home.asp, altered AST flags to always render [so search engines can find the copy text] and instead programmed system to cycle visibility flags vs build/not build content
+ * public_web: send job oppurtunity form, built
+ * createApplicaton.asp: bug in Update branch where if EmployeeNumber was not Null and was zero length no employee number would be created; correct
+ 
+2011.2.8
+* core:global_declarations.asp: dropped MySQL 3.51 support; site is now entirely MySQL ODBC 5.1
+* core:html_header.asp: added additional meta-description information for search bots
+* core:global_functions.asp: optimized code that handles transitioning from secure to public; namely to set a 301 moved permanent and then redirect for anything non-secure coming into the web-server
+* core:global_functions.asp: created function 'only_zipcode' as a pseudo-placeholder; borrowed code from function 'only_numbers' and added a contigency for a '-'; in future will replace function with a regular expression
+* createApplication.asp: bug with some garbage user input managing to sneak through zipcode and caused enrollment/update to crash
+
+2011.2.7:
+* createApplication.asp: addressed new enrollment bug, still working on ...
+* moved perimeter web to internal server
+* debugged public web code [it had lay dormant and untested for a year]
+
+2011.2.5:
+* created new string concatenation routines in order to smoosh WOTC events into a single line, displaying most recent activity
+* integrated shared routines from common_reports.asp into followWOTC.asp
+* migrated and adapted shared functions from followUnemployment.asp into common_reports.asp
+* completed feature enhancements and additions to followUnemployment.asp
+* split whoseHere.js into --> reports.js and integrated into followUnemployment.asp
+* worked on unemployment report integrating year selection flag
+* Split whoseHere.js into --> viewApplicants.js; integrated into viewApplicants.asp to correction select submit error
+* Added IDA to the selection collection
+* fixed whichCompany select width and added IDA to the selection collection.
+* found ophaned branch and partially developed forms, moved
+	/tools/manageApplicants --> /include/system/tools/activity/forms
+	
+* moved /system/tools/forms branch to --> /system/tools/activity/forms
+* add IDA to branch selection collection.
+* WOTC and Unemployment activity reports, feature changes and additions
+
+2011.2.4:
+* started working on fileupload form and new global routines [sibling for emailResume and future maintainAttachment feature extension]
+* WOTC and Unemployment activity reports, feature changes and additions
+
+2011.1.31:
+* searchForm.asp [resume search]: sort by site and isntalled additional indexing ifilters for indexing service
+* continued work on ebill: current_ledger.asp [front end form]
+
+2011.1.20:
+* viewApplications.asp: presentation layer had some elements "missing", namely css class .appName was gone; probable errant find/replace ...
+* viewApplications.asp: bug on new enrollment branch, corrected
+
+2011.1.15 & 16:
+* searchForm.asp [resume and net_docs search]; finished debugging and feature changes/additions
+
+2011.1.12
+* employer page, ravamped and altered content
+* globalFunctions.asp: putted out variable declaration artifacts out and put into global_declarations.asp
+* addressed errant "secure session" on Employer public page
+* created employee page
+* altered core: navi_top_page.asp, integrated "Job Seekers" and "Staff Blog" links
+* update SIF WC modded rates globally in Temps and update Link on web to the same
+
+2011.1.11
+* continued working on W2 form and createW2.asp
+* resetPassword.asp: redirect bug, isolated affected issue in changePassword.asp, corrected.
+
+2011.1.10
+* created createW2.asp and supporting W2 pdf form
+* resetPassword.asp: redirect bug, working on ...
+
+2011.1.7
+* createApplication.asp: minor forms touch-ups, branch specific details [like zip code]
+* submitApplication.asp: added heardAboutUs and StaffingAgencies question set to tbl_applications in database and connected in EmpApp script
+
+2011.1.6
+* createApplication.asp: addressed some bugs introduced by changes made the previous day.
+
+2011.1.5
+* w2 form update and stretched application core PDF to faciliate future dynamica page additions on a site to site basis.
+* added 'branch_address' and 'branch_fax' to the global session variable collection; later will move scope to module level
+* createApplication.asp: added ability for VMS to apply branch address to forms, added fields to populate emergency contact data
+* searchJobs.asp: modified showJobs.asp service to include a direct link to submit a resume
+
+2011.1.1
+* integrated news feed into userHome.asp [added userHome.js and made userHome ajax active]
+* completed optimizing: init_secure_service.asp [renamed from init_secure_service_session.asp] to load and run "lighter" and to include no response.output.
+* global_functions:decorateTop() - made heading parameter html tag aware
+
+2010.12.31
+* submitapplication.asp, submitapplication.js and global.js: modified and plugged in the page_title so that the global function title_this is called on page load and it uses a hidden form input with a preset value from the server script, this to allow dynamic page titling via server side script; will patch viewApplications.asp and related files the same way and publish.
+2010.12.30
+* viewApplications.asp: created rough search framework for mining text data from applicant applications; need to finish submit branch to store a copy of search text in 'indexed' table
+
+2010.12.29
+* current_ledger.asp, continued development, started nacha file processing; created secure location to receive and store payment info, linked to vms, continued scripting to build nacha file details
+	dependencie introduced:
+	- reports/ajax/sendPayment.asp
+* core: navi_top_menu.asp, found missing navigation text in client perspective
+
+2010.12.28
+* current_ledger.asp, continued development
+
+2010.12.27
+* searchTempsSSN.asp: found security hole exposing internal associate info to internal associates; corrected
+* global: packed site images into a sprite [for navigation and misc non-sprited components] in or to reduce http requests
+* submitApplication.asp.css: fixed long plaguring "error" checking bug where problem results break out of <div> instead of resizing parent container.
+
+2010.12.24
+* current_ledger.asp, continued development
+
+2010.12.23
+* global.js: new function title_this(),  to set document window; integrated such into view Applicants.
+* current_ledger.asp, continued development
+
+2010.12.22
+* init_secure_service_session.asp created and added to core vms, will optimize code later for better service performance
+* viewApplicants.asp: added a "run as service" option and patc
+* current_legder.asp, continued developement, published beta preview
+
+2010.12.21
+* showTimeDetail.asp: garbage made it into one of the timecard entries in the database and caused script execution to crash; located garbage data and added exception to the code to handle for malformed, bad data of the such.
+* created new module current_ledger.asp - this module uses the beta vms ajax framework.
+	dependenciess include:
+		- reports/tools/customers/current_ledger.asp
+		- reports/ajax/getInvoice.asp
+		- js/current_ledger.js
+		- style/unique/tinyForms.asp.css
+
+2010.12.20
+* Split Access databases and connected the vms to temps via newly created linked databases located in the temps npath under web.services
+* while splitting database, stumbled upon more efficient routines to elimenate the need for a 'queryCache' on the job board, will dramatically speed up access and significantly reduce bandwidth overhead
+* found issue with how access deals with memo fields and unions and particular how the way the vms implements the same [for temps compatibility]; in short queryCache is being reimplemented and current changes scrapped.
+* moved doAJAXCall() and XHConn() to global.js
+* started implementing ajax in whoseHere module, stopped do to time constraints and priorities
+* added: company_dsn_site to global web_session's collection, this to complement company_custcode when retrieving Customer specific order data, a/r, etc.
+
+2010.12.16
+* searchJobs.asp: long standing bug where even if a page it flagged as non-cacheable, some sub-objects [like the jobPostings web service] results would be cache'd still. Corrected this by flagging the web service responce as non-cacheble as well.
+2010.12.15
+* worked on ajax routines for view attachments [routines to later to be]
+2010.12.14
+* implemented beginning framework for first function soap application [as seen in viewAttachments]
+* rough ajax implemation complete, proof of concept showcased in viewAttachments via the "delete" option that uses soap to send a remote procedure request, in this case to delete the file, and then send a status feedback and update the browser with the outcome.
+
+2010.12.07:
+* viewApplications.asp: complete progress bar indicator sprites, css and scripted into code
+* viewAttachments.asp: created sprites, modified css, inserted sprite links into html presentation layer
+
+2010.12.06:
+* createApplication.asp: issue stamping userId into "AppChangedBy" field in Temps due to 8 character size limitation and new user Id’s have grown > than four characters; to keep the VMS from causing "Temps database validation issues" I changed the user stamp format from "VMS-UserId" to "V-UserId"
+
+2010.12.05:
+* core: identified a dns issue with the dsnless database connections paths, issue caused intermittent performance degradation issues.
+
+2010.12.04:
+* createApplication.asp: modified safety form, erased the Twin Falls addresses from the “Safety Policy Statement” background and created 24 input boxes in a table in their place [{Name, Address, Cityline, Phone, Fax, Openhours} x 4]; built a medical providers table in the VMS database and plugged in the values from each branch location, and assigned each an unique id [this also supportive of later dropping in a web form to let staff manage the provider information]; added a locationId to med_providers and site_ips database tables, then related that data back to each branches tbl_location entry; finished scripting changes to the createApplication module to retrieve and squish the new information together
+
+* published changes to empApp that were made a few months ago, but not implemented yet, along with new safety form and createApplication.asp; will review bugs on Monday.
+
+2010.12.03:
+* submitapplication.asp.css: adjusted margin for 'problemsInApp' div
+* submitApplication.asp and submitapplication.js: created new error checking and navigation routines to check the form in real time, created formatSSN() and isDate() functions and toiled towards implementing further SOAP like behaviors
+
+2010.12.02:
+* viewApplications.asp: changed default range of dates to display from two weeks one day to five days.
+
+2010.12.01:
+* emailResume.asp: Modified email notification with more informative information about automatic nature of resume handling.
+2010.11.08:
+* submitApplication.asp and submitApplication.asp.css: added in navigation links that can be used to directly jump around and navigate the EmpApplication 
+* submitApplication [asp, js and css]: worked on real time client side error checking to inform the user instantly after moving field focus wether the value is good
+
+2010.10.29:
+* createApplication.asp: Corrected "allofit" flag on downloading application.
+* viewApplications.asp: corrected orphaned ";" artifact in MA links.
+* createApplication.asp: PR3MSTR table record update failed on enrollment; issue seemed to related to missing session info
+
+2010.10.27
+* viewApplications.asp and tinyForms.css: worked on modifying both and making space for the delete and edit control sprite links
+
+2010.10.19
+* msxml error in timecardEmp, redirected to 0.3 server [from 0.2]; will repair other server
+
+2010.10.11
+* createApplication.asp: Applications aren't being distributed fast enough for users; created \\site\direct$ shares at each branch and modified createApplication.asp to generate the Attachment directly at each branch site. This increases script time but quiets users as the script doesn't complete until file it created driectly at each site.
+* viewAttachments.asp: When viewing Attachments via querystring referal link, the dsn wasn't being set properly and was looking to form data collection instead of the querystring; this resulted in ambiguous search results and user needing to select the Search button twice.
+
+2010.10.05
+* viewApplications.asp: added MA, M = most of application, A = all of applicaton
+* resetPassword.asp: fixed header response redirect issue and no style sheet being applied
+* submitApplication.asp: commented out "single or married" in General portion
+
+2010.09.22
+* copyToFrom.asp [formerly copyToIDA.asp]: completed script so users can shuffle users around to/from different temps companies
+
+2010.09.21
+* followOrders.asp: localtion selection wasn't working; located and fixed back javascript file reference
+* copyToFrom.asp [formerly copyToIDA.asp]: completed script so users can shuffle users around to/from different temps companies
+
+2010.09.20
+* {core}: global_function.asp: FormatPhone() - scripted exception into function to ignore  passed string if equal to "na";
+* getSavedTime.asp: cache-control missing in web service response.header; corrected.
+* timecardEmp.asp: located bug in header redirection - changed page init logic to not write to header
+* removed legacy Session() and replaced with new set_session() and get_session() calls
+* {core}: html_header.asp: updated cache-control header response for session("no-cache") = true
+
+2010.09.18
+* submitapplication.asp: continued implementing design changes
+* submitapplication.js: added problem tracking to client side error checking routines and added user feedback about where problem are in application
+* viewAttachments.asp: completed modifications to search logic allowing for a single input field; the script then evaluates the search to determine if it can be a social, id or name; completed query string parameter input to script; accepted parameters are ?who and ?where
+* maintainApplicants.asp: tied viewAttachments.asp into maintainApplicants.asp
+* createApplication.asp: stitched applicant maintenance link into insertion_status_info and retrieved AplicantId on duplicate SSN check
+* viewAttachments.asp: backlinked from to maintainApplicants.asp
+
+2010.09.17
+* submitapplication.asp: correct ssn handling; if ssn started with 0 it would be dropped.
+* searchJobs.asp: changed behavior, if no web description specified then job order no longer will post to web.
+* createApplication.asp: continued implementing changes to EmpApp Process
+
+2010.09.16
+* createApplication.asp: corrected alienNumber is null crashes script
+* createApplication.asp and submitApplicaton.asp: continued implementing changes to EmpApp Process
+* submitApplication.js: worked on implementing design changes
+
+2010.09.15
+* submitApplication.asp and createApplication.asp: worked on implementing design changes
+* createApplication.asp: vms will create employee record now on enrollment
+
+2010.09.14
+* global: imageURL, reset to ""; previously would set to https://secure.personnelplus.net/ if HTTPS was detected
+* submitApplication.asp and createApplication.asp: worked on implementing design changes
+
+2010.09.13
+* submitApplication.asp and createApplication.asp: worked on implementing design changes
+
+2010.09.10
+* [AppProcess] completed electronic signature application to forms
+* added: Aliases, middlename and Emergency Contact info
+* submitApplication.asp: loosened form data requirements; can submit form now without work history or min/preferred wage
+
+2010.09.09
+* createApplication.asp: when a date was passed with no delimiters [ie 08091956]; type mismatch exception occurred.
+
+2010.09.08:
+* createApplication.asp & viewApplications.asp: session state bug, fixed
+* worked on altering digital signatures presentation on the forms
+	- master forms
+	- createApplication procedures
+
+2010.08.31:
+* createNewUser.asp: completed
+
+2010.08.30:
+* createNewUser.asp: error redirecting page [modifying header after it was written too]
+* createNewUser.asp: layout broken [not sure when it broke, but its been that way for a bit]; built new style section in general.asp.css
+* common.asp: function make_input: added a "no wrap" contingency where is wrap_text is empty function assumes no wrap; before function would output empty  tags "<></>"
+
+2010.08.26:
+* createApplication.asp: additional scripting to handle eletronic signing of forms and filing
+* EmploymentApplication.pdf: added additional fields for signatures and missing/overlooked data
+
+2010.08.25:
+* worked on w4 branch of application
+* worked on integrating Applicant Agreement electronic signature into submitApplication script; default behavior now hides legal verbiage if already signed.
+* changed electronic signature behavior to hide legalese if applicant has already signed.
+
+2010.08.17:
+* debugged submitApplication.asp, issues integrating kill_guest with new session management; rescripted
+* global_functions: modified function StripIt to not escape out single apostrophes; this functionality was integregrated into function insert_string for database interactions [and comes after several hours of trying find why the ____ apostrophes keep doubling!
+* collected together files for init_unsecure_session.asp (called by createNewUser.asp and non-secure pages); this primarily so that the file name becomes self evident next to its counter part, init_secure_session ...
+* found variable name conflict variable: user_id declared publicly and called privately in function begin_session()
+* bug: break in createNewUser.asp; needed to rescript how the script interacts with the newer methods for handling user sessions and presentation page header;
+* bug: all modules that use function UserLevelRequired(this) will need to be updated to use session("required_user_level") = this instead to direct the system to act appropriately
+* aspPageName: moved to public scope
+* reincarnated function userLevelRequired() to handle spot security for individual secure page furniture items
+
+2010.08.16:
+* finished feature extension and behaviour alteration for searchForm.asp [network documents and resume search]; altered behavior to not require any "content" properties before beginning search; default criteria returns past 14 days of most recent resumes specific to the users branch.
+
+* Published dev to secure; all source corrent.
+
+2010.08.14 : Worked on Dev Build
+* Altered include/core/
+  - moved global_declarations.asp into
+  - renamed masterPageTop.asp --> init_secure_session.asp
+  - added: session("required_user_level")
+  - created: navigation.asp and linked in bottom global_declarations.asp
+
+* deprecated function userLevelRequired(); was no longer compatible
+* the following were added to improve application module interoperability, performance, scalabilty and dev:
+  - built function bottomPageRecords (nPageCount, oldQueryString)
+  - built function LookUpBread (breadCrumb)
+  - Function BreadCrumb(FullPath)
+    * this was started as fixing a related interoperability issue with the mysql session_state functions
+
+* worked on searchForm.asp as it was giving an error, I was in the middle of adding features a week ago and it was behind deadline and it allowed me to troubleshoot and debug the core modules that are not stable yet {leading to the other noted activities for today}
+
+* added: no_you_heading and no_you_body to global_declarations.asp
+
+2010.08.13
+* split site code into a production folder and a dev folder
+* created a development server and pointed cfg at dev folder
+* rold site code back to August 1 [more stable build]
+* stiched in debug server to site source, added additional support for future proof in header handling and corrected a web session issue for database connection when using unknown header.
+* refreshed original requisitioncenter module with updated schema changes and plugged it into userHome, dev tier
+
+2010.08.09
+*  moved web header into a variable first before sending; this in order for redirects to work and too allow sending a partial header resonse to client to speed up downloads of other resources while the script is still procressing.
+* changed global baseURL to point to personnelplus-inc.com
+2010.08.06
+* checkSignIn.asp: noGuestSession method broke with session management change; updated code to use current session state manager
+* global_functions.asp: userLevelRequired function call failed in some modules do to an "order of operations" problem; the function was being called before support procedures could be initialized.
+* security: branchHours.asp: exposed to guest
+
+2010.08.05
+* corrected issue with cascading notes when multiple insertions are done
+
+* createApplication.asp, action=insert; [bug with temps conduit], Microsoft JET Database Engine error ''80040e57''; found problem with temps schema only allowing 30 characters; scripted exception to truncate anything over 30 before injecting.
+
+* reportBug.asp: error ''80004005''; located issue with session_state_manager change and how new procedures require processing to be done in header before any response is sent to client; changed order of operations and change response.redirect to server.transfer method.
+
+2010.08.04
+* while debugging a different error located a minor issue with the core session manager; there is no session id to track whilst in transition bewteen sessions; aka the malformed null in the first value this string: 
+insert into web_sessions_data (session, key, data) values ('', 'homeMessage', 'Whoops, there is some confusion...'); db schema requires session id ... will fix later [23:03pm]
+
+* searchForm.asp, make display recent two weeks by default, in progress
+
+* viewCustomers.asp created
+
+2010.08.03
+* Roughed initial checkHistory.asp and tied it into maintain Applicant.
+
+* Finished 'update' action scripting for maintainApplicant.asp
+
+* Finished extending session state manager to allow saving of unique session data, to replace Session("")
+
+* Bug found in createNewUser.asp allowing in unsanitized input from field 'city';
+
+* maintainApplicant.asp created; rough concept.
+
+2010.08.01:
+* Updated VMS core header response for caching and IE specific items.
+* Centralized record paging css to global.css from unique add-in classes; changed format to match other search options extensions.
+* viewTimecards.asp  alpha module almost ready for evaluation.
+* Found old non sql queries in viewApplications.asp that were gathering address information manuall via script instead of with INNER JOINS
+
+2010.07.31: createNewUser.asp extended functionality to encompass new business client enrollments; pplusvms catalogue modified schemas: can't remember. :)
+
+2009.09.04 : Added noise prepocessor to searchForm.asp [Resume and NetDocs search] for searches
+
+2009.03.18
+* searchForm.asp addressed indexing service issue 
+
+2009.01.19:
+* roughed out branchHours.asp
+
+2008.12.15:
+* Created initial resume and net_docs search form and indexing server
+

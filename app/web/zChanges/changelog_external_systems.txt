@@ -1,0 +1,7 @@
+2010.1.31
+* realization that original epiphany lacked follow through by me ... 
+
+2010.12.21
+* email management: created a central management store of in/out going messages, this to facilitate more efficient activity and prospect mining in the future.
+
+* Epiphany ... I should create a log for things outside the vms, but that are also related in ways.

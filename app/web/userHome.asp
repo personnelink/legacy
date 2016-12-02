@@ -3,12 +3,22 @@ session("add_css") = "general.asp.css, ./include/system/tools/activity/reports/a
 session("page_title") = "User Home"
 session("window_page_title") = "User Home Start Page - Personnel Plus" %>
 <!-- #INCLUDE VIRTUAL='/include/core/init_secure_session.asp' -->
-<script type="text/javascript" src="/include/system/tools/activity/reports/appointments/followAppointments.js"></script>
+<script type="text/javascript" src="/include/system/tools/activity/reports/appointments/followAppointments.001.js"></script>
 <script type="text/javascript" src="/include/js/userHome.013.js"></script>
 <script type="text/javascript" src="/include/functions/calendar/calendar.js"></script>
 <script type="text/javascript" src="/include/functions/calendar/calendar-setup.js"></script>
 <script type="text/javascript" src="/include/functions/calendar/lang/calendar-en.js"></script>
 <style type="text/css"> @import url("/include/functions/calendar/calendar-blue.css"); </style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-62243120-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <%
 
 dim enrollmentMessage, enrollmentMessageTxt
@@ -25,13 +35,13 @@ if enrollmentMessage = "true" then
 	enrollmentMessage = set_session("enrollmentMessage", "")
 end if
 
-dim welcomeMessage, welomceMessageTxt
-welcomeMessage = get_session("weclomeMessage")
+dim welcomeMessage, welcomeMessageTxt
+welcomeMessage = get_session("welcomeMessage")
 if len(welcomeMessage) > 0 then
-	response.write(decorateTop("weclomeUser", "marLR10", "Welcome to Personnel Plus"))
+	response.write(decorateTop("welcomeUser", "marLR10", "Welcome to Personnel Plus"))
 	response.write(session("welcomeMessage"))
 	response.write(decorateBottom())
-	welcomeMessage = set_session("weclomeMessage", "")
+	welcomeMessage = set_session("welcomeMessage", "")
 end if
 
 if len(session("homeMessageHeading")) > 0 then
@@ -125,7 +135,7 @@ if userLevelRequired(userLevelPPlusStaff) then
 			"<label onclick=""alarm.check('', '');""><input type=""checkbox"" id=""onlyme"" name=""onlyme"" value=""1"" checked=""yes"" onchange=""getAppointments();""/>" &_
 			"Mine Only</label></span>" &_
 		"</h2>" &_
-		"<div style=""position:relative;""><div id=""busyoverlay"" class=""working""></div>" &_
+		"<div style=""position:relative;"" id=""g_appointments_pane""><div id=""busyoverlay"" class=""working""></div>" &_
 		"<div id=""appointments"" class=""working noappointments""><i>Checking appointments...</i></div></div>" &_
 		"<div id=""messages"" class=""hide""></div>"
 end if
@@ -142,6 +152,8 @@ do while not blogPosts.eof
 	blogDate = blogPosts("date")
 	blogSubject = blogPosts("heading")
 	blogBody = blogPosts("content")
+	
+	uniquelyRecallableId = blogID & "_" & blogUserID
 	
 	if user_level => userLevelPPlusStaff then 'unhide internal use only tools'
 		blogBody = replace(blogBody, "pplustool", "")
@@ -170,9 +182,9 @@ do while not blogPosts.eof
 	End if 
 	
 	if blogID = 53 then
-		response.write "<p>" & blogSubject & blogTasks & "</p><span><p>"  & blogBody & profile_updated & "</p></span>"	
+		response.write "<p id=""hm_p_" & uniquelyRecallableId & """>" & blogSubject & blogTasks & "</p><span id=""hm_span_" & uniquelyRecallableId & """><p>"  & blogBody & profile_updated & "</p></span>"	
 	else
-		response.write "<p>" & blogSubject & blogTasks & "</p><span><p>" & blogBody & "</p></span>"
+		response.write "<p id=""hm_p_" & uniquelyRecallableId & """>" & blogSubject & blogTasks & "</p><span id=""hm_span_" & uniquelyRecallableId & """><p>" & blogBody & "</p></span>"
 	end if
 	
 	manageThisBlog = false
