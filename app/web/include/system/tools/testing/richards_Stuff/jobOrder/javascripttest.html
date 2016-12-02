@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+</head>
+<body>
+
+
+<p><h1>Just freaking use css3 "display:none;"</h1></p>
+	<div class="smform">
+	Hi I am a small form tester
+	
+	</div>
+	<div class="medForm">
+	Hi I am medForm
+	</div>
+	<div class="lgForm">
+	Hi I am a Large Form
+	</div>
+	<script> //this will hide two of the divs based on screen size
+//Do work
+	if (screen.width <=480px){ //if screen width is less than 481px show it
+		getElementsByClassName('smForm').style.display = 'block';
+	}else if (screen.width >=481px){//if screen is larger than 480px hide it
+		getElementsByClassName('smForm').style.display = 'none';
+	}else if (screen.width >=481px && <=1199px){ //if screen width is less than 1200 greater than 480px show it
+		getElementsByClassName('medForm').style.display = 'block';
+	}else if (screen.width >=1200px || <=480px){ //if screen is larger than 1200px or smaller than 480px hide it
+		getElementsByClassName('medForm').style.display = 'none';
+	}else if (screen.width >=1200px){ //if screen width is greater than 1200px wide
+		getElementsByClassName('lgForm').style.display = 'block';
+	}else{getElementsByClassName('lgForm').style.display = 'none';
+	}
+</script>
+</body>
+</html>
+<!--<script>
+document.getElementsByClassName("smForm", "medForm", "lgForm") { 
+//Do work
+
+ //this will hide two of the divs based on screen size
+function HideAndTell("smForm", "medForm", "lgForm"){
+	if (screen.width <=480px){ //if screen width is less than 481px show it
+		getElementsByClassName('smForm').style.display = 'block';
+	}else if (screen.width >=481px){//if screen is larger than 480px hide it
+		getElementsByClassName('smForm').style.display = 'none';
+	}else if (screen.width >=481px && <=1199px){ //if screen width is less than 1200 greater than 480px show it
+		getElementsByClassName('medForm').style.display = 'block';
+	}else if (screen.width >=1200px || <=480px){ //if screen is larger than 1200px or smaller than 480px hide it
+		getElementsByClassName('medForm').style.display = 'none';
+	}else if (screen.width >=1200px){ //if screen width is greater than 1200px wide
+		getElementsByClassName('lgForm').style.display = 'block';
+	}else{getElementsByClassName('lgForm').style.display = 'none';
+	}
+}};
+</script>-->
+
+

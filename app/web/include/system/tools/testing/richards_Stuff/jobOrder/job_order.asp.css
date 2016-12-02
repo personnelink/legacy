@@ -1,0 +1,921 @@
+
+
+/* Large devices (large desktops, 1200px and up)*/
+@media only screen and (min-width:1200px) {  
+/* redefine global id */
+body{width:80%; margin:auto;}
+#pageWrapper{width:80%:}
+#contentcolumn {width:79.1em;border-left:none;padding-left:0em;padding-right:0.4em;margin:0;padding-top:0}
+#leftSideMenu {display:none;}
+#download{float: right; margin-right: 1em; text-align: right;}
+
+/*#search a { clear:both;margin:0 13px;width:20em;height:25px;text-decoration:none;display:inline-block;}*/
+/*#search a.leftSearch {float:left;background:transparent url('/include/style/images/cornersSheet.png') no-repeat left -516px;} /* Client Login */
+/*#search a.rightSearch {float:right;background:transparent url('/include/style/images/cornersSheet.png') no-repeat right -515px;} /* Timeclock Login */
+/*#search a.middleSearch {float:left;background:transparent url('/include/style/images/cornersSheet.png') no-repeat -360px -515px;}/*Job Postings */
+
+/* done redefining global id's */
+input{width:80%;}
+/*form#frmJobOrder input {padding:15px;margin:15px;width:40%;}*/
+form#frmJobOrder legend {width:30%;font-weight:bold;display:block;margin:1.6em 0 0; font-size:110%;}
+
+form#frmJobOrder table {border-collapse:collapse;}
+form#frmJobOrder table,
+form#frmJobOrder td,
+form#frmJobOrder th,
+form#frmJobOrder label {padding:0; font-weight:normal;text-align:left;margin:0;}
+
+form#frmJobOrder table tr th {padding:0.6em 0.6em 0 0.4em;}
+form#frmJobOrder table tr td {padding:0 0.6em 0.4em 0.4em;}
+
+/* set table widths */
+table#tblJobOrder label {font-size:90%;}
+table#tblJobOrder tr td,
+table#tblJobOrder tr td {padding:0; margin:0;}
+
+table#orderheader,
+table#companyinfo,
+table#creditinfo,
+table#businesstype,
+table#jobposting,
+table#orderdetails,
+table#workcomp,
+table#instructions,
+table#chronicle,
+table#rates,
+table#servicecalls,
+table#orderactivities,
+table#placements {border:1px solid #ccc;margin:1em 0 1em;}
+table#creditinfo {width:30%;float:right;margin-right:1em !important;}
+table#companyinfo {margin-right:0.5em; width:29.5em;}
+table#workcomp {padding-right:1em; width:29.5em;}
+table#instructions {width:27.6em;float:right;margin-right:1em !important;}
+table#chronicle {margin-right:0.5em; width:29.5em;}
+table#rates { width:27.6em;float:right;margin-right:1em !important;}
+
+table#servicecalls,
+table#orderheader,
+table#businesstype,
+table#jobposting,
+table#orderdetails,
+table#servicecalls,
+table#placements,
+table#orderactivities {width:80%;}
+
+table#workcomp,
+table#instructions {height:13em;}
+
+table#chronicle,
+table#rates {height:9em;}
+/* company lookup container div */
+
+input#searchbox {float:left;clear:both;width:30%;}
+
+div#CompanyLookUp {z-index:1000;position:absolute;margin-top:3.2em;width:42em; min-height:10em;border: 1px solid #003366;display:none;}
+
+/* job order tabs */
+
+#jobtabs {
+  position: relative;
+  right:0;  
+  min-height: 40em;
+  clear: both;
+  float:right;
+  top:1.8em;
+  margin:0 1em 0 0;
+}
+.tab {
+	width:18em;
+	height:3.1em;
+	overflow:hidden;
+	float: right;
+	clear:both;
+	text-align:right;
+	margin:0;
+	padding:0;
+	position:relative;
+	background:url('tabs.png') no-repeat top right;
+	cursor:pointer;
+	}
+
+.tab:hover {
+	background:url('tabs.png') no-repeat bottom right;
+}
+
+.tab label span {
+	top:0;
+	width:18em;
+	position:absolute;
+	white-space:nowrap;
+	overflow:hidden;
+	font-size:130%;
+	display:block;
+	clear:both;
+	float:right;
+	cursor:pointer;
+ }
+.tab label span.dept {
+	top:2.2em;
+	right:1em;
+	text-align:right;
+	font-size:75%;
+}
+.tab label span.job {
+	top:0em;
+	left:0.4em;
+	overflow:hidden;
+	width:14em;
+	height:1.6em;
+	text-align:left;
+	font-size:120%;
+}
+
+.tab label span.cname {
+	top:2.2em;
+	left:1.4em;
+	overflow:hidden;
+	width:11em;
+	height:1.3em;
+	text-align:left;
+	font-size:80%;
+}
+
+
+.tab [type=radio] {
+  display: none;   
+} 
+
+
+[type=radio]:checked ~ label {
+  background: white;
+  border-bottom: 1px solid white;
+  z-index: 2;
+} 
+[type=radio]:checked ~ label ~ .tabcontent {
+  z-index: 1;
+}
+
+.box h3{
+	text-align:center;
+	position:relative;
+	top:80px;
+}
+.box {
+	width:70%;
+	height:200px;
+	background:#FFF;
+	margin:0 auto 1em;
+}
+
+
+/*==================================================
+  Effect 1
+  ===============================================*/
+.effect1{
+	-webkit-box-shadow: 0 10px 6px -6px #ccc;
+	   -moz-box-shadow: 0 10px 6px -6px #ccc;
+	        box-shadow: 0 10px 6px -6px #ccc;
+}
+
+/*search look up div */
+div#customerlookup {
+	border:1px solid #fff;
+	padding:1px;
+	background-color:#ccc;
+	background:solid;
+	position:relative;
+	z-index:1000;
+} 
+
+/* placement activities */
+
+table.placements {margin:0.4em 0 0.6em; padding:0;border-top: 5px solid #003466; width:100%;table-layout:fixed;}
+
+
+table.placements th {text-align:left}
+table.placements th {overflow:hidden;white-space:nowrap;}
+
+th.date{width:37%;}
+th.applicant{width:31%;}
+th.reason{width:19%;margin:0;padding:0;}
+th.foruser{width:13%;}
+
+th.customer,
+th.joborder,
+th.status,
+th.for,
+th.date,
+th.applicant,
+th.reason,
+th.foruser,
+span.memo{margin:0;padding:0;font-size:90%;border:1px solid white;padding:0.1em;}
+
+span.memo{font-weight:bold;}
+
+table.placements tr.heading {background-color:#ddecf9;height:1em;}
+table.placements tr.details {background-color:#f2f6fb;height:1em;}
+table.placements tr.footer {background-color:#fffce2;height:1em;}
+span.memo {background-color:#fffce2}
+span.description{font-size:102%;font-style:italic;}
+
+table.placements tr.heading:hover {background-color:#c0def8;}
+table.placements tr.details:hover {background-color:#e4eff9;}
+table.placements tr.footer :hover{background-color:#fffbd6;}
+span.memo:hover {background-color:#fffbd6}
+
+
+div.nowrap {overflow:hidden;display:block;width:100%;}
+
+span.working,
+span.idle,
+span.showdispos,
+span.disposition  {margin:0;padding:0;display:block;height:1.2em;width:10em;overflow:hidden;white-space:nowrap;cursor:pointer;}
+span.disposition select {margin:0;padding:0;}
+
+
+/* span.working {position:absolute;right:0;top:0;width:16px; height:15px;display:block;margin:0 1px 0 0;} */
+
+span.working {background: url('ajax/working.gif') no-repeat right;}
+span.whichcompany{display:block;float:left;width:15em;height:1em;}
+span#activeonly {display:block;float:right;clear:left;height:1em;width:25em;}
+span#activeonly input,
+span#activeonly label {vertical-align:middle;height:1em;}
+span#activeonly input {margin-right:0.2em;border:none;}
+
+
+
+/* end placement activities */
+
+
+div#lookup_customer {padding-left:1em;}
+div#lookup_customer p {margin-left:2em;}
+
+div#customerookup table {position:relative;cursor:pointer;width:36em !important; }
+div#customerlookup table tr:hover {background-color:#99CCFF;}
+
+}
+
+/* Medium devices (desktops, 769px and up to 1199px) */
+@media only screen and (min-width:769px) and (max-width: 1199px)  {
+/* redefine global and master settings */
+/* redefine global and master settings */
+body{width:90%;margin:auto;}
+#pageWrapper{width:100%; margin:auto; }
+#contentcolumn {width:100%; padding-right:0.2em;}
+#pageBanner {width:100%; clear:none; background: transparent url('/include/style/images/cornersSheet.png') no-repeat left -415px;height:100px;background-color:#003366}
+#topnav {
+	width: 60%;
+	height: 20px;
+	font-family:Helvetica, Arial, sans-serif, "Arial Narrow";
+	font-size: 12px;
+	font-weight: bold;
+	background-color:transparent;
+	text-align:left;
+	
+	float:right;
+	padding-top:4px;
+	display:inline-block;
+	/*position:absolute;
+	top:94px;
+	left:-20px;*/
+	margin-bottom:5px;
+	padding-right:0px;
+	z-index:100;
+}
+#topnav a {color:#fff;font-weight:bold}
+#topnav a:hover {color:#FFFFF0;font-weight:bold;text-decoration:none}
+#subBanner {width:100%;background: url('/include/style/images/cornersSheet.png') no-repeat left -542px; height:150px;}
+ /* sub banner */
+#account{
+	clear:both;
+	float:right;
+	position:relative;
+	top:10px;
+	padding-right:10px;
+	margin-top:500px;
+	}
+	
+input#searchbox {float:left;clear:both;width:220%;}	
+#download{width:100px;height:50px; float:left; margin-right:0px; margin-left: 52px; position:absolute;top:455px; text-align: left; display:inline;}
+
+/*#search {height:26px;line-height:26px;background:#e6eee6;color: #333333;border:solid #000000; border-width:1px 0 1px 0;margin:0 0 0 0;text-align:center;clear:both;}*/
+#search {width:100%;display:inline-block;height:25px;background-color:#e6eee6;line-height:30px; margin:0px;}
+#search a {clear:both;margin:0 13px;width:20em;height:25px;text-decoration:none;display:inline;}
+
+#search a.leftSearch {width:200px;margin-left:0px;float:left;background:transparent url('/include/style/images/cornersSheet.png') no-repeat left -516px;} /*Client Login */
+#search a.rightSearch {position:absolute; left:550px; top:101px;background:transparent url('/include/style/images/cornersSheet.png') no-repeat right -515px;} /* Timeclock Login */
+#search a.middleSearch {position:absolute;left:250px;top:101px;width:200px;background:transparent url('/include/style/images/cornersSheet.png') no-repeat -360px -515px;}/*Job Postings */
+
+ul#rightNav {position:absolute;top:330px; }
+#nav {float:left;padding:5px;width:90%;margin:auto;}
+#pageNavigation{width:100%; background-color:#285291;height:95px;}
+#pageNavigation span.nav a img {margin:1.2em -1em 0}
+#pageNavigation span.nav a:hover img {margin:1.3em -1em 0}
+#pageNavigation span.nav a {border-right:0 none}
+#pageNavigation span.nav a:hover {border-top: 1px solid #285291;margin-top:-1px;background:transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;} 
+#rightNav {float:right;clear:none; position:absolute; top:330px;right:50px;}
+ul.dropdown {font-weight: bold}
+
+ul.dropdown li {padding:0;border-top: 1px solid #285291;border-right: 1px solid #003466;background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;} /* button up */
+ul.dropdown li.hover,
+ul.dropdown li:hover {border-top:1px solid #003466;margin-top:0px;text-decoration:none;background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1109px;}  /* button down */
+ul.dropdown a {height:2.1em;padding:0.55em 1.45em 0em;display:block;}
+ul.dropdown a:link,
+ul.dropdown a:visited	{color: #F3F3D7;text-decoration: none}
+ul.dropdown a:hover {color: #F3F3D7}
+ul.dropdown a:active	{margin-top:-1px;border-top:1px solid #003466;
+		text-decoration:none;
+		background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1109px;} /button down /
+
+	/* -- level mark -- */
+
+ul.dropdown ul {width: 200px;margin: 0px}
+ul.dropdown ul li {border-top: 1px solid #003366;font-weight: normal;padding:0em 0em 0;text-align:left;
+background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;}
+
+
+ul.dropdown .dir {background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;}
+
+/* -- Components override -- */
+ul.dropdown-horizontal ul .dir {right:0}
+ul.dropdown-horizontal ul li .dir {margin: 0;padding:0}
+	
+#contentcolumn {width:70%; padding-right:0.2em;}
+
+#boxeffect1{clear:both; float:left; width:25%; height:45px; padding: 0 15px 15px; font-style: bold; font-size: 90%; box-shadow: horizontal vertical spread colour;}
+
+/*defining internal content*/
+#contentwrapper{width:100%;}
+#contentcolumn {clear:both; float:left;width:100%;border-left:1px solid #587299;padding-left:.5em;margin:0;padding-top:0;}
+
+
+/* done redefining global id's*/
+form{width:80%;clear:both;float:left;}
+form#frmJobOrder *{width:80%;}
+form#frmJobOrder input, form#frmJobOrder textarea, form#frmJobOrder select  {float:left; display:block; width:80%;margin:5px;}
+form#frmJobOrder legend {width:35%;font-weight:bold;display:block;margin:1.6em 0 0; font-size:110%;}
+
+form#frmJobOrder table {border-collapse:collapse;}
+form#frmJobOrder table,
+form#frmJobOrder td,
+form#frmJobOrder th,
+form#frmJobOrder label {float:left;display:block;padding:5px; font-weight:normal;text-align:left;margin:0}
+
+form#frmJobOrder table tr th {padding:0.6em 0.6em 0 0.4em;}
+form#frmJobOrder table tr td {padding:0 0.6em 0.4em 0.4em;}
+
+/* set table widths */
+table{width:80%;}
+#tblJobOrder{clear:both; float:left; width:80%; }
+table#tblJobOrder  label {font-size:90%;}
+table#tblJobOrder tr td {padding:0; margin:0;}
+table#orderheader,
+table#companyinfo,
+table#creditinfo,
+table#businesstype,
+table#jobposting,
+table#orderdetails,
+table#workcomp,
+table#instructions,
+table#chronicle,
+table#rates,
+table#servicecalls,
+table#orderactivities,
+table#placements {width:60%;border:1px solid #ccc;margin:1em 1em 1em;}
+
+table input {width:10%; margin:5px;}
+table#servicecalls {width:20%;}
+table#orderheader {width:40%;}
+table#companyinfo {margin-right:0.5em; width:29.5em;}
+table#creditinfo { width:27.6em;float:right;margin-right:1em !important;}
+table#businesstype {width:58.2em;}
+table#jobposting {width:58.2em;}
+table#orderdetails {width:58.2em;}
+table#workcomp {padding-right:1em;}
+table#instructions {width:27.6em;float:right;margin-right:1em !important;}
+table#chronicle {margin-right:0.5em; width:29.5em;}
+table#rates { width:27.6em;float:right;margin-right:1em !important;}
+table#servicecalls {width:58.2em;}
+table#placements  {width:58.2em;}
+table#orderactivities  {width:58.2em;}
+
+table#workcomp{height:50em; width:80%;}
+table#instructions {height:13em;}
+
+table#chronicle,
+table#rates {height:9em;}
+
+
+/* job order tabs */
+#jobtabs {
+  position: absolute;
+  right:50px;  
+  min-height: 60px;
+  clear: both;
+  float:right;
+  top:500px;
+  margin:0 1em 0 0;
+}
+.tab {
+	width:18em;
+	height:3.1em;
+	overflow:hidden;
+	clear:both;
+	float: right;
+	text-align:right;
+	margin:0;
+	padding:0;
+	position:relative;
+	background:url('tabs.png') no-repeat top right;
+	cursor:pointer;
+	}
+
+.tab:hover {
+	background:url('tabs.png') no-repeat bottom right;
+}
+
+.tab label span {
+	top:0;
+	width:10em;
+	position:absolute;
+	white-space:nowrap;
+	overflow:hidden;
+	font-size:50%;
+	display:block;
+	clear:both;
+	float:right;
+	cursor:pointer;
+ }
+.tab label span.dept {
+	top:2.2em;
+	right:1em;
+	text-align:right;
+	font-size:50%;
+}
+.tab label span.job {
+	top:0em;
+	left:0.4em;
+	overflow:hidden;
+	width:14em;
+	height:1.6em;
+	text-align:left;
+	font-size:110%;
+}
+.tab label span.cname {
+	top:2.2em;
+	left:1.4em;
+	overflow:hidden;
+	width:11em;
+	height:1.3em;
+	text-align:left;
+	font-size:70%;
+}
+.tab [type=radio] {
+  display: none;   
+} 
+
+#joborder{width:80%;clear:both; float:left;}
+fieldset#SafetyEquip label{clear:both;float:left;width:50%;}
+}
+
+
+/*Small devices (tablets, 481px and up to 768px) */
+@media only screen and (min-width: 481px) and (max-width: 768px)  { 
+/* redefine global and master settings */
+/* redefine global and master settings */
+body{width:100%;margin:auto;}
+#pageWrapper{width:100%; }
+#contentcolumn {width:90%; padding-right:0.2em;}
+#pageBanner {width:100%; clear:none; background: transparent url('/include/style/images/cornersSheet.png') no-repeat left -415px;height:100px;background-color:#fff}
+#topnav {
+	width: 60%;
+	height: 20px;
+	font-family:Helvetica, Arial, sans-serif, "Arial Narrow";
+	font-size: 12px;
+	font-weight: bold;
+	background-color:transparent;
+	text-align:left;
+	
+	float:right;
+	padding-top:4px;
+	display:inline-block;
+	/*position:absolute;
+	top:94px;
+	left:-20px;*/
+	margin-bottom:5px;
+	padding-right:0px;
+	z-index:100;
+}
+#topnav a {color:#fff;font-weight:bold}
+#topnav a:hover {color:#FFFFF0;font-weight:bold;text-decoration:none}
+#subBanner {width:100%;background: url('/include/style/images/cornersSheet.png') no-repeat left -542px; height:150px} /* sub banner */
+#account{
+	clear:both;
+	float:right;
+	position:relative;
+	top:10px;
+	padding-right:10px;
+	margin-top:500px;
+	}
+	
+input#searchbox {float:left;clear:both;width:220%;}	
+#download{width:100px;height:50px; float:left; margin-right:0px; margin-left: 52px; position:absolute;top:455px; text-align: left; display:inline;}
+
+/*#search {height:26px;line-height:26px;background:#e6eee6;color: #333333;border:solid #000000; border-width:1px 0 1px 0;margin:0 0 0 0;text-align:center;clear:both;}*/
+#search {width:100%;display:inline-block;height:25px;background-color:#e6eee6;line-height:30px; margin:0px;}
+#search a {clear:both;margin:0 13px;width:20em;height:25px;text-decoration:none;display:inline;}
+
+#search a.leftSearch {width:200px;margin-left:0px;float:left;background:transparent url('/include/style/images/cornersSheet.png') no-repeat left -516px;} /*Client Login */
+#search a.rightSearch {position:absolute; left:450px; top:116px;background:transparent url('/include/style/images/cornersSheet.png') no-repeat right -515px;} /* Timeclock Login */
+#search a.middleSearch {position:absolute;left:200px;top:116px;width:200px;background:transparent url('/include/style/images/cornersSheet.png') no-repeat -360px -515px;}/*Job Postings */
+
+ul#rightNav {position:absolute;top:330px; }
+#nav {float:left;padding:5px;width:90%;margin:auto;}
+#pageNavigation{width:105%; background-color:#285291;height:95px;}
+#pageNavigation span.nav a img {margin:1.2em -1em 0}
+#pageNavigation span.nav a:hover img {margin:1.3em -1em 0}
+#pageNavigation span.nav a {border-right:0 none}
+#pageNavigation span.nav a:hover {border-top: 1px solid #285291;margin-top:-1px;background:transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;} 
+#rightNav {float:right;margin-right:25px;clear:none; position:absolute; top:330px;right:-25px;}
+ul.dropdown {font-weight: bold}
+
+ul.dropdown li {padding:0;border-top: 1px solid #285291;border-right: 1px solid #003466;background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;} /* button up */
+ul.dropdown li.hover,
+ul.dropdown li:hover {border-top:1px solid #003466;margin-top:0px;text-decoration:none;background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1109px;}  /* button down */
+ul.dropdown a {height:2.1em;padding:0.55em 1.45em 0em;display:block;}
+ul.dropdown a:link,
+ul.dropdown a:visited	{color: #F3F3D7;text-decoration: none}
+ul.dropdown a:hover {color: #F3F3D7}
+ul.dropdown a:active	{margin-top:-1px;border-top:1px solid #003466;
+		text-decoration:none;
+		background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1109px;} /button down /
+
+	/* -- level mark -- */
+
+ul.dropdown ul {width: 200px;margin: 0px}
+ul.dropdown ul li {border-top: 1px solid #003366;font-weight: normal;padding:0em 0em 0;text-align:left;
+background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;}
+
+
+ul.dropdown .dir {background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;}
+
+/* -- Components override -- */
+ul.dropdown-horizontal ul .dir {right:0}
+ul.dropdown-horizontal ul li .dir {margin: 0;padding:0}
+	
+#contentcolumn {width:70%; padding-right:0.2em;}
+
+#boxeffect1{clear:both; float:left; width:25%; height:45px; padding: 0 15px 15px; font-style: bold; font-size: 90%; box-shadow: horizontal vertical spread colour;}
+
+/*defining internal content*/
+#contentwrapper{width:100%;}
+#contentcolumn {clear:both; float:left;width:100%;border-left:1px solid #587299;padding-left:.5em;margin:0;padding-top:0;}
+
+
+/* done redefining global id's*/
+form{width:80%;clear:both;float:left;}
+form#frmJobOrder *{width:80%;}
+form#frmJobOrder input, form#frmJobOrder textarea, form#frmJobOrder select  {float:left; display:block; width:80%;margin:5px;}
+form#frmJobOrder legend {width:35%;font-weight:bold;display:block;margin:1.6em 0 0; font-size:110%;}
+
+form#frmJobOrder table {border-collapse:collapse;}
+form#frmJobOrder table,
+form#frmJobOrder td,
+form#frmJobOrder th,
+form#frmJobOrder label {float:left;display:block;padding:5px; font-weight:normal;text-align:left;margin:0}
+
+form#frmJobOrder table tr th {padding:0.6em 0.6em 0 0.4em;}
+form#frmJobOrder table tr td {padding:0 0.6em 0.4em 0.4em;}
+
+/* set table widths */
+table{width:80%;}
+#tblJobOrder{clear:both; float:left; width:80%; }
+table#tblJobOrder  label {font-size:90%;}
+table#tblJobOrder tr td {padding:0; margin:0;}
+table#orderheader,
+table#companyinfo,
+table#creditinfo,
+table#businesstype,
+table#jobposting,
+table#orderdetails,
+table#workcomp,
+table#instructions,
+table#chronicle,
+table#rates,
+table#servicecalls,
+table#orderactivities,
+table#placements {width:60%;border:1px solid #ccc;margin:1em 1em 1em;}
+
+table input {width:10%; margin:5px;}
+table#servicecalls {width:20%;}
+table#orderheader {width:40%;}
+table#companyinfo {margin-right:0.5em; width:29.5em;}
+table#creditinfo { width:27.6em;float:right;margin-right:1em !important;}
+table#businesstype {width:58.2em;}
+table#jobposting {width:58.2em;}
+table#orderdetails {width:58.2em;}
+table#workcomp {padding-right:1em;}
+table#instructions {width:27.6em;float:right;margin-right:1em !important;}
+table#chronicle {margin-right:0.5em; width:29.5em;}
+table#rates { width:27.6em;float:right;margin-right:1em !important;}
+table#servicecalls {width:58.2em;}
+table#placements  {width:58.2em;}
+table#orderactivities  {width:58.2em;}
+
+table#workcomp{height:50em; width:80%;}
+table#instructions {height:13em;}
+
+table#chronicle,
+table#rates {height:9em;}
+
+
+/* job order tabs */
+#jobtabs {
+  position: absolute;
+  right:5px;  
+  min-height: 60px;
+  clear: both;
+  float:right;
+  top:500px;
+  margin:0 1em 0 0;
+}
+.tab {
+	width:18em;
+	height:3.1em;
+	overflow:hidden;
+	clear:both;
+	float: right;
+	text-align:right;
+	margin:0;
+	padding:0;
+	position:relative;
+	background:url('tabs.png') no-repeat top right;
+	cursor:pointer;
+	}
+
+.tab:hover {
+	background:url('tabs.png') no-repeat bottom right;
+}
+
+.tab label span {
+	top:0;
+	width:10em;
+	position:absolute;
+	white-space:nowrap;
+	overflow:hidden;
+	font-size:50%;
+	display:block;
+	clear:both;
+	float:right;
+	cursor:pointer;
+ }
+.tab label span.dept {
+	top:2.2em;
+	right:1em;
+	text-align:right;
+	font-size:50%;
+}
+.tab label span.job {
+	top:0em;
+	left:0.4em;
+	overflow:hidden;
+	width:14em;
+	height:1.6em;
+	text-align:left;
+	font-size:110%;
+}
+.tab label span.cname {
+	top:2.2em;
+	left:1.4em;
+	overflow:hidden;
+	width:11em;
+	height:1.3em;
+	text-align:left;
+	font-size:70%;
+}
+.tab [type=radio] {
+  display: none;   
+} 
+
+#joborder{width:80%;clear:both; float:left;}
+fieldset#SafetyEquip label{clear:both;float:left;width:50%;}
+
+}
+/* Tiny devices (phones, max of 480px ) */
+@media only screen and (max-width: 480px) {
+/* redefine global and master settings */
+body{width:100%;}
+#pageWrapper{width:100%; }
+#contentcolumn {width:70%; padding-right:0.2em;}
+#pageBanner {width:100%; clear:none; background: transparent url('/include/style/images/cornersSheet.png') no-repeat left -415px;height:100px;background-color:#fff}
+#topnav {
+	width: 100%;
+	height: 20px;
+	font-family:Helvetica, Arial, sans-serif, "Arial Narrow";
+	font-size: 12px;
+	font-weight: bold;
+	background-color:transparent;
+	text-align:left;
+	float:left;
+	padding-top:4px;
+	display:inline-block;
+	position:absolute;
+	top:94px;
+	left:-20px;
+	margin-bottom:5px;
+	padding-right:0px;
+	z-index:100;
+}
+#topnav a {color:#000;font-weight:bold}
+#topnav a:hover {color:#FFFFF0;font-weight:bold;text-decoration:none}
+#subBanner {width:100%;background: url('/include/style/images/cornersSheet.png') no-repeat left -542px; height:80px} / sub banner /
+#account{
+	clear:both;
+	float:right;
+	position:absolute;
+	top:180px; 
+	padding-right:10px;
+	}
+#logInTab{position:absolute; top:25px;right:10px;}
+input#searchbox {float:left;clear:both;width:120%;}	
+#download{width:100px;height:50px; float:left; margin-right:0px; margin-left: 52px; position:absolute;top:450px; text-align: left; display:inline;}
+#search{width:100%;display:block;height:75px;background-color:#e6eee6;line-height:30px;}	
+#search a { clear:both;margin:0 13px;width:20em;height:25px;text-decoration:none;display:inline-block;}
+
+#search a.leftSearch {width:80%;margin-left:-05px;float:left;background:transparent url('/include/style/images/cornersSheet.png') no-repeat left -516px;} /* Client Login */
+#search a.rightSearch { margin-left:-60px;float:left;background:transparent url('/include/style/images/cornersSheet.png') no-repeat right -515px;} /* Timeclock Login */
+#search a.middleSearch {position:relative; top:0px;width:80%;margin-left:-15px;float:left;background:transparent url('/include/style/images/cornersSheet.png') no-repeat -360px -515px;}	/*Job Postings */
+
+#rightNav {float:right;clear:none}
+span.nav {float:left;padding:0}
+#pageNavigation{width:105%; background-color:#285291;height:95px;}
+#pageNavigation span.nav a img {margin:1.2em -1em 0}
+#pageNavigation span.nav a:hover img {margin:1.3em -1em 0}
+#pageNavigation span.nav a {border-right:0 none}
+#pageNavigation span.nav a:hover {border-top: 1px solid #285291;margin-top:-1px;background:transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;} 
+#rightNav {float:right;margin-right:25px;clear:none; position:absolute; top:330px;right:-25px;}
+ul.dropdown {font-weight: bold}
+
+ul.dropdown li {padding:0;border-top: 1px solid #285291;border-right: 1px solid #003466;background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;} /* button up */
+ul.dropdown li.hover,
+ul.dropdown li:hover {border-top:1px solid #003466;margin-top:0px;text-decoration:none;background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1109px;}  /* button down */
+ul.dropdown a {height:2.1em;padding:0.55em 1.45em 0em;display:block;}
+ul.dropdown a:link,
+ul.dropdown a:visited	{color: #F3F3D7;text-decoration: none}
+ul.dropdown a:hover {color: #F3F3D7}
+ul.dropdown a:active	{margin-top:-1px;border-top:1px solid #003466;
+		text-decoration:none;
+		background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1109px;} /button down /
+
+	/* -- level mark -- */
+
+ul.dropdown ul {width: 200px;margin: 0px}
+ul.dropdown ul li {border-top: 1px solid #003366;font-weight: normal;padding:0em 0em 0;text-align:left;
+background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;}
+
+
+ul.dropdown .dir {background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;}
+
+/* -- Components override -- */
+ul.dropdown-horizontal ul .dir {right:0}
+ul.dropdown-horizontal ul li .dir {margin: 0;padding:0}
+#boxeffect1{clear:both; float:left; width:25%; height:45px; padding: 0 15px 15px; font-style: bold; font-size: 90%; box-shadow: horizontal vertical spread colour;}
+
+/*defining internal content*/
+#contentwrapper{width:100%;}
+#contentcolumn {clear:both; float:left;width:100%;border-left:1px solid #587299;padding-left:.5em;margin:0;padding-top:0;}
+
+
+/* done redefining global id's*/
+form{width:80%;clear:both;float:left;}
+form#frmJobOrder *{width:80%;}
+form#frmJobOrder input, form#frmJobOrder textarea, form#frmJobOrder select  {float:left; display:block; width:80%;margin:5px;}
+form#frmJobOrder legend {width:35%;font-weight:bold;display:block;margin:1.6em 0 0; font-size:110%;}
+
+form#frmJobOrder table {border-collapse:collapse;}
+form#frmJobOrder table,
+form#frmJobOrder td,
+form#frmJobOrder th,
+form#frmJobOrder label {float:left;display:block;padding:5px; font-weight:normal;text-align:left;margin:0}
+
+form#frmJobOrder table tr th {padding:0.6em 0.6em 0 0.4em;}
+form#frmJobOrder table tr td {padding:0 0.6em 0.4em 0.4em;}
+
+/* set table widths */
+table{width:80%;}
+#tblJobOrder{clear:both; float:left; width:80%; }
+table#tblJobOrder  label {font-size:90%;}
+table#tblJobOrder tr td,
+table#tblJobOrder tr td {padding:0; margin:0;}
+table#orderheader,
+table#companyinfo,
+table#creditinfo,
+table#businesstype,
+table#jobposting,
+table#orderdetails,
+table#workcomp,
+table#instructions,
+table#chronicle,
+table#rates,
+table#servicecalls,
+table#orderactivities,
+table#placements {width:60%;border:1px solid #ccc;margin:1em 1em 1em;}
+
+table input {width:10%; margin:5px;}
+table#servicecalls {width:20%;}
+table#orderheader {width:40%;}
+table#companyinfo {margin-right:0.5em; width:29.5em;}
+table#creditinfo { width:27.6em;float:right;margin-right:1em !important;}
+table#businesstype {width:58.2em;}
+table#jobposting {width:58.2em;}
+table#orderdetails {width:58.2em;}
+table#workcomp {padding-right:1em;}
+table#instructions {width:27.6em;float:right;margin-right:1em !important;}
+table#chronicle {margin-right:0.5em; width:29.5em;}
+table#rates { width:27.6em;float:right;margin-right:1em !important;}
+table#servicecalls {width:58.2em;}
+table#placements  {width:58.2em;}
+table#orderactivities  {width:58.2em;}
+
+table#workcomp{height:50em; width:80%;}
+table#instructions {height:13em;}
+
+table#chronicle,
+table#rates {height:9em;}
+
+#SafetyEquip{width:70%; margin:10px;}
+/* job order tabs */
+#jobtabs {
+  position: absolute;
+  right:-15px;  
+  min-height: 60px;
+  clear: both;
+  float:right;
+  top:500px;
+  margin:0 1em 0 0;
+}
+.tab {
+	width:10em;
+	height:3.1em;
+	overflow:hidden;
+	clear:both;
+	float: right;
+	text-align:right;
+	margin:0;
+	padding:0;
+	position:relative;
+	background:url('tabs.png') no-repeat top right;
+	cursor:pointer;
+	}
+
+.tab:hover {
+	background:url('tabs.png') no-repeat bottom right;
+}
+
+.tab label span {
+	top:0;
+	width:10em;
+	position:absolute;
+	white-space:nowrap;
+	overflow:hidden;
+	font-size:50%;
+	display:block;
+	clear:both;
+	float:right;
+	cursor:pointer;
+ }
+.tab label span.dept {
+	top:2.2em;
+	right:1em;
+	text-align:right;
+	font-size:50%;
+}
+.tab label span.job {
+	top:0em;
+	left:0.4em;
+	overflow:hidden;
+	width:14em;
+	height:1.6em;
+	text-align:left;
+	font-size:110%;
+}
+
+.tab label span.cname {
+	top:2.2em;
+	left:1.4em;
+	overflow:hidden;
+	width:11em;
+	height:1.3em;
+	text-align:left;
+	font-size:70%;
+}
+
+
+.tab [type=radio] {
+  display: none;   
+} 
+
+#joborder{width:50%;clear:both; float:left;}
+
+}
+

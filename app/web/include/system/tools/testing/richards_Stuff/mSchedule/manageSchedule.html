@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Manage Schedule</title>
+	<link rel="stylesheet" type="text/css" href="mSchedule.css">
+</head>
+<body>
+	<div id="manSchedule">
+    <form>        
+        <h1>Manage Schedule</h1>
+            <label for="autoLunch">Automatic Lunch Deduction <input id="autoLunch" type="checkbox" /></label><br><br>
+			<label>30 Min.<input id="timeDed" name="timeDed" type="radio" value="-.5" /></label><br><br>
+			<label>60 Min.<input id="timeDed" name="timeDed" type="radio" value="-1" /></label>
+            <br><br>
+            <label id="allEarly" for="allowEarly">Allow Early Clock Ins <input id="allowEarly" type="checkbox" /></label>
+			<br><br>           
+            <label for="earlyClockThresh">Early Clock In Threshold
+				<select name="earlyClockThresh" id="earlyClockThresh">
+                    <option value=".017">1 min</option>
+                    <option value=".033">2 min</option>
+                    <option value=".05">3 min</option>
+                    <option value=".067">4 min</option>
+                    <option value=".083">5 min</option>
+                    <option value=".1">6 min</option>
+                    <option value=".117">7 min</option>
+                    <option value=".133">8 min</option>
+                    <option value=".150">9 min</option>
+                    <option value=".167">10 min</option>
+                    <option value=".183">11 min</option>
+                    <option value=".2">12 min</option>
+                    <option value=".217">13 min</option>
+                    <option value=".233">14 min</option>
+                    <option value=".25">15 min</option>
+                </select> 
+			</label>
+			<br><br>
+			<label for="roundClockUp">Enforce Round Up <input id="roundClockUp" type="checkbox" /></label>
+			<br><br>                
+            <label for="roundUpThresh">Round Up Threshold
+				<select name="roundUpThresh" id="roundUpThresh">
+                    <option value=".017">1 min</option>
+                    <option value=".033">2 min</option>
+                    <option value=".05">3 min</option>
+                    <option value=".067">4 min</option>
+                    <option value=".083">5 min</option>
+                    <option value=".1">6 min</option>
+                    <option value=".117">7 min</option>
+                    <option value=".133">8 min</option>
+                    <option value=".150">9 min</option>
+                    <option value=".167">10 min</option>
+                    <option value=".183">11 min</option>
+                    <option value=".2">12 min</option>
+                    <option value=".217">13 min</option>
+                    <option value=".233">14 min</option>
+                    <option value=".25">15 min</option>
+                </select>
+			</label>
+	</form>
+	<div id="clear"></div>
+	</div>
+</body>
+</html>

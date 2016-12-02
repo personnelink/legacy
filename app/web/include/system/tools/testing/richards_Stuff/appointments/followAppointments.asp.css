@@ -1,0 +1,180 @@
+@media print, handheld {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+#leftSideMenu {display:none;}
+/* Large devices (large desktops, 1200px and up)*/
+@media only screen and (min-width:1200px) { 
+/* redefine global id */
+#contentcolumn {width:98%;border-left:none;margin:auto;float:left;}
+
+
+/* done redefining global id's */
+
+/* new appointment form */
+div#new_appointment {width:60em; clear:both;float:left;}
+table#new_appointment{height:}
+/* search applicant look up div */
+div#found_applicants {
+	position:absolute;top:0;left:0;
+	z-index:1000;
+}
+
+div#lookup_applicant {padding-left:1em;}
+div#lookup_applicant p {margin-left:2em;}
+
+div#applicantlookup table {float:left;clear:both;width:100%; cursor:pointer;}
+div#applicantlookup table tr:hover {background-color:#99CCFF;}
+
+/* company lookup container div */
+div#CompanyLookUp {z-index:66;position:absolute;width:36em; min-height:10em;border: 1px solid #003366;display:none;}
+
+/* order tabs */
+div#ordertabs {width:17em;min-height:40em;float:right;}
+
+/* search look up div */
+div#customerlookup {
+	border:1px solid #fff;
+	padding:1px;
+	background-color:#ccc;
+	background:solid;
+	position:relative;
+	z-index:1000;
+}
+
+div#lookup_customer {padding-left:1em;}
+div#lookup_customer p {margin-left:2em;}
+
+div#customerookup table {float:left;clear:both;width:26em; cursor:pointer;}
+div#customerlookup table tr:hover {background-color:#99CCFF;}
+
+/* end customer look up div */
+
+/* start comment text box and div */
+
+textarea.memo,
+textarea.updating {width:100%;margin-top:0.1em;float:right;height:3.8em;clear:both;border:none;font-style:italic;font-family:sans-serif;}
+
+textarea.updating{background-color: grey;}
+
+/* end commend and text box div */
+
+a:hover {text-decoration:none}
+
+#formOptions {width:45em; padding: 0 1em; margin-bottom:1em;}
+
+#whoseHereForm select { width:20em; text-align:left; margin-bottom:2em; }
+
+#whoseHereList { min-height:40em; }
+#whoseHereList  { margin-top:1em; padding:2em; }
+#whoseHereList td { padding-bottom:0.2em }
+
+
+#button {
+	width: 12em;
+	border-right: 1px solid #000;
+	padding: 0 0 1em 0;
+	margin-bottom: 1em;
+	font-family: 'Trebuchet MS', 'Lucida Grande',
+	  Verdana, Lucida, Geneva, Helvetica, 
+	  Arial, sans-serif;
+	background-color: #90bade;
+	color: #333;
+	}
+
+
+.altNavPageRecords {float: none; clear:both; margin:1.6em auto; width:60em; text-align:left !important; }
+.altNavPageRecords a {font-weight:bold; width:6em;display:block;float:left;}
+.altNavPageRecords a:hover {font-weight:bold; text-decoration:none; }
+
+#topPageRecords {float:left; clear:both; }
+
+span.select {
+   position: absolute;
+   width: 208px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+   height: 22px;
+   padding: 0 24px 0 8px;
+   color: #fff;
+   font: 12px/21px arial,sans-serif;
+   background: url('/include/style/images/forms/select.gif') no-repeat;
+   overflow: hidden;
+
+ }
+
+div.placements {margin:0.4em 0 0.6em; padding:0.2em;border-top: 5px solid #003466; width:100%;table-layout:fixed;clear:both;}
+div.placements label{text-align:left}
+div.placements label {overflow:hidden;white-space:nowrap;}
+div.placements div.heading {background-color:#ddecf9;height:1em;}
+div.placements label.details {background-color:#f2f6fb;height:1em;}
+div.placements label.footer {background-color:#fffce2;height:1em;}
+label.updating {opacity:0.6; filter:alpha(opacity=60); /* For IE8 and earlier */ background-color:grey;}
+
+label.date{width:19%;}
+label.applicant{width:31%;}
+label.reason{width:37%;margin:0;padding:0;}
+label.foruser{width:13%;}
+
+.customer{margin-left:2px;margin-right:100px;padding:0;font-size:7pt;border:1px solid #fff;width:100px;float:left;}
+.joborder{margin-left:25px;margin-right:100px;padding:0;font-size:7pt;border:1px solid #fff;width:100px;float:left;}
+.foruser{margin-left:0px;margin-right:75px;padding:0;font-size:7pt;border:1px solid #fff;width:100px;float:left;text-align:left;}
+.date{margin-left:50px;margin-right:5px;padding:0;font-size:7pt;border:1px solid #fff;width:100px;float:left;text-align:left;}
+.status,
+.for,
+.applicant,
+.reason,
+span.memo{margin-left:50px;margin-right:5px;padding:0;font-size:90%;border:1px solid #000;padding:0.1em;width:100px;float:left;text-align:left;}
+span.memo{font-weight:bold;}
+span.memo {background:transparent;}
+
+span.description,
+span.description{display:block;font-size:102%;font-style:italic;width:100%;min-height:1em;clear:both;}
+
+div.placements div.heading:hover {background-color:#c0def8;}
+table.placements tr.details:hover {background-color:#e4eff9;}
+table.placements tr.footer :hover{background-color:#fffbd6;}
+span.memo:hover {background-color:#fffbd6}
+
+div.nowrap {overflow:hidden;display:block;width:100%;}
+
+span.working,
+span.idle,
+span.showdispos,
+span.disposition  {margin:0;padding:0;display:block;height:1.2em;width:10em;overflow:hidden;white-space:nowrap;cursor:pointer;}
+span.disposition select {margin:0;padding:0;}
+
+
+/* span.working {position:absolute;right:0;top:0;width:16px; height:15px;display:block;margin:0 1px 0 0;} */
+
+span.working {background: url('ajax/working.gif') no-repeat right;}
+span.whichcompany{display:block;float:left;width:15em;height:1em;}
+span#activeonly {display:block;float:right;clear:left;height:1em;width:25em;}
+span#activeonly input,
+span#activeonly label {vertical-align:middle;height:1em;}
+span#activeonly input {margin-right:0.2em;border:none;}
+}
+/* End Large Device Styles */
+/*Medium devices (tablets, 481px and up to 1199px) */
+@media only screen and (min-width: 481px) and (max-width: 1199px)  { 
+
+}
+/*End Medium device Styles */
+/* Small devices (phones, max of 480px ) */
+@media only screen and (max-width: 480px) {
+
+}
+/*End Small Device Styles  */

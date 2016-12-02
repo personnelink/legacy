@@ -1,0 +1,273 @@
+@media print {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+
+/* .searchGuide {width:10em; margin-right:1em; margin-bottom:0.4em; float:left; clear:right; border:1px solid red;} */
+#searchGuide {width:10em; margin:0; padding:0; float:left;}
+#mainSearch {float:right; text-align:center; width:49em;}
+#search_wrapper {vertical-align:middle;margin:0 0 1em 0; /* overflow:hidden; */}
+div#sInput {overflow:hidden;margin:0 0 0 2em;}
+
+ul#search_which {clear:both; float:left; padding:0;}
+ul#search_which li {display:block; float:left; clear:right; vertical-align:middle;height:2em;padding-bottom:0.2em;}
+ul#search_which input {vertical-align:middle ;height:2em;margin-left:2em;border:none;}
+
+#searchResults a,
+#searchResults a:hover,
+#searchResults a:visited,
+#searchResults a:link,
+#searchResults a:active {color:blue;font-size:1.2em;text-decoration:underline}
+
+#frmSearch {min-height:30em; width:auto;margin:0;padding:0; width:60em;}
+#frmSearch p {width:100%; text-align:center;padding-top:1em}
+#frmSearch p span {margin:0 1em 0; padding-top:.1em; padding-left:1em;}
+
+#query {width:30em;margin:0;float:left;}
+.searchButton {width:9em; float:left;}
+
+#searchResults {padding:1em; clear:both;}
+#searchResults * p {text-align:left; width:100%; padding:0 0 .2em; margin:0;overflow:hidden;}
+.searchSummary {margin-bottom:1.5em;}
+
+#locationView {clear:both; background: url('/include/style/images/createLocation.jpg') no-repeat top left; }
+#confirmDelete {clear:both; background: url('/include/images/areYouSure.png') no-repeat top left; height:6em;padding-left:10em; margin-top:0.6em; }
+#manageLocation input,
+#manageLocation select,
+#manageLocation label {float:left;clear:left;text-align:left;padding-left:0; margin-left:12em;}
+#manageLocation label {width:12em;}
+
+#manageLocation select {width:4em}
+
+#topPageRecords a,
+#pageRecordSet a,
+#bottomPageRecords a,
+#topPageRecords a:hover,
+#pageRecordSet a:hover,
+#bottomPageRecords a:hover {text-decoration:none}
+
+ul.guide {
+    list-style: none;
+    margin: 0.4em 0;
+    padding: 0;
+}
+
+ul.guide li {
+    font-weight: bold;
+    margin: 0;
+    padding: 0.2em 0em 0.2em 0em;
+    border-bottom: 1px solid #ccc;
+    color: #666;
+}
+
+ul.guide li:hover {
+    color: #000;
+    background-color: #ddd;
+}
+
+li.label_checkbox_pair {
+clear: both;
+float: none;
+}
+li.label_checkbox_pair input {
+clear: right;
+float: right;
+margin-left: 0em;
+}
+
+.intraLink {color:green; text-decoration:none}
+
+.intraLink a { text-decoration:underline }
+
+  span.radio {
+  position: absolute;
+   width: 19px;
+     height: 25px;
+    padding:0;
+	margin-top:0px;
+    background: url('/include/style/images/forms/radio.gif') no-repeat;
+  }
+
+/* changePassword.asp */
+
+#changePasswordForm { min-height:25em; }
+
+#changePasswordForm * label
+{
+float: left;
+margin-right: 0.5em;
+display: block;
+padding-top:0.5em;
+}
+
+#changePasswordForm * input { margin-bottom:.5em }
+#changePasswordForm * label, #changePasswordForm * input { width:25em }
+
+/* post */
+
+#blogFormContent,
+#bugFormContent {min-height:40em; margin:2em; }
+#blogFormContent textarea,
+#bugFormContent textarea { height:30em; margin-bottom:0.6em; }
+#blogFormContent label,
+#bugFormContent label { float: left;text-align: left;width:16em; margin-bottom:0.4em;clear:both }
+#blogFormContent input, #blogFormContent textarea,
+#bugFormContent input, #bugFormContent textarea {width:50em}
+#blogFormContent textarea {}
+#postMessageButton { margin:1em 2.4em 1em auto;}
+
+p#blogFormat label {width:12em; 
+        line-height:12px;
+        vertical-align:middle;
+}
+p#blogFormat input {width:3em;vertical-align:middle;}
+
+/* mangeUsers.asp */
+
+#dataSourceSelection { background: transparent url('/include/style/images/createUser.jpg') no-repeat top left; height:6em; width:80em; padding-left:10em; }
+#manageUsersForm p { padding:0.5em 0.45em .5em; clear:both}
+#manageUsersForm p select { width:20em; }
+
+#companySelector { }
+#Users { float:left; width:22em; height:60em; overflow:auto}
+div#Users ul {clear:both;display:block;margin-left:1em;}
+div#Users ul li {float:left; width:18em; margin-bottom:1em;}
+div#Users ul li input { float:left; margin-right:0.4em;}
+div#Users ul li a  { font-weight:bold; }
+div#Users ul li a span { float:left; clear:both; margin:-0.6em 0 0 2.4em;  font-weight:normal; }
+div#Users ul li p {float:left;padding-left:0.25em;}
+
+#UsersForm * a, #UsersForm * a:hover, #UsersForm * a:visited, #UsersForm * a:link, #UsersForm * a:active {text-decoration:none; }
+#UserForm { padding:1em 1em 1em 1em; float:left; clear:left; padding-left:1em; }
+#UsersList { float:left; }
+#UserDetails { float:left;margin-left:1em; }
+
+#manageUser input {}
+#UserForm label { float:left; clear:left; }
+#UserForm label { width:10em; text-align:left; }
+#UserForm input { width:20em; text-align:left; }
+#UserForm select { width:20em; text-align:left; }
+
+#UserForm p { clear:both;}
+#UserForm a { margin:2em 0 2em;}
+#UserForm hr {width: 32em; margin:2em 0 2em 1em }
+
+h5 {border:1px solid #003466; }
+
+div.notes {
+  float: right;
+  width: 18em;
+  height: auto;
+  margin: 0 1em 1em 1em;
+  padding: 5px;
+  border: 1px solid #666666;
+  background-color: #ffffe1;
+  color: #666666;
+  font-size: 88%;
+}
+
+div.notes h4 {
+  background-image: url('/include/style/images/forms/icon_info.gif');
+  background-repeat: no-repeat;
+  background-position: top left;
+  padding: 3px 0 3px 2.6em;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: #666666;
+  color: #666666;
+  font-size: 110%;
+}
+
+div.notes p {
+  margin: 0em 0em 1.2em 0em;
+  color: #666666;
+}
+
+div.notes p.last {
+  margin: 0em;
+}
+
+span.checkbox { 
+    width: 19px;
+    height: 25px;
+    padding: 0 5px 0 0;
+	margin:-5px 0 0;
+    background: url('/include/style/images/forms/checkbox.gif') no-repeat;
+    display: block;
+    clear: left;
+    float: left;
+	
+  }
+span.radio {
+   width: 19px;
+     height: 25px;
+    padding: 0 5px 0 0;
+	margin:-5px 0 0;
+    background: url('/include/style/images/forms/radio.gif') no-repeat;
+	display:inline;
+    clear: left;
+	float:left;
+  }
+  
+ span.select {
+   position: absolute;
+   width: 208px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+   height: 21px;
+   padding: 0 24px 0 8px;
+   color: #fff;
+   font: 12px/21px arial,sans-serif;
+   background: url('/include/style/images/forms/select.gif') no-repeat;
+   overflow: hidden;
+ }
+
+.squarebutton {margin-left:0.6em;}
+
+#PersonalInformation ul li  {width:18em; height:3em; display:block; vertical-align:middle;}
+#PersonalInformation label, #PersonalInformation input {width:16em}
+
+#WorkPreferences textarea {width:48em}
+#WorkPreferences ul li {width:26em; height:3em; display:block; vertical-align:middle;}
+#WorkPreferences label {width:48em} 
+#WorkPreferences input {width:23em}
+#workPreferenceQuestions label {width:24em} 
+#workPreferenceQuestions ul li {padding-right:0.25em} 
+#workPreferenceQuestions input {width:2em}
+
+#WorkReferences ul li, #WorkReferences  ul li{width:26em; height:3em; display:block; vertical-align:middle;}
+#WorkReferences label, #WorkReferences input {width:24em}
+
+/* div p {display: block;} */
+
+/* Global for short forms */
+
+.fieldIsBad {color:#FF0000; padding-left:25em;}
+.fieldIsBad span {
+	visibility:visible;
+	margin-left:1em;
+	height:1.2em;
+	padding-left:1.5em;
+	float: none;
+	background: transparent url('/include/images/mainsite/icon_err.gif') no-repeat;}
+
+#bugFormContent { height:8em }

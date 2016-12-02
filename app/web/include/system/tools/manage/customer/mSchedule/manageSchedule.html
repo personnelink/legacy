@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Manage Schedule</title>
+	<link rel="stylesheet" type="text/css" href="mSchedule.css">
+	<script>
+var myWindow;
+
+function closeWin() {
+    this.close();
+}
+</script>
+</head>
+<body>
+	<div id="manSchedule">
+    <form>        
+        <h1>Manage Schedule</h1>
+            <label for="autoLunch">Automatic Lunch Deduction <input id="autoLunch" type="checkbox" /></label><br><br>
+			<label>30 Min.<input id="timeDed" name="timeDed" type="radio" value="-.5" /></label><br><br>
+			<label>60 Min.<input id="timeDed" name="timeDed" type="radio" value="-1" /></label>
+            <br><br>
+            <label id="allEarly" for="allowEarly">Allow Early Clock Ins <input id="allowEarly" type="checkbox" /></label>
+			<br><br>           
+            <label for="earlyClockThresh">Early Clock In Threshold
+				<select name="earlyClockThresh" id="earlyClockThresh">
+                    <option value="1">1 min</option>
+                    <option value="2">2 min</option>
+                    <option value="3">3 min</option>
+                    <option value="4">4 min</option>
+                    <option value="5">5 min</option>
+                    <option value="6">6 min</option>
+                    <option value="7">7 min</option>
+                    <option value="8">8 min</option>
+                    <option value="9">9 min</option>
+                    <option value="10">10 min</option>
+                    <option value="11">11 min</option>
+                    <option value="12">12 min</option>
+                    <option value="13">13 min</option>
+                    <option value="14">14 min</option>
+                    <option value="15">15 min</option>
+                </select> 
+			</label>
+			<br><br>
+			<label for="roundClockUp">Enforce Round Up <input id="roundClockUp" type="checkbox" /></label>
+			<br><br>                
+            <label for="roundUpThresh">Round Up Threshold
+				<select name="roundUpThresh" id="roundUpThresh">
+                    <option value="1">1 min</option>
+                    <option value="2">2 min</option>
+                    <option value="3">3 min</option>
+                    <option value="4">4 min</option>
+                    <option value="5">5 min</option>
+                    <option value="6">6 min</option>
+                    <option value="7">7 min</option>
+                    <option value="8">8 min</option>
+                    <option value="9">9 min</option>
+                    <option value="10">10 min</option>
+                    <option value="11">11 min</option>
+                    <option value="12">12 min</option>
+                    <option value="13">13 min</option>
+                    <option value="14">14 min</option>
+                    <option value="15">15 min</option>
+                </select>
+			</label>
+			<label for="shiftStart">Shift Start
+				<input type="text"></input>
+			</label>
+			<label for="shiftEnd">Shift End
+				<input type="text"></input>
+			</label>
+		<br><br>	
+		<button id="manageSchedule" type="submit" value="Submit" onClick="closeWin(); return checkForm(this.parentNode); ">Submit</button> 
+	</form>
+	<div id="clear"></div>
+	</div>
+</body>
+</html>

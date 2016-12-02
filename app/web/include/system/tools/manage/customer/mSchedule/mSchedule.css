@@ -1,0 +1,28 @@
+#leftSideMenu{
+	diplay:none;
+}
+#manSchedule{
+	margin-left:25px;
+	border:3px solid pink;
+	border-radius:15px;
+}
+#autoLunch{
+	float:left;
+	display:inline-block;
+}
+#timeDed{
+	float:left;
+	display:block;
+	margin-left:25%;
+}
+#allowEarly{
+	float:left;
+	display:inline;
+}
+#roundClockUp{
+	float:left;
+	display:inline;
+}
+#clear{
+	clear:both;
+}

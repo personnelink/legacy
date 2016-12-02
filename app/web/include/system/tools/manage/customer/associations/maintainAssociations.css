@@ -1,0 +1,97 @@
+@media print {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+
+
+/* redefine global id */
+#contentcolumn {width:79.1em;border-left:none;padding-left:0em;padding-right:0.4em;margin:0;padding-top:0}
+#leftSideMenu {display:none;}
+/* done redefining global id's */
+
+#accountActivityDetail,
+#viewActivityForm {min-height:5em;}
+
+#likeName {width: 20em;}
+.changeView {width:10em; float:right; clear:left; margin-bottom:0.6em; }
+#associations { padding:0 1em 0 0em; clear:both; }
+
+/* search box */
+#formOptions {width:45em; padding: 0 1em;}
+table#formOptions tr td input, 
+table#formOptions tr td label { float:left; clear:left; } 
+
+
+span.select {
+   position: absolute;
+   width: 78px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+   height: 21px;
+   padding: 0 24px 0 8px;
+   color: #fff;
+   font: 12px/21px arial,sans-serif;
+   background: url('/include/style/images/forms/select.gif') no-repeat;
+   overflow: hidden;
+
+}
+ 
+select#whichCompany {width:20em;}
+
+#weekending ul li {margin:auto 4em}  
+#weekending ul li li,
+#weekending ul li ul{ list-style: none; list-style-type: none; maring-left: 1em; margin-bottom:1em; display:inline }
+
+.customercode {width:6em;text-transform: uppercase;}
+.customersite {width:5em;}
+.customerweekends {5em;}
+
+.updating, .notupdating, .save {
+	display:block;
+	width:16px;
+	height:16px;
+}
+.updating {
+	background: url('ajax/updating.gif') no-repeat;
+}
+.save {
+	background: url('ajax/save.gif') no-repeat;
+	cursor:pointer;
+}
+div#associations table {width:100%;}
+div#associations td {padding:0; margin:0;}
+
+div#associations .widgets {width:24px;}
+
+th.manage_attached a {display:block; float:left;clear:right;width:25px;height:25px;margin:0 0.4em 0 0;}
+td.attachment_options a {display:block; float:left;clear:right;width:15px;height:15px;margin:0 0.4em 0 0;}
+.ripAttachment,
+.getAttachment,
+.delAttachment,
+.editAttachment,
+.newAttachment {background-image:url('/include/system/tools/images/app_sprites.gif')}
+.newAttachment {background-position:-35px -32px;}
+.editAttachment {background-position:-31px 0px;}
+a.editAttachment:hover {background-position:-45px 0px;}
+.delAttachment {background-position:-31px -14px;}
+a.delAttachment:hover {background-position:-45px -14px;}
+.getAttachment {background-position:-31px -57px;}
+a.getAttachment:hover {background-position:-45px -57px;}
+

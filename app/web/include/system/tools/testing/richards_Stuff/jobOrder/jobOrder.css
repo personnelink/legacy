@@ -1,0 +1,549 @@
+#pageWrapper{width:100%; height:6000px;}
+
+/* Large devices (large desktops, 1200px and up)*/
+@media only screen and (min-width:1200px) {  
+.medForm {display:none;}
+.smForm {display:none;}
+/* redefine global id */
+body{width:80%; margin:auto;}
+
+#contentcolumn {width:100%;border-left:none;padding-left:0em;padding-right:0.4em;margin:0;padding-top:0}
+#leftSideMenu {display:none;}
+#download{float: right; margin-left: 10em; margin-right: 1em; text-align: right;}
+
+/*#search a { clear:both;margin:0 13px;width:20em;height:25px;text-decoration:none;display:inline-block;}*/
+/*#search a.leftSearch {float:left;background:transparent url('/include/style/images/cornersSheet.png') no-repeat left -516px;} /* Client Login */
+/*#search a.rightSearch {float:right;background:transparent url('/include/style/images/cornersSheet.png') no-repeat right -515px;} /* Timeclock Login */
+/*#search a.middleSearch {float:left;background:transparent url('/include/style/images/cornersSheet.png') no-repeat -360px -515px;}/*Job Postings */
+
+/* done redefining global id's */
+input{width:80%;}
+
+/* company lookup container div */
+input#searchbox {width:70%; margin:auto;}
+
+div#joborder{width:75%;float:left;}
+form#frmJobOrder legend {width:30%;font-weight:bold;display:block;margin:1.6em 0 0; font-size:110%; }
+
+legend{font-size:1.2em;}
+fieldset{margin-top:5px;}
+fieldset#jobdetails, fieldset#businesstype,fieldset#SafetyEquip{width:38%;clear:both;float:left;}
+fieldset#companyinfo,fieldset#instructions{width:38%;float:left;margin-left:25px;}
+fieldset#orderdetails,fieldset#creditinfo,fieldset#jobposting,fieldset#workcomp, fieldset#chronicle, fieldset#rates, fieldset#servicecalls, fieldset#placements{width:80%}
+label.oneCol{width:25%;float:left; text-align:left; margin-left:15px;}
+input.oneCol{width:48%;float:left; margin-right:5px;}
+label.twoCol{width:35%;float:left; margin-right:20px;text-align:left;margin-left:5px;}
+input.twoCol{width:35%;float:left; margin-right:20px;margin-left:5px;}
+select.twoCol{width:16.5em; float:left; margin-right:20px;margin-left:5px;}
+label.threeCol{width:27%; float:left; margin-right:5px;text-align:left; margin-left:5px;}
+input.threeCol{width:25%;float:left; margin-right:5px; margin-left:5px;}
+label.fourCol{width:20%; float:left; margin-right:5px;text-align:center;}
+input.fourCol{width:20%;float:left; margin-right:5px;margin-left:5px;}
+label.fiveCol{width:20%; float:left; margin-right:5px;text-align:center;}
+input.fiveCol{width:10%;float:left; margin-right:5px;margin-left:5px;}
+label.sixCol{width:15%; float:left; margin-right:5px;text-align:center;}
+input.sixCol{width:12%;float:left; margin-left:10px;}
+label.sevenCol{width:12%; float:left; margin-right:5px;text-align:center;}
+input.sevenCol{width:10%;float:left; margin-left:8px;}
+
+.entire{width:85%; margin:auto; text-align:center; padding-left:5px;}
+.gray{color:gray; margin-left:170px; margin-top:-10px;font-size-adjust:90%;}
+/* job order tabs */
+#jobtabs {
+  position: relative;
+  right:0em;  
+  min-height: 40em;
+  clear: both;
+  float:right;
+  top:1.8em;
+  margin:0 1em 0 0;
+}
+.tab {
+	width:18em;
+	height:3.1em;
+	overflow:hidden;
+	float: right;
+	clear:both;
+	text-align:right;
+	margin:0;
+	padding:0;
+	position:relative;
+	background:url('tabs.png') no-repeat top right;
+	cursor:pointer;
+	}
+
+.tab:hover {
+	background:url('tabs.png') no-repeat bottom right;
+}
+.tab label span {
+	top:0;
+	width:18em;
+	position:absolute;
+	white-space:nowrap;
+	overflow:hidden;
+	font-size:130%;
+	display:block;
+	clear:both;
+	float:right;
+	cursor:pointer;
+ }
+.tab label span.dept {
+	top:2.2em;
+	right:1em;
+	text-align:right;
+	font-size:75%;
+}
+.tab label span.job {
+	top:0em;
+	left:0.4em;
+	overflow:hidden;
+	width:14em;
+	height:1.6em;
+	text-align:left;
+	font-size:120%;
+}
+.tab label span.cname {
+	top:2.2em;
+	left:1.4em;
+	overflow:hidden;
+	width:11em;
+	height:1.3em;
+	text-align:left;
+	font-size:80%;
+}
+.tab [type=radio] {
+  display: none;   
+} 
+[type=radio]:checked ~ label {
+  background: white;
+  border-bottom: 1px solid white;
+  z-index: 2;
+} 
+[type=radio]:checked ~ label ~ .tabcontent {
+  z-index: 1;
+}
+
+.box h3{
+	text-align:center;
+	position:relative;
+	top:80px;
+}
+.box {
+	width:70%;
+	height:200px;
+	background:#FFF;
+	margin:0 auto 1em;
+}
+
+
+/*==================================================
+  Effect 1
+  ===============================================*/
+.effect1{
+	-webkit-box-shadow: 0 10px 6px -6px #ccc;
+	   -moz-box-shadow: 0 10px 6px -6px #ccc;
+	        box-shadow: 0 10px 6px -6px #ccc;
+}
+
+/*search look up div */
+div#customerlookup {
+	border:1px solid #fff;
+	padding:1px;
+	background-color:#ccc;
+	background:solid;
+	position:relative;
+	z-index:1000;
+} 
+
+/* placement activities */
+
+
+
+span.memo{margin:0;padding:0;font-size:90%;border:1px solid white;padding:0.1em;}
+span.memo{font-weight:bold;}
+span.memo {background-color:#fffce2}
+span.description{font-size:102%;font-style:italic;}
+span.memo:hover {background-color:#fffbd6}
+
+div.nowrap {overflow:hidden;display:block;width:100%;}
+
+span.working,
+span.idle,
+span.showdispos,
+span.disposition  {margin:0;padding:0;display:block;height:1.2em;width:10em;overflow:hidden;white-space:nowrap;cursor:pointer;}
+span.disposition select {margin:0;padding:0;}
+
+/* span.working {position:absolute;right:0;top:0;width:16px; height:15px;display:block;margin:0 1px 0 0;} */
+span.working {background: url('ajax/working.gif') no-repeat right;}
+span.whichcompany{display:block;float:left;width:15em;height:1em;}
+span#activeonly {display:block;float:right;clear:left;height:1em;width:25em;}
+span#activeonly input,
+span#activeonly label {vertical-align:middle;height:1em;}
+span#activeonly input {margin-right:0.2em;border:none;}
+
+/* end placement activities */
+div#lookup_customer {padding-left:1em;}
+div#lookup_customer p {margin-left:2em;}
+div#customerookup table {position:relative;cursor:pointer;width:36em !important; }
+div#customerlookup table tr:hover {background-color:#99CCFF;}
+}
+/* End Large Device Styles */
+/*Medium devices (tablets, 481px and up to 1199px) */
+@media only screen and (min-width: 481px) and (max-width: 1199px)  { 
+.smForm {display:none;}
+.lgForm {display:none;} 
+.clear{clear:both;}
+body{width:100%;}
+#leftSideMenu {display:none;}
+#contentwrapper{width:100%;}
+#contentcolumn {float:left;width:70%;border-left:1px solid #587299;padding-left:.5em;margin:0;padding-top:0}
+#pageBanner {width:100%; clear:none; background: transparent url('/include/style/images/cornersSheet.png') no-repeat left -415px;height:100px;background-color:#fff}
+#topnav {
+	width: 100%;
+	height: 20px;
+	font-family:Helvetica, Arial, sans-serif, "Arial Narrow";
+	font-size: 12px;
+	font-weight: bold;
+	background-color:transparent;
+	text-align:left;
+	float:left;
+	padding-top:4px;
+	display:inline-block;
+	position:absolute;
+	top:94px;
+	left:-20px;
+	margin-bottom:5px;
+	padding-right:0px;
+	z-index:100;
+}
+#topnav a {color:#FFF;font-weight:bold}
+#topnav a:hover {color:#FFFFF0;font-weight:bold;text-decoration:none}
+#subBanner {width:100%;background: url('/include/style/images/cornersSheet.png') no-repeat left -542px; height:80px} / sub banner /
+#account{	clear:both;	float:right;	position:absolute;	top:180px; 	padding-right:10px;	}
+#logInTab{position:absolute; top:25px;right:10px;}
+/*NAV BAR */
+#search{width:100%;display:block;height:75px;background-color:#e6eee6;line-height:30px;}	
+#search a {clear:both;margin:0 13px;width:20em;height:25px;text-decoration:none;display:block;}
+
+/*#search a.leftSearch {width:80%;margin-left:-05px;float:left;background:transparent url('/include/style/images/cornersSheet.png') no-repeat left -516px;} /* Client Login */
+/*#search a.rightSearch { margin-left:-60px;float:left;background:transparent url('/include/style/images/cornersSheet.png') no-repeat right -515px;} /* Timeclock Login */
+/*#search a.middleSearch {position:absolute; top:0px;width:80%;margin-left:-15px;float:left;background:transparent url('/include/style/images/cornersSheet.png') no-repeat -360px -515px;}	/*Job Postings */
+
+
+ span.nav {float:left;padding:0}
+#pageNavigation{width:100%; background-color:#285291;height:70px;}
+#pageNavigation span.nav a img {margin:1.2em -1em 0}
+#pageNavigation span.nav a:hover img {margin:1.3em -1em 0}
+#pageNavigation span.nav a {border-right:0 none}
+#pageNavigation span.nav a:hover {border-top: 1px solid #285291;margin-top:-1px;background:transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;} 
+
+#rightNav {float:right;margin-right:25px;clear:none; position:absolute; top:305px;right:-25px;}
+ ul.dropdown {font-weight: bold}
+ ul.dropdown li {padding:0;border-top: 1px solid #285291;border-right: 1px solid #003466;background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;} /* button up */
+ ul.dropdown li.hover,
+ ul.dropdown li:hover {border-top:1px solid #003466;margin-top:0px;text-decoration:none;background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1109px;}  /* button down */
+ ul.dropdown a {height:2.1em;padding:0.55em 1.45em 0em;display:block;}
+ ul.dropdown a:link,
+ ul.dropdown a:visited	{color: #F3F3D7;text-decoration: none}
+ ul.dropdown a:hover {color: #F3F3D7}
+ ul.dropdown a:active	{margin-top:-1px;border-top:1px solid #003466;
+		text-decoration:none;
+		background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1109px;} /*button down */
+
+	/* -- level mark -- */
+ ul.dropdown ul {width: 170px;margin: 0px}
+ ul.dropdown ul li {border-top: 1px solid #003366;font-weight: normal;padding:0em 0em 0;text-align:left;
+background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;}
+
+ ul.dropdown .dir {background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;}
+
+/* -- Components override -- */
+ ul.dropdown-horizontal ul .dir {right:0}
+ ul.dropdown-horizontal ul li .dir {margin: 0;padding:0}
+#boxeffect1{clear:both; float:left; width:25%; height:45px; padding: 0 15px 15px; font-style: bold; font-size: 90%; box-shadow: horizontal vertical spread colour;}
+
+label.lblSearchBox{width:100%;}
+input#searchbox {width:90%;}
+/* done redefining global id's*/
+#joborder{clear:both; float:left;width:50%;}
+ 
+#download{width:100px;height:50px; float:left; margin-right:0px; margin-left:25px; position:absolute;top:450px; text-align: left; display:inline;}
+fieldset{padding-left:5px;width:90%;}
+label.oneCol{width:25%;float:left; text-align:left; margin-left:5px;}
+input.oneCol{width:55%;float:left; margin-right:10px;}
+label.twoCol{width:35%;float:left; margin-right:20px;text-align:left;margin-left:5px;}
+input.twoCol{width:35%;float:left; margin-right:20px;}
+select.twoCol{width:16.5em; float:left; margin-right:20px;}
+label.threeCol{width:25%; float:left; margin-right:15px;text-align:left;padding-left:5px;margin-left:5px;}
+input.threeCol{width:25%;float:left; margin-right:10px;}
+label.fourCol{width:20%; float:left; margin-right:5px;text-align:center;}
+input.fourCol{width:20%;float:left; margin-right:5px;}
+label.fiveCol{width:20%; float:left; margin-right:5px;text-align:center;}
+input.fiveCol{width:20%;float:left; margin-right:5px;}
+
+.entire{width:85%; margin:auto; text-align:center; padding-left:5px;}
+.gray{color:gray;}
+ form{width:80%;clear:both;float:left; position:absolute; left:5px;}
+ form#frmJobOrder *{width:80%;}
+ form#frmJobOrder input, form#frmJobOrder textarea, form#frmJobOrder select  {float:left; display:block; width:80%;margin:5px;}
+	
+ form#frmJobOrder legend {width:35%;font-weight:bold;display:block;margin:1.6em 0 0; font-size:110%;}
+
+ form#frmJobOrder table {border-collapse:collapse;}
+ form#frmJobOrder table,
+ form#frmJobOrder td,
+ form#frmJobOrder th {float:left;display:block;padding:5px; font-weight:normal;text-align:left;margin:0}
+
+ form#frmJobOrder table tr th {padding:0.6em 0.6em 0 0.4em;}
+ form#frmJobOrder table tr td {padding:0 0.6em 0.4em 0.4em;}
+
+ #SafetyEquip{width:70%; margin:10px;}
+/* job order tabs */
+#jobtabs {
+  position: absolute;
+  right:-15px;  
+  min-height: 60px;
+  clear: both;
+  float:right;
+  top:500px;
+  margin:0 1em 0 0;
+}
+.tab {
+	width:15em;
+	height:3.1em;
+	overflow:hidden;
+	clear:both;
+	float: right;
+	text-align:right;
+	margin:0;
+	padding:0;
+	position:relative;
+	background:url('tabs.png') no-repeat top right;
+	cursor:pointer;
+	}
+.tab:hover {
+	background:url('tabs.png') no-repeat bottom right;
+}
+.tab label span {
+	top:0;
+	width:10em;
+	position:absolute;
+	white-space:nowrap;
+	overflow:hidden;
+	font-size:50%;
+	display:block;
+	clear:both;
+	float:right;
+	cursor:pointer;
+ }
+.tab label span.dept {
+	top:2.2em;
+	right:1em;
+	text-align:right;
+	font-size:50%;
+}
+.tab label span.job {
+	top:0em;
+	left:0.4em;
+	overflow:hidden;
+	width:14em;
+	height:1.6em;
+	text-align:left;
+	font-size:110%;
+}
+.tab label span.cname {
+	top:2.2em;
+	left:1.4em;
+	overflow:hidden;
+	width:11em;
+	height:1.3em;
+	text-align:left;
+	font-size:70%;
+}
+.tab [type=radio] {
+  display: none;   
+} 
+
+}
+/*End Medium device Styles */
+/* Small devices (phones, max of 480px ) */
+@media only screen and (max-width: 480px) {
+.medForm {display:none;}
+.lgForm {display:none;}
+/* redefine global and master settings */
+#leftSideMenu {display:none; width:1px;}
+ body{width:100%;}
+#pageWrapper{width:100%;}
+#contentwrapper{width:100%; height:6000px;}
+#contentcolumn {float:left;width:70%;border-left:1px solid #587299;padding-left:.5em;margin:0;padding-top:0}
+#pageBanner {width:100%; clear:none; background: transparent url('/include/style/images/cornersSheet.png') no-repeat left -415px;height:100px;background-color:#fff}
+#topnav {
+	width: 100%;
+	height: 20px;
+	font-family:Helvetica, Arial, sans-serif, "Arial Narrow";
+	font-size: 12px;
+	font-weight: bold;
+	background-color:transparent;
+	text-align:left;
+	float:left;
+	padding-top:4px;
+	display:inline-block;
+	position:absolute;
+	top:94px;
+	left:-20px;
+	margin-bottom:5px;
+	padding-right:0px;
+	z-index:100;
+}
+#topnav a {color:#FFF;font-weight:bold}
+#topnav a:hover {color:#FFFFF0;font-weight:bold;text-decoration:none}
+#subBanner {width:100%;background: url('/include/style/images/cornersSheet.png') no-repeat left -542px; height:80px} / sub banner /
+#account{	clear:both;	float:right;	position:absolute;	top:180px; 	padding-right:10px;	}
+#logInTab{position:absolute; top:25px;right:10px;}
+
+
+/*NAV BAR */
+#search{width:100%;display:block;height:75px;background-color:#e6eee6;line-height:30px;}	
+#search a {clear:both;margin:0 13px;width:20em;height:25px;text-decoration:none;display:block;}
+
+/*#search a.leftSearch {width:80%;margin-left:-05px;float:left;background:transparent url('/include/style/images/cornersSheet.png') no-repeat left -516px;} /* Client Login */
+/*#search a.rightSearch { margin-left:-60px;float:left;background:transparent url('/include/style/images/cornersSheet.png') no-repeat right -515px;} /* Timeclock Login */
+/*#search a.middleSearch {position:absolute; top:0px;width:80%;margin-left:-15px;float:left;background:transparent url('/include/style/images/cornersSheet.png') no-repeat -360px -515px;}	/*Job Postings */
+
+#rightNav {float:right;clear:none}
+ span.nav {float:left;padding:0}
+#pageNavigation{width:105%; background-color:#285291;height:95px;}
+#pageNavigation span.nav a img {margin:1.2em -1em 0}
+#pageNavigation span.nav a:hover img {margin:1.3em -1em 0}
+#pageNavigation span.nav a {border-right:0 none}
+#pageNavigation span.nav a:hover {border-top: 1px solid #285291;margin-top:-1px;background:transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;} 
+#rightNav {float:right;margin-right:25px;clear:none; position:absolute; top:330px;right:-25px;}
+ ul.dropdown {font-weight: bold}
+
+ ul.dropdown li {padding:0;border-top: 1px solid #285291;border-right: 1px solid #003466;background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;} /* button up */
+ ul.dropdown li.hover,
+ ul.dropdown li:hover {border-top:1px solid #003466;margin-top:0px;text-decoration:none;background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1109px;}  /* button down */
+ ul.dropdown a {height:2.1em;padding:0.55em 1.45em 0em;display:block;}
+ ul.dropdown a:link,
+ ul.dropdown a:visited	{color: #F3F3D7;text-decoration: none}
+ ul.dropdown a:hover {color: #F3F3D7}
+ ul.dropdown a:active	{margin-top:-1px;border-top:1px solid #003466;
+		text-decoration:none;
+		background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1109px;} /*button down */
+
+	/* -- level mark -- */
+
+ ul.dropdown ul {width: 170px;margin: 0px}
+ ul.dropdown ul li {border-top: 1px solid #003366;font-weight: normal;padding:0em 0em 0;text-align:left;
+background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;}
+
+
+ ul.dropdown .dir {background: transparent url('/include/style/images/bgSheet.png') repeat-x left -1075px;}
+
+/* -- Components override -- */
+ ul.dropdown-horizontal ul .dir {right:0}
+ ul.dropdown-horizontal ul li .dir {margin: 0;padding:0}
+ #boxeffect1{clear:both; float:left; width:25%; height:45px; padding: 0 15px 15px; font-style: bold; font-size: 90%; box-shadow: horizontal vertical spread colour;}
+input.searchbox {width:250%; margin:auto;}
+label.lblSearchBox{width:100%; margin:auto;}
+/* done redefining global id's*/
+#joborder{clear:both; float:left;width:50%;}
+ 
+#download{width:100px;height:50px; float:left; margin-right:0px; margin-left:25px; position:absolute;top:450px; text-align: left; display:inline;}
+fieldset{padding-left:5px;width:90%;}
+label.oneCol{width:25%;float:left;}
+input.oneCol{width:58%;float:left; margin-right:10px;}
+label.twoCol{width:25%;float:left; margin-right:10px;}
+input.twoCol{width:35%;float:left; margin-right:10px;}
+label.threeCol{width:25%; float:left; margin-right:15px;text-align:left;padding-left:5px;}
+input.threeCol{width:25%;float:left; margin-right:10px;}
+label.fourCol{width:20%; float:left; margin-right:5px;text-align:left;padding-left:5px;}
+input.fourCol{width:20%;float:left; margin-right:5px;}
+.entire{width:90%; margin:auto; text-align:center; padding-left:5px;}
+.gray{color:gray;}
+ form{width:80%;clear:both;float:left; position:absolute; left:5px;}
+ form#frmJobOrder *{width:80%;}
+ form#frmJobOrder input, form#frmJobOrder textarea, form#frmJobOrder select  {float:left; display:block; width:80%;margin:5px;}
+	
+ form#frmJobOrder legend {width:35%;font-weight:bold;display:block;margin:1.6em 0 0; font-size:110%;}
+
+ form#frmJobOrder table {border-collapse:collapse;}
+ form#frmJobOrder table,
+ form#frmJobOrder td,
+ form#frmJobOrder th {float:left;display:block;padding:5px; font-weight:normal;text-align:left;margin:0}
+
+ form#frmJobOrder table tr th {padding:0.6em 0.6em 0 0.4em;}
+ form#frmJobOrder table tr td {padding:0 0.6em 0.4em 0.4em;}
+
+
+
+ #SafetyEquip{width:70%; margin:10px;}
+/* job order tabs */
+#jobtabs {
+  position: absolute;
+  right:-15px;  
+  min-height: 60px;
+  clear: both;
+  float:right;
+  top:500px;
+  margin:0 1em 0 0;
+}
+.tab {
+	width:10em;
+	height:3.1em;
+	overflow:hidden;
+	clear:both;
+	float: right;
+	text-align:right;
+	margin:0;
+	padding:0;
+	position:relative;
+	background:url('tabs.png') no-repeat top right;
+	cursor:pointer;
+	}
+.tab:hover {
+	background:url('tabs.png') no-repeat bottom right;
+}
+.tab label span {
+	top:0;
+	width:10em;
+	position:absolute;
+	white-space:nowrap;
+	overflow:hidden;
+	font-size:50%;
+	display:block;
+	clear:both;
+	float:right;
+	cursor:pointer;
+ }
+.tab label span.dept {
+	top:2.2em;
+	right:1em;
+	text-align:right;
+	font-size:50%;
+}
+.tab label span.job {
+	top:0em;
+	left:0.4em;
+	overflow:hidden;
+	width:14em;
+	height:1.6em;
+	text-align:left;
+	font-size:110%;
+}
+.tab label span.cname {
+	top:2.2em;
+	left:1.4em;
+	overflow:hidden;
+	width:11em;
+	height:1.3em;
+	text-align:left;
+	font-size:70%;
+}
+.tab [type=radio] {
+  display: none;   
+} 
+
+
+}
+/*End Small Device Styles  */
