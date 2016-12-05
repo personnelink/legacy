@@ -262,7 +262,8 @@ function doClockIn
 			
 	response.write confirmationHTML
 	
-	call sendEmailNotice("in", confirmationHTML, time)	
+	call sendEmailNotice("in", confirmationHTML, time)
+	
 
 end function
 
@@ -393,9 +394,9 @@ function doClockOut
 	else
 		cmd.CommandText = "" &_
 			"UPDATE time_detail SET modified=now(), timeout=now() " &_
-				"WHERE summaryid=" & summaryid & " AND (timeout IS NULL AND timein IS NOT NULL);"
+				"WHERE summaryid=" & summaryid & " AND (timeout IS NULL AND timein IS NOT NULL) AND (workday=" & today & " or workday=" & today - 1 & ");"
 				'"WHERE summaryid=" & summaryid & " AND (timeout IS NULL AND timein IS NOT NULL);"
-	'			"WHERE summaryid=" & summaryid & " AND (timeout IS NULL AND timein IS NOT NULL) AND workday=" & today & ";"
+				'"WHERE summaryid=" & summaryid & " AND (timeout IS NULL AND timein IS NOT NULL);"
 	end if
 
 	set rs = cmd.execute()

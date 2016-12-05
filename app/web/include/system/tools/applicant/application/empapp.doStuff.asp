@@ -29,6 +29,12 @@ dim jobHistPhoneTwo, jobHistCityTwo, jobHistStateTwo, jobHistZipTwo, jobHistPayT
 dim jobReasonTwo, employerNameHistThree, jobHistAddThree, jobHistPhoneThree, jobHistCityThree, jobHistStateThree, jobHistZipThree, jobHistPayThree, jobHistSupervisorThree
 dim jobDutiesThree, jobHistFromDateThree, JobHistToDateThree, jobReasonThree, firstName, lastName, appState
 
+
+' profile namespace
+
+
+
+
 dim alienExpire, i94Admission, passportNumber, issuanceCountry
 
 dim agree2applicant, agree2pandp, agree2noncompete, agree2unemployment, w4signed, agree2safety, agree2drug, agree2sexual, w4namediffers
@@ -54,13 +60,25 @@ end select
 	'Check if user has an application and if so load it
 	Database.Open MySql
 	if applicationId > 0 then
-		sql = "SELECT tbl_applications.*, tbl_w4.* " &_
-			"FROM (tbl_w4 RIGHT JOIN tbl_users ON tbl_w4.userid = tbl_users.userID) LEFT JOIN tbl_applications ON tbl_users.applicationID = tbl_applications.applicationID " &_
+		sql = "SELECT tbl_applications.*, tbl_w4.*, tbl_users.userPhone, tbl_users.userSPhone, tbl_addresses.* " &_
+			"FROM ((tbl_w4 RIGHT JOIN tbl_users ON tbl_w4.userid = tbl_users.userID) LEFT JOIN tbl_addresses ON tbl_addresses.addressID=tbl_users.addressID) LEFT JOIN tbl_applications ON tbl_users.applicationID = tbl_applications.applicationID " &_
 			"WHERE tbl_applications.applicationId=" & applicationId
 		Set dbQuery = Database.Execute(sql)
 		if dbQuery.eof then
 			createNewApp
 		else
+			firstName = Pcase(user_firstname)
+			lastName = Pcase(user_lastname)
+			email = user_email
+			mainPhone = dbQuery("userPhone")
+			altPhone = dbQuery("userSPhone")
+			addressOne = dbQuery("address")
+			addressTwo = dbQuery("addressTwo")
+			city = dbQuery("city")
+			UserState = dbQuery("state")
+			zipcode = dbQuery("zip")
+			
+			
 			aliasNames = dbQuery("aliasNames")
 			ssn = dbQuery("ssn")
 			dob = dbQuery("dob")
@@ -281,13 +299,13 @@ end select
 Function SaveApplication (saveNotice)
 	dim firstName, lastName, email, userID, sql, agree2pandp, agree2unemployment
     
-	firstName = Pcase(user_firstname)
-	lastName = Pcase(user_lastname)
+	firstName = Pcase(request.form("nameF"))
+	lastName = Pcase(request.form("nameL"))
 	aliasNames = Pcase(request.form("aliasNames"))
 	if not isnull(ssn) then ssn = ssnRE.Replace(request.form("ssn"), "")
 	dob = request.form("dob")
 	if isDate(dob) then	dob = FormatDateTime(dob, 2)
-	email = user_email
+	email = Pcase(request.form("email"))
 	emailupdates = request.form("emailupdates")
 	if not isnull(user_phone) then mainPhone = ssnRE.Replace(user_phone, "")
 	if not isnull(user_sphone) then altPhone = ssnRE.Replace(user_sphone, "")
@@ -566,6 +584,28 @@ Function SaveApplication (saveNotice)
 
 	Database.Execute(sql)
 
+	sql = "UPDATE tbl_addresses SET " &_
+		"address=" & insert_string(request.form("addressOne")) & ", " &_
+		"addressTwo=" & insert_string(request.form("addressTwo")) & ",  " &_
+		"city=" & insert_string(request.form("city")) & ",  " &_
+		"state=" & insert_string(request.form("state")) & ",  " &_
+		"zip=" & insert_string(request.form("zipcode")) & ",  " &_
+		"country=" & insert_string(request.form("country")) & " Where addressID=" & addressId
+	set dbQuery=Database.Execute(sql)
+	
+	sql = "UPDATE tbl_users SET " &_
+		"userEmail=" & insert_string(request.form("email")) & ", " &_ 
+		"userPhone=" & insert_string(FormatPhone(request.form("pphone"))) & ", " &_
+		"userSPhone=" & insert_string(FormatPhone(request.form("sphone"))) & ", " &_
+		"title=" & insert_string(request.form("title")) & ", " &_
+		"firstName=" & insert_string(request.form("nameF")) & ", " &_ 
+		"lastName=" & insert_string(request.form("nameL")) & " " &_
+		"WHERE userID=" & user_id
+	set dbQuery=Database.Execute(sql)
+
+	
+	
+	
 	if saveNotice then
 		session("applicationSaved") = "<div id=" & chr(34) & "applicationSaved" & chr(34) & "><p><span>Your application was successfully saved.</span></p><br>" &_
 		"<p>Don't forget your application is not completed and you are not elgible for work until you fill in all the information and submit it online." &_

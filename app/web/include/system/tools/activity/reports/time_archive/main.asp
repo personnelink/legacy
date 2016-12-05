@@ -2,7 +2,7 @@
 
 <%
 
-session("add_css") = "./timeArchive.css"
+session("add_css") = "./timeReport.css"
 session("required_user_level") = 256 'userLevelSupervisor
 session("window_page_title") = "Time Archive - Personnel Plus"
 
@@ -20,7 +20,7 @@ end if
 toDate = Request.QueryString("toDate") 
 if isDate(toDate) = false then 
 	toDate = request.form("toDate") 
-	if isDate(toDate) = false then toDate = CStr(Date() + 1)
+	if isDate(toDate) = false then toDate = CStr(Date() + 2)
 end if
 
 %>

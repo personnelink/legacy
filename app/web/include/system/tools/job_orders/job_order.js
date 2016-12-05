@@ -135,6 +135,9 @@ var company = {
 		var results = document.getElementById("CompanyLookUp");
 		results.innerHTML="";
 		results.style.display='none';
+		
+		tabs.showcustomer(obj);
+		
 	}
 }
 
@@ -145,14 +148,6 @@ function lookup_id() {
 		console.log('lookup_id');
 		swipe_timer = setTimeout("user_info.lookup()",500);
 }
-
-$(document).ready(function() {
-    $("#ordertabs").bind('paste', function(event) {
-        var _this = this;
-        // Short pause to wait for paste to complete
-        setTimeout("lookup_id()", 100);
-    });
-});
 
 function check_swipe(event) {
 	console.log(event.keyCode);
@@ -175,16 +170,41 @@ function getStyle(obj,att){
 var tabs = {
 	show: function(oXML) {
 		$("div#jobtabs").html(oXML.response);
+	},
+	reload: function(){
+		
+		var site = $("#frm_site").val();
+		var dept = $("#frm_dept").val();
+		
+		var PostStr = "do=getordertabs&site="+site+"&customer=JERCHE";
+		
+		console.log(PostStr);
+
+		doAJAXCall('ajax/?', 'POST', '' + PostStr + '', tabs.show);
+	
+		
+	},
+	showcustomer: function(oXML){
+		
 	}
 }
 
 var job = {
 	load: function(site, jobref, dept) {
+		
+		$('.tab').each(function(i, obj) {
+			$(obj).css("background","url('tabs.png') no-repeat top right");  
+		});
+			
 		$("#tab_"+jobref+"_"+dept).css("background","url('tabs.png') no-repeat bottom right");  
 
 		var PostStr = "do=getjoborder&jobref="+jobref+"&dept="+dept+"&site="+site;
 		console.log(PostStr);
 
+		$("#frm_site").val(site);
+		$("#frm_reference").val(jobref);
+		$("#frm_dept").val(dept);
+		
 		doAJAXCall('ajax/?', 'POST', '' + PostStr + '', this.show);
 		
 		job.loadplacements(site, jobref, dept);
@@ -200,38 +220,54 @@ var job = {
 		
 			var vars = info.split('&');
 			for (var i = 0; i < vars.length; i++) {
-			var pair = vars[i].split('=');
-			var jobkey = decodeURIComponent(pair[0])
-			var jobdata = decodeURIComponent(pair[1])
-			joborder[jobkey] = jobdata;
-			if($("#"+jobkey).length != 0) {
-				// find out what it is
-				
-				if ($("#"+jobkey).is("input")) {
-					$("#"+jobkey).val(joborder[jobkey]); //true or false			
-				} else if ($("#"+jobkey).is("textarea")) {
-					$("#"+jobkey).html(joborder[jobkey]); //true or false			
-				} else if ($("#"+jobkey).is("select")) {
-					$("#"+jobkey).val(joborder[jobkey]); //true or false			
-				} if ($("#"+jobkey).is("span")) {
-					$("#"+jobkey).html(joborder[jobkey]); //true or false			
+				var pair = vars[i].split('=');
+				var jobkey = decodeURIComponent(pair[0])
+				var jobdata = decodeURIComponent(pair[1])
+				joborder[jobkey] = jobdata;
+				if($("#"+jobkey).length != 0) {
+					// find out what it is
+					
+					if ($("#"+jobkey).is("input")) {
+						$("#"+jobkey).val(joborder[jobkey]); //true or false			
+					} else if ($("#"+jobkey).is("textarea")) {
+						$("#"+jobkey).html(joborder[jobkey]); //true or false			
+					} else if ($("#"+jobkey).is("select")) {
+						$("#"+jobkey).val(joborder[jobkey]); //true or false			
+					} if ($("#"+jobkey).is("span")) {
+						$("#"+jobkey).html(joborder[jobkey]); //true or false			
+					}
+					
+					$("#"+jobkey).attr("data-pvalue", joborder[jobkey]); // set previous value for blur function and change comparison
+
+
+				} else {
+				  //it doesn't exist
+					console.log("doesn't exist: "+jobkey);
 				}
-			} else {
-			  //it doesn't exist
-				console.log("doesn't exist: "+jobkey);
-		  }
 
 			}
 		}
 		orderdata(oXML.response);
 	},
-	update: function(site, jobref, dept, obj) {
+	update: function(site, jobref, dept, elem) {
 
-	var PostStr = "do=saveorderinfo&jobref="+jobref+"&dept="+dept+"&site="+site;
-		console.log(PostStr);
+		if (elem.getAttribute("data-pvalue")!=elem.value) {
+			console.log("change detected: pvalue="+elem.getAttribute("data-pvalue")+", current="+elem.value);
+			
+			var encoded_value = encodeURIComponent(elem.value);
+			
+			var PostStr = "do=saveorderinfo&jobref="+jobref+"&dept="+dept+"&site="+site+"&element="+elem.name+"&value="+encoded_value;
+			console.log(PostStr);
 
-		doAJAXCall('ajax/?', 'POST', '' + PostStr + '', this.show);
-		return false;
+			doAJAXCall('ajax/?', 'POST', '' + PostStr + '', this.updated);
+			
+			$(elem).attr("data-pvalue", elem.value);
+			
+			return false;
+		} else {
+			console.log("no change detected");
+			
+		}
 	},
 	loadplacements: function(site, jobref, dept) {
 
@@ -242,9 +278,35 @@ var job = {
 	},
 	showplacements: function(oXML) {
 		$("div#orderactivities").html(oXML.response);
+	},
+	updated: function(oXML) {
+		
+		// yeah, it updated
+		console.log (oXML.responseText);
+		
+		
 	}
+	
 }
 
+
+var input_strap = {
+	bind: function(elem) {
+		// bind function: retrieve input element attributes, parse and pass to job.update()
+		console.log("inside input_strap.bind."+elem.name);
+		
+		var site = $("#frm_site").val();
+		var jobref = $("#frm_reference").val();
+		var dept = $("#frm_dept").val();
+		
+		job.update(site, jobref, dept, elem);
+		
+		
+		
+	}
+
+	
+}
 
 
 
@@ -252,6 +314,12 @@ var job = {
 // window.onload = Custom.init;
 
 $(document).ready(function () {
+
+    $("#ordertabs").bind('paste', function(event) {
+        var _this = this;
+        // Short pause to wait for paste to complete
+        setTimeout("lookup_id()", 100);
+    });
 	
 	$("#searchbox").focus();
 	
@@ -259,5 +327,11 @@ $(document).ready(function () {
 	console.log(PostStr);
 
 	doAJAXCall('ajax/?', 'POST', '' + PostStr + '', tabs.show);
-
+	
+	var job_inputs = document.getElementsByClassName("order_input");
+	var i;
+	for (i = 0; i < job_inputs.length; i++) {
+		console.log(job_inputs[i].id);
+		$("#"+job_inputs[i].id).blur(function() {input_strap.bind(this)});
+	}
 });

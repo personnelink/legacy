@@ -106,7 +106,7 @@ public function doView ()
 	' Customers.Page = CInt(Request.QueryString("Page"))
 	Customers.GetAllCustomers(intJobStatus)
 
-	dim LightOrDark : LightOrDark = "light" 'toggle light or dark row shadding
+	dim LightOrDark : LightOrDark = "light" 'toggle light or dark row shading
 
 	for each Customer in Customers.Customer.Items
 

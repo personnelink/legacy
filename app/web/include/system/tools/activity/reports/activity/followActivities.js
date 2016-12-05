@@ -323,6 +323,9 @@ $( document ).ready(function() {
 		  $('#hide_basic_filters').removeClass('hide').addClass('show')
 		  // $('#what_activities').removeClass('hide').addClass('show');
 		  $('#basic_filters').slideDown();
+		  $( "#show_what_activities" ).trigger('click');
+		  $( "#show_system_activities" ).trigger('click');
+		  
 	});
 	
 	// hide what activities div filter and hide trigger

@@ -181,6 +181,7 @@ ul.what_activities { list-style-type: none;}
 ul.what_activities li { list-style-type: none; margin:0 0.4em 0.4em; display:inline-block;}
 
 ul.what_activities li label {display:block; width:8.4em; text-align:left; padding: 0 0 0 2em; text-indent:-2em;}
+ul.what_dates li label {width:5.4em!important;}
 
 div#what_activities p {margin:0 0 0.4em;}
 ul.what_activities li input {
@@ -223,9 +224,14 @@ span.disposition select {margin:0;padding:0;}
 /* span.working {width:16px; height:15px;display:block;margin:0 1px 0 0;} */
 
 span.whichcompany{display:block;float:left;width:15em;height:1em;}
-span#activeonly {display:block;float:left;clear:left;height:2em;width:25em;}
+span#activeonly, span#reverse_order {display:block;float:left;clear:left;height:2em;width:25em;}
+span#activeonly input,
+span#activeonly label, 
 span#activeonly input,
 span#activeonly label {vertical-align:middle;height:1em;}
+
+
+span#reverse_order input,
 span#activeonly input {margin-right:0.2em;border:none;}
 
 div#filtering_options, div#more_filtering_options {clear:both;}

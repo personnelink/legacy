@@ -60,6 +60,7 @@ public function approveTimeSummary()
 				"`time_detail`.`timein`, " &_
 				"`time_detail`.`timeout`, " &_
 				"`time_detail`.`timetotal`, " &_
+				"`time_detail`.`adjusted`, " &_
 				"`time_detail`.`timetype`, " &_
 				"`time_detail`.`created`, " &_
 				"`time_detail`.`modified`, " &_
@@ -100,6 +101,8 @@ public function approveTimeSummary()
 				"`time_summary`.`ot`, " &_
 				"`time_summary`.`dt`, " &_
 				"`time_summary`.`exp_tot`, " &_
+				"`time_summary`.`pp_submitted`, " &_
+				"`time_summary`.`emp_submitted`, " &_
 				"`time_summary`.`paid`, " &_
 				"`time_summary`.`approved`, " &_
 				"`time_summary`.`received`, " &_
@@ -108,7 +111,8 @@ public function approveTimeSummary()
 				"`time_summary`.`creatorid`, " &_
 				"`time_summary`.`foruserid`, " &_
 				"`time_summary`.`createdby`, " &_
-				user_id & " AS approverid " &_
+				insert_number(user_id) & " AS approverid, " &_
+				"NOW() AS approved_on " &_
 			"FROM pplusvms.time_summary " &_
 			"WHERE id=" & summaryid & ";" &_
 			"" &_
@@ -216,6 +220,7 @@ public function unapproveTimeSummary()
 				"`time_detail_archive`.`timein`, " &_
 				"`time_detail_archive`.`timeout`, " &_
 				"`time_detail_archive`.`timetotal`, " &_
+				"`time_detail_archive`.`adjusted`, " &_
 				"`time_detail_archive`.`timetype`, " &_
 				"`time_detail_archive`.`created`, " &_
 				"`time_detail_archive`.`modified`, " &_
@@ -255,6 +260,8 @@ public function unapproveTimeSummary()
 				"`time_summary_archive`.`ot`, " &_
 				"`time_summary_archive`.`dt`, " &_
 				"`time_summary_archive`.`exp_tot`, " &_
+				"`time_summary_archive`.`pp_submitted`, " &_
+				"`time_summary_archive`.`emp_submitted`, " &_
 				"`time_summary_archive`.`paid`, " &_
 				"`time_summary_archive`.`approved`, " &_
 				"`time_summary_archive`.`received`, " &_
@@ -268,7 +275,7 @@ public function unapproveTimeSummary()
 			"" &_
 			"DELETE time_summary_archive.* FROM pplusvms.time_summary_archive LEFT OUTER JOIN time_summary ON time_summary_archive.id=time_summary.id " &_
 			"WHERE time_summary.id=" & summaryid & ";"
-	print cmd.CommandText
+	'print cmd.CommandText
 	cmd.execute
 
 	response.write summaryid

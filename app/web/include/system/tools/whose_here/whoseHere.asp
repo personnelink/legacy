@@ -1,15 +1,29 @@
 <%
-session("add_css") = "./whoseHere.css"
-session("required_user_level") = 4096 'userLevelPPlusStaff
+session("add_css") = "./whoseHere.002.css"
+session("required_user_level") = 4 'userLevelApplicant
 session("window_page_title") = "Daily Sign-In - Personnel Plus"
 %>
 <!-- #INCLUDE VIRTUAL='/include/core/init_secure_session.asp' -->
+<!-- #INCLUDE VIRTUAL='/pdfServer/pdfApplication/application.classes.vb' -->
 
 <script type="text/javascript" src="whoseHere.js"></script>
 <!-- Created: 12.15.2008 -->
 <!-- Revised: 3.18.2009 -->
 <!-- Ajax'd: 9.8.2013 -->
+
 <%
+
+dim cmd
+Set cmd = Server.CreateObject("ADODB.Command")
+
+dim rs
+
+dim CurrentApplication
+set CurrentApplication = new cApplication
+
+CurrentApplication.ApplicationId = applicationId
+
+if userLevelRequired(userLevelPPlusStaff) then
 
 dim whichCompany
 whichCompany = Request.QueryString("whichCompany")
@@ -18,6 +32,11 @@ if len(whichCompany) = 0 then
 	if len(whichCompany) = 0 then
 		whichCompany = session("location")
 	end if
+end if
+
+else
+
+	'do stuff for applicant signing themselves in
 end if
 
 dim where, where_friendly, who, who_check
@@ -33,8 +52,11 @@ else
 	who = -1
 end if
 
+
+
+
 dim signInComments
-signInComment = request.QueryString("signInComment")
+signInComment = request.form("signInComment")
 
 dim applicant_name
 if who > 0 then
@@ -107,7 +129,7 @@ end if
 		With WhoseHere
 			.CursorLocation = 3 ' adUseClient
 			dim sqlCommandText
-			sqlCommandText = "SELECT Applicants.ApplicantID, LastnameFirst, Address, City, State, Zip, Telephone, [2ndTelephone], SignInTime, Hours, Comment  " &_
+			sqlCommandText = "SELECT Applicants.ApplicantID, LastnameFirst, ApplicantStatus, Address, City, State, Zip, Telephone, [2ndTelephone], SignInTime, Hours, Comment  " &_
 				"FROM Applicants, DailySignIn " &_
 				"WHERE Applicants.ApplicantID = DailySignIn.ApplicantID " &_
 				"ORDER By LastnameFirst Asc"
@@ -164,7 +186,7 @@ end if
 		dim applicantid, lastnameFirst, maintain_link, resourcelink
 			resourcelink = "/include/system/tools/activity/forms/maintainApplicant.asp?"
 
-			
+		dim applicant_status
 		response.write "<table class=""generalTable""><tr>" &_
 			"<th class=""whApplicant"">Applicant</th>" &_
 			"<th class=""whAddress"">Address</th>" &_
@@ -192,26 +214,41 @@ end if
 			applicantid = WhoseHere("ApplicantID")
 			lastnameFirst = WhoseHere("LastnameFirst")
 			maintain_link = "<a href=""" & resourcelink & "who=" & applicantid & "&where=" & whichCompany & """>" & lastnameFirst
-				
+			applicant_status = "status" & WhoseHere("ApplicantStatus")
+			
+			
 			tableRecord =  tableHeader &_
-				"<tr>" &_
+				"<tr class=""" & applicant_status & """>" &_
 					"<td>" & maintain_link & "</td>" &_
 					"<td>" & WhoseHere("Address") & "</td>" &_
 					"<td><a href=""tel:" & only_numbers(WhoseHere("Telephone"))  & """ />" & FormatPhone(WhoseHere("Telephone")) & "</td>" &_
 					"<th></th>" &_
 					"<td>" & WhoseHere("Comment") & "</td>" &_
-				"</tr><tr>" &_
+				"</tr><tr class=""" & applicant_status & """>" &_
 					"<td><i>Hours worked:</i>"  & WhoseHere("Hours") & "</td>" &_
 					"<td>" & WhoseHere("City") & ", " & WhoseHere("State") & " " & WhoseHere("Zip") & "</td>" &_
 					"<td><a href=""tel:" & only_numbers(WhoseHere("2ndTelephone"))  & """ />" & FormatPhone(WhoseHere("2ndTelephone")) & "</td>" &_
 					"<th></th>" &_
 					"<td>" & WhoseHere("SignInTime") & "</td>" &_
 				"</tr>"
+				
 			Response.write tableRecord
 			WhoseHere.MoveNext
 		loop
-		Response.write "</table>"
-		Set WhoseHere = nothing
+		Response.write tableHeader & "</table>" &_
+			"<div id=""color_key"">" &_
+				"<table>" &_
+					"<tr>" &_
+						"<td><div class=""key key_no_emp_record""></div></td><td>Applicant-no Employee Record</td>" &_
+						"<td><div class=""key key_unreviewed""></div></td><td>Unreviewed Placed Employee</td>" &_
+						"<td><div class=""key key_assigned""></div></td><td>On Active Assignment</td>" &_
+						"<td><div class=""key key_not_assigned""></div></td><td>Employee-no Assignments</td>" &_
+						"<td><div class=""key key_inactive""></div></td><td>Inactive/Terminated/Deleted</td>" &_
+					"</tr>" &_
+				"</table>" &_
+			"</div>"
+
+			Set WhoseHere = nothing
 
 		response.write("<div id=""topPageRecords"" class=""navPageRecords"">")
 		response.write "<A HREF=""" & aspPageName & "?Page=1&whichCompany=" & whichCompany & """>First</A>"

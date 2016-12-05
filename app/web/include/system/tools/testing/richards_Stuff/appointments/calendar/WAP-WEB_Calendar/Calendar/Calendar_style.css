@@ -1,0 +1,56 @@
+body
+	{
+	font-family: "Trebuchet MS", "Sans Serif";
+	font-size: 10pt;
+	}
+.CalTable
+	{
+	background-color: #3471B0;
+	}
+
+.CalHeading
+	{
+	background-color: #3471B0;
+	color: white;
+	font-weight: bold;
+	font-size: 12pt;
+	}
+
+.CalDayHeading
+	{
+	background-color: beige;
+	Font-weight: bold;
+	color: black;
+	}	
+	
+.CalNoDay
+	{
+	background-color: beige;
+	font-family: "Trebuchet MS", "Sans Serif";
+	font-size: 10pt;
+	}
+
+.CalDay
+	{
+	background-color: #FFFAF0;
+	}
+
+a.CalDaylink
+	{
+	color: navy;
+	font-weight: bold;
+	font-size: 12pt;
+	}
+
+a.CalDaylink:hover
+	{
+	text-decoration: none;
+	}
+
+a.CalEventlink
+	{
+	color: navy;
+	font-size: 8pt;
+	line-height: 110%;
+	}
+	

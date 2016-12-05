@@ -240,25 +240,25 @@ end if
 		AssignedTo = request.form("inpAssignedToCompany")
 				objCompSelector = buildCompanySelector("inpAssignedToCompany", AssignedTo, "")
 		
-		Title = request.form("title")
-		Department = request.form("department")
-		CompanyName = request.form("companyname")
-		FirstName = request.form("nameF")
-		LastName = request.form("nameL")
+		Title = trim(request.form("title"))
+		Department = trim(request.form("department"))
+		CompanyName = trim(request.form("companyname"))
+		FirstName = trim(request.form("nameF"))
+		LastName = trim(request.form("nameL"))
 		PrimaryPhone = FormatPhone(request.form("Pphone"))
 		SecondaryPhone = FormatPhone(request.form("Sphone"))
-		eMail = request.form("email")
-		ReeMail = request.form("reemail")
-		AddressOne = request.form("addOne")
-		AddressTwo = request.form("addTwo")
-		City = request.form("city")
+		eMail = trim(request.form("email"))
+		ReeMail = trim(request.form("reemail"))
+		AddressOne = trim(request.form("addOne"))
+		AddressTwo = trim(request.form("addTwo"))
+		City = trim(request.form("city"))
 		UserState = request.form("state")
-		ZipCode = request.form("zipcode")
-		Country = request.form("country")
-		UserName = request.form("userName")
-		Password = request.form("password")
+		ZipCode = trim(request.form("zipcode"))
+		Country = trim(request.form("country"))
+		UserName = trim(request.form("userName"))
+		Password = unmask_length(request.form("typedpassword"))
 		UserLevel = request.form("security")
-		ConfirmPassword = request.form("retypedpassword")
+		ConfirmPassword = unmask_length(request.form("retypedpassword"))
 		
 	case view
 		SubmitValue = "Update"
@@ -378,12 +378,12 @@ end if
         <label for="userName">User Name</label>
         <input type="text" id="userName" name="userName" autocomplete="off" size="60" value="<%=userName%>"  <%=CantChangeUserName%>>
       </p> <p><span class="smaller">Created: <%=DateCreated%>, <br /> Last logged in: <%=DateLastLogin%></span></p>  <p>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" autocomplete="off" size="30" value="<%=Password%>" >
+        <label for="typedpassword">Password</label>
+        <input type="password" id="typedpassword" name="typedpassword" autocomplete="off" size="30" value="<%=mask_length(Password, 31)%>" >
       </p>
       <p>
         <label for="retypedpassword">Retype Password</label>
-        <input type="password" id="retypedpassword" name="retypedpassword" size="30" value="<%=ConfirmPassword%>" autocomplete="off">
+        <input type="password" id="retypedpassword" name="retypedpassword" size="30" value="<%=mask_length(ConfirmPassword, 31)%>" autocomplete="off">
       </p>
       <%if CantChangeUserName <> "" then response.write("<input name='UserNameReadOnly' type='hidden' value='true'>")	%>
       <input name="userID" type="hidden" value="<%=selected_userId%>">

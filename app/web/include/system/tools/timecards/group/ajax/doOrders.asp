@@ -15,6 +15,8 @@ REM show_paid = false
 
 sub doGetOrders
 	
+	
+	'break "here"
 	dim JobOrders
 	set JobOrders = new cOrders
 
@@ -121,10 +123,10 @@ sub doGetOrders
 			<td class="OrderStopDate"><div><%=Order.StopDate%></div></td>
 			<td class="OrderPhone"><div><%=FormatPhone(Order.WorkSitePhone)%></div></td>
 			<td class="OrderActivities">
-				<span class="button"><span onclick="activity.load.order('<%=Order.CustomerCode%>', '<%=qsActivityURL%>', '<%=Order.Site%>', '<%=Order.Reference%>')">Order Activity</span></span>
+				<span class="button"><span onclick="activity.load.order('<%=Order.CustomerCode%>', '<%=Order.Site%>', '<%=Order.Reference%>')">Order Activity</span></span>
 			</td>
 			</tr></table>
-			<div id="order_activity_<%=Order.Reference%>"></div>
+			<div id="order_activity_<%=Order.Reference%>" class="order_activity"></div>
 		</div>
 
 		<!-- '"<td class=""Reference"">"  & "</td>" &_ -->

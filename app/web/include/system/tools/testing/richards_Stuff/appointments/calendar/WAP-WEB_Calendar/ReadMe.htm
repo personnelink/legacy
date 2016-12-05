@@ -1,0 +1,80 @@
+<html>
+
+<head>
+	<meta name="Description" content="WEB-WAP Calendar from HarrisonLogic.com">
+	<title>Harrison Logic - Web / WAP Calendar</title>
+	<style>
+		body			{font-family: Trebuchet MS; font-size: 10pt; }
+		.DataTable		{background-color: Purple;}
+		.TableItem		{background-color: #FFFFDD;	 font-size: 10pt;}
+		a				{color: Purple; text-decoration: none; }
+		a:hover 		{text-decoration: underline; }
+		H5				{color: Purple}
+	</style>
+</head>
+
+<body>
+
+<table border="0" width="556" class="DataTable" cellspacing="1" cellpadding="5">
+  <tr>
+    <td width="540" class="TableItem">
+      <h4>Web / WAP Calendar from Harrison Logic</h4>
+      <p>Version Completed: 9-27-2001&nbsp; (Tested 12-3-2002)</p>
+      <p>Thanks for your interest in the Web / WAP Calendar.&nbsp; This
+      application provides an updateable web-based calendar that can be viewed
+      from both the Web and through a Mobile device, such as a cellular phone.</p>
+      <h5>Requirements:</h5>
+      <ul>
+        <li>The files should work on any Web Server with ASP.</li>
+        <li>You will need to specify the MIME Settings for WML on your web
+          Server.&nbsp; To do this follow these steps:<br>
+          &nbsp;&nbsp; 1)&nbsp; Open your Internet Services Manager (Win2000) or
+          Internet MMC (Win NT)<br>
+          &nbsp;&nbsp; 2)&nbsp; Rt-Click your server and Choose Properties<br>
+          &nbsp;&nbsp; 3)&nbsp; Select the WWW Properties and choose Edit<br>
+          &nbsp;&nbsp; 4)&nbsp; On the 'HTTP Headers' tab, choose &quot;File
+          types&quot; then &quot;New Type'<br>
+          &nbsp;&nbsp; 5)&nbsp; Enter &quot;.wml&quot; for the extension, and
+          &quot;text/vnd.wap.wml&quot; for MIME</li>
+        <li>You can view the Mobile portion through your cell phone or through
+          an Emulator, such as OpenWave's emulator.</li>
+      </ul>
+      <h5>Installation Instructions:</h5>
+      <ul>
+        <li>Unzip the files and place them in a Directory in your web server
+          root</li>
+        <li>You should have two folders in your root, Calendar for the Web portion,
+          and C for the mobile portion.&nbsp; If you change this, you will need
+          to modify the Connection string in &quot;Calendar/DBConnect.asp&quot;
+          and &quot;C/functions.asp&quot;, otherwise you are fine.</li>
+        <li>The application should work as is.&nbsp; (Check in the DB folder to make sure
+          the Database (Calendar/Cal.mdb) is not 'Read Only'.)</li>
+        <li>You can customize the look with the Style.css or simply copy past
+          them into your<br>
+          own .asp pages.&nbsp;</li>
+      </ul>
+      <h5>Use Cases:</h5>
+      <ul>
+        <li><u>Web User</u>: Navigate to Calendar/Calendar.asp and you are
+          presented with the Calendar, you can scroll forward / backwards in
+          time, or click a date to add a event, or an event to view / update /
+          delete it.</li>
+        <li><u>Mobile User</u>:&nbsp; Navigate to &quot;C&quot; and you will be
+          presented with the calendar application allowing you to view the
+          current day, or the next day's events, or to search a date for
+          events.&nbsp; You are taken to the days events listings, which you can
+          select and view the event details.</li>
+      </ul>
+      <h5>Contact:</h5>
+      <ul>
+        <li>Please report and bugs, and we appreciate your comments or
+          suggestions.&nbsp; We can be reached at <a href="mailto:webmaster@HarrisonLogic.com">webmaster@HarrisonLogic.com</a>
+          or visit us at <a href="http://www.HarrisonLogic.com">www.HarrisonLogic.com</a>.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

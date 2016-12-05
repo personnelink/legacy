@@ -17,7 +17,7 @@ function show_available_w2s()
 	dim inTemps(3)
 	set dbQuery = Database.Execute(sql)
 	if not dbQuery.eof then
-			'PER = 0, BUR = 1, BOI = 2, IDA = 3
+			'PER = 0, BUR = 1, BOI = 2, IDA = 3, TWI = 4, PPI = 5, POC = 6, BLY = 7, BSE = 8, ALL = 9, ORE = 10, WYO = 11
 			inTemps(PER) = dbQuery("inPER")
 			inTemps(BUR) = dbQuery("inBUR")
 			inTemps(BOI) = dbQuery("inBOI")
@@ -29,11 +29,14 @@ function show_available_w2s()
 
 	dim i, inMoreThanOne, w2_year
 
+	'on error resume next
+	
 	const firstW2Year = 2011
 	dim lastW2Year : lastW2Year = Cint(Year(Date())) - 1
 
 	dim qrtly_path_and_filename
 	dim getW2_cmd, getW2
+	
 	set getW2_cmd = Server.CreateObject ("ADODB.Command")
 
 	for w2_year = firstW2Year to lastW2Year
@@ -45,10 +48,12 @@ function show_available_w2s()
 				qrtly_path_and_filename = qtrly_path & "web.services\" & "4" & site_by_name(i) & w2_year & ".mdb"
 				if fs.FileExists(qrtly_path_and_filename) = true then
     'print w2_year
+	'print qrtly_path_and_filename
 					'file exists, check if applicant has a w2 for the year
 					if request.querystring("debug") = "1" then print w2_year & " : " & site_by_name(i)
 					with getW2_cmd
-						.ActiveConnection = jetProvider & qrtly_path_and_filename
+						'print aceProvider & qrtly_path_and_filename 
+						.ActiveConnection = aceProvider & qrtly_path_and_filename
 						.CommandText = "" &_
 							"SELECT QtdMaster.LastnameFirst, QtdMaster.Address " &_
 							"FROM YtdW2Totals YtdW2Totals LEFT OUTER JOIN QtdMaster QtdMaster ON YtdW2Totals.ApplicantId=QtdMaster.ApplicantID " &_

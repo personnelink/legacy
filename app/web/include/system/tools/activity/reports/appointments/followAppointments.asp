@@ -24,7 +24,7 @@ if is_service then
 	session("no_header") = true
 else
 	session("additionalScripting") = "" &_
-		"<script type=""text/javascript"" src=""followAppointments.js""></script>" &_
+		"<script type=""text/javascript"" src=""followAppointments.001.js""></script>" &_
 		"<script type=""text/javascript"" src=""/include/functions/calendar/calendar.js""></script>" &_
 		"<script type=""text/javascript"" src=""/include/functions/calendar/calendar-setup.js""></script>" &_
 		"<script type=""text/javascript"" src=""/include/functions/calendar/lang/calendar-en.js""></script>" &_
@@ -37,7 +37,7 @@ end if
 
 <% if not is_service then %>
 
-<script type="text/javascript" src="followAppointments.js"></script>
+<script type="text/javascript" src="followAppointments.001.js"></script>
 
 <% end if %>
 
@@ -50,7 +50,7 @@ end if
 
 <form id="whoseHereForm" name="whoseHereForm" action="<%=aspPageName%>" method="get">
 
-  <p style="padding-bottom:1em;>
+  <p style="padding-bottom:1em;">
 	<%=objCompanySelector(whichCompany, false, "javascript:document.whoseHereForm.submit();")%>
  	<span id="activeonly">
 		<label for="onlyactive">
@@ -76,7 +76,7 @@ if appointment_id = 0 then
 %>
 	<div id="new_appointment_div">
 		<div class="clear"></div>
-		<a href="javascript:;" class=" borDkBlue advert pad5 txtWhite bgLtBlue w100" onclick="appointment.newone(this);">new appointment</a>
+		<a href="javascript:;" class=" borDkBlue advert pad5 txtWhite bgLtBlue w100" onclick="appointment.newone(this);">new</a>
 	</div>
 	<%
 	
@@ -98,19 +98,19 @@ for each Appointment in Reminders.Appointments.Items
 			<th class="date">Date & Time</th>
 		</tr>
 		 <tr class="details">
-			<td onclick="company.showlookup('<%=Appointment.id%>');">
+			<td onclick="lookup.show('customer','<%=Appointment.id%>');">
 				<span id="cspan_<%=Appointment.id%>"><%=Appointment.CustomerCode & " : " & Appointment.CustomerName%></span>
-				<div id="customer_<%=Appointment.id%>" class="hide">
-					<input id="csrch_<Appointment.id%>" name="csrch_<Appointment.id%>" type="text" onblur="company.clear('<%=Appointment.id%>');" onkeyup="company.lookup('<%=Appointment.id%>');"/>
-					<div id="companyLookUp_<%=Appointment.id%>"></div>
-				</div>
+				<div id="customer_<%=Appointment.id%>" class="hide search_div"><div>
+					<input id="inp_customer_<%=Appointment.id%>" data-type="customer" data-appointmentid="<%=Appointment.id%>" name="csrch_<Appointment.id%>" type="text" onblur="lookup.set_self_destruct('customer','<%=Appointment.id%>');" onkeyup="lookup.search(this,'<%=Appointment.id%>');"/>
+					<div id="customerLookUp_<%=Appointment.id%>" class="lookup_results"></div>
+				</div></div>
 			</td>
-			<td onclick="order.showlookup('<%=Appointment.id%>');">
-				<span id="jspan_<%=Appointment.id%>"><%=Appointment.CustomerCode & " : " & Appointment.CustomerName%></span>
-				<div id="job_<%=Appointment.id%>" class="hide">
-					<input id="jobsrch" name="jobsrch_<Appointment.id%>" type="text" onblur="applicant.clear(this);" onkeyup="company.lookup(this);"/>
-					<div id="jobLookUp"></div>
-				</div>
+			<td onclick="lookup.show('order','<%=Appointment.id%>');">
+				<span id="ospan_<%=Appointment.id%>"><%=Appointment.CustomerCode & " : " & Appointment.CustomerName%></span>
+				<div id="order_<%=Appointment.id%>" class="hide search_div"><div>
+					<input id="inp_order_<%=Appointment.id%>" data-type="order" data-appointmentid="<%=Appointment.id%>" name="jobsrch_<Appointment.id%>" type="text" onblur="lookup.set_self_destruct('order','<%=Appointment.id%>');" onkeyup="lookup.search(this,'<%=Appointment.id%>');"/>
+					<div id="orderLookUp_<%=Appointment.id%>" class="lookup_results"></div>
+				</div></div>
 			<td><%=Appointment.EnteredBy%></td>
 			<td class=""><%=Appointment.ApptDate%></td>
 		</tr>
@@ -129,14 +129,14 @@ for each Appointment in Reminders.Appointments.Items
 		</tr>
 		<tr class="details">
 			<td><span class="idle" id="aloader<%=Appointment.id%>"><%=Appointment.ApptType%></span></td>
-			<td onclick="applicant.showlookup('<%=Appointment.id%>');">
+			<td onclick="lookup.show('applicant','<%=Appointment.id%>');">
 				<span id="aspan_<%=Appointment.id%>"><%=Appointment.LnkMaintain%></span>
-				<div id="applicant_<%=Appointment.id%>" class="hide">
-					<input id="applicantsrch_<Appointment.id%>" name="applicantsrch_<Appointment.id%>" type="text" onblur="applicant.clear(this);" onkeyup="company.lookup(this);"/>
-					<div id="applicantLookUp"></div>
-				</div>
+				<div id="applicant_<%=Appointment.id%>" class="hide search_div"><div>
+					<input id="inp_applicant_<%=Appointment.id%>"  data-type="applicant" data-appointmentid="<%=Appointment.id%>" name="applicantsrch_<%Appointment.id%> type="text" onblur="lookup.set_self_destruct('applicant','<%=Appointment.id%>');" onkeyup="lookup.search(this,'<%=Appointment.id%>');"/>
+					<div id="applicantLookUp_<%=Appointment.id%>" class="searchbox lookup_results"></div>
+				</div></div>
 			</td>
-			<td><%=Appointment.AssignedTo%></td>
+			<td><%=Appointment.AssignTo%></td>
 			<td class=""><span class="idle" id="dloader<%=Appointment.id%>"><%=Appointment.Disposition%></span></td>
 		</tr>
 		<tr class="details">
@@ -146,8 +146,8 @@ for each Appointment in Reminders.Appointments.Items
 			<td></td>
 			<td></td>
 		</tr>
-		<tr id="tr_cm<%=Appointment.id%>" class="footer">
-			<td colspan="4"><span class="memo">Memo</span>:<span id="cm<%=Appointment.id%>" class="description" onclick="appointment.comment.edit(this);"><%=Appointment.Comment%></span>
+		<tr id="tr_cm<%=Appointment.id%>" class="footer" onclick="appointment.comment.focus_edit('cm<%=Appointment.id%>');">
+			<td colspan="4" ><span class="memo">Memo</span>:<span id="cm<%=Appointment.id%>" class="description" onclick="appointment.comment.edit(this);"><%=Appointment.Comment%></span>
 				<textarea class="hide" id="txt_cm<%=Appointment.id%>"></textarea></td>
 		</tr>
 	</table> <%

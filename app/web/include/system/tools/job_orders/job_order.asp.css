@@ -1,245 +1,391 @@
-/* redefine global id */
-#contentcolumn {width:79.1em;border-left:none;padding-left:0em;padding-right:0.4em;margin:0;padding-top:0}
-#leftSideMenu {display:none;}
 
+@media print, handheld {
+/* style sheet for print goes here */
+a.squarebutton, a.squarebutton span, .buttonwrapper, .bug, #bread, .squarebutton, #pageBanner, #pageNavigation, #pageFooter, #subBanner, #leftSideMenu, #boxeffect1, #jobtabs {
+	display: none;
+}
+#subContentWrapper, #pageWrapper, #contentcolumn, #contentwrapper {
+	width: 100%;
+	margin: 0;
+	float: none;
+	border: none;
+}
+#pageBreak {
+	page-break-before: always;
+}
+body {
+	background: none;
+}
+
+#tblJobOrder {
+	margin:0 5em 0 5em;
+}
+
+#pdfheader {
+	display:block;
+}
+
+}
+/* redefine global id */
+#pdfheader {
+	display:none;
+}
+
+#contentcolumn {
+	width: 79.1em;
+	border-left: none;
+	padding-left: 0em;
+	padding-right: 0.4em;
+	margin: 0;
+	padding-top: 0
+}
+#leftSideMenu {
+	display: none;
+}
 /* done redefining global id's */
 
-form#frmJobOrder * input {width:95%;}
-form#frmJobOrder * legend {width:26em;font-weight:bold;display:block;margin:1.6em 0 0; font-size:110%;}
-
-form#frmJobOrder * table {border-collapse:collapse;}
-form#frmJobOrder * table,
-form#frmJobOrder * td,
-form#frmJobOrder * th,
-form#frmJobOrder * input,
-form#frmJobOrder * label {padding:0; font-weight:normal;text-align:left;margin:0}
-
-form#frmJobOrder * table tr th {padding:0.6em 0.6em 0 0.4em;}
-form#frmJobOrder * table tr td {padding:0 0.6em 0.4em 0.4em;}
-
+form#frmJobOrder * input {
+	width: 95%;
+}
+form#frmJobOrder * legend {
+	width: 26em;
+	font-weight: bold;
+	display: block;
+	margin: 1.6em 0 0;
+	font-size: 110%;
+}
+form#frmJobOrder * table {
+	border-collapse: collapse;
+}
+form#frmJobOrder * table, form#frmJobOrder * td, form#frmJobOrder * th, form#frmJobOrder * input, form#frmJobOrder * label {
+	padding: 0;
+	font-weight: normal;
+	text-align: left;
+	margin: 0
+}
+form#frmJobOrder * table tr th {
+	padding: 0.6em 0.6em 0 0.4em;
+}
+form#frmJobOrder * table tr td {
+	padding: 0 0.6em 0.4em 0.4em;
+}
 /* set table widths */
-table#tblJobOrder * label {font-size:90%;}
-table#tblJobOrder tr td,
-table#tblJobOrder tr td {padding:0; margin:0;}
-
-table#orderheader,
-table#companyinfo,
-table#creditinfo,
-table#businesstype,
-table#jobposting,
-table#orderdetails,
-table#workcomp,
-table#instructions,
-table#chronicle,
-table#rates,
-table#servicecalls,
-table#orderactivities,
-table#placements {border:1px solid #ccc;margin:1em 0 1em;}
-
-
-table#servicecalls {width:58.2em;}
-table#orderheader {width:58.2em;}
-table#companyinfo {margin-right:0.5em; width:29.5em;}
-table#creditinfo { width:27.6em;float:right;margin-right:1em !important;}
-table#businesstype {width:58.2em;}
-table#jobposting {width:58.2em;}
-table#orderdetails {width:58.2em;}
-table#workcomp {padding-right:1em; width:29.5em;}
-table#instructions {width:27.6em;float:right;margin-right:1em !important;}
-table#chronicle {margin-right:0.5em; width:29.5em;}
-table#rates { width:27.6em;float:right;}margin-right:1em !important;
-table#servicecalls {width:58.2em;}
-table#placements  {width:58.2em;}
-table#orderactivities  {width:58.2em;}
-
-table#workcomp,
-table#instructions {height:13em;}
-
-table#chronicle,
-table#rates {height:9em;}
+table#tblJobOrder * label {
+	font-size: 90%;
+}
+table#tblJobOrder tr td, table#tblJobOrder tr td {
+	padding: 0;
+	margin: 0;
+}
+table#orderheader, table#companyinfo, table#creditinfo, table#businesstype, table#jobposting, table#orderdetails, table#workcomp, table#instructions, table#chronicle, table#rates, table#servicecalls, table#orderactivities, table#placements {
+	border: 1px solid #ccc;
+	margin: 1em 0 1em;
+}
+table#servicecalls {
+	width: 58.2em;
+}
+table#orderheader {
+	width: 58.2em;
+}
+table#companyinfo {
+	margin-right: 0.5em;
+	width: 29.5em;
+}
+table#creditinfo {
+	width: 27.6em;
+	float: right;
+	margin-right: 1em !important;
+}
+table#businesstype {
+	width: 58.2em;
+}
+table#jobposting {
+	width: 58.2em;
+}
+table#orderdetails {
+	width: 58.2em;
+}
+table#workcomp {
+	padding-right: 1em;
+	width: 29.5em;
+}
+table#instructions {
+	width: 27.6em;
+	float: right;
+	margin-right: 1em !important;
+}
+table#chronicle {
+	margin-right: 0.5em;
+	width: 29.5em;
+}
+table#rates {
+	width: 27.6em;
+	float: right;
+	margin-right: 1em !important;
+}
+table#servicecalls {
+	width: 58.2em;
+}
+table#placements {
+	width: 58.2em;
+}
+table#orderactivities {
+	width: 58.2em;
+}
+table#workcomp, table#instructions {
+	height: 13em;
+}
+table#chronicle, table#rates {
+	height: 9em;
+}
 /* company lookup container div */
 
-input#searchbox {float:left;clear:both;width:36em !important;}
-
-div#CompanyLookUp {z-index:1000;position:absolute;margin-top:3.2em;width:42em; min-height:10em;border: 1px solid #003366;display:none;}
-
+input#searchbox {
+	float: left;
+	clear: both;
+	width: 36em !important;
+}
+div#CompanyLookUp {
+	z-index: 1000;
+	position: absolute;
+	margin-top: 3.2em;
+	width: 42em;
+	min-height: 10em;
+	border: 1px solid #003366;
+	display: none;
+}
 /* job order tabs */
 
 #jobtabs {
-  position: relative;
-right:0;  
-  min-height: 40em;
-  clear: both;
-  float:right;
-  top:1.8em;
-  margin:0 1em 0 0;
+	position: relative;
+	right: 0;
+	min-height: 40em;
+	clear: both;
+	float: right;
+	top: 1.8em;
+	margin: 0 1em 0 0;
 }
 .tab {
-	width:18em;
-	height:3.1em;
-	overflow:hidden;
+	width: 18em;
+	height: 3.1em;
+	overflow: hidden;
 	float: right;
-	clear:both;
-	text-align:right;
-	margin:0;
-	padding:0;
-	position:relative;
-	background:url('tabs.png') no-repeat top right;
-	cursor:pointer;
-	}
-
-.tab:hover {
-	background:url('tabs.png') no-repeat bottom right;
+	clear: both;
+	text-align: right;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	background: url('tabs.png') no-repeat top right;
+	cursor: pointer;
 }
-
+.tab:hover {
+	background: url('tabs.png') no-repeat bottom right;
+}
 .tab label span {
-	top:0;
-	width:13em;
-	position:absolute;
-	white-space:nowrap;
-	overflow:hidden;
-	font-size:130%;
-	display:block;
-	clear:both;
-	float:right;
-	cursor:pointer;
- }
+	top: 0;
+	width: 13em;
+	position: absolute;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 130%;
+	display: block;
+	clear: both;
+	float: right;
+	cursor: pointer;
+}
 .tab label span.dept {
-	top:2.2em;
-	right:1em;
-	text-align:right;
-	font-size:75%;
+	top: 2.2em;
+	right: 1em;
+	text-align: right;
+	font-size: 75%;
 }
 .tab label span.job {
-	top:0em;
-	left:0.4em;
-	overflow:hidden;
-	width:14em;
-	height:1.6em;
-	text-align:left;
-	font-size:120%;
+	top: 0em;
+	left: 0.4em;
+	overflow: hidden;
+	width: 14em;
+	height: 1.6em;
+	text-align: left;
+	font-size: 120%;
 }
-
 .tab label span.cname {
-	top:2.2em;
-	left:1.4em;
-	overflow:hidden;
-	width:11em;
-	height:1.3em;
-	text-align:left;
-	font-size:80%;
+	top: 2.2em;
+	left: 1.4em;
+	overflow: hidden;
+	width: 11em;
+	height: 1.3em;
+	text-align: left;
+	font-size: 80%;
 }
-
-
 .tab [type=radio] {
-  display: none;   
-} 
-
-
-[type=radio]:checked ~ label {
-  background: white;
-  border-bottom: 1px solid white;
-  z-index: 2;
-} 
-[type=radio]:checked ~ label ~ .tabcontent {
-  z-index: 1;
+	display: none;
 }
-
-.box h3{
-	text-align:center;
-	position:relative;
-	top:80px;
+[type=radio]:checked ~ label {
+	background: white;
+	border-bottom: 1px solid white;
+	z-index: 2;
+}
+[type=radio]:checked ~ label ~ .tabcontent {
+	z-index: 1;
+}
+.box h3 {
+	text-align: center;
+	position: relative;
+	top: 80px;
 }
 .box {
-	width:70%;
-	height:200px;
-	background:#FFF;
-	margin:0 auto 1em;
+	width: 70%;
+	height: 200px;
+	background: #FFF;
+	margin: 0 auto 1em;
 }
-
-
 /*==================================================
  * Effect 1
  * ===============================================*/
-.effect1{
+.effect1 {
 	-webkit-box-shadow: 0 10px 6px -6px #ccc;
-	   -moz-box-shadow: 0 10px 6px -6px #ccc;
-	        box-shadow: 0 10px 6px -6px #ccc;
+	-moz-box-shadow: 0 10px 6px -6px #ccc;
+	box-shadow: 0 10px 6px -6px #ccc;
 }
-
 /* search look up div */
 div#customerlookup {
-	border:1px solid #fff;
-	padding:1px;
-	background-color:#ccc;
-	background:solid;
-	position:relative;
-	z-index:1000;
-} 
-
+	border: 1px solid #fff;
+	padding: 1px;
+	background-color: #ccc;
+	background: solid;
+	position: relative;
+	z-index: 1000;
+}
 /* placement activities */
 
-table.placements {margin:0.4em 0 0.6em; padding:0;border-top: 5px solid #003466; width:100%;table-layout:fixed;}
-
-
-table.placements th {text-align:left}
-table.placements th {overflow:hidden;white-space:nowrap;}
-
-th.date{width:37%;}
-th.applicant{width:31%;}
-th.reason{width:19%;margin:0;padding:0;}
-th.foruser{width:13%;}
-
-th.customer,
-th.joborder,
-th.status,
-th.for,
-th.date,
-th.applicant,
-th.reason,
-th.foruser,
-span.memo{margin:0;padding:0;font-size:90%;border:1px solid white;padding:0.1em;}
-
-span.memo{font-weight:bold;}
-
-table.placements tr.heading {background-color:#ddecf9;height:1em;}
-table.placements tr.details {background-color:#f2f6fb;height:1em;}
-table.placements tr.footer {background-color:#fffce2;height:1em;}
-span.memo {background-color:#fffce2}
-span.description{font-size:102%;font-style:italic;}
-
-table.placements tr.heading:hover {background-color:#c0def8;}
-table.placements tr.details:hover {background-color:#e4eff9;}
-table.placements tr.footer :hover{background-color:#fffbd6;}
-span.memo:hover {background-color:#fffbd6}
-
-
-div.nowrap {overflow:hidden;display:block;width:100%;}
-
-span.working,
-span.idle,
-span.showdispos,
-span.disposition  {margin:0;padding:0;display:block;height:1.2em;width:10em;overflow:hidden;white-space:nowrap;cursor:pointer;}
-span.disposition select {margin:0;padding:0;}
-
-
+table.placements {
+	margin: 0.4em 0 0.6em;
+	padding: 0;
+	border-top: 5px solid #003466;
+	width: 100%;
+	table-layout: fixed;
+}
+table.placements th {
+	text-align: left
+}
+table.placements th {
+	overflow: hidden;
+	white-space: nowrap;
+}
+th.date {
+	width: 37%;
+}
+th.applicant {
+	width: 31%;
+}
+th.reason {
+	width: 19%;
+	margin: 0;
+	padding: 0;
+}
+th.foruser {
+	width: 13%;
+}
+th.customer, th.joborder, th.status, th.for, th.date, th.applicant, th.reason, th.foruser, span.memo {
+	margin: 0;
+	padding: 0;
+	font-size: 90%;
+	border: 1px solid white;
+	padding: 0.1em;
+}
+span.memo {
+	font-weight: bold;
+}
+table.placements tr.heading {
+	background-color: #ddecf9;
+	height: 1em;
+}
+table.placements tr.details {
+	background-color: #f2f6fb;
+	height: 1em;
+}
+table.placements tr.footer {
+	background-color: #fffce2;
+	height: 1em;
+}
+span.memo {
+	background-color: #fffce2
+}
+span.description {
+	font-size: 102%;
+	font-style: italic;
+}
+table.placements tr.heading:hover {
+	background-color: #c0def8;
+}
+table.placements tr.details:hover {
+	background-color: #e4eff9;
+}
+table.placements tr.footer :hover {
+	background-color: #fffbd6;
+}
+span.memo:hover {
+	background-color: #fffbd6
+}
+div.nowrap {
+	overflow: hidden;
+	display: block;
+	width: 100%;
+}
+span.working, span.idle, span.showdispos, span.disposition {
+	margin: 0;
+	padding: 0;
+	display: block;
+	height: 1.2em;
+	width: 10em;
+	overflow: hidden;
+	white-space: nowrap;
+	cursor: pointer;
+}
+span.disposition select {
+	margin: 0;
+	padding: 0;
+}
 /* span.working {position:absolute;right:0;top:0;width:16px; height:15px;display:block;margin:0 1px 0 0;} */
 
-span.working {background: url('ajax/working.gif') no-repeat right;}
-span.whichcompany{display:block;float:left;width:15em;height:1em;}
-span#activeonly {display:block;float:right;clear:left;height:1em;width:25em;}
-span#activeonly input,
-span#activeonly label {vertical-align:middle;height:1em;}
-span#activeonly input {margin-right:0.2em;border:none;}
-
-
-
+span.working {
+	background: url('ajax/working.gif') no-repeat right;
+}
+span.whichcompany {
+	display: block;
+	float: left;
+	width: 15em;
+	height: 1em;
+}
+span#activeonly {
+	display: block;
+	float: right;
+	clear: left;
+	height: 1em;
+	width: 25em;
+}
+span#activeonly input, span#activeonly label {
+	vertical-align: middle;
+	height: 1em;
+}
+span#activeonly input {
+	margin-right: 0.2em;
+	border: none;
+}
 /* end placement activities */
 
 
-div#lookup_customer {padding-left:1em;}
-div#lookup_customer p {margin-left:2em;}
-
-div#customerookup table {position:relative;cursor:pointer;width:36em !important; }
-div#customerlookup table tr:hover {background-color:#99CCFF;}
-
+div#lookup_customer {
+	padding-left: 1em;
+}
+div#lookup_customer p {
+	margin-left: 2em;
+}
+div#customerookup table {
+	position: relative;
+	cursor: pointer;
+	width: 36em !important;
+}
+div#customerlookup table tr:hover {
+	background-color: #99CCFF;
+}

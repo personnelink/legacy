@@ -48,7 +48,7 @@ function buildCompanySelector(inpName, selectedCompany, strOnChange)
 	set cmd = Server.CreateObject("ADODB.Command")
 	with cmd
 		.ActiveConnection = MySql
-		.CommandText = "SELECT companyID, companyName FROM tbl_companies Order By companyName Asc"
+		.CommandText = "SELECT companyID, companyName FROM tbl_companies Order By companyName Asc;"
 		.Prepared = true
 	end with
 	
@@ -105,8 +105,8 @@ function CheckField (formField)
 				Else	
 					CheckField = ""
 				end if
-			Case "password"
-				TempValue = request.form("password")
+			Case "typedpassword"
+				TempValue = unmask_length(request.form("typedpassword"))
 				if TempValue = "" then
 					CheckField = "Password is required"
 				elseif TempValue <> request.form("retypedpassword") then
@@ -139,6 +139,15 @@ function CheckField (formField)
 				end if
 		End Select	
 	end if
+end function
+
+function mask_length(password, length)
+	mask_length = password & string(length - (len(password)), 255) 'null fill 
+
+end function
+
+function unmask_length(password)
+	unmask_length = replace(password, chr(255), "") 
 end function
 
 function CheckPhone (PhoneNumber)
@@ -184,7 +193,7 @@ sub CreateUserAccount
 		", title, firstName, lastName, CreationDate) VALUES (" & _ 
 		"'" & rsAddressId & "'," & _
 		"'" & request.form("username") & "'," & _
-		"'" & request.form("password") & "'," & _
+		"'" & request.form("typedpassword") & "'," & _
 		"'" & request.form("security") & "'," & _
 		"'" & request.form("inpAssignedToCompany") & "'," & _
 		"'" & request.form("department") & "'," & _
@@ -240,7 +249,7 @@ sub UpdateUserAccount
 	    if len(this_userId) > 0 then
 		    cmd.CommandText = "UPDATE tbl_users SET " &_
 			    "userName=" & insert_string(request.form("username")) & ", " &_
-			    "userPassword=" & insert_string(request.form("password")) & ", " &_
+			    "userPassword=" & insert_string(request.form("typedpassword")) & ", " &_
 			    "userLevel=" & insert_number(request.form("security")) & ", " &_
 			    "companyID=" & insert_number(request.form("inpAssignedToCompany")) & ", " &_
 			    "departmentID=" & insert_string(request.form("department")) & ", " &_
