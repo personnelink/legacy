@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by abc (abc) -->
+<settings>
+	<Admin>
+		<gWikiAdministrator>
+			<value>Wikiadmin</value>
+			<defvalue>Wikiadmin</defvalue>
+			<info>
+				<p>Username for special admin functions<br/>
+				</p>
+				<p>This will only apply if you have a local IP to the server (10.x.x.x for example)<br/>
+				</p>
+				<p>In case you want more sophisticated security, then you should rely on the Integrated Windows authentication feature of IIS.</p>
+			</info>
+		</gWikiAdministrator>
+		<gAdminPassword>
+			<value>adminpw</value>
+			<defvalue>adminpw</defvalue>
+			<info>
+				<p>use empty string if anyone may administer this Wiki</p>
+			</info>
+		</gAdminPassword>
+		<gEditPassword>
+			<value/>
+			<defvalue/>
+			<info>
+				<p>use empty string if anyone may edit</p>
+			</info>
+		</gEditPassword>
+		<gReadPassword>
+			<value/>
+			<defvalue/>
+			<info>
+				<p>use empty string if anyone may read</p>
+			</info>
+		</gReadPassword>
+	</Admin>
+	<System>
+		<MSXML_VERSION>
+			<value>3</value>
+			<defvalue>3</defvalue>
+			<info>
+				<p>Use 4 if you've installed MSXML v4.0<br/>
+				</p>
+				<p>
+					<b>
+						<font color="#0000ff">
+							<a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=3144b72b-b4f2-46da-b4b6-c5d7485f2b42&amp;DisplayLang=en" target="_blank">Download MSXML v4.0</a>
+						</font>
+					</b>
+				</p>
+			</info>
+		</MSXML_VERSION>
+	</System>
+	<Major>
+		<OPENWIKI_TITLE>
+			<value>OpenWikiNG</value>
+			<defvalue>OpenWikiNG</defvalue>
+			<info>
+				<p>Title of your wiki.</p>
+			</info>
+		</OPENWIKI_TITLE>
+		<OPENWIKI_FRONTPAGE>
+			<value>FrontPage</value>
+			<defvalue>FrontPage</defvalue>
+			<info>
+				<p>Name of your front page.</p>
+			</info>
+		</OPENWIKI_FRONTPAGE>
+		<OPENWIKI_WELCOMEPAGE>
+			<value/>
+			<defvalue/>
+			<info>
+				<p>Name of your welcome page<br/>
+				</p>
+				<p>Use empty string if you do not want to use a welcomepage.</p>
+			</info>
+		</OPENWIKI_WELCOMEPAGE>
+		<OPENWIKI_ACTIVESKIN>
+			<value/>
+			<defvalue/>
+			<info>
+				<p>Set to the directory under /skins that you want to use. (NOT directory "common"!)</p>
+			</info>
+		</OPENWIKI_ACTIVESKIN>
+		<OPENWIKI_SCRIPTNAME>
+			<value>ow.asp</value>
+			<defvalue>ow.asp</defvalue>
+			<info>
+				<p>"mydir/ow.asp" : in case the auto-detected scriptname isn't correct</p>
+			</info>
+		</OPENWIKI_SCRIPTNAME>
+		<OPENWIKI_MAXTEXT>
+			<value>204800</value>
+			<defvalue>204800</defvalue>
+			<info>
+				<p>Maximum 200K texts.</p>
+			</info>
+		</OPENWIKI_MAXTEXT>
+		<OPENWIKI_MAXINCLUDELEVEL>
+			<value>5</value>
+			<defvalue>5</defvalue>
+			<info>
+				<p>Maximum depth of Include's</p>
+			</info>
+		</OPENWIKI_MAXINCLUDELEVEL>
+	</Major>
+	<Minor>
+		<cDatePagenameFormat>
+			<value>0</value>
+			<defvalue>0</defvalue>
+			<info>
+				<p>
+					<b>Choose format for Date-Pages</b> (when constructing links from the MONTH macro)<br/>
+				</p>
+				<p>0 = Default date-pagenames ('Date'Day month-name YYYY)</p>
+				<p>1 = Sortable long ('Date'YYYY-MM-DD)</p>
+				<p>2 = Sortable medium ('Date'YYYYMMDD)</p>
+				<p>3 = Sortable short (YYYY-MM-DD)</p>
+				<p>4 = Sortable mini (YYYYMMDD)</p>
+			</info>
+		</cDatePagenameFormat>
+		<cUseMultipleParents>
+			<value>1</value>
+			<defvalue>1</defvalue>
+			<info>
+				<p>1 = @parent/@parent../@parent syntax<br/>
+				</p>
+				<p>0 = @parent, @grandparent, @greatgrandparent syntax</p>
+			</info>
+		</cUseMultipleParents>
+		<cFullsearchHighlight>
+			<value>1</value>
+			<defvalue>1</defvalue>
+			<info>
+				<p>
+					<b>When ON (1) then Fullsearch results will have the letter: H after each search result. Pressing the H will return the page with the searchterm highlighted.</b>
+				</p>
+				<p>1 = Do Fullsearch Highlight</p>
+				<p>0 = Do not Fullsearch Highlight</p>
+			</info>
+		</cFullsearchHighlight>
+		<cSimpleLinks>
+			<value>1</value>
+			<defvalue>1</defvalue>
+			<info>
+				<p>1 = only letters</p>
+				<p>0 = allow _ and numbers</p>
+			</info>
+		</cSimpleLinks>
+		<cNonEnglish>
+			<value>1</value>
+			<defvalue>1</defvalue>
+			<info>
+				<p>1 = extra link chars</p>
+				<p>0 = only A-Za-z chars</p>
+			</info>
+		</cNonEnglish>
+	</Minor>
+</settings>

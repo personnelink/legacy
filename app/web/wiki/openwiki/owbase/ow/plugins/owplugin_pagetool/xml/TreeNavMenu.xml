@@ -1,0 +1,47 @@
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by abc (abc) -->
+<node>
+	<node label="CLEAR CONSOL" id="CLEAR"/>
+	<node label="Basic Tools">
+		<node label="User Preferences" id="demolink"/>
+		<node label="Chat">
+			<node label="All Online Users" id="demolink"/>
+			<node label="User">
+				<node label="(users online here)"/>
+			</node>
+		</node>
+		<node label="My Stuff">
+			<node label="Favorites">
+				<node label="My Favorites" id="favorites_view"/>
+				<node label="Add this page" id="favorites_add"/>
+				<node label="---------"/>
+				<node label="Clear All Favorites" id="favorites_clearall"/>
+			</node>
+		</node>
+	</node>
+	<node label="Developers Tools">
+		<node label="Page">
+			<node label="Statistics" id="demolink"/>
+			<node label="Dump source xml" id="demolink"/>
+			<node label="Dump rendered xml" id="demolink"/>
+			<node label="Change Category" id="demolink"/>
+			<node label="Edit precis" id="demolink"/>
+		</node>
+		<node label="wiki">
+			<node label="Admin">
+				<node label="Server Settings" id="serversettings"/>
+				<node label="Delete deprecated" id="demolink"/>
+			</node>
+			<node label="Statistics">
+				<node label="Orphaned pages" id="demolink"/>
+				<node label="Refferers" id="demolink"/>
+				<node label="Recent Changes">
+					<node label="ALL" id="demolink"/>
+					<node label="MAJOR" id="demolink"/>
+					<node label="MINOR" id="demolink"/>
+				</node>
+			</node>
+			<node label="OW Variables" id="dumpvariables"/>
+			<node label="Files" id="demolink"/>
+		</node>
+	</node>
+</node>
