@@ -1,0 +1,8 @@
+# Robots.txt file from http://www.personnel.com
+
+User-agent: *
+Disallow: /employers/
+Disallow: /images/
+Disallow: /includes/
+Disallow: /registered/
+

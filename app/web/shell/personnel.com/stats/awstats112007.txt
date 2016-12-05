@@ -1,0 +1,250 @@
+AWSTATS DATA FILE 6.5 (build 1.857)
+# if you remove this file, all statistics for date 200711 will be lost/reset.
+
+# Position (offset in bytes) in this file of beginning of each section for
+# direct I/O access. if you made changes somewhere in this file, you should
+# also remove completely the MAP section (AWStats will rewrite it at next
+# update).
+BEGIN_MAP 27
+POS_GENERAL 1864                
+POS_TIME 2543                
+POS_VISITOR 3229                
+POS_DAY 3342                
+POS_DOMAIN 3535                
+POS_LOGIN 3761                
+POS_ROBOT 3916                
+POS_WORMS 4048                
+POS_EMAILSENDER 4179                
+POS_EMAILRECEIVER 4322                
+POS_SESSION 4398                
+POS_SIDER 4544                
+POS_FILETYPES 4720                
+POS_OS 4802                
+POS_BROWSER 4852                
+POS_SCREENSIZE 4913                
+POS_UNKNOWNREFERER 4987                
+POS_UNKNOWNREFERERBROWSER 5109                
+POS_ORIGIN 5226                
+POS_SEREFERRALS 5357                
+POS_PAGEREFS 5501                
+POS_SEARCHWORDS 5649                
+POS_KEYWORDS 5801                
+POS_MISC 2207                
+POS_ERRORS 5860                
+POS_CLUSTER 3617                
+POS_SIDER_404 5973                
+END_MAP
+
+# LastLine    = Date of last record processed - Last record line number in last log - Last record offset in last log - Last record signature value
+# FirstTime   = Date of first visit for history file
+# LastTime    = Date of last visit for history file
+# LastUpdate  = Date of last update - Nb of parsed records - Nb of parsed old records - Nb of parsed new records - Nb of parsed corrupted - Nb of parsed dropped
+# TotalVisits = Number of visits
+# TotalUnique = Number of unique visitors
+# MonthHostsKnown   = Number of hosts known
+# MonthHostsUnKnown = Number of hosts unknown
+BEGIN_GENERAL 8
+LastLine 20080124044658 171 28667 30902419555
+FirstTime 20071118032413
+LastTime 20071121034429
+LastUpdate 20080410122956 171 0 170 0 0
+TotalVisits 3                   
+TotalUnique 1                   
+MonthHostsKnown 0                   
+MonthHostsUnknown 1                   
+END_GENERAL
+
+# Misc ID - Pages - Hits - Bandwidth
+BEGIN_MISC 10
+QuickTimeSupport 0 0 0
+JavaEnabled 0 0 0
+JavascriptDisabled 0 0 0
+PDFSupport 0 0 0
+WindowsMediaPlayerSupport 0 0 0
+AddToFavourites 0 0 0
+RealPlayerSupport 0 0 0
+TotalMisc 0 0 0
+DirectorSupport 0 0 0
+FlashSupport 0 0 0
+END_MISC
+
+# Hour - Pages - Hits - Bandwidth - Not viewed Pages - Not viewed Hits - Not viewed Bandwidth
+BEGIN_TIME 24
+0 0 0 0 0 0 0
+1 0 0 0 0 0 0
+2 2 12 110703 22 22 13398
+3 4 24 221412 44 44 26796
+4 0 0 0 24 34 58194
+5 0 0 0 0 0 0
+6 0 0 0 0 0 0
+7 0 0 0 0 0 0
+8 0 0 0 0 0 0
+9 0 0 0 0 0 0
+10 0 0 0 0 0 0
+11 0 0 0 0 0 0
+12 0 0 0 0 0 0
+13 0 0 0 0 0 0
+14 0 0 0 0 0 0
+15 0 0 0 0 0 0
+16 0 0 0 0 0 0
+17 0 0 0 0 0 0
+18 0 0 0 24 34 58194
+19 0 0 0 0 0 0
+20 0 0 0 0 0 0
+21 0 0 0 0 0 0
+22 0 0 0 0 0 0
+23 0 0 0 0 0 0
+END_TIME
+
+# Host - Pages - Hits - Bandwidth - Last visit date - [Start date of last visit] - [Last page of last visit]
+# [Start date of last visit] and [Last page of last visit] are saved only if session is not finished
+# The 10 first Hits must be first (order not required for others)
+BEGIN_VISITOR 1
+65.254.224.15 6 36 332115 20071121034429
+END_VISITOR
+
+# Date - Pages - Hits - Bandwidth - Visits
+BEGIN_DAY 3
+20071118 2 12 110707 1
+20071120 2 12 110703 1
+20071121 2 12 110705 1
+END_DAY
+
+# Domain - Pages - Hits - Bandwidth
+# The 10 first Pages must be first (order not required for others)
+BEGIN_DOMAIN 1
+ip 6 36 332115
+END_DOMAIN
+
+# Cluster ID - Pages - Hits - Bandwidth
+BEGIN_CLUSTER 0
+END_CLUSTER
+
+# Login - Pages - Hits - Bandwidth - Last visit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_LOGIN 0
+END_LOGIN
+
+# Robot ID - Hits - Bandwidth - Last visit - Hits on robots.txt
+# The 10 first Hits must be first (order not required for others)
+BEGIN_ROBOT 0
+END_ROBOT
+
+# Worm ID - Hits - Bandwidth - Last visit
+# The 5 first Hits must be first (order not required for others)
+BEGIN_WORMS 0
+END_WORMS
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first Hits must be first (order not required for others)
+BEGIN_EMAILSENDER 0
+END_EMAILSENDER
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first hits must be first (order not required for others)
+BEGIN_EMAILRECEIVER 0
+END_EMAILRECEIVER
+
+# Session range - Number of visits
+BEGIN_SESSION 1
+0s-30s 3
+END_SESSION
+
+# URL - Pages - Bandwidth - Entry - Exit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_SIDER 2
+/help/index.asp 3 41223 0 3
+/chooselogin.asp 3 39330 3 0
+END_SIDER
+
+# Files type - Hits - Bandwidth - Bandwidth without compression - Bandwidth after compression
+BEGIN_FILETYPES 2
+asp 6 80553 0 0
+gif 30 251562 0 0
+END_FILETYPES
+
+# OS ID - Hits
+BEGIN_OS 1
+Unknown 36
+END_OS
+
+# Browser ID - Hits
+BEGIN_BROWSER 1
+Unknown 36
+END_BROWSER
+
+# Screen size - Hits
+BEGIN_SCREENSIZE 0
+END_SCREENSIZE
+
+# Unknown referer OS - Last visit date
+BEGIN_UNKNOWNREFERER 1
+AutoQA_[EIG]_v0.1.0 20071121034447
+END_UNKNOWNREFERER
+
+# Unknown referer Browser - Last visit date
+BEGIN_UNKNOWNREFERERBROWSER 1
+AutoQA_[EIG]_v0.1.0 20071121034447
+END_UNKNOWNREFERERBROWSER
+
+# Origin - Pages - Hits 
+BEGIN_ORIGIN 6
+From0 0 0
+From1 0 0
+From2 0 0
+From3 0 0
+From4 6 36
+From5 0 0
+END_ORIGIN
+
+# Search engine referers ID - Pages - Hits
+BEGIN_SEREFERRALS 0
+END_SEREFERRALS
+
+# External page referers - Pages - Hits
+# The 10 first Pages must be first (order not required for others)
+BEGIN_PAGEREFS 0
+END_PAGEREFS
+
+# Search keyphrases - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_SEARCHWORDS 0
+END_SEARCHWORDS
+
+# Search keywords - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_KEYWORDS 0
+END_KEYWORDS
+
+# Errors - Hits - Bandwidth
+BEGIN_ERRORS 3
+403 4 1508
+500 66 40194
+404 64 114880
+END_ERRORS
+
+# URL with 404 errors - Hits - Last URL referer
+BEGIN_SIDER_404 22
+/search/index.asp 2 http://www.personnel.com/search/index.asp
+/index.asp 10 http://www.personnel.com/index.asp
+/images/minus.gif 2 http://www.personnel.com/images/minus.gif
+/images/headers/employerlogin.gif 2 http://www.personnel.com/images/headers/employerlogin.gif
+/help/index.asp 2 http://www.personnel.com/help/index.asp
+/registered/forgot.asp 2 http://www.personnel.com/registered/forgot.asp
+/images/hdr_new_emp_reg.gif 2 http://www.personnel.com/images/hdr_new_emp_reg.gif
+/privacy.asp 2 http://www.personnel.com/privacy.asp
+/images/headers/jobseekerlogin.gif 2 http://www.personnel.com/images/headers/jobseekerlogin.gif
+/employers/forgot.asp 2 http://www.personnel.com/employers/forgot.asp
+/images/logo.gif 2 http://www.personnel.com/images/logo.gif
+/images/plus.gif 2 http://www.personnel.com/images/plus.gif
+/images/pixel.gif 2 http://www.personnel.com/images/pixel.gif
+/employers/newuser/index.asp 6 http://www.personnel.com/employers/newuser/index.asp
+/images/flare_srn.gif 2 http://www.personnel.com/images/flare_srn.gif
+/chooselogin.asp 2 http://www.personnel.com/chooselogin.asp
+/registered/newuser/index.asp 2 http://www.personnel.com/registered/newuser/index.asp
+/bookmark.asp 2 http://www.personnel.com/bookmark.asp
+/employers/login.asp 6 http://www.personnel.com/employers/login.asp
+/images/main.gif 2 http://www.personnel.com/images/main.gif
+/registered/login.asp 6 http://www.personnel.com/registered/login.asp
+/images/flare_srn_w.gif 2 http://www.personnel.com/images/flare_srn_w.gif
+END_SIDER_404
