@@ -1,0 +1,265 @@
+<?xml version="1.0"?>
+<data>
+  <question id="1">
+    <qtext>Which one of the following recommendations should be followed unless the client company advises you differently?</qtext>
+    <choices>
+    	<choice>You may open more than one cabinet drawer as long as you are moving files from one cabinet drawer to the next.</choice>
+    	<choice>You may use a coffee mug warmer when drinking coffee.</choice>
+    	<choice>Be sure furniture and fixtures are free of splinters or sharp edges.</choice>
+    	<choice>It is okay to use a broken chair as long as it is safe.</choice>
+    	<choice>Be sure furniture and fixtures are not free of splinters or sharp edges.</choice>
+    </choices>
+  	<answer>3</answer>
+  </question>
+  <question id="2">
+  	<qtext>The client company's security plan may include...</qtext>
+  	<choices>
+  		<choice>Computer Access</choice>
+  		<choice>Wearing Hats</choice>
+  		<choice>Trench Coats</choice>
+  		<choice>Going home early</choice>
+  		<choice>Book Access</choice>
+  	</choices>
+  	<answer>1</answer>
+  </question>
+  <question id="3">
+	<qtext>Select one of the common sense rules that does not belong as outlined in the <i>Temporary Associate Office Safety</i> orientation.</qtext>
+	<choices>
+		<choice>Respect all precautions -- don't take chances.</choice>
+		<choice>Know how and when to get help.</choice>
+		<choice>Follow all company safety rules and regulations.</choice>
+		<choice>When in doubt, ask your supervisor.</choice>
+		<choice>Lock the filing cabinets when done using them.</choice>
+		<choice>Identify and protect yourself against hazards before you start a job.</choice>
+	</choices>
+	<answer>6</answer>
+  </question>
+  <question id="4">
+  	<qtext>True or false: Employees should bandage their own cuts and abrasions if at all possible.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>1</answer>
+  </question>
+  <question id="5">
+  	<qtext>True or false: Immediately report any flammable materials on your desk.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="6">
+  	<qtext>True or false: Move loads on or off the elevator as soon as the car stops and the doors open.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="7">
+  	<qtext>True or false: An <i>Emergency Action Plan</i> should contain information about evacuation from the facility, including who is in charge of the evacuation.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>1</answer>
+  </question>
+  <question id="8">
+  	<qtext>True or false: When evacuating the building, make sure you lock the door to keep others from entering the building.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="9">
+  	<qtext>True or false: It is okay to block the elevator doors open when moving large carts.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="10">
+  	<qtext>True or false: Place used cleaning waste or rags in closed metal container.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>1</answer>
+  </question>
+  <question id="11">
+  	<qtext>True or false: The document holder should be close to the monitor, and at the same distance, angle and height as the monitor.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>1</answer>
+  </question>
+  <question id="12">
+  	<qtext>True or false: In serious situations, any employee to discover the situation should call the police immediately, then call for an in-house emergency responder.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="13">
+  	<qtext>True or false: When adjusting the chair, your feet should <i>always</i> be flat on the floor.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="14">
+  	<qtext>True or false: Emergency Action Leaders should be assigned specific duties, such as verifying that all doors are closed and locked so no one re-enters the building.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="15">
+  	<qtext>True or false: if a file drawer does not open easily, you need to report it to the manufacturer.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="16">
+  	<qtext>True or false: You must know first aid techniques, CPR and Heimlich maneuver whenever there is a need for it in the office.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="17">
+  	<qtext>True or false: The top of the screen should be at eye level, and should also be 24" - 36" from your eyes.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="18">
+  	<qtext>True or false: Horseplay is not permitted only in the elevators.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="19">
+  	<qtext>True or false: When shredding paper, put as many sheets in at once to be more efficient.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="20">
+  	<qtext>True or false: Thighs should be horizontal and knees level with hips when adjusting the chair.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>1</answer>
+  </question>
+  <question id="21">
+  	<qtext>True or false: When arranging the work area, you should place the primary equipment and documents within easy reach.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>1</answer>
+  </question>
+  <question id="22">
+  	<qtext>True or false: It is not necessary to report any slipping hazard as long as you label it with a sign.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="23">
+  	<qtext>True or false: Use the elevator during a fire to quickly get downstairs.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="24">
+  	<qtext>True or false: if possible, when evacuating a burning building, you should cover your mouth and nose with a <i>dry</i> cloth to help you breathe.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="25">
+  	<qtext>True or false: Grab the important files when evacuating a building durring a fire.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="26">
+  	<qtext>What section is this text from: "Reduce overhead lighting"</qtext>
+  	<choices>
+  		<choice>Security</choice>
+  		<choice>First Aid</choice>
+  		<choice>Office Ergonomics</choice>
+  		<choice>Elevator Safety</choice>
+  		<choice>Emergency Procedures</choice>
+  		<choice>Office Equipment</choice>
+  		<choice>Finger and Hand Safety</choice>
+  	</choices>
+  	<answer>3</answer>
+  </question>
+  <question id="27">
+  	<qtext>Which section does not belong to the <i>Temporary Associate Office Safety</i> program elements orientation?</qtext>
+  	<choices>
+  		<choice>Emergency Evacuation</choice>
+  		<choice>Office Ergonomics</choice>
+  		<choice>First Aid</choice>
+  		<choice>Security</choice>
+  		<choice>Breakroom Safety</choice>
+  		<choice>Office Equipment</choice>
+  		<choice>Office Cleanliness/Housekeeping</choice>
+  		<choice>Elevator Safety</choice>
+  		<choice>Finger and Hand Safety</choice>
+  	</choices>
+  	<answer>5</answer>
+  </question>
+  <question id="28">
+  	<qtext>True or false: if your monitor is flickering, lightly tap it on the sides to see if it stops.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="29">
+  	<qtext>True or false: The janitor keeps the storage areas clean so you don't have to worry about them.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>2</answer>
+  </question>
+  <question id="30">
+  	<qtext>True or false: <i>Always</i> use the elevator not the stairway when carrying heavy or bulky objects from floor to floor.</qtext>
+  	<choices>
+  		<choice>True</choice>
+  		<choice>false</choice>
+  	</choices>
+  	<answer>1</answer>
+  </question>
+</data>
