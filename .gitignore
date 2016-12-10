@@ -252,7 +252,9 @@ paket-files/
 *.sln.iml
 
 
-# Mark-ii Customs
+# vms dev customs
+**/SyncToy_*.dat
+*SyncToy_*.dat
 **/_notes
 **/.hg
 *.bts
@@ -262,3 +264,12 @@ ejder.*
 desktop.ini
 Thumbs.db
 
+# cloud exclusions
+*.bts
+*.insyncdl
+*(?).*
+**/*(?).*
+**/*(?).
+* (?).*
+*(?)(?).*
+**/*(?)/*
