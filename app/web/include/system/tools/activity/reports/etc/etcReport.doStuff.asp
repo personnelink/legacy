@@ -195,8 +195,8 @@ function navChooseCustomer (whichCompany)
 			response.write "&nbsp;</A>"
 			
 		do while not WhichCustomer.Eof
-			on error resume next
 			CurrentCustomer = WhichCustomer("Customer")
+
 			strDisplayText = Replace(WhichCustomer("CustomerName"), "&", "&amp;")
 			strDisplayText = Replace(strDisplayText, " ", "&nbsp;")
 			
@@ -219,7 +219,7 @@ function navChooseCustomer (whichCompany)
 
 		WhichCustomer.Close
 		Set WhichCustomer = Nothing
-		on error goto 0
+
 	end if
 end function
 
@@ -296,7 +296,7 @@ end function
 function navRecordsByPage(rs)
 
 	nPage = CInt(whichPage & "")
-	nItemsPerPage = 900
+	nItemsPerPage = 150
 	if not rs.eof then rs.PageSize = nItemsPerPage
 	nPageCount = rs.PageCount
 
@@ -462,6 +462,7 @@ function group_header ()
 
 	group_header = strResponse
 end function
+
 function group_details (PlacementId, lastnamefirst, EmployeeNumber, JobNumber, Reference, PlacementStatus, WCDescription, StartDate, PStopDate, WorkCode, RegPayRate, RegBillRate)
 	dim objChangePlacement: objChangePlacement = ""
 		if PlacementStatus = "3" then
@@ -486,65 +487,22 @@ function group_details (PlacementId, lastnamefirst, EmployeeNumber, JobNumber, R
 				"<td class=""lastnamefirst""><div>" & objChangePlacement & lastnamefirst & "</div></td>" &_
 				"<td class=""EmployeeNumber"">" & EmployeeNumber & "</td>" &_
 				"<td class=""JobNumber"">" & JobNumber & "/" & Reference & "</td>" &_
+				"<td class=""PlacementStatus"">" & PlacementStatus & "</td>" &_
 				"<td class=""WCDescription""><div>" & WCDescription & "</div></td>" &_
 				"<td class=""StartDate"">" & StartDate & "</td>" &_
 				"<td class=""PStopDate"">" & PStopDate & "</td>" &_
 				"<td class=""WorkCode"">" & WorkCode & "</td>" &_
 				"<td class=""RegPayRate alignR"">$" & RegPayRate & "</td>" &_
 				"<td class=""RegBillRate alignR"">$" & RegBillRate & "</td>" &_
-				"<td class=""PlacementStatus alignR""><input id=""chkbox_" & PlacementId & """ type=""checkbox"" value="""" data-customer=""" & CustomerCode &  """ onclick=""timecard.received('" & PlacementId & "', '" & whichCompany & "');"" /></td>" &_
 			"</tr>"
 			'"<td class=""Reference"">"  & "</td>" &_
 	group_details = strResponse
 end function
 
-function group_details_received (PlacementId, lastnamefirst, EmployeeNumber, JobNumber, Reference, PlacementStatus, WCDescription, StartDate, PStopDate, WorkCode, RegPayRate, RegBillRate)
-	dim objChangePlacement: objChangePlacement = ""
-		if PlacementStatus = "3" then
-		 	 objChangePlacement = objChangePlacement &_
-				"<span class=""OpenPlacement"" " &_
-					"id=""Placement" & PlacementId & """ " &_
-					"onclick=""placement.open('" & PlacementId & "', '" & whichCompany & "')"">" &_
-				"</span>"
-		else
-		 	 objChangePlacement = objChangePlacement &_
-				"<span class=""ClosePlacement"" " &_
-					"id=""Placement" & PlacementId & """ " &_
-					"onclick=""placement.close('" & PlacementId & "', '" & whichCompany & "')"">" &_
-				"</span>"
-		end if
-			
-			
-				
-	dim strResponse : strResponse = ""
-		strResponse = strResponse &_
-			"<tr style=""font-color:red;"">" &_
-				"<td class=""lastnamefirst""><div>" & objChangePlacement & lastnamefirst & "</div></td>" &_
-				"<td class=""EmployeeNumber"">" & EmployeeNumber & "</td>" &_
-				"<td class=""JobNumber"">" & JobNumber & "/" & Reference & "</td>" &_
-				"<td class=""WCDescription""><div>" & WCDescription & "</div></td>" &_
-				"<td class=""StartDate"">" & StartDate & "</td>" &_
-				"<td class=""PStopDate"">" & PStopDate & "</td>" &_
-				"<td class=""WorkCode"">" & WorkCode & "</td>" &_
-				"<td class=""RegPayRate alignR"">$" & RegPayRate & "</td>" &_
-				"<td class=""RegBillRate alignR"">$" & RegBillRate & "</td>" &_
-				"<td class=""PlacementStatus alignR""><input type=""checkbox"" value="""& time_received & """ checked=""checked"" onclick=""timecard.received('" & PlacementId & "', '" & whichCompany & "');"" /></td>" &_
-			"</tr>"
-			'"<td class=""Reference"">"  & "</td>" &_
-	group_details_received = strResponse
-end function
-
-
-
 
 function group_footer ()
 	group_footer = "</table>"
 end function
-
-
-dim rs_received, cmd_received
-set cmd_received = server.createObject("adodb.command")
-cmd_received.ActiveConnection = MySql
 
 sub showActivityStream (rs)
 
@@ -560,7 +518,6 @@ resourcelink = "/include/system/tools/activity/forms/maintainApplicant.asp?"
 
 		dim previousCode : previousCode = ""
 		dim chkSpace : chkSpace = 0
-		dim time_received
 		
 		dim CustomerCode : CustomerCode = "" 'Customer
 		dim CustomerName : CustomerName = "" 'CustomerName
@@ -577,6 +534,7 @@ resourcelink = "/include/system/tools/activity/forms/maintainApplicant.asp?"
 		dim PlacementStatus : PlacementStatus = ""
 		dim NeedFinalTime : NeedFinalTime = ""
 		dim WCDescription : WCDescription = "" 'WorkCodes.Description 
+		
 		
 		do while not ( rs.Eof Or rs.AbsolutePage <> nPage )
 			if rs.eof then
@@ -603,7 +561,7 @@ resourcelink = "/include/system/tools/activity/forms/maintainApplicant.asp?"
 			PlacementStatus = rs("PlacementStatus")
 			NeedFinalTime = rs("NeedFinalTime")
 			WCDescription = rs("Description") 'WorkCodes.Description 
-			
+
 			chkSpace = instr(PStopDate, " ")
 			if chkSpace > 0 then
 				PStopDate = left(PStopDate, chkSpace - 1)
@@ -620,87 +578,13 @@ resourcelink = "/include/system/tools/activity/forms/maintainApplicant.asp?"
 				
 				previousCode = CustomerCode
 			end if
-
-
-			time_received = check_if_received(placementid)
-			if time_received > 0 then
-				response.write group_details_received (PlacementId, LastnameFirst, EmployeeNumber, JobNumber, Reference, PlacementStatus, WCDescription, StartDate, PStopDate, WorkCode, RegPayRate, RegBillRate)
-
-			else
-				response.write group_details(PlacementId, LastnameFirst, EmployeeNumber, JobNumber, Reference, PlacementStatus, WCDescription, StartDate, PStopDate, WorkCode, RegPayRate, RegBillRate)
-			end if
+						
+			response.write group_details(PlacementId, LastnameFirst, EmployeeNumber, JobNumber, Reference, PlacementStatus, WCDescription, StartDate, PStopDate, WorkCode, RegPayRate, RegBillRate)
 			
 			rs.MoveNext
 		loop
 		
 		Response.write group_footer
 end sub
-
-function check_if_received(placementid)
-
-	on error resume next
-
-	cmd_received.CommandText = "" &_
-		"SELECT exp_tot FROM time_summary WHERE received='1' AND createdby='P' AND placementid='" & placementid & "';"
-	
-	set rs_received = cmd_received.execute()
-	
-	if not rs_received.eof then
-		
-		check_if_received = cdbl(rs_received("exp_tot"))
-		
-	else
-		check_if_received = 0
-	end if
-
-	on error goto 0
-	
-end function
-
-
-function getWeekending(today, customer)
-	
-	'print "cust: " & customer
-	
-	dim cmd
-	set cmd = server.CreateObject("ADODB.Command")
-	with cmd
-		.ActiveConnection = MySql
-		
-		.CommandText = "" &_
-			"Select weekends FROM tbl_companies WHERE INSTR(Customer, '" & customer & "') > 0;"
-	end with
-	
-	dim rs
-	set rs = cmd.Execute()
-
-	dim weekEndsOn
-
-	if not rs.eof then 
-		weekEndsOn = cint(rs("weekends"))
-	else
-		weekEndsOn = 1
-	end if
-	
-	today = Weekday(Date)
-	
-	'print "today: " & today
-	'print "week ends on: " & WeekEndsOn
-	
-	if today > WeekEndsOn then
-
-		getWeekending = DateAdd("d", 7 - (today - WeekEndsOn), Date)
-		
-	elseif today < WeekEndsOn then
-
-		getWeekending = DateAdd("d", (WeekEndsOn - today), Date)
-		
-	elseif today = WeekEndsOn then
-		getWeekending = Date
-	else
-		getWeekending = DateAdd("d", 7 - (WeekEndsOn - today), Date)
-	end if
-	
-end function
 
 %>

@@ -167,7 +167,7 @@ var customer = {
 				var PostStr = "do=hidecustomer&id=" + customercode + "&site=" + sitedb;
 				console.log(PostStr);
 
-				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', customer.hidden);
+				doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', customer.hidden);
 				document.getElementById(customercode+".row").remove();
 				return true;
 			} else if (e == "No") {
@@ -189,36 +189,14 @@ var customer = {
 				var PostStr = "do=getorders&id=" + customercode + "&site=" + sitedb + "&status=closed";
 				console.log(PostStr);
 				
-				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', customer.showclosedorders);
+				doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', customer.showclosedorders);
 				return false;
 				break;
 			case "open":
 				var PostStr = "do=getorders&id=" + customercode + "&site=" + sitedb;
 				console.log(PostStr);
 				
-				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', customer.showopenorders);
-				return false;
-				break;
-		}
-	},
-	getemployeeorders: function (customercode, sitedb, status) {
-	
-		setAttributeClass(document.getElementById(status+"ordersdiv"+customercode), "loading");
-		setAttributeClass(document.getElementById("ctrlCustomers"+customercode), "ShowLess");
-
-		switch(status) {
-			case "closed":
-				var PostStr = "do=getemployeeorders&id=" + customercode + "&site=" + sitedb + "&status=closed";
-				console.log(PostStr);
-				
-				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', customer.showclosedorders);
-				return false;
-				break;
-			case "open":
-				var PostStr = "do=getemployeeorders&id=" + customercode + "&site=" + sitedb;
-				console.log(PostStr);
-				
-				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', customer.showopenorders);
+				doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', customer.showopenorders);
 				return false;
 				break;
 		}
@@ -239,9 +217,6 @@ var customer = {
 		console.log(status+"ordersdiv"+response[1]);
 		document.getElementById(status+"ordersdiv"+response[1]).innerHTML = response[0];
 		document.getElementById(status+"ordersdiv"+response[1]).setAttribute("class", "");	
-
-		$('#'+status+'ordersdiv'+response[1]).find('.ShowMore').trigger("click");
-
 		return false;
 	},	
 	close: function (row_number, inv_number, site, cust) {
@@ -264,7 +239,7 @@ var customer = {
 		var PostStr = "do=addweek&id=" + placementid + "&site=" + sitedb;
 
 		// use the generic function to make the request
-		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
+		doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
 		return false;
 	},
 	remove: function (placementid, sitedb, summaryid) {
@@ -279,7 +254,7 @@ var customer = {
 		var PostStr = "do=removeweek&id=" + placementid + "&site=" + sitedb + "&summary=" + summaryid;
 
 		// use the generic function to make the request
-		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
+		doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
 		return false;
 	},
 	refresh: function (oXML) {
@@ -301,14 +276,14 @@ var activity = {
 				var PostStr = "do=getorders&id=" + customercode + "&site=" + sitedb + "&status=closed";
 				console.log(PostStr);
 				
-				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', activity.show.customer);
+				doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', activity.show.customer);
 				return false;
 				break;
 			case "open":
 				var PostStr = qs;
 				console.log(PostStr);
 				
-				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', customer.show.customer);
+				doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', customer.show.customer);
 				return false;
 				break;
 			}
@@ -359,7 +334,7 @@ var activity = {
 		var PostStr = "do=addweek&id=" + placementid + "&site=" + sitedb;
 
 		// use the generic function to make the request
-		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
+		doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
 		return false;
 	},
 	remove: function (placementid, sitedb, summaryid) {
@@ -374,7 +349,7 @@ var activity = {
 		var PostStr = "do=removeweek&id=" + placementid + "&site=" + sitedb + "&summary=" + summaryid;
 
 		// use the generic function to make the request
-		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
+		doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
 		return false;
 	},
 	refresh: function (oXML) {
@@ -399,24 +374,7 @@ var order = {
 		}
 		
 		var PostStr = "do=getplacements&id=" + reference + "&site=" + sitedb + "&customer=" + custcode;
-		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', this.showplacements);
-		return false;
-	},
-	getemployeeplacements: function (custcode, reference, sitedb) {
-		console.log("ctrl.Orders."+custcode+"."+reference);
-		setAttributeClass(document.getElementById("or"+custcode+reference), "loading");
-		setAttributeClass(document.getElementById("ctrl.order."+custcode+"."+reference), "ShowLess");
-
-		$("#or"+custcode+reference).slideDown( "slow", function() {
-			// Animation complete.
-		});
-
-		document.getElementById("ctrl.order."+custcode+"."+reference).onclick = function() {
-			order.close(custcode,reference,sitedb);return false; 
-		}
-		
-		var PostStr = "do=getemployeeplacements&id=" + reference + "&site=" + sitedb + "&customer=" + custcode;
-		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', this.showplacements);
+		doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', this.showplacements);
 		return false;
 	},
 	showplacements: function (oXML) {
@@ -467,7 +425,7 @@ var order = {
 		var PostStr = "do=addweek&id=" + placementid + "&site=" + sitedb;
 
 		// use the generic function to make the request
-		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
+		doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
 		return false;
 	},
 	remove: function (placementid, sitedb, summaryid) {
@@ -482,7 +440,7 @@ var order = {
 		var PostStr = "do=removeweek&id=" + placementid + "&site=" + sitedb + "&summary=" + summaryid;
 
 		// use the generic function to make the request
-		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
+		doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
 		return false;
 	},
 	refresh: function (oXML) {
@@ -594,7 +552,7 @@ var timesummary = {
 		// var PostStr = "variable=value&variable2=value2";
 		var PostStr = "do=timesummary&id=" + placementid + "&site=" + sitedb;
 		// use the generic function to make the request
-		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', this.show);
+		doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', this.show);
 		
 		$("#timesummarydiv"+placementid).slideDown( "slow", function() {
 			// Animation complete.
@@ -612,30 +570,6 @@ var timesummary = {
 		// return false;
 		return false;
 	},
-	edit: function (id) {
-		// span_time_summary_37083_2250
-		// time_summary_input_37083_2250
-		
-		$('#'+id).addClass("hide");
-		var input_row = id.substring(5).replace("time_summary", "time_summary_input");
-		$('#'+input_row).removeClass("hide");
-		
-		console.log('id:'+input_row);
-		
-		return false;
-	},
-	save: function (id) {
-		// span_time_summary_37083_2250
-		// time_summary_input_37083_2250
-		
-		$('#'+id).addClass("hide");
-		var span_row = id.replace("time_summary_input", "span_time_summary");
-		$('#'+span_row).removeClass("hide");
-		
-		console.log('id:'+span_row);
-		
-		return false;
-	},
 	show: function (oXML) {
 		// get the response text, into a variable
 		var response = oXML.responseText.split("<!-- [split] -->");
@@ -644,9 +578,6 @@ var timesummary = {
 		// expect id format example: timesummarydiv30128
 		document.getElementById("timesummarydiv"+response[1]).innerHTML = response[0];
 		document.getElementById("timesummarydiv"+response[1]).setAttribute("class", "timesummaries");
-
-		
-		$('#timesummarydiv'+response[1]).find('.ShowMore').trigger("click");
 
 		//get id to attach Calendar event trigger
 		
@@ -665,8 +596,6 @@ var timesummary = {
 			});
 			
 		}
-		
-		
 		return false;
 	},
 	close: function (placementid, sitedb) {
@@ -695,7 +624,7 @@ var timesummary = {
 		var PostStr = "do=addweek&id=" + placementid + "&site=" + sitedb;
 
 		// use the generic function to make the request
-		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
+		doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
 		return false;
 	},
 	recalc: function(placementid, summaryid, siteid) {
@@ -723,7 +652,7 @@ var timesummary = {
 				var PostStr = "do=removeweek&id=" + placementid + "&site=" + sitedb + "&summary=" + summaryid;
 
 				// use the generic function to make the request
-				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
+				doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
 				return false;
 			}
 		}, {
@@ -745,7 +674,7 @@ var timesummary = {
 		var PostStr = "do=approveweek&id=" + placementid + "&site=" + sitedb + "&summary=" + summaryid;
 
 		// use the generic function to make the request
-		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
+		doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
 		return false;
 	},
 	refresh: function (oXML) {
@@ -792,32 +721,6 @@ var ajaxTimeDetailBuffer=new Array(1);
 
 	
 var timedetail = {
-	edit: function (id) {
-		// span_time_summary_37083_2250
-		// time_summary_input_37083_2250
-		
-		$('#'+id).addClass("hide");
-		
-		$('#'+id.replace("span_", "")).removeClass("hide");
-		
-		console.log('id:'+'span_'+id);
-		
-		return false;
-	},
-	save: function (id) {
-		// span_time_summary_37083_2250
-		// time_summary_input_37083_2250
-		
-		$('#'+id.replace("span_", "")).addClass("hide");
-		var span_row = id.replace("span_", "");
-		$('#span_'+span_row).removeClass("hide");
-		
-		console.log('id:'+span_row);
-		
-		return false;
-	},
-
-
 	getdayname: function(weekday) {
 		switch (weekday) {
 			case 2:
@@ -969,7 +872,7 @@ var timedetail = {
 			// var PostStr = "variable=value&variable2=value2";
 			var PostStr = "do=updateweek&id=" + ids[placementid] + "&site=" + sitedb + "&dn=" + ids[dayofweek] + "&summaryid=" + ids[summaryid] + "&we=" +oField.value;
 			timesummary.open(placementid, sitedb);
-			doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', this.showchange);
+			doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', this.showchange);
 		} else {
 			
 			if (oForm.elements["WarnedOverwriteDetail"].value != "yes") {
@@ -980,7 +883,7 @@ var timedetail = {
 						// var PostStr = "variable=value&variable2=value2";
 						var PostStr = "do=updateday&id=" + ids[placementid] + "&site=" + sitedb + "&dn=" + ids[dayofweek] + "&summaryid=" + ids[summaryid] + "&time=" +oField.value;
 
-						doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', this.showchange);
+						doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', this.showchange);
 				
 					}else{
 						return false;
@@ -996,7 +899,7 @@ var timedetail = {
 			
 				// var PostStr = "variable=value&variable2=value2";
 				var PostStr = "do=updateday&id=" + ids[placementid] + "&site=" + sitedb + "&dn=" + ids[dayofweek] + "&summaryid=" + ids[summaryid] + "&time=" +oField.value;
-				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', this.showchange);
+				doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', this.showchange);
 			}
 		
 		}
@@ -1035,7 +938,7 @@ var timedetail = {
 			var PostStr = "do=updateday&id=" + ids[placementid] + "&site=" + sitedb + "&dn=" + ids[dayofweek] + "&summaryid=" + ids[summaryid] + "&time=" +oField.value;
 		}
 
-		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timedetail.showchangedwe);
+		doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timedetail.showchangedwe);
 		return false;
 	},
 	showchange: function (oXML) {
@@ -1104,7 +1007,7 @@ var timedetail = {
 		// var PostStr = "variable=value&variable2=value2";
 		var PostStr = "do=timedetail&id=" + placementid + "&site=" + sitedb + "&summary=" + summaryid;
 		// use the generic function to make the request
-		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timedetail.show);
+		doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timedetail.show);
 		
 		$("#TimeDetail"+id).attr("onClick","timedetail.close('"+id+"','"+sitedb+"')");
 		return false;
@@ -1169,7 +1072,7 @@ var timedetail = {
 					
 					commentdiv.innerHTML = '<span><i>'+e+'&nbsp;-&nbsp;'+user_name+'</i></span>'+commentdiv.innerHTML;
 					
-				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', this.updateComments);
+				doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', this.updateComments);
 				return true;
 
 			}else{
@@ -1197,7 +1100,7 @@ var timedetail = {
 		timedetail.setBuffer(divTimeDetail);
 			
 		var PostStr = "do=addtimedetail&placementid="+placementid+"&summaryid="+summaryid;
-		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timedetail.appendRow);
+		doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timedetail.appendRow);
 		return false;
 		
 		// var table = document.getElementById(tableID+"_template");
@@ -1236,7 +1139,7 @@ var timedetail = {
 				timedetail.setBuffer(divTimeDetail);
 				
 				var PostStr = "do=deletetimedetail&detailid="+detailid+"&table="+tableID;
-				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timedetail.removeRow);
+				doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timedetail.removeRow);
 				return false;
 			}
 		}, {
@@ -1331,7 +1234,7 @@ var changeAudit = {
 			objAudit.sid=sid;
 			console.log("cid:"+cid)
 
-			if (cid==0) { // change back to cid!==sid later to reengage
+			if (cid!==sid) {
 				smoke.prompt("What is the reason for the change?", function(e){
 					if (e){
 						console.log("inside smoke statement");
@@ -1355,7 +1258,7 @@ var changeAudit = {
 							
 						console.log(e);
 						
-						doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', changeAudit.noresults);
+						doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', changeAudit.noresults);
 						objAudit.newvalue=objAudit.oldvalue;
 						return changed;
 				
@@ -1546,11 +1449,11 @@ var timeclock = {
 		var outselect = document.getElementById("out_"+rowid);
 		var typeselect = document.getElementById("type_"+rowid);
 		
-		 //instantiate the Audit Detail class
-		 var aAuditDetail = new AuditDetail();
-		 aAuditDetail.setAuditId(id);
-		 aAuditDetail.setFieldChanged(timeinput.name);
-		 aAuditDetail.setPreviousValue(timeinput.value);
+		// //instantiate the Audit Detail class
+		// var aAuditDetail = new AuditDetail();
+		// aAuditDetail.setAuditId(id);
+		// aAuditDetail.setFieldChanged(timeinput.name);
+		// aAuditDetail.setPreviousValue(timeinput.value);
 		
 		switch(idtype){
 			case "in":
@@ -1563,7 +1466,7 @@ var timeclock = {
 				if (changeAudit.compare(objTimeChangeAudit) === true) {
 					// var PostStr = "do=updatetimedetail&id=" + id + "&t=" + timein + "&site=na";
 					var PostStr = "do=updatetimedetail&id=" + id + "&t=" + objTimeChangeAudit.newvalue + "&site=na";
-					doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timeclock.updated);
+					doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timeclock.updated);
 					if (timein > timeout) {
 						totalsbox.value = this.tallydiff(timeout,timein);
 					} else {
@@ -1584,7 +1487,7 @@ var timeclock = {
 					// var PostStr = "do=updatetimedetail&id=" + id + "&t=" + timeout + "&site=na";
 					if (objTimeChangeAudit.newvalue!==objTimeChangeAudit.oldvalue) {
 						var PostStr = "do=updatetimedetail&id=" + id + "&t=" + objTimeChangeAudit.newvalue + "&site=na";
-						doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timeclock.updated);
+						doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timeclock.updated);
 						if (timein > timeout) {
 							totalsbox.value = this.tallydiff(timeout,timein);
 						} else {
@@ -1602,7 +1505,7 @@ var timeclock = {
 				objTimeChangeAudit.pvalue=timetotal;
 				if (changeAudit.compare(objTimeChangeAudit) === true) {
 					var PostStr = "do=updatetimedetail&id=" + id + "&t=" + timetotal + "&site=na";
-					doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timeclock.updated);
+					doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timeclock.updated);
 					inselect.value = "";
 					outselect.value = "";
 				} else {
@@ -1615,7 +1518,7 @@ var timeclock = {
 				objTimeChangeAudit.pvalue=timetype;
 				if (changeAudit.compare(objTimeChangeAudit) === true) {
 					var PostStr = "do=updatetimedetail&id=" + id + "&t=" + timetype + "&site=na";
-					doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timeclock.updated);
+					doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timeclock.updated);
 				} else {
 					console.log('reverting field');
 					timeinput.value=timeinput.defaultValue;
@@ -1628,7 +1531,7 @@ var timeclock = {
 					console.log(id);
 					// var PostStr = "do=updatetimedetail&id=" + id + "&t=" + workday + "&site=na";
 					var PostStr = "do=updatetimedetail&id=" + id + "&t=" + timeinput.value + "&site=na";
-					doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timeclock.updated);
+					doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timeclock.updated);
 				} else {
 					console.log('reverting field');
 					timeinput.value=timeinput.defaultValue;
@@ -1709,7 +1612,7 @@ var look_up_inv = function(row_number, inv_number, site, cust) {
 	// var PostStr = "variable=value&variable2=value2";
 	var PostStr = "inv=" + inv_number + "&site=" + site + "&cust=" + cust + "&row=" + row_number;
 	// use the generic function to make the request
-	doAJAXCall('ajax/getInvoice.asp?'+PostStr, 'POST', '' + PostStr + '', showMessageResponse);
+	doAJAXCall('/include/system/tools/timecards/group/ajax/getInvoice.asp?'+PostStr, 'POST', '' + PostStr + '', showMessageResponse);
 	return false;
 }
 

@@ -119,104 +119,6 @@ var Custom = {
 	}
 }
 
-
-var timecard = {
-	received: function(id, site) {
-		
-		// prompt for total hours
-		smoke.prompt("Enter total hours:", function(e){
-			if (e){
-			
-				var total_hours = e;
-			
-				var placementid = id;
-				
-				var PostStr = "do=addweek&id=" + placementid + "&paper=true&site=" + site + "&th=" + encodeURIComponent(total_hours);
-				console.log(PostStr);
-
-				// use the generic function to make the request
-				doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timecard.add_detail);
-				return false;
-
-			}else{
-				//  Uncheck
-				$("#chkbox_"+id).prop("checked", false);
-			}
-		}, {
-			ok: "Add Summary",
-			cancel: "Cancel",
-			classname: "custom-class",
-			reverseButtons: true,
-			value: ""
-		}); // done total hours
-		
-		
-	},
-	add_detail: function(oXML) {
-		console.log(oXML);
-		
-		// parse response (get weekending suggestion based on customer)
-		
-		var ids = oXML.responseText.split(":");
-		var placementid = ids[0];
-		var siteid = ids[1];
-		var summaryid = ids[2];
-		var totalhours = ids[3];
-		var weekended = new Date(new Date(ids[4]).setDate(new Date().getDate()-7))
-				
-		var weekending = new Date(weekended);
-		var dd = weekending.getDate();
-		var mm = weekending.getMonth()+1; //January is 0!
-		var yyyy = weekending.getFullYear();
-
-		if(dd<10) {
-			dd='0'+dd
-		} 
-
-		if(mm<10) {
-			mm='0'+mm
-		} 
-
-		weekending = mm+'/'+dd+'/'+yyyy;
-		var previous_weekending = weekending;
-		
-		smoke.prompt("Confirm weekending date for time:", function(e){
-			if (e) {
-				new_weekending = e;
-				var for_week_ending = encodeURIComponent(e);
-				var PostStr = "do=addtimedetail&placementid="+placementid+"&site="+siteid+"&summaryid="+summaryid+"&th="+encodeURIComponent(totalhours);
-				doAJAXCall('/include/system/tools/timecards/group/ajax/doThings.asp?', 'POST', '' + PostStr + '', timecard.confirmed);
-				return function(e) {
-
-					console.log('new_weekending: '+e+', original: '+previous_weekending);
-					//insert code here to update weekending if changed
-					
-				
-					alert(e);
-				}
-			} else {
-				// insert code here to remove weekending and clean-up
-			}
-			}, 
-			{
-			ok: "Submit",
-			cancel: "Cancel",
-			classname: "custom-class",
-			reverseButtons: true,
-			value: weekending
-			}
-		);
-		
-	},
-	confirmed: function(oXML) {
-		console.log(oXML.responseText);
-		
-	}
-}
-
-
-
-
 function etc_refresh () {
 	document.report_form.submit();
 }
@@ -248,49 +150,34 @@ function lookup_id() {
 		getMessage();
 }
 
-//need to include prompt requesting last date worked below
+
+                                                                                                             //need to include prompt requesting last date worked below
 
 var placement = {
 	close: function(id, site) {
+	
+		smoke.quiz("Expecting a final time card?", function(e){
+			if (e == "Yes"){
+				//set spinning busy image...
+				document.getElementById("Placement"+id).className = "Working";
+				//do procedure call
+				doAJAXCall('ajax/doThings.asp?do=close&id='+id+'&site='+site+'&needfinaltime=true', 'POST', '' + PostStr + '', placement.showexpected);
+			} else if (e == "No") {
+				//set spinning busy image...
+				document.getElementById("Placement"+id).className = "Working";
+				//do procedure call
+				doAJAXCall('ajax/doThings.asp?do=close&id='+id+'&site='+site+'&needfinaltime=false', 'POST', '' + PostStr + '', placement.showopen);
+			}
+		}, {
+			button_1: "Yes",
+			button_2: "No",
+			button_cancel: "Cancel"
+		});
 		
-				
-		var today = new Date();
-		var dd = today.getDate();
-		var mm = today.getMonth()+1; //January is 0!
-		var yyyy = today.getFullYear();
-
-		if(dd<10) {
-			dd='0'+dd
-		} 
-
-		if(mm<10) {
-			mm='0'+mm
-		} 
-
-		today = mm+'/'+dd+'/'+yyyy;
-				
-
 		smoke.prompt("Enter last date worked:", function(e){
-			if (e) {
-			 var last_week_worked = encodeURIComponent(e);
-			smoke.quiz("Expecting a final time card?", function(e){
-				if (e == "Yes"){
-					//set spinning busy image...
-					document.getElementById("Placement"+id).className = "Working";
-					//do procedure call
-					doAJAXCall('ajax/doThings.asp?do=close&id='+id+'&site='+site+'&needfinaltime=true&we='+last_week_worked, 'POST', '' + PostStr + '', placement.showexpected);
-				} else if (e == "No") {
-					//set spinning busy image...
-					document.getElementById("Placement"+id).className = "Working";
-					//do procedure call
-					doAJAXCall('ajax/doThings.asp?do=close&id='+id+'&site='+site+'&needfinaltime=false&we='+last_week_worked, 'POST', '' + PostStr + '', placement.showopen);
-				}
-			}, {
-				button_1: "Yes",
-				button_2: "No",
-				button_cancel: "Cancel"
-			});
-				return true;
+			if (e =="Yes")
+			{
+			return true;
 			}
 			else
 			{
@@ -303,20 +190,8 @@ var placement = {
 			cancel: "Cancel",
 			classname: "custom-class",
 			reverseButtons: true,
-			value: today
+			value: ""
 			});
-			
-		var inputFieldId = $('[id*="dialog-input-"]').attr( "id" );
-		console.log(inputFieldId);
-		
-		Calendar.setup({
-			// onUpdate      : catcalc,
-			// onSelect      : catcalc,
-			inputField    : inputFieldId,
-			button        : inputFieldId,
-			align         : "B1"
-		});
-			
 		var PostStr = ''
 	},
 	open: function(id, site) {

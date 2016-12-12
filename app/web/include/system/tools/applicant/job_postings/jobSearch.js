@@ -116,7 +116,4 @@ var Custom = {
 		}
 	}
 }
-
-
-
 window.onload = Custom.init;

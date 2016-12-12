@@ -1,0 +1,79 @@
+@media print, handheld {
+  /* style sheet for print goes here */
+	a.squarebutton,
+	a.squarebutton span,
+	.buttonwrapper,
+	.bug,
+	#bread,
+	.squarebutton,
+	#pageBanner,
+	#pageNavigation,
+	#pageFooter,
+	#subBanner,
+	#leftSideMenu,
+	#search {display:none;}
+	
+	
+	
+	#subContentWrapper,
+	#pageWrapper,
+	#contentcolumn, 
+	#contentwrapper {width: 100%; margin: 0; float: none;}
+
+	body {background:none}
+
+}
+
+html {height: 100%;  overflow:hidden;}
+body {height: 100%; }
+/* body {background-image:url('/time/clock/background.jpg');overflow-x: hidden !important;} */
+/* body {background-image:url('/time/clock/box_mtl_ctr.gif'); background-repeat:repeat;overflow-x: hidden;} */
+body {background-color:#000}
+
+
+#toprightscrew, 
+#topleftscrew, 
+#bottomrightscrew, 
+#bottomleftscrew {background: transparent url('/time/clock/screw-heads.png') no-repeat top left;height:21px; width:21px;position:fixed;}
+
+#toprightscrew {top:0; right:0;}
+#topleftscrew {top:0; left:0;background-position:-21px 0px;}
+#bottomrightscrew {bottom:0; right:0;background-position:-41px 0px;}
+#bottomleftscrew {bottom:0; left:0;background-position:-102px 0px;}
+
+font, p, span, div {color:white;font-family:arial;}
+
+div#innertube {width:26em;margin:15% auto 0em;clear:both;}
+
+
+div#id_container {position:fixed;z-index:-1;top:5%;width:17em;margin-left:-8.5em;left:50%;}
+div#id_container img {width:17.5em;margin-top:2.4em;clear:both;}
+
+div#timeclock_label {float:left;font-size:130%;font-weight:normal;}
+
+div#user_info_div {position:fixed;right:5%;top:5%;}
+
+div#badge_id {border:1px solid #1d3e8b;background-color:#024b90;float:left;clear:both;margin-top:0.4em;padding:0.2em 0.2em;}
+div#badge_id table {width:17em;}
+div#badge_id table tr th {text-align:left;}
+div#badge_id table tr th span {color:white; font-weight:bold;font-family:arial;}
+div#badge_id table tr td input {width:17em;color:dark-gray;}
+div#badge_id table {width:17em;}
+
+
+div.cost_center_button {border:1px solid #475bcb;background-color:#20a1e2; height:4em;margin-bottom:1em;float:none;clear:both;}
+div#cost_center {float:left;clear:both;margin:0.8em 0 0;padding:0.2em 0.2em;}
+div#chose_action {float:left;clear:both;margin:0.4em 0 0;padding:0.2em 0.2em;display:none;}
+div#clock_action_results {width:26em;height:0.01em;margin:1em auto 1em;clear:both;}
+
+span.cost_center {display:block; margin-bottom:1em;cursor:pointer;}
+
+div#logo {z-index:-2;position:absolute;top:5%;left:5%;width:15%;}
+
+div#personnelinc {position:absolute;bottom:0.8em; right:1.6em;}
+div#world {position:absolute;bottom:12px; right:2em;}
+div#clock {position:absolute;bottom:0.8em;left:1.6em;}
+
+span#time_span {display:block;font-size:180%;}
+span#date_span {display:block;font-size:85%;float:left;clear:both;}
+span#linkurl {display:block;font-size:65%;float:left;clear:both;}

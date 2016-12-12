@@ -195,7 +195,6 @@ function navChooseCustomer (whichCompany)
 			response.write "&nbsp;</A>"
 			
 		do while not WhichCustomer.Eof
-			on error resume next
 			CurrentCustomer = WhichCustomer("Customer")
 
 			strDisplayText = Replace(WhichCustomer("CustomerName"), "&", "&amp;")
@@ -220,8 +219,7 @@ function navChooseCustomer (whichCompany)
 
 		WhichCustomer.Close
 		Set WhichCustomer = Nothing
-		on error goto 0
-		
+
 	end if
 end function
 
@@ -298,7 +296,7 @@ end function
 function navRecordsByPage(rs)
 
 	nPage = CInt(whichPage & "")
-	nItemsPerPage = 900
+	nItemsPerPage = 150
 	if not rs.eof then rs.PageSize = nItemsPerPage
 	nPageCount = rs.PageCount
 
@@ -410,26 +408,16 @@ if len(whichCompany & "") > 0 then
 		'.ActiveConnection = thisConnection
 		.CursorLocation = 3 ' adUseClient
 		dim sqlCommandText
-		sqlCommandText = "" &_
-			"SELECT Orders.Customer, Orders.Reference, Placements.EmployeeNumber, Placements.StartDate, " &_
+		sqlCommandText = "SELECT Orders.Customer, Orders.Reference, Placements.EmployeeNumber, Placements.StartDate, " &_
 				"Placements.PStopDate, Customers.CustomerName, Applicants.LastnameFirst, Orders.JobNumber, " &_
 				"Placements.WorkCode, Placements.RegPayRate, Placements.RegBillRate, Placements.PlacementStatus, " &_
 				"Placements.PlacementID, Placements.NeedFinalTime, WorkCodes.Description " &_
 				"FROM (((Placements Placements LEFT OUTER JOIN Orders Orders ON Placements.Reference=Orders.Reference) " &_
 				"LEFT OUTER JOIN WorkCodes WorkCodes ON Placements.WorkCode=WorkCodes.WorkCode) " &_
 				"LEFT OUTER JOIN Applicants Applicants ON Placements.EmployeeNumber=Applicants.EmployeeNumber) " &_
-				"LEFT OUTER JOIN Customers Customers ON Placements.Customer=Customers.Customer "
-				
-		if len(thisCustomer) > 0 AND thisCustomer <> "@ALL" then
-			sqlCommandText = sqlCommandText &_
-			"WHERE Orders.InvoiceFormat <> 'H' AND (Placements.PlacementStatus=3 AND Placements.NeedFinalTime='TRUE' OR Placements.PlacementStatus=0) AND Orders.Customer='" & thisCustomer & "'" &_
-				" ORDER BY Orders.Customer, Orders.JobNumber, Orders.Reference, Applicants.LastnameFirst"
-				
-		else
-			sqlCommandText = sqlCommandText &_
-			"WHERE Orders.InvoiceFormat <> 'H' AND (Placements.PlacementStatus=3 AND Placements.NeedFinalTime='TRUE' OR Placements.PlacementStatus=0) " &_
-				" ORDER BY Orders.Customer, Orders.JobNumber, Orders.Reference, Applicants.LastnameFirst"
-		end if
+				"LEFT OUTER JOIN Customers Customers ON Placements.Customer=Customers.Customer " &_
+				"WHERE Orders.InvoiceFormat <> 'H' AND (Placements.PlacementStatus=3 AND Placements.NeedFinalTime='TRUE' OR Placements.PlacementStatus=0) " &_
+				" ORDER BY Orders.Customer, Applicants.LastnameFirst"
 				
 				'include_what &_
 				'order_this_way
@@ -461,13 +449,13 @@ function group_header ()
 				"<th class=""lastnamefirst"">&nbsp;</th>" &_
 				"<th class=""EmployeeNumber"">Empl#</th>" &_
 				"<th class=""JobNumber"">JO#/<br />Ref#</th>" &_
+				"<th class=""PlacementStatus"">S</th>" &_
 				"<th class=""WCDescription"">Description</th>" &_
 				"<th class=""StartDate"">Started</th>" &_
 				"<th class=""PStopDate"">Ending</th>" &_
 				"<th class=""WorkCode"">Work Code</th>" &_
 				"<th class=""RegPayRate"">Pay</th>" &_
 				"<th class=""RegBillRate"">Bill</th>" &_
-				"<th class=""PlacementStatus"">Rcvd</th>" &_
 			"</tr>"
 
 			'"<th class=""Reference"">Ref#</th>" &_
@@ -499,62 +487,22 @@ function group_details (PlacementId, lastnamefirst, EmployeeNumber, JobNumber, R
 				"<td class=""lastnamefirst""><div>" & objChangePlacement & lastnamefirst & "</div></td>" &_
 				"<td class=""EmployeeNumber"">" & EmployeeNumber & "</td>" &_
 				"<td class=""JobNumber"">" & JobNumber & "/" & Reference & "</td>" &_
+				"<td class=""PlacementStatus"">" & PlacementStatus & "</td>" &_
 				"<td class=""WCDescription""><div>" & WCDescription & "</div></td>" &_
 				"<td class=""StartDate"">" & StartDate & "</td>" &_
 				"<td class=""PStopDate"">" & PStopDate & "</td>" &_
 				"<td class=""WorkCode"">" & WorkCode & "</td>" &_
 				"<td class=""RegPayRate alignR"">$" & RegPayRate & "</td>" &_
 				"<td class=""RegBillRate alignR"">$" & RegBillRate & "</td>" &_
-				"<td class=""PlacementStatus alignR""><input id=""chkbox_" & PlacementId & """ type=""checkbox"" value="""" data-customer=""" & CustomerCode &  """ onclick=""timecard.received('" & PlacementId & "', '" & whichCompany & "');"" /></td>" &_
 			"</tr>"
 			'"<td class=""Reference"">"  & "</td>" &_
 	group_details = strResponse
-end function
-
-function group_details_received (PlacementId, lastnamefirst, EmployeeNumber, JobNumber, Reference, PlacementStatus, WCDescription, StartDate, PStopDate, WorkCode, RegPayRate, RegBillRate)
-	dim objChangePlacement: objChangePlacement = ""
-		if PlacementStatus = "3" then
-		 	 objChangePlacement = objChangePlacement &_
-				"<span class=""OpenPlacement"" " &_
-					"id=""Placement" & PlacementId & """ " &_
-					"onclick=""placement.open('" & PlacementId & "', '" & whichCompany & "')"">" &_
-				"</span>"
-		else
-		 	 objChangePlacement = objChangePlacement &_
-				"<span class=""ClosePlacement"" " &_
-					"id=""Placement" & PlacementId & """ " &_
-					"onclick=""placement.close('" & PlacementId & "', '" & whichCompany & "')"">" &_
-				"</span>"
-		end if
-			
-			
-				
-	dim strResponse : strResponse = ""
-		strResponse = strResponse &_
-			"<tr style=""font-color:red;"">" &_
-				"<td class=""lastnamefirst""><div>" & objChangePlacement & lastnamefirst & "</div></td>" &_
-				"<td class=""EmployeeNumber"">" & EmployeeNumber & "</td>" &_
-				"<td class=""JobNumber"">" & JobNumber & "/" & Reference & "</td>" &_
-				"<td class=""WCDescription""><div>" & WCDescription & "</div></td>" &_
-				"<td class=""StartDate"">" & StartDate & "</td>" &_
-				"<td class=""PStopDate"">" & PStopDate & "</td>" &_
-				"<td class=""WorkCode"">" & WorkCode & "</td>" &_
-				"<td class=""RegPayRate alignR"">$" & RegPayRate & "</td>" &_
-				"<td class=""RegBillRate alignR"">$" & RegBillRate & "</td>" &_
-				"<td class=""PlacementStatus alignR""><input type=""checkbox"" value="""& time_received & """ checked=""checked"" onclick=""timecard.received('" & PlacementId & "', '" & whichCompany & "');"" /></td>" &_
-			"</tr>"
-			'"<td class=""Reference"">"  & "</td>" &_
-	group_details_received = strResponse
 end function
 
 
 function group_footer ()
 	group_footer = "</table>"
 end function
-
-dim rs_received, cmd_received
-set cmd_received = server.createObject("adodb.command")
-cmd_received.ActiveConnection = MySql
 
 sub showActivityStream (rs)
 
@@ -570,7 +518,6 @@ resourcelink = "/include/system/tools/activity/forms/maintainApplicant.asp?"
 
 		dim previousCode : previousCode = ""
 		dim chkSpace : chkSpace = 0
-		dim time_received
 		
 		dim CustomerCode : CustomerCode = "" 'Customer
 		dim CustomerName : CustomerName = "" 'CustomerName
@@ -631,47 +578,13 @@ resourcelink = "/include/system/tools/activity/forms/maintainApplicant.asp?"
 				
 				previousCode = CustomerCode
 			end if
-
-			time_received = check_if_received(placementid)
-			if time_received > 0 then
-				response.write group_details_received (PlacementId, LastnameFirst, EmployeeNumber, JobNumber, Reference, PlacementStatus, WCDescription, StartDate, PStopDate, WorkCode, RegPayRate, RegBillRate)
-
-			else
-				response.write group_details(PlacementId, LastnameFirst, EmployeeNumber, JobNumber, Reference, PlacementStatus, WCDescription, StartDate, PStopDate, WorkCode, RegPayRate, RegBillRate)
-			end if
-			time_received = 0
+						
+			response.write group_details(PlacementId, LastnameFirst, EmployeeNumber, JobNumber, Reference, PlacementStatus, WCDescription, StartDate, PStopDate, WorkCode, RegPayRate, RegBillRate)
 			
-			response.flush()
 			rs.MoveNext
 		loop
 		
 		Response.write group_footer
-
-	set rs_received = nothing
-	set cmd_received = nothing
-	
 end sub
-
-function check_if_received(placementid)
-
-	on error resume next
-
-	cmd_received.CommandText = "" &_
-		"SELECT exp_tot FROM time_summary WHERE received='1' AND createdby='P' AND placementid='" & placementid & "';"
-	
-	set rs_received = cmd_received.execute()
-	
-	if not rs_received.eof then
-		
-		check_if_received = cdbl(rs_received("exp_tot"))
-		
-	else
-		check_if_received = 0
-	end if
-
-	on error goto 0
-	
-end function
-
 
 %>

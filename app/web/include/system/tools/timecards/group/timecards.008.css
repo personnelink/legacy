@@ -15,8 +15,6 @@ a.squarebutton, a.squarebutton span, .buttonwrapper, .bug, #bread, .squarebutton
 body {
 	background: none
 }
-
-
 }
 
 /* redefine global id */
@@ -100,10 +98,10 @@ div#topPageRecordsByOrder, div#topPageRecordsByCust {
 	margin: 0 1em 0 0;
 }
 
-#order_activity, div#scrollOrders, div#scrollCustomers {
+div#scrollOrders, div#scrollCustomers {
 	height: 8em;
-	overflow-x: hidden;
-	overflow-y: auto;
+	overflow: auto;
+	overflow-X: hidden;
 }
 
 span.select {
@@ -240,7 +238,7 @@ ul.what_activites li a {
 	padding: 20px 0 0 0;
 	font-size: 13px;
 	text-transform: uppercase;
-	line-height : 1em;
+	line-height : 1;
 	font-weight: bold;
 }
 
@@ -340,7 +338,7 @@ span.DateLastActive div {
 }
 
 span.CustomerAddress {
-	width: 20em;
+	width: 16em;
 }
 
 span.CustomerContact {
@@ -521,8 +519,6 @@ td.OrderPhone div {
 
 .OrderActivities {
 	width: 18%;
-	text-align:right;
-	padding-left:4em;
 }
 
 td.OrderActivities div {
@@ -597,7 +593,6 @@ span.col_we {
 
 span.col_we_b {
 	width: 8em;
-	text-align:right;
 }
 
 span.col_day {
@@ -695,14 +690,14 @@ table.time_summary input.inpWeekEnding {
 
 table.time_detail input {
 	height: 1.2em;
-	width: 3em;
+	width: 4em;
 	margin-bottom: 0;
 }
 
 table.time_detail td.timeinput span {
 	display:block;
 	height: 1.2em;
-	width: 2.8em;
+	width: 3em;
 	margin-bottom: 0;
 }
 
@@ -741,7 +736,6 @@ table.time_summary td.cntrlTimeDetail div.left_margin {
 	width: 18em !important;
 }
 
-table.time_detail th.left_margin,
 table.time_detail td.left_margin {
 	width: 3.5em;
 }
@@ -755,19 +749,13 @@ table.time_detail td.weekday select {
 	width: 4.4em;
 }
 
-table.time_detail td.timeinput,
 table.time_detail th.timeinput {
 	width: 4.4em;
-	vertical-align:center;
-}
-
-table.time_detail td.timeinput input {
-	width: 3em;
 }
 
 table.time_detail td.timeinput span,
 table.time_detail td.timeinput select {
-	width: 5.8em;
+	width: 6.4em;
 }
 
 table.time_detail td.hourstotal input {
@@ -835,7 +823,6 @@ div#popup {
 .CustomerActivities {
 	width: 8.4em;
 	display: inline-block;
-	padding-left:1em;
 	text-align: right;
 	float: left;
 	clear: right;
@@ -928,9 +915,6 @@ div.leftline, div.joborders, div.timedetails, div.weekendings, div.placements {
 	background-color: transparent;
 	border-left: 1px solid #f0f0f0;
 }
-
-div.timedetails {padding-left:9em !important;}
-
 
 div.timesummaries {
 	margin: 0 0 0 0.8em;

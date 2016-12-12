@@ -59,8 +59,6 @@
             </th>
             <th>Reg. Hrs
             </th>
-            <th>Adj. Hrs
-            </th>
             <th>OT Hrs
             </th>
             <th>Total Hrs
@@ -84,13 +82,13 @@
 			dim iPreviousTotal
 				blnFirstLoop = true
 
-			dim intAdjRegHours, intRegHours, dblBilled
+			dim intRegHours, dblBilled
 
 			dim intTotalHours, dblTotalBill, dblGrandTotal, dblGrandBill 'total buckets
 			dblTotalBill = 0
 			
 			dim rsChangeAudit, strChangeWhysHTML
-			dim rsHours, rsAdjustedHours
+			dim rsHours
 			
 			do while not rs.eof
 				pid = rs("placementid")
@@ -119,36 +117,12 @@
 				if showRow then
 					'print "show true"
 					rsHours = rs("hours")
-					
-					if vartype(rsHours) > 1 then
-						on error resume next
-						intRegHours = Round(cdbl(rsHours), 2)
-						on error goto 0
+					if not vartype(rsHours) = 0 and not vartype(rsHours) = 1 then
+						intRegHours = Round(cdbl(rs("hours")), 2)
 					end if
 					
-					'print "show true"
-					rsAdjustedHours = rs("adjustedhours")
-	
-					'print "rsAdjustedHours: " & rsAdjustedHours
-					
-					if vartype(rsAdjustedHours) > 1 then
-					'print "hours: " &rsHours
-						on error resume next
-						intAdjRegHours = Round(cdbl(rsAdjustedHours), 2)
-						on error goto 0
-					else
-						'print "int: " & intRegHours
-						intAdjRegHours = Round(cdbl(intRegHours), 2)
-					end if
-					
-					if intAdjRegHours = 0 then
-						intAdjRegHours = intRegHours
-					end if
-					
-					'print intAdjRegHours
-					
-					dblGrandTotal = dblGrandTotal + intAdjRegHours
-					dblBilled = cdbl(BillRate(pid))*Round(intAdjRegHours, 2)
+					dblGrandTotal = dblGrandTotal + intRegHours
+					dblBilled = cdbl(BillRate(pid))*Round(intRegHours, 2)
 					'dblGrandBill = dblGrandBill  + (cdbl(BillRate(pid))*intRegHours)
 					dblGrandBill = dblGrandBill  + dblBilled
 
@@ -165,7 +139,7 @@
 						%>
 
 						<tr style="border-bottom: solid black">
-                            <td colspan="10" style="text-align: right">
+                            <td colspan="9" style="text-align: right">
                                 <b>Employee Total:</b>
                             </td>
                             <td><b><%=TwoDecimals(Round(intTotalHours, 2))%></b>
@@ -248,8 +222,7 @@
 							rsChangeAudit.movenext
 						loop
 					end if
-	'print "inrow: " & intAdjRegHours
-	
+
 					%>
 					<tr title="<%=Replace(ClearHTMLTags(strChangeWhysHTML, 2), """", "&quot;")%>">
                         <td style="padding-right: 10px" ><%=pid%><% if len(strChangeWhysHTML) > 0 then %>*<% else %>&nbsp;&nbsp;<% end if %>
@@ -273,14 +246,12 @@
                         </td>
                         <td><%=TwoDecimals(intRegHours)%>
                         </td>
-						<td><%=TwoDecimals(intAdjRegHours)%>
-                        </td>
-	                        <td>0.00<!--OT Hours-->
+                        <td>0.00<!--OT Hours-->
                         </td>
                         <td><%=strBootTime%><%=TwoDecimals(Round(intRegHours, 2))%>
                             <!--Total Hours-->
-                        </td>
-					<!--<td><div class="namediv"><%=rs("sLastName") & ", " & rs("sFirstName")%></div>-->
+                        </td> 
+						<!--<td><div class="namediv"><%=rs("sLastName") & ", " & rs("sFirstName")%></div>-->
                             <!--Total Hours-->
                         </td>
                         <!--<td>$<%=TwoDecimals(BillRate(pid))%>
@@ -293,9 +264,8 @@
 
 				
 
-			strPreviousEmployee = strCurrentEmployee
-			response.flush()
-			
+		strPreviousEmployee = strCurrentEmployee
+
 		rs.movenext
 
 			loop
@@ -306,9 +276,6 @@
                                 <b>Employee Total:</b>
                             </td>
                             <td><b><%=TwoDecimals(Round(intTotalHours, 2))%></b>
-                                <!--Reg Hours total for employee-->
-                            </td>
-                             <td><b><%=TwoDecimals(Round(intAdjRegHours, 2))%></b>
                                 <!--Reg Hours total for employee-->
                             </td>
                             <td><b>0.00</b>

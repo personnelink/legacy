@@ -1,21 +1,5 @@
 if (!window.console) console = {log: function() {}};
 
-
-function addEventHandler(obj, evt, handler) {
-    if(obj.addEventListener) {
-        // W3C method
-        obj.addEventListener(evt, handler, false);
-    } else if(obj.attachEvent) {
-        // IE method.
-        obj.attachEvent('on'+evt, handler);
-    } else {
-        // Old school method.
-        obj['on'+evt] = handler;
-    }
-}
-
-
-
 function grayOut(vis, options) {
 	scroll(0,0);
   // Pass true to gray out screen, false to ungray
@@ -313,16 +297,6 @@ var areamap = {
 	
 	}
 }
-
-var applicant = {
-	open_new: function(elem) {
-			var uri = elem.getAttribute("data-uri").value;
-			console.log("uri:"+uri);
-			
-		}
-		
-	}
-
 
 grayOut(false);
 

@@ -2,26 +2,12 @@
 dim add_css
 add_css = session("add_css")
 
-dim mobile_css : mobile_css = session("mobile_css")
-
 if is_mobile then
 	'load master and global mobile stylesheet
 	header_response = header_response &_
 		"<link href=""/include/style/master.mobile.css"" rel=""stylesheet"" type=""text/css"">" &_
 		"<link href=""/include/style/global.mobile.css"" rel=""stylesheet"" type=""text/css"">" &_
 		"<link href=""/include/core/smoke.js-master/smoke.css"" rel=""stylesheet"" type=""text/css"">"
-
-	if instr(mobile_css, ",") > 0 then
-		
-		dim arr_mobile_css
-		arr_mobile_css = split(add_css, ",")
-		for each item in arr_mobile_css
-			header_response = header_response & add_css_to_header(trim(item))
-		next
-	else
-		header_response = header_response & add_css_to_header(mobile_css)
-	end if
-
 else
 	'load regular computer style sheet and regular style sheet to store "alternate" definitions
 	'that don't play nice on both devices and that were moved here from master.css and global.css

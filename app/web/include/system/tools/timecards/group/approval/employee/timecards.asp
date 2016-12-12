@@ -2,7 +2,6 @@
 
 session("required_user_level") = 8 'userLevelScreened
 session("window_page_title") = "Employee Time Management"
-session("add_css") = ",./" & app_base & "approval/employee/timecards.employee.001.css"
 
 %>
 
@@ -12,8 +11,7 @@ session("add_css") = ",./" & app_base & "approval/employee/timecards.employee.00
 
 <!-- begin presentation stuff -->
 <form id="report_form" name="report_form" action="<%=aspPageName%>" method="get">
-<span class='bug'><a href='/include/system/tools/bug_report/' title='Report A Bug'  onclick='grayOut(true);'>
-		<img src='<%=imageURL%>/include/style/images/mnuBugReport.png' alt='Bug Report'></a></span>
+<%=decorateTop("track_activities", "notToShort marLR10", "Time")%>
 <div id="whoseHereList">
 	<%	'get page nav records into re-cyclable variable
 		dim PageNavigation : PageNavigation = Customers.PageSelection %>
@@ -27,8 +25,6 @@ dim LastReference      : LastReference    = 0
 dim LastDepartment     : LastDepartment   = 0
 dim firstloop          : firstloop        = true
 dim department_total   : department_total = 0
-
-'break "... here ..."
 
 
 
@@ -79,15 +75,15 @@ for each Customer in Customers.Customers.Items
 			<div class="groupheader" >
 				<%=objShowMore(Customer.CustomerCode, Customer.CustomerName)%>
 				<span class="CustomerCode"><div><%=Customer.CustomerCode%></div></span>				
-				<span class="CustomerName"><div contenteditable="false"><%=Customer.CustomerName%></div></span>
-				<span class="CustomerAddress"><div contenteditable="false"><%=Customer.Address & ", " & Customer.Cityline%></div></span>
+				<span class="CustomerName"><div contenteditable="true"><%=Customer.CustomerName%></div></span>
+				<span class="CustomerAddress"><div contenteditable="true"><%=Customer.Address & ", " & Customer.Cityline%></div></span>
 				<!--<span class="CustomerContact"><div contenteditable="true"><%=Customer.Contact%>&nbsp;</div></span>
 				<span class="CustomerPhone"><div contenteditable="true"><%=FormatPhone(Customer.Phone)%>&nbsp;</div></span> -->
 				<span class="DateLastActive"><div><%=Customer.DateLastActive%>&nbsp;</div></span>
 				<span class="CustomerActivities btnCustomerActivity"><span class="button">
 					<span class="" onclick="activity.load.customer('<%=Customer.CustomerCode%>', '<%=qsActivityURL%>', '<%=Customers.Site%>', 'open')">View Activities</span></span>
 				</span>
-				
+				<%=objHideCustomer(Customer.CustomerCode, Customers.Site)%>
 
 			</div>
 
@@ -95,7 +91,7 @@ for each Customer in Customers.Customers.Items
 			<%=orders_div(Customer.CustomerCode)%>
 			<%=custActivity_div(Customer.CustomerCode)%>
 		</div>
-
+	
 <%
 next
 
@@ -106,15 +102,15 @@ Response.write group_footer
 <!--	<div style="width: 300px; height: 300px; background: yellow" onclick="notify()">Cick here to notify</div> -->
 <span class="button"><span><a style="color:#fff;" href="/include/system/tools/activity/reports/Time_Archive/">Time Archive Report</a></span></span>
 <%=PageNavigation%>
-
 </div>
 
-<!-- <div id="helpkey">
+<div id="helpkey">
 	<p><span style="display:block;float:left"><span class="ClosePlacement"></span> = Active Placement, Time card Expected</span>
 	<span style="display:block;float:right"><span class="ExpectingPlacement"></span> = Closed Placement</span></p>
 	<span style="display:block;float:right;margin:0 6em 0 0;"><span class="OpenPlacement"></span> = Expecting Final Time card</span>
-</div> -->
+</div>
 
+<%=decorateBottom()%>
 <input type="hidden" id="WarnedOverwriteDetail" name="WarnedOverwriteDetail" value="no" />
 <input type="hidden" id="WarnedOverwriteSummary" name="WarnedOverwriteSummary" value="no" />
 

@@ -225,7 +225,7 @@ End Function
 				tStamp = replace(tStamp, ":", ".")
 				tStamp = replace(tStamp, " ", "")
 				
-				FileName = jobid & "_" & dStamp & "_" & tStamp & "-" & FileName
+				FileName = dStamp & "_" & tStamp & "-" & FileName
 				
 				Set f = fso.OpenTextFile(ThisFilePath & FileName, ForWriting, True)
 					f.Write strFileData

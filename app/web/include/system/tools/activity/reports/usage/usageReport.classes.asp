@@ -318,7 +318,6 @@ class cAccountActivity
     'Takes a recordset
     'Fills the object's properties using the recordset
     Private Function FillFromRS(p_RS)
-	
 		dim p_Key      : p_Key = 0
 		
 		p_RS.PageSize = m_ItemsPerPage

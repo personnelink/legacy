@@ -48,7 +48,7 @@ function buildCompanySelector(inpName, selectedCompany, strOnChange)
 	set cmd = Server.CreateObject("ADODB.Command")
 	with cmd
 		.ActiveConnection = MySql
-		.CommandText = "SELECT companyID, companyName FROM tbl_companies Order By companyName Asc;"
+		.CommandText = "SELECT companyID, companyName FROM tbl_companies Order By companyName Asc"
 		.Prepared = true
 	end with
 	

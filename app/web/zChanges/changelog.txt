@@ -1,34 +1,3 @@
-2014.02.11
-* integrated change audit details into time archive report
-
-2014.02.07
-* group time card: fixed detail totalling bug
-* group time card: fixed detail not resetting on direct total entry
-* group time card: corrected military time '000' format caused to crash
-* emp app: fixed bug with pandp slipping through without signature randomly
-* group time card: corrected summaries not totalling after changing detail entries
-
-2014.02.06
-* group time card: corrected military time '0000' format caused to crash
-* group time card: integrated 'prettyTime()' function to format time detail field on focus loss
-* group time card: fixed bug where time entered without minutes and also with a trailing 'p' or 'a' caused script to crash
-* group time card: fixed bug with 1 user being returned by sql as False
-
-2014.02.05
-* group time card: system doesn't prompt when adding a row. Expected behaviour, the design allows blank rows and records to be added and prompts for change info only when time data is entered into fields
-* group time card: corrected time detail inputs getting reset to default on 'add row'
-* group time card: fixed new time entry resetting on focus loss
-* time clock: corrected getCostCenter clock in service not filtering closed placements
-
-2014.02.03
-* group time: completed implementing client side framework for managing which user modified which time piece and gathering additional changedWhy attribute, began bug testing
-
-2014.02.01
-* group time: completed implementing server side framework for exposing supervisor ids for tracking to clients embed as addition html element classes
-
-2014.01.30
-* group time: began building time changed draft framework for auditing supervisor edits using classes
-
 2014.01.29
 * corrected account reset issue with multiple email addresses present
 * reset password, extended to send token to each registered email
@@ -48,11 +17,7 @@
 2014.01.23
 * added W2 downloaded email upon successful W2 download via applicant
 * finalized ISDA pennies report for Christina G.
-
-2014.1.22:
-* check history report tool security too high, regression, again wasn't allowing anyone less than 4096 [pplusStaff] in
-
-[*** change log regression, conflicted and was mowed over with older version at some point ***]
+* 
 
 2013.12.12:
 * check history report tool security too high, wasn't allowing anyone less than 4096 [pplusStaff] in

@@ -1,6 +1,5 @@
 <%
 session("add_css") = "./etcReport.css"
-session("mobile_css") = "./etcReport.mobile.css"
 session("required_user_level") = 4096 'userLevelPPlusStaff
 session("window_page_title") = "Expected Timcards - Personnel Plus"
 %>
@@ -8,13 +7,7 @@ session("window_page_title") = "Expected Timcards - Personnel Plus"
 
 <link rel="stylesheet" type="text/css" href="/include/js/jquery.msgbox.css" />
 <script type="text/javascript" src="/include/js/jquery.msgbox.min.js"></script>
-<script type="text/javascript" src="/include/functions/calendar/calendar.js"></script>
-<script type="text/javascript" src="/include/functions/calendar/calendar-setup.js"></script>
-<script type="text/javascript" src="/include/functions/calendar/lang/calendar-en.js"></script>
 <script type="text/javascript" src="etcReport.js"></script>
-<style type="text/css"> @import url("/include/functions/calendar/calendar-blue.css"); </style>
-
-
 <!-- #include file='etcReport.doStuff.asp' -->
 
 <!-- begin presentation stuff -->
@@ -25,6 +18,14 @@ session("window_page_title") = "Expected Timcards - Personnel Plus"
 		<%=objCompanySelector(whichCompany, false, "javascript:document.report_form.submit();")%>
 		<a style="float:right;" class="squarebutton" href="#" onclick="act_refresh('<%=thisCustomer%>');" style="margin:.25em 1em .25em"><span>Refresh View</span></a>
 	</p>
+
+	<ul id="which_dates" class="what_activities">
+		<li><strong>Include what dates:</strong></li>
+		<li><label><input type="radio" id="act_when_all" name="act_when" value="all" onclick="enter_date('false')"<%=act_all%>>All dates</label></li>
+		<li><label><input type="radio" id="act_when_past" name="act_when" value="past" onclick="enter_date('false')"<%=act_past%>>Past dates</label></li>
+		<li><label><input type="radio" id="act_when_future" name="act_when" value="future" onclick="enter_date('false')"<%=act_future%>>Future dates</label></li>
+		<li><label><input type="radio" id="act_when_custom" name="act_when" value="custom" onclick="enter_date('true')"<%=act_custom%>>Other:</label></li>
+	</ul>
 
   <%=navChooseCustomer(whichCompany)%>
 

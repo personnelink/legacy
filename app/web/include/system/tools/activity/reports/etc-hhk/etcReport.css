@@ -40,14 +40,6 @@ a:hover {text-decoration:none}
 #whoseHereList td { padding-bottom:0.2em }
 
 
-
-input[type="checkbox"] {
-    width            : 1em;
-    height           : 1em;
-	margin-top:0.2em;
-
-}
-
 #button {
 	width: 12em;
 	border-right: 1px solid #000;
@@ -193,13 +185,13 @@ tr.etcHeader {background-color:#f2f6fb;}
 th.EmployeeNumber,
 th.JobNumber,
 th.Reference,
-th.RegBillRate,
+th.PlacementStatus,
 th.WCDescription,
 th.StartDate,
 th.PStopDate,
 th.WorkCode {border-bottom:1px solid #003366; text-align:center;}
 th.RegPayRate,
-th.PlacementStatus {border-bottom:1px solid #003366; text-align:right;}
+th.RegBillRate {border-bottom:1px solid #003366; text-align:right;}
 
 /* confirmation box */
 div#popup

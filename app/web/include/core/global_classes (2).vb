@@ -1,25 +1,5 @@
 <%
 
-
-function getApplicantIdFromUserId(p_uid, p_conn)
-
-	dim rs, cmd
-
-    set rs = Server.CreateObject("adodb.Recordset")
-    set cmd = Server.CreateObject("adodb.Command")
-    
-	cmd.ActiveConnection = MySql
-	cmd.CommandText = "SELECT tbl_applications.in" & getTempsCompCode(p_conn) & " FROM tbl_applications RIGHT JOIN tbl_users on tbl_users.applicationid=tbl_applications.applicationid WHERE tbl_users.userID=" & p_uid
-	
-	set rs = cmd.Execute()
-	if not rs.eof then getApplicantIdFromUserId = rs(0) 'use ordinal number instead of name
-	
-	set rs = nothing
-	set cmd = nothing
-	
-end function
-
-
 class cTempsAttribute
 	private m_site
 	private m_table
@@ -84,7 +64,7 @@ class cTempsAttribute
 			"WHERE " & me.whereclause & ";"
 		end if
 		
-		print strSql
+		'print strSql
 		
 		update = doSQL(strSQL, dsnLessTemps(me.site))
 	end function

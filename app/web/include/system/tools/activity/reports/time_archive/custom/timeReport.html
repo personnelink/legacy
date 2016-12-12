@@ -37,31 +37,29 @@
 <table style="margin: 1em 0 0 0">
     <thead>
         <tr>
-            <th>id
+            <th>ID
             </th>
-            <th>employee
+            <th>Employee
             </th>
-            <th>cust
+            <th>Cust
             </th>
-            <th>dept/cost center
+            <th>Dept/Cost Center
             </th>
-            <th>work date
+            <th>Work Date
             </th>
-            <th>day
+            <th>Day
             </th>
-            <th>in
+            <th>In Time
             </th>
-            <th>day
+            <th>Day
             </th>
-            <th>out
+            <th>Out Time
             </th>
-            <th>reg hrs
+            <th>Reg. Hrs
             </th>
-            <th>(adj)
+            <th>OT Hrs
             </th>
-            <th>ot hrs
-            </th>
-            <th>total hrs
+            <th>Total Hrs
             </th>
         </tr>
     </thead>
@@ -69,17 +67,18 @@
         <%
 
 
+			dim searchemployee
+				searchemployee = request.querystring("employee")
+			
 			dim pid, workday, showRow
 
 			dim blnFirstLoop, strPreviousEmployee, strCurrentEmployee 'change flags
 			dim strPreviousDepartment, strCurrentDepartment 'change flags
-			dim strPreviousWeekending, strCurrentWeekending 'change flags
 			dim iPreviousTotal
 				blnFirstLoop = true
 
-			dim intAdjRegHours, intRegHours, intOTHours, dblBilled, dblBillRate
-			dim intRegBill
-			
+			dim intRegHours, intOTHours, dblBilled
+
 			dim intTotalHours, dblTotalBill, dblGrandTotal, dblOTGrandTotal, dblGrandBill 'total buckets
 			dim intTotalOTHours
 			dim nDepartmentHours, nDepartmentOTHours, nDepartmentBill, strPreviousDepartmentDescription 'department total buckets
@@ -90,15 +89,13 @@
 			
 			dim rsChangeAudit, strChangeWhysHTML
 			dim rsHours
-			dim rsAdjustedHours
-			dim intTotalRegHours
-			dim intAdjTotalHours
-			dim nDepartmentAdjHours
             dim strBootTime
 			
 			do while not rs.eof
 				pid = rs("placementid")
 				
+				showRow = true
+
 				'retired and offloaded to sql
 				'
 				'if  len(searchbox) > 0 then
@@ -111,65 +108,44 @@
 
 				strCurrentEmployee = rs("lastName") & ", " & rs("firstName")
 				strCurrentDepartment = rs("department")
-				strCurrentWeekending = rs("weekending")
-		
-				'initialize previous employee flag
-				if blnFirstLoop then
-					strPreviousEmployee = strCurrentEmployee
-					strPreviousDepartment = strCurrentDepartment
-					strPreviousWeekending = strCurrentWeekending
-					blnFirstLoop = false
+
+				if len(searchemployee) > 0 then
+					if instr(lcase(strCurrentEmployee), lcase(trim(searchemployee))) = 0 then 
+						showRow = false
+					end if
 				end if
 
+				if showRow then
 					'print "show true"
 					rsHours = rs("hours")
-					
-					if vartype(rsHours) > 1 then
-					'print rsHours
-						on error resume next
-						intRegHours = Round(cdbl(rsHours), 2)
-						on error goto 0
-					else
-						intRegHours = 0
+					if not vartype(rsHours) = 0 and not vartype(rsHours) = 1 then
+						intRegHours = Round(cdbl(rs("hours")), 2)
 					end if
 					
-					'print "show true"
-					rsAdjustedHours = rs("adjustedhours")
 					
-					'print "rsAdjustedHours: " & rsAdjustedHours
-					
-					if vartype(rsAdjustedHours) > 1 then
-					'print rsHours
-						on error resume next
-						intAdjRegHours = Round(cdbl(rsAdjustedHours), 2)
-						on error goto 0
-					else
-						intAdjRegHours = Round(cdbl(intRegHours), 2)
-					end if
-					''print "int:" & intAdjRegHours
-						
-
-					intRegBill = rs("regbill")
-					if vartype(intRegBill) > 1 then	dblBillRate = cdbl(intRegBill)
-					
-					dblGrandTotal = dblGrandTotal + intAdjRegHours
-					dblBilled = dblBillRate*Round(intAdjRegHours, 2)
-					'dblGrandBill = dblGrandBill  + (cdbl(BillRate(pid))*intAdjRegHours)
+					dblGrandTotal = dblGrandTotal + intRegHours
+					dblBilled = cdbl(BillRate(pid))*Round(intRegHours, 2)
+					'dblGrandBill = dblGrandBill  + (cdbl(BillRate(pid))*intRegHours)
 					dblGrandBill = dblGrandBill  + dblBilled
 
+					'initialize previous employee flag
+					if blnFirstLoop then
+						strPreviousEmployee = strCurrentEmployee
+						strPreviousDepartment = strCurrentDepartment
+						blnFirstLoop = false
+					end if
 
-					if (strCurrentEmployee <> strPreviousEmployee) OR (strCurrentDepartment <> strPreviousDepartment)  OR (strCurrentWeekending <> strPreviousWeekending) then
+					if strCurrentEmployee <> strPreviousEmployee then
 
 						'dblGrandBill = dblGrandBill  + dblTotalBill
-						'print "intAdjTotalHours: " & intAdjTotalHours
-						if intAdjTotalHours > 40 then
-							intTotalOTHours = intAdjTotalHours - 40
-							intAdjTotalHours = 40
-							dblOTGrandTotal = dblOTGrandTotal + intTotalOTHours
-						else
-							intTotalOTHours = 0
-						end if
-					
+						
+					if intTotalHours > 40 then
+						intTotalOTHours = intTotalHours - 40
+						intTotalHours = 40
+						dblOTGrandTotal = dblOTGrandTotal + intTotalOTHours
+					else
+						intTotalOTHours = 0
+					end if
 	
 						%>
 
@@ -177,16 +153,13 @@
                             <td colspan="9" class="alignR">
                                 <b>Total for <%=strPreviousEmployee%>:</b>
                             </td>
-                            <td><b><%=TwoDecimals(Round(intTotalRegHours, 2))%></b>
-                                <!--Reg Hours total for employee-->
-                            </td>
-                             <td><b><%=TwoDecimals(Round(intTotalHours, 2))%></b>
+                            <td><b><%=TwoDecimals(Round(intTotalHours, 2))%></b>
                                 <!--Reg Hours total for employee-->
                             </td>
                             <td><b><%=TwoDecimals(Round(intTotalOTHours, 2))%></b>
                                 <!--OT Hours total for employee-->
                             </td>
-                            <td><b><%=TwoDecimals(Round(intAdjTotalHours + intTotalOTHours, 2))%></b>
+                            <td><b><%=TwoDecimals(Round(intTotalHours + intTotalOTHours, 2))%></b>
                                 <!--Total hours for employee-->
                             </td>
                             <td></td>
@@ -199,14 +172,10 @@
 						nDepartmentBill = nDepartmentBill + dblTotalBill
 						nDepartmentHours = nDepartmentHours + intTotalHours
 						nDepartmentOTHours = nDepartmentOTHours + intTotalOTHours
-						nDepartmentAdjHours = nDepartmentAdjHours + intAdjTotalHours
-						
 						
 						dblTotalBill = 0
 						intTotalHours = 0
-						intTotalRegHours = 0
 						intTotalOTHours = 0
-						intAdjTotalHours = 0
 
 						
 						if strCurrentDepartment <> strPreviousDepartment then
@@ -220,13 +189,10 @@
 								<td><b><%=TwoDecimals(Round(nDepartmentHours, 2))%></b>
 									<!--Reg Hours total for employee-->
 								</td>
-								<td><b><%=TwoDecimals(Round(nDepartmentAdjHours, 2))%></b>
-									<!--Reg Hours total for employee-->
-								</td>
 								<td><b><%=TwoDecimals(Round(nDepartmentOTHours, 2))%></b>
 									<!--OT Hours total for employee-->
 								</td>
-								<td><b><%=TwoDecimals(Round(nDepartmentOTHours + nDepartmentAdjHours, 2))%></b>
+								<td><b><%=TwoDecimals(Round(nDepartmentOTHours + nDepartmentHours, 2))%></b>
 									<!--Total hours for employee-->
 								</td>
 								<td></td>
@@ -236,21 +202,18 @@
 							</tr>
 							<%
 							
-							nDepartmentBill     = 0
-							nDepartmentHours    = 0
-							nDepartmentOTHours  = 0
-							nDepartmentAdjHours = 0
+							nDepartmentBill = 0
+							nDepartmentHours = 0
+							nDepartmentOTHours = 0
 							
 						end if
 						
 					end if
 
-					intTotalRegHours = intTotalRegHours + intRegHours
-					intTotalHours = intTotalHours + intAdjRegHours
+					intTotalHours = intTotalHours + intRegHours
 					intTotalOTHours = intTotalOTHours + intOTHours
-					intAdjTotalHours = intAdjRegHours + intAdjTotalHours
-
-					dblTotalBill = dblTotalBill + (dblBillRate*Round(intAdjRegHours, 2))
+					
+					dblTotalBill = dblTotalBill + (cdbl(BillRate(pid))*Round(intRegHours, 2))
 					
 
 					outtime = rs("timeout")
@@ -312,7 +275,7 @@
                         <td style="text-align: left"><div class="namediv"><%=strCurrentEmployee%></div>
                         </td>
                         <td><%=rs("customer")%></td>
-                        <td><div class="ccdiv"><%=rs("cc_description")%></div>
+                        <td><div class="ccdiv"><%=Department(pid)%></div>
                         </td>
                         <td><%=DatePart("m",workday) & "." & DatePart("d",workday) & "." & DatePart("yyyy",workday)%>
                         </td>
@@ -326,37 +289,35 @@
                         </td>
                         <td><%=TwoDecimals(intRegHours)%>
                         </td>
-                        <td><%=TwoDecimals(intAdjRegHours)%>
-                        </td>
                         <td>0.00<!--OT Hours-->
                         </td>
-                        <td><%=TwoDecimals(Round(intAdjRegHours, 2))%><%=strBootTime%>
+                        <td><%=TwoDecimals(Round(intRegHours, 2))%><%=strBootTime%>
                             <!--Total Hours-->
                         </td> 
 
                     </tr>
         <%
+				end if
 
 				
 
 		strPreviousEmployee = strCurrentEmployee
 		strPreviousDepartment = strCurrentDepartment
-		strPreviousWeekending = strCurrentWeekending
 		strPreviousDepartmentDescription = rs("cc_description")
 		
 		rs.movenext
-			response.flush()
-			
+
 			loop
 
-			'print "intAdjTotalHours: " & intAdjTotalHours
-			if intAdjTotalHours > 40 then
-				intTotalOTHours = intAdjTotalHours - 40
-				intAdjTotalHours = 40
-				dblOTGrandTotal = dblOTGrandTotal + intTotalOTHours
-			else
-				intTotalOTHours = 0
-			end if
+						if intTotalHours > 40 then
+							intTotalOTHours = intTotalHours - 40
+							intTotalHours = 40
+							dblOTGrandTotal = dblOTGrandTotal + intTotalOTHours
+						else
+							intTotalOTHours = 0
+						end if
+
+				
 						nDepartmentBill = nDepartmentBill + dblTotalBill
 						nDepartmentHours = nDepartmentHours + intTotalHours
 						nDepartmentOTHours = nDepartmentOTHours + intTotalOTHours
@@ -366,20 +327,17 @@
                             <td colspan="9" class="alignR">
                                 <b>Total for <%=strPreviousEmployee%>:</b>
                             </td>
-                            <td><b><%=TwoDecimals(Round(intTotalRegHours, 2))%></b>
-                                <!--Reg Hours total for employee-->
-                            </td>
-                             <td><b><%=TwoDecimals(Round(intTotalHours, 2))%></b>
+                            <td><b><%=TwoDecimals(Round(intTotalHours, 2))%></b>
                                 <!--Reg Hours total for employee-->
                             </td>
                             <td><b><%=TwoDecimals(Round(intTotalOTHours, 2))%></b>
                                 <!--OT Hours total for employee-->
                             </td>
-                            <td><b><%=TwoDecimals(Round(intAdjTotalHours + intTotalOTHours, 2))%></b>
+                            <td><b><%=TwoDecimals(Round(intTotalHours + intTotalOTHours, 2))%></b>
                                 <!--Total hours for employee-->
                             </td>
                             <td></td>
-                            <!--<!--<td style="text-align: end"><b>$<%=TwoDecimals(dblTotalBill)%></b>
+                            <!--<td style="text-align: end"><b>$<%=TwoDecimals(Round(dblTotalBill, 2))%></b>
                                 <!--Total Billed for employee-->
                             <!--</td>-->
                         </tr>
@@ -414,19 +372,19 @@
 
 						%>
     </tbody>
-<tfoot>
+    <tfoot>
 
         <tr>
             <td colspan="9" class="alignR">
                 <b>Grand Total:</b>
             </td>
-            <td style="font-size: larger"><b><%=TwoDecimals(Round(dblGrandTotal - dblOTGrandTotal , 2))%></b>
+            <td style="font-size: larger"><b><%=TwoDecimals(Round(dblGrandTotal, 2))%></b>
                 <!--Reg Hours total for employee-->
             </td>
             <td style="font-size: larger"><b><%=TwoDecimals(Round(dblOTGrandTotal, 2))%></b>
                 <!--OT Hours total for employee-->
             </td>
-            <td style="font-size: larger"><b><%=TwoDecimals(Round(dblGrandTotal, 2))%></b>
+            <td style="font-size: larger"><b><%=TwoDecimals(Round(dblGrandTotal + dblOTGrandTotal, 2))%></b>
                 <!--Total hours for employee-->
             </td>
             <td></td>

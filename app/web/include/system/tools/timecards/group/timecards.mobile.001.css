@@ -17,16 +17,6 @@ body {
 }
 }
 
-
-
-
-#bread {}
-#pageBanner{}
-#pageNavigation{}
-#subBanner{}
-#search{}
-
-
 /* redefine global id */
 #contentcolumn {
 	width: 79.1em;
@@ -58,11 +48,6 @@ a:hover {
 	text-align: left;
 	margin-bottom: 2em;
 }
-
-div#whoseHereList * {
-	font-size:100%;
-}
-
 
 #whoseHereList {
 	min-height: 40em;
@@ -339,7 +324,7 @@ span.CustomerName {
 }
 
 span.CustomerCode {
-	width: 6em;
+	width: 5.4em;
 	margin: 0 0 0 0.2em;
 }
 
@@ -353,15 +338,16 @@ span.DateLastActive div {
 }
 
 span.CustomerAddress {
-	width: 22em !important;
+	width: 16em;
+}
 
 span.CustomerContact {
-	width: 16em !important;
+	width: 10em;
 	margin-left:0.5em;
 }
 
 span.CustomerPhone {
-	width: 10em;
+	width: 8em;
 	margin-left:0.5em;
 
 }

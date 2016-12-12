@@ -13,19 +13,7 @@
 
 	dim customer
 		customer = searchbox
-
 		
-	dim searchemployee
-	searchemployee = request.querystring("employee")
-	
-	dim sqlApplicantSearchWhere
-	if len(searchemployee) > 0 then
-		sqlApplicantSearchWhere = "WHERE CONCAT(tbl_users.lastName, ', ', tbl_users.firstName) like " & _
-			insert_string("%" & lcase(trim(searchemployee)) & "%") & " "
-	else
-		sqlApplicantSearchWhere = ""
-	end if
-
 	dim mySqlFromDate
 	dim mySqlToDate
 
@@ -44,10 +32,6 @@
 			"`department`, " & _
 			"`costcenter`, " & _
 			"`cc_description`, " & _
-			"`regpay`, " & _
-			"`regbill`, " & _
-			"`otpay`, " & _
-			"`otbill`, " & _
 			"`foruserid`, " & _
 			"`approverid`, " & _
 			"`workday`, " & _
@@ -58,20 +42,13 @@
 			"`tbl_users`.`firstName`, " & _
 			"`tbl_supervisors`.`lastName` AS sLastName, " & _
 			"`tbl_supervisors`.`firstName` AS sFirstName, " & _
-			" `hours`, " & _
-			" `adjustedhours` " & _
+			" `hours` " & _
 		"FROM " & _
 			"(SELECT `time_summary_archive`.`id` AS summaryid, `time_summary_archive`.`weekending`, `time_detail_archive`.`created`, `time_summary_archive`.`site`, " & _
-	"`time_summary_archive`.`customer`, `time_summary_archive`.`placementid`, `time_summary_archive`.`department`, `time_summary_archive`.`costcenter`, `time_summary_archive`.`cc_description`, " &_
-	"`time_summary_archive`.`regpay`, " & _
-	"`time_summary_archive`.`regbill`, " & _
-	"`time_summary_archive`.`otpay`, " & _
-	"`time_summary_archive`.`otbill`, " & _
-	"`time_summary_archive`.`foruserid`, " & _
+	"`time_summary_archive`.`customer`, `time_summary_archive`.`placementid`, `time_summary_archive`.`department`, `time_summary_archive`.`costcenter`, `time_summary_archive`.`cc_description`, `time_summary_archive`.`foruserid`, " & _
 	"`time_summary_archive`.`approverid`, `time_detail_archive`.`workday`, `time_detail_archive`.`id`, " & _
 	"`time_detail_archive`.`timein`, `time_detail_archive`.`timeout`, " & _
-	"`time_detail_archive`.`timetotal` as hours, " & _
-	"`time_detail_archive`.`adjusted` as adjustedhours " & _
+	"`time_detail_archive`.`timetotal` as hours " & _
 "FROM time_summary_archive " & _
 "RIGHT JOIN time_detail_archive ON time_summary_archive.id=time_detail_archive.summaryid " & _
 "" & _
@@ -90,25 +67,20 @@
 				"`time_summary_archive`.`department`, " & _
 				"`time_summary_archive`.`costcenter`, " & _
 				"`time_summary_archive`.`cc_description`, " & _
-				"`time_summary_archive`.`regpay`, " & _
-				"`time_summary_archive`.`regbill`, " & _
-				"`time_summary_archive`.`otpay`, " & _
-				"`time_summary_archive`.`otbill`, " & _
 				"`time_summary_archive`.`foruserid`, " & _
 				"`time_summary_archive`.`approverid`, " & _
 				"`time_detail_archive`.`workday`, " & _
 				"`time_detail_archive`.`id`, " & _
 				"`time_detail_archive`.`timein`, " & _
 				"`time_detail_archive`.`timeout`, " & _
-				"(ABS(TIME_TO_SEC(TIMEDIFF(`time_detail_archive`.`timeout`, `time_detail_archive`.`timein`)))/60)/60 as hours, " & _
-				"`time_detail_archive`.`adjusted` as adjustedhours " & _
+				"(ABS(TIME_TO_SEC(TIMEDIFF(`time_detail_archive`.`timeout`, `time_detail_archive`.`timein`)))/60)/60 as hours " & _
 				"" & _
 			"FROM time_summary_archive " & _
 				"RIGHT JOIN time_detail_archive " & _
 					"ON time_summary_archive.id=time_detail_archive.summaryid " & _
 				"" & _
-					"WHERE `time_summary_archive`.`customer` like " & insert_string(customer) & " AND (`time_detail_archive`.`timeout` > `time_detail_archive`.`timein`)  AND " & _
-						"(`time_summary_archive`.`weekending` >= '" & mySqlFromDate & _
+					"WHERE `time_summary_archive`.`customer` like " & insert_string(customer) & " AND (`time_detail_archive`.`timeout` > `time_detail_archive`.`timein`  AND " & _
+						"`time_summary_archive`.`weekending` >= '" & mySqlFromDate & _
 						"' AND `time_summary_archive`.`weekending` <= '" & mySqlToDate & "') " & _
 			"UNION ALL " & _
 			"SELECT " & _
@@ -121,28 +93,24 @@
 				"`time_summary_archive`.`department`, " & _
 				"`time_summary_archive`.`costcenter`, " & _
 				"`time_summary_archive`.`cc_description`, " & _
-				"`time_summary_archive`.`regpay`, " & _
-				"`time_summary_archive`.`regbill`, " & _
-				"`time_summary_archive`.`otpay`, " & _
-				"`time_summary_archive`.`otbill`, " & _
 				"`time_summary_archive`.`foruserid`, " & _
 				"`time_summary_archive`.`approverid`, " & _
 				"`time_detail_archive`.`workday`, " & _
 				"`time_detail_archive`.`id`, " & _
 				"`time_detail_archive`.`timein`, " & _
 				"`time_detail_archive`.`timeout`, " & _
-				"(TIME_TO_SEC(TIMEDIFF('23:59:59', `time_detail_archive`.`timein`))+" &_
-				"TIME_TO_SEC(TIMEDIFF(`time_detail_archive`.`timeout`, '00:00:00'))) / 60 / 60 AS hours,  " & _
-				"`time_detail_archive`.`adjusted` as adjustedhours " & _
+
+				"(ABS(TIME_TO_SEC(TIMEDIFF(`time_detail_archive`.`timeout`, `time_detail_archive`.`timein`)))/60)/60 as hours " & _
+				"" & _
 			"FROM time_summary_archive " & _
 				"RIGHT JOIN time_detail_archive " & _
 					"ON time_summary_archive.id=time_detail_archive.summaryid " & _
 				"" & _
-				"WHERE `time_summary_archive`.`customer` like " & insert_string(customer) & " AND (`time_detail_archive`.`timeout` < `time_detail_archive`.`timein`)  AND " & _
-						"(`time_summary_archive`.`weekending` >= '" & mySqlFromDate & _
+				"WHERE `time_summary_archive`.`customer` like " & insert_string(customer) & " AND (`time_detail_archive`.`timeout` < `time_detail_archive`.`timein`  AND " & _
+						"`time_summary_archive`.`weekending` >= '" & mySqlFromDate & _
 						"' AND `time_summary_archive`.`weekending` <= '" & mySqlToDate & "')) AS t LEFT JOIN tbl_users AS tbl_supervisors ON t.approverid = tbl_supervisors.userid " & _
 					"LEFT JOIN tbl_users ON t.foruserid = tbl_users.userid " & _
-				sqlApplicantSearchWhere & _
+				
 				"ORDER By t.customer, t.site, t.weekending desc, t.department, t.costcenter, tbl_users.lastName, tbl_users.firstName, t.created, t.approverid;"
 
 				REM "`tbl_users`.`lastName`, " & _
@@ -160,49 +128,49 @@ Dim cmd
 Dim rs
 	set rs = cmd.execute()
 	
-REM dim rsPlacements
-	REM cmd.CommandText = "" & _
-		REM "SELECT DISTINCT placementid " & _
-			REM "FROM time_summary_archive " & _
-				REM "RIGHT JOIN time_detail_archive " & _
-					REM "ON time_summary_archive.id=time_detail_archive.summaryid " & _
-				REM "LEFT JOIN tbl_users " & _
-					REM "ON time_summary_archive.foruserid=tbl_users.userid " & _
-					REM "WHERE `time_detail_archive`.`timeout` > `time_detail_archive`.`timein` " & _
-									REM "OR `time_detail_archive`.`timeout` > `time_detail_archive`.`timein`;"
+dim rsPlacements
+	cmd.CommandText = "" & _
+		"SELECT DISTINCT placementid " & _
+			"FROM time_summary_archive " & _
+				"RIGHT JOIN time_detail_archive " & _
+					"ON time_summary_archive.id=time_detail_archive.summaryid " & _
+				"LEFT JOIN tbl_users " & _
+					"ON time_summary_archive.foruserid=tbl_users.userid " & _
+					"WHERE `time_detail_archive`.`timeout` > `time_detail_archive`.`timein` " & _
+									"OR `time_detail_archive`.`timeout` > `time_detail_archive`.`timein`;"
 
-	REM set rsPlacements = cmd.execute()
+	set rsPlacements = cmd.execute()
 
-REM dim strPlacements, strBuffer
-REM do until rsPlacements.eof
-	REM strBuffer = rsPlacements("placementid")
-	REM if len(strBuffer) > 0 then
-		REM strPlacements = strPlacements & strBuffer & ","
-	REM end if
-	REM rsPlacements.movenext
-REM loop
+dim strPlacements, strBuffer
+do until rsPlacements.eof
+	strBuffer = rsPlacements("placementid")
+	if len(strBuffer) > 0 then
+		strPlacements = strPlacements & strBuffer & ","
+	end if
+	rsPlacements.movenext
+loop
 
-REM strPlacements = left(strPlacements, len(strPlacements)-1) ' remove trailing comma
+strPlacements = left(strPlacements, len(strPlacements)-1) ' remove trailing comma
 
-'dim Placements
-	'set Placements = new cPlacements
-	'with Placements
-	'	.ItemsPerPage = 1500
-	'	.Page = Request.QueryString("WhichPage")
+dim Placements
+	set Placements = new cPlacements
+	with Placements
+		.ItemsPerPage = 1500
+		.Page = Request.QueryString("WhichPage")
 		' .Company = Request.QueryString("whichCompany")
 		' .Customer = Request.QueryString("WhichCustomer")
 		'.Order = GetParameter("id")
-	'	.Applicant = Request.QueryString("whichApplicant")
-	'	.FromDate = fromDate
-	'	.ToDate = toDate
-	'	.LoadPlacements(strPlacements)
-	'end with
+		.Applicant = Request.QueryString("whichApplicant")
+		.FromDate = fromDate
+		.ToDate = toDate
+		.LoadPlacements(strPlacements)
+	end with
 	
 	
-	'dim BillRate, CostCenter, Department
-	'set BillRate = Server.CreateObject ("Scripting.Dictionary")
-	'set CostCenter = Server.CreateObject ("Scripting.Dictionary")
-	'set Department = Server.CreateObject ("Scripting.Dictionary")
+	dim BillRate, CostCenter, Department
+	set BillRate = Server.CreateObject ("Scripting.Dictionary")
+	set CostCenter = Server.CreateObject ("Scripting.Dictionary")
+	set Department = Server.CreateObject ("Scripting.Dictionary")
 
 	
 REM Dim setCustomer_cmd
@@ -216,11 +184,11 @@ REM Dim setCustomer_cmd
 	REM end with
 	
 	
-	'dim Placement
-	'for each Placement in Placements.Placements.Items
-		'BillRate.Add Placement.PlacementId, Placement.RegBillRate
-		'CostCenter.Add Placement.PlacementId, Placement.WCDescription
-		'Department.Add Placement.PlacementId, Placement.WCDescription
+	dim Placement
+	for each Placement in Placements.Placements.Items
+		BillRate.Add Placement.PlacementId, Placement.RegBillRate
+		CostCenter.Add Placement.PlacementId, Placement.WCDescription
+		Department.Add Placement.PlacementId, Placement.WCDescription
 		
 		REM 'temp code to update customer in new table attribute
 		REM ' 2014.04.07
@@ -232,7 +200,7 @@ REM Dim setCustomer_cmd
 						REM "WHERE placementid=" & Placement.PlacementId
 		REM setCustomer_cmd.execute()
 
-	'next
+	next
 	
 	REM set setCustomer_cmd = nothing
 	
@@ -269,7 +237,7 @@ End Class ' cPerson
   REM Dim oEve  : Set oEve  = New cPerson.init( "Eve" , #1/6/2001#, 6543.21 )
   REM Dim oPerson
   REM For Each oPerson In Array( oAdam, oEve )
-  REM print Join( oPerson.Data(), " - " )
+      REM print Join( oPerson.Data(), " - " )
   REM Next   
 
 

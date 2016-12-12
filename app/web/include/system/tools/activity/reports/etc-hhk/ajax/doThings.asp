@@ -81,24 +81,12 @@ sub doClose ()
 		doQuery = doQuery_cmd.Execute()
 	end if
 	
-	'set the placement status and stop date
-	dim strPlacementStopDate
-	strPlacementStopDate = request.querystring("we")
-	
-	if len(strPlacementStopDate) > 0 then
-		if IsDate(strPlacementStopDate) then
-			strPlacementStopDate = "PStopDate='" & strPlacementStopDate & "', "
-		else
-			strPlacementStopDate = ""
-		end if
-	end if
-	
+	'set the placement status
 	dim doQuery
 	doQuery_cmd.CommandText = "" &_
 			"UPDATE Placements " &_
 			"SET " &_
 				"PlacementStatus=3, " &_
-				strPlacementStopDate &_
 				"NeedFinalTime=" & insert_string(blnNeedFinalTime) & " " &_
 			"WHERE PlacementID=" & PlacementId & ""
 	doQuery = doQuery_cmd.Execute()
@@ -177,7 +165,6 @@ sub doOpen ()
 			"UPDATE Placements " &_
 			"SET " &_
 				"PlacementStatus=0, " &_
-				"PStopDate='', " &_
 				"NeedFinalTime=" & insert_string(blnNeedFinalTime) & " " &_
 			"WHERE PlacementID=" & PlacementId & ""
 	doQuery = doQuery_cmd.Execute()

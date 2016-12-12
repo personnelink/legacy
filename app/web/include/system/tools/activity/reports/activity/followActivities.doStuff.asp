@@ -1,14 +1,4 @@
 <%
-
-if request.querystring("v") = 1 then on error resume next
-
-dim is_a_service
-if request.querystring("isservice") = "1" then
-	is_a_service = true
-else
-	is_a_service = false
-end if
-
 dim SimulateSite, qsSimSite
 qsSimSite = Request.QueryString("simulate_site")
 if len(qsSimSite) = 0 then
@@ -25,12 +15,9 @@ dim whichCompany
 if len(SimulateSite) = 0 then
 	whichCompany = Request.QueryString("whichCompany")
 	if len(whichCompany) = 0 then
-		whichCompany = Request.QueryString("site")
+		whichCompany = request.form("whichCompany")
 		if len(whichCompany) = 0 then
-			whichCompany = request.form("whichCompany")
-			if len(whichCompany) = 0 then
-				whichCompany = session("location")
-			end if
+			whichCompany = session("location")
 		end if
 	end if
 else
@@ -45,16 +32,6 @@ select case request.querystring("onlyactive")
 		onlyactive = true
 	case else
 		onlyactive = true
-end select
-
-dim reverse_order
-select case request.querystring("reverseorder")
-	case 0
-		reverse_order = false
-	case 1
-		reverse_order = true
-	case else
-		reverse_order = false
 end select
 	
 dim SimulateCustomer
@@ -122,14 +99,9 @@ dim htmlDivMenu : htmlDivMenu = ""
 
 'set default prespecting behavior to True if not specified as false in querystring
 dim prospecting, qs_prospecting
-qs_prospecting = Request.QueryString("prospecting") 
-if qs_prospecting = "0" then
+if Request.QueryString("prospecting") = "0" then
 	prospecting = false
-elseif qs_prospecting = "2" then
-	onlyprospects = true
-	prospecting = true
 else
-	onlyprospects = false
 	prospecting = true
 end if
 
@@ -340,44 +312,30 @@ else
 	include_what = include_what & "AND "
 end if
 
-dim order_direction
-if reverse_order then 
-	order_direction = "DESC"
-else
-	order_direction = "ASC"
-end if
-
 dim order_this_way
 if include_what <> "WHERE " then
 	select case act_when
 	case "past"
 		include_what = include_what & "Appointments.AppDate <= '" & date() & "'"
-		order_this_way = "ORDER BY Appointments.AppDate " & order_direction & ";"
+		order_this_way = "ORDER BY Appointments.AppDate DESC;"
 
 	case "future"
 		include_what = include_what & "Appointments.AppDate >= '" & date() & "'"
-		order_this_way = "ORDER BY Appointments.AppDate " & order_direction & ";"
+		order_this_way = "ORDER BY Appointments.AppDate ASC;"
 
 	case "custom"
 		include_what = include_what &_
 			"(Appointments.AppDate >= '" & fromDate & "' AND " &_
 			"Appointments.AppDate <= '" & toDate & "')"
-		order_this_way = "ORDER BY Appointments.AppDate " & order_direction & ";"
+		order_this_way = "ORDER BY Appointments.AppDate DESC;"
 
 	case "all"
 		include_what = left(include_what, init_done - 3) 'remove trailing "AND "'
-		order_this_way = "ORDER BY Appointments.AppDate " & order_direction & ";"
+		order_this_way = "ORDER BY Appointments.AppDate DESC;"
 
 	end select
 else
 	include_what = ""
-end if
-
-dim onlyOrNone
-if onlyprospects then
-	onlyOrNone = "=" 'only include prospects
-else
-	onlyOrNone = "<>" 'exclude prospects
 end if
 
 'add "Customer" and "Prospecting" WHERE condition to sql blob
@@ -385,7 +343,7 @@ if len(thisCustomer) > 0 and thisCustomer <> "@ALL" then
 	dim strProspectingSwap
 
 	if not prospecting then
-		strProspectingSwap = " Customers.CustomerType" & onlyOrNone & "'P' AND"
+		strProspectingSwap = " Customers.CustomerType<> 'P' AND"
 	end if
 	
 	dim swapThis
@@ -404,9 +362,9 @@ if len(thisCustomer) > 0 and thisCustomer <> "@ALL" then
 elseif not prospecting then
     
     if instr(include_what, "WHERE") > 0 then
-        include_what = replace(include_what, "WHERE ",  "WHERE Customers.CustomerType" & onlyOrNone & "'P' AND (") & ")"
+        include_what = replace(include_what, "WHERE ",  "WHERE Customers.CustomerType<> 'P' AND (") & ")"
     else
-        include_what = "WHERE Customers.CustomerType" & onlyOrNone & "'P'"
+        include_what = "WHERE Customers.CustomerType<> 'P'"
     end if
 
 end if	
@@ -448,18 +406,6 @@ if len(showEnteredBy) > 0 then
 		include_what = "WHERE EnteredBy='" & showEnteredBy & "'"
 	end if
 end if
-
-' over ride view for group time card and orders, etc.
-
-if request.querystring("v")="1" then
-		include_what = "WHERE (Appointments.Reference=" & thisOrder & " AND " & "Appointments.Customer='" & thisCustomer & "') AND " &_
-				"(ApptTypeCode=19 OR ApptTypeCode<=0 OR ApptTypeCode=6 OR ApptTypeCode=4 OR ApptTypeCode=7 OR ApptTypeCode=11 OR ApptTypeCode=13)"
-end if
-
-
-
-
-
 
 dim the_query : the_query = Request.QueryString("query")
 
@@ -520,20 +466,7 @@ function makeSideMenu ()
 					end if
 				next
 			if ThisSecurityLevel => userLevelPPlusStaff then			
-				if onlyprospects and prospecting then 
-					strTmp = strTmp &_
-						"</ul></div>" &_
-						"<p style=""width:30em;""><strong>Include prospecting customer records?</strong></p><div>" &_
-						"<p style=""width:40em;"">"&_		
-						"<label><input class=""noBorder"" type=""radio"" name=""prospecting"" " &_
-						" id=""prospecting_false"" value='1' onclick=""act_refresh();"" />Include Prospects" &_
-						"</label>&nbsp;&nbsp;&nbsp;<label><input class=""noBorder"" type=""radio"" name=""prospecting"" " &_
-						" id=""prospecting_true"" value='0' onclick=""act_refresh();"" />Exclude Prospects" &_
-						"</label>&nbsp;&nbsp;&nbsp;<label><input class=""noBorder"" type=""radio"" name=""prospecting"" " &_
-						" id=""prospecting_true"" value='2'  checked=""checked""onclick=""act_refresh();"" />Only Prospects" &_
-						"</label></p></div>" &_
-						"</div>"
-				elseif prospecting then
+				if prospecting then
 					strTmp = strTmp &_
 						"</ul></div>" &_
 						"<p style=""width:30em;""><strong>Include prospecting customer records?</strong></p><div>" &_
@@ -542,23 +475,18 @@ function makeSideMenu ()
 						" id=""prospecting_false"" value='1' checked=""checked"" onclick=""act_refresh();"" />Include Prospects" &_
 						"</label>&nbsp;&nbsp;&nbsp;<label><input class=""noBorder"" type=""radio"" name=""prospecting"" " &_
 						" id=""prospecting_true"" value='0' onclick=""act_refresh();"" />Exclude Prospects" &_
-						"</label>&nbsp;&nbsp;&nbsp;<label><input class=""noBorder"" type=""radio"" name=""prospecting"" " &_
-						" id=""prospecting_true"" value='2' onclick=""act_refresh();"" />Only Prospects" &_
 						"</label></p></div>" &_
 						"</div>"
-						
 				else
 					strTmp = strTmp &_
 						"</ul></div>" &_
-						"<p style=""width:30em;""><strong>Include prospecting customer records?</strong></p><div>" &_
-						"<p style=""width:40em;"">"&_		
-						"<label><input class=""noBorder"" type=""radio"" name=""prospecting"" " &_
-						" id=""prospecting_false"" value='1' onclick=""act_refresh();"" />Include Prospects" &_
-						"</label>&nbsp;&nbsp;&nbsp;<label><input class=""noBorder"" type=""radio"" name=""prospecting"" " &_
-						" id=""prospecting_true"" value='0' checked=""checked"" onclick=""act_refresh();"" />Exclude Prospects" &_
-						"</label>&nbsp;&nbsp;&nbsp;<label><input class=""noBorder"" type=""radio"" name=""prospecting"" " &_
-						" id=""prospecting_true"" value='2' onclick=""act_refresh();"" />Only Prospects" &_
-						"</label></p></div>" &_
+						"<p><strong>Prospecting?</strong></p>" &_
+						"<ul id=""prospectingLst"" class=""what_activities"">"&_		
+						"<li ><label><input class=""noBorder"" type=""radio"" name=""prospecting"" " &_
+						" id=""prospecting_false"" value='1' onclick=""act_refresh();""/>Include Prospects" &_
+						"</label></li><li><label><input class=""noBorder"" type=""radio"" name=""prospecting"" " &_
+						" id=""prospecting_exclude"" value=""0"" checked=""checked"" onclick=""act_refresh();""/>Exclude Prospects" &_
+						"</label></li></ul>" &_
 						"</div>"
 				end if
 			end if
@@ -570,10 +498,162 @@ function makeSideMenu ()
 	makeSideMenu = strTmp
 end function
 
+'deprecated with AJAX and customer lookup service
+REM function navChooseCustomer (whichCompany)
+	REM if ThisSecurityLevel => userLevelPPlusStaff then
+		REM if len(whichCompany & "") > 0 then
+			REM Select Case whichCompany
+			REM Case "BUR"
+				REM thisConnection = dsnLessTemps(BUR)
+			REM Case "PER"
+				REM thisConnection = dsnLessTemps(PER)
+			REM Case "BOI"
+				REM thisConnection = dsnLessTemps(BOI)
+			REM Case "IDA"
+				REM thisConnection = dsnLessTemps(IDA)
+			REM End Select
+			
+			REM 'Set WhichCustomer = Server.CreateObject("ADODB.RecordSet")
+
+			REM REM if not prospecting then
+				REM REM sqlWhichCustomer = "" &_
+					REM REM "SELECT DISTINCT Orders.Customer, Customers.CustomerName " &_
+					REM REM "FROM ((Customers INNER JOIN Orders ON (Customers.Customer = Orders.Customer) " &_
+					REM REM "AND (Customers.Customer = Orders.Customer)) " &_
+					REM REM "LEFT JOIN OtherOrders ON Orders.Reference = OtherOrders.Reference) " &_
+					REM REM "INNER JOIN Appointments ON Customers.Customer = Appointments.Customer " &_
+					REM REM "WHERE (((Orders.JobStatus)<4) AND ((Customers.CustomerType)<>""P"" Or (Customers.CustomerType)<>""H"")) " &_
+					REM REM "ORDER BY Customers.CustomerName;"
+			REM REM else		
+				REM REM sqlWhichCustomer = "" &_
+					REM REM "SELECT DISTINCT Orders.Customer, Customers.CustomerName " &_
+					REM REM "FROM ((Customers INNER JOIN Orders ON (Customers.Customer = Orders.Customer) " &_
+					REM REM "AND (Customers.Customer = Orders.Customer)) " &_
+					REM REM "LEFT JOIN OtherOrders ON Orders.Reference = OtherOrders.Reference) " &_
+					REM REM "INNER JOIN Appointments ON Customers.Customer = Appointments.Customer " &_
+					REM REM "WHERE ((Customers.CustomerType)<>""H"") " &_
+					REM REM "ORDER BY Customers.CustomerName;"
+			REM REM end if
+			
+			REM REM WhichCustomer.CursorLocation = 3 ' adUseClient
+			REM REM WhichCustomer.Open sqlWhichCustomer, thisConnection
+			
+			REM dim CurrentCustomer, strDisplayText
+			REM response.write "<div id=""topPageRecordsByCust"" class=""altNavPageRecords navPageRecords""><strong>Select Customer: </strong>" &_
+				REM "<input name=""WhichCustomer"" id=""WhichCustomer"" type=""text"" value=""" & thisCustomer & """>" &_
+				REM "<br><div id=""scrollCustomers"">"
+
+				REM CurrentCustomer = "@ALL"
+
+				REM if thisCustomer = CurrentCustomer then
+					REM response.write "<span style=""color:red"">" & CurrentCustomer & "</span>"
+				REM Else
+					REM response.write CurrentCustomer
+				REM end if
+				REM response.write "</A>"
+				
+			REM REM do while not WhichCustomer.Eof
+				REM REM CurrentCustomer = WhichCustomer("Customer")
+
+				REM REM strDisplayText = Replace(WhichCustomer("CustomerName"), "&", "&amp;")
+				REM REM strDisplayText = Replace(strDisplayText, " ", "&nbsp;")
+				
+				REM REM response.write "<A HREF=""#"" onclick=""arc('" & CurrentCustomer & "')"">"
+				REM REM if thisCustomer = CurrentCustomer then
+					REM REM response.write "<span style=""color:red"">" & strDisplayText & "</span>"
+				REM REM Else
+					REM REM response.write strDisplayText
+				REM REM end if
+				REM REM response.write "</A>"
+				REM REM WhichCustomer.MoveNext
+		
+				REM REM linkNumber = linkNumber + 1
+				REM REM if linkNumber > 10 and Not WhichCustomer.Eof then
+					REM REM linkNumber = 0
+					REM REM response.write "<br>"
+				REM REM end if
+			REM REM loop
+			REM response.write "</div></div>"
+			REM response.flush()
+			
+			REM REM WhichCustomer.Close
+			REM REM Set WhichCustomer = Nothing
+
+		REM end if
+	REM end if
+REM end function
+
+'deprecated with AJAX and customer lookup service
+REM function navChooseJobOrder (thisOrder)
+	REM dim strDisplayText
+
+	REM if len(whichCompany & "") > 0 then
+		REM Select Case whichCompany
+		REM Case "BUR"
+			REM thisConnection = dsnLessTemps(BUR)
+		REM Case "PER"
+			REM thisConnection = dsnLessTemps(PER)
+		REM Case "BOI"
+			REM thisConnection = dsnLessTemps(BOI)
+		REM End Select
+
+			
+		REM Set rsWhichOrder = Server.CreateObject("ADODB.RecordSet")
+		REM sqlWhichOrder = "SELECT DISTINCT Orders.Customer, Orders.JobDescription, Orders.Reference FROM (Customers INNER JOIN Orders ON (Customers.Customer = Orders.Customer) " &_
+			REM "AND (Customers.Customer = Orders.Customer)) " &_
+			REM "LEFT JOIN OtherOrders ON Orders.Reference = OtherOrders.Reference WHERE Orders.Customer='" & thisCustomer & "' " &_
+			REM "ORDER BY Orders.JobDescription;"
+		
+		REM rsWhichOrder.CursorLocation = 3 ' adUseClient
+		REM rsWhichOrder.Open sqlWhichOrder, thisConnection
+		
+		REM dim CurrentOrder
+		REM response.write "<div id=""topPageRecordsByOrder"" class=""altNavPageRecords navPageRecords""><strong>Job Orders: </strong>" &_
+			 REM &_
+			
+			REM "<br><div id=""scrollCustomers"">"
+			REM CurrentOrder = "@ALL"
+			REM response.write "<A HREF=""#"" onclick=""act_refresh_order('" & CurrentOrder & "')"">&nbsp;"
+			REM if thisOrder = CurrentOrder or thisOrder = "" then
+				REM response.write "<span style=""color:red"">" & CurrentOrder & "</span>"
+			REM Else
+				REM response.write CurrentOrder
+			REM end if
+			REM response.write "&nbsp;</A>"
+			
+		REM do while not rsWhichOrder.Eof
+			REM CurrentOrder = rsWhichOrder("Reference")
+			REM strDisplayText = Replace(rsWhichOrder("JobDescription"), "&", "&amp;")
+			REM strDisplayText = Replace(strDisplayText, " ", "&nbsp;")
+			
+			REM response.write "<A HREF=""#"" onclick=""act_refresh_order('" & CurrentOrder & "')"">&nbsp;"
+
+			REM if trim(thisOrder) = trim(CurrentOrder) then
+				REM response.write "<span style=""color:red"">" & strDisplayText & "</span>"
+			REM Else
+				REM response.write strDisplayText
+			REM end if
+			REM response.write "&nbsp;</A>"
+			REM rsWhichOrder.MoveNext
+	
+			REM linkNumber = linkNumber + 1
+			REM if linkNumber > 10 and Not rsWhichOrder.Eof then
+				REM linkNumber = 0
+				REM response.write "<br>"
+			REM end if
+		REM loop
+		REM response.write("</div></div>")
+
+		REM rsWhichOrder.Close
+		REM Set rsWhichOrder = Nothing
+		REM response.flush()
+	REM end if
+REM end function
+
 function navRecordsByPage(rs)
 
 	nPage = CInt(whichPage & "")
-	nItemsPerPage = 500
+	nItemsPerPage = 50
 	if not rs.eof then rs.PageSize = nItemsPerPage
 	nPageCount = rs.PageCount
 
@@ -724,51 +804,48 @@ function memo_row (strActivityBlob)
 end function
 
 function details_row (tableId, map_customer, map_worksite, map_applicant, strCusCode, strCustomerType, strCustomerClass, strCustomerName, strJobReference, strJobDescript, strCustContact, strCustPhone, strJobSuper, strJobPhone, strApplPhone, strApplicantName, intApplicantId)
-	if not is_a_service then 
-		dim strClassification
-		if len(strCustomerType) > 0 then
-			select case lcase(strCustomerType)
-			case "a"
-				strClassification = "<i>, Active</i>"
-			case "p"
-				strClassification = "<i>, Prospect</i>"
-			
-			case "i"
-				strClassification = "<i>, Inactive</i>"
-			
-			case "p"
-				strClassification = "<i style=""color:red"">, High-Risk!</i>"
-			case else
-				strClassification = "<i>, " & strCustomerType & "</i>"
-			end select
-		end if
+	dim strClassification
+	if len(strCustomerType) > 0 then
+		select case lcase(strCustomerType)
+		case "a"
+			strClassification = "<i>, Active</i>"
+		case "p"
+			strClassification = "<i>, Prospect</i>"
 		
-		if len(strCustomerClass) > 0 then
-			strClassification = strClassification & "<i>, Class - " & strCustomerClass & "</i>"
-		end if
-
-		dim strResponse : strResponse = ""
-		dim tableHeader : tableHeader = "<table id=""placement_table_" & tableId & """ class='generalTable' style='width:100%'><tr><td>"
-		strResponse = strResponse & tableHeader &_
-			"<div class="""" id=""full_detail_row_" & tableId & """>" &_
-			"<table class=""details_row""><tr>" &_
-				"<th class=""customer""><strong>Customer</strong>&nbsp;" & strCusCode & strClassification & "</th>" &_
-				"<th class=""joborder""><strong>Job Order</strong>&nbsp;" & strJobReference & "</th>" &_
-				"<th class=""applicant""><strong>Applicant</strong>&nbsp;" & intApplicantId & "</th>" &_
-			"</tr></table><table class=""details_row_details""><tr>" &_
-				"<td class=""customer"">" & map_customer &  "&nbsp;" & strCustomerName & "</td>" &_
-				"<td class=""joborder"">" &  map_worksite & "&nbsp;" & strJobDescript & "</td>" &_
-				"<td class=""applicant"">" &  map_applicant & "&nbsp;" & strApplicantName & "</td>" &_
-			"</tr><tr>" &_
-				"<td>" & strCustContact & " - " & FormatPhone(strCustPhone) & "</td>" &_
-				"<td>" & strJobSuper & " - " & FormatPhone(strJobPhone) & "</td>" &_
-				"<td>" & FormatPhone(strApplPhone) & "</td>" &_
-			"</tr></table></div>"
-
-		details_row = strResponse
-
+		case "i"
+			strClassification = "<i>, Inactive</i>"
+		
+		case "p"
+			strClassification = "<i style=""color:red"">, High-Risk!</i>"
+		case else
+			strClassification = "<i>, " & strCustomerType & "</i>"
+		end select
 	end if
-
+	
+	if len(strCustomerClass) > 0 then
+		strClassification = strClassification & "<i>, Class - " & strCustomerClass & "</i>"
+	end if
+		
+	dim strResponse : strResponse = ""
+	dim tableHeader : tableHeader = "<table id=""placement_table_" & tableId & """ class='generalTable' style='width:100%'><tr><td>"
+	strResponse = strResponse & tableHeader &_
+		"<div class="""" id=""full_detail_row_" & tableId & """>" &_
+		"<table class=""details_row""><tr>" &_
+			"<th class=""customer""><strong>Customer</strong>&nbsp;" & strCusCode & strClassification & "</th>" &_
+			"<th class=""joborder""><strong>Job Order</strong>&nbsp;" & strJobReference & "</th>" &_
+			"<th class=""applicant""><strong>Applicant</strong>&nbsp;" & intApplicantId & "</th>" &_
+		"</tr></table><table class=""details_row_details""><tr>" &_
+			"<td class=""customer"">" & map_customer &  "&nbsp;" & strCustomerName & "</td>" &_
+			"<td class=""joborder"">" &  map_worksite & "&nbsp;" & strJobDescript & "</td>" &_
+			"<td class=""applicant"">" &  map_applicant & "&nbsp;" & strApplicantName & "</td>" &_
+		"</tr><tr>" &_
+			"<td>" & strCustContact & " - " & FormatPhone(strCustPhone) & "</td>" &_
+			"<td>" & strJobSuper & " - " & FormatPhone(strJobPhone) & "</td>" &_
+			"<td>" & FormatPhone(strApplPhone) & "</td>" &_
+		"</tr></table></div>"
+			
+	details_row = strResponse
+	
 end function
 
 sub showActivityStream (rs)
@@ -930,7 +1007,7 @@ dim applicantid, lastnameFirst, maintain_link, resourcelink
 'setup connection details'
 
 if len(whichCompany & "") > 0 and len(include_what) > 0 then
-	thisConnection = dsnLessTemps(getTempsSiteId(whichCompany))
+	thisConnection = dsnLessTemps(getTempsDSN(whichCompany))
 	
 	'Set getDailySignIn_cmd = Server.CreateObject ("ADODB.Command")
 	
@@ -989,13 +1066,11 @@ if len(whichCompany & "") > 0 and len(include_what) > 0 then
 
 		end select
 		
-		
 		'print sqlCommandText
 		
 		'.Prepared = true
 		'break sqlCommandText
 		'Response.End()
-		
 		.Open sqlCommandText, thisConnection
 	End With
 	'Set rsWhoseHere = getDailySignIn_cmd.Execute	

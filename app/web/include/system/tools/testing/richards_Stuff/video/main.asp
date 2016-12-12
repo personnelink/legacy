@@ -1,19 +1,5 @@
 <%Option Explicit%>
 
 <!-- #INCLUDE VIRTUAL='/include/core/init_secure_session.asp' -->
-<style>
- 
- #leftSideMenu {
-	 
-	 display:none;
- }
- 
- #contentcolumn {
-	 border-left:none;
-	 float:none;
-	 padding:0;
- }
-	
-</style>
 <!-- #INCLUDE FILE='vmsVideo.html' -->
 <!-- #INCLUDE VIRTUAL='/include/core/pageFooter.asp' -->

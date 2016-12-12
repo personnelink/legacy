@@ -20,7 +20,7 @@ end if
 toDate = Request.QueryString("toDate") 
 if isDate(toDate) = false then 
 	toDate = request.form("toDate") 
-	if isDate(toDate) = false then toDate = CStr(Date() + 2)
+	if isDate(toDate) = false then toDate = CStr(Date() + 1)
 end if
 
 %>

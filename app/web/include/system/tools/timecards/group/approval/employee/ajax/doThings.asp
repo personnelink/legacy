@@ -70,6 +70,7 @@ sub doGetEmployeeOrders
 			"<th class=""OrderDate"">Ordered</th>" &_
 			"<th class=""OrderStartDate"">Start</th>" &_
 			"<th class=""OrderStopDate"">Stop</th>" &_
+			"<th class=""OrderPhone"">Phone</th>" &_
 			"<th class=""OrderActivities"">&nbsp;</th>" &_
 		"</tr></table></div>"
 	
@@ -101,6 +102,7 @@ sub doGetEmployeeOrders
 			<td class="OrderDate"><div><%=Order.OrderDate%></div></td>
 			<td class="OrderStartDate"><div><%=Order.StartDate%></div></td>
 			<td class="OrderStopDate"><div><%=Order.StopDate%></div></td>
+			<td class="OrderPhone"><div><%=FormatPhone(Order.WorkSitePhone)%></div></td>
 			<td class="OrderActivities">
 				<span class="button"><span onclick="activity.load.order('<%=Order.CustomerCode%>', '<%=qsActivityURL%>', '<%=Order.Site%>', '<%=Order.Reference%>')">Order Activity</span></span>
 			</td>

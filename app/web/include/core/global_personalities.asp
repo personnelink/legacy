@@ -1,7 +1,7 @@
 <%
 '---- Web Services Host Configurations ----
 '
-'---- Forked out main 'global_declarations' into a 'personalities' module to allow determining and altering system_email
+'---- Forked out main 'global_declarations' into a 'personnalities' module to allow determining and altering system_email
 ' state based on web server / cloud that is calling and executing thread
 ' ----
 '
@@ -11,14 +11,12 @@ if instr(script_name,"/") >0 then
 	aspPageName = right(script_name, len(script_name) - instrRev(script_name,"/")) 
 end if 
 
-const secureURL         = "https://www.personnelinc.com"
-const devURL            = "http://dev.personnelplus.net"
-const nextURL           = "http://next.personnelinc.com"
-const sandboxURL        = "http://sandbox.personnelinc.com"
-const mobile_devURL     = "https://localhost"
-const remote_devURL     = "http://192.168.1.99"
-const searchURL         = "http://192.168.0.11"
-const nextQuarterlyPath = "\\nampa-fs-1\next\qtrly\"
+const secureURL     = "https://www.personnelinc.com"
+const devURL        = "http://dev.personnelplus.net"
+const nextURL       = "http://next.personnelinc.com"
+const sandboxURL    = "http://sandbox.personnelinc.com"
+const mobile_devURL = "https://localhost"
+const remote_devURL = "http://192.168.1.99"
 
 const internalHost  = "192.168.0.3"
 const dev_hosts     = "192.168.1.64,localhost"
@@ -71,21 +69,14 @@ elseif instr(http_host, right(sandboxURL, len(sandboxURL)-9)) > 0  then 'sandbox
 elseif instr(http_host, right(nextURL, len(nextURL)-9)) > 0  then 'next.personnelinc.com expression
 	host_sys_persona = "Const nextURL= " & nextURL & ", http_host: " & http_host
 	'print "here"
-	dsBasePath = replace(dsBasePath, "\\personnelplus.net.\tplus\web.services\", "\\NAMPA-FS-1\next\")
+	dsBasePath = replace(dsBasePath, "\\personnelplus.net.\tplus\web.services\", server.mappath("/temps/") & "\")
 	dsLocalPath = dsBasePath
-	
-	qtrly_path = replace(qtrly_path, "\\personnelplus.net.\tplus\qtrly\", nextQuarterlyPath)
 	MySql = Replace(MySql, "192.168.0.6", "localhost")
 	'MSSql = Replace(MSSql, "Provider=SQLNCLI11;Server=TWIN-MSSQL\TEMPS;Pwd=onlyme;UID=sa;Database=", "Provider=SQLNCLI11;Server=192.168.4.4\SQLEXPRESS;Pwd=onlyme;UID=sa;Database=")
 	MSSql = Replace(MSSql, "Provider=SQLNCLI11;Server=TWIN-MSSQL\TEMPS;Pwd=onlyme;UID=sa;Database=", "Provider=SQLNCLI11;Server=NEXT\SQLEXPRESS;Pwd=onlyme;UID=sa;Database=")
 	'print MySql
 	'print MSSql
 	'break "next"
-	'print dsBasePath
-	
-elseif instr(http_host, right(searchURL, len(searchURL)-9)) > 0  then 'search.personnelinc.com expression
-	host_sys_persona = "Const searchURL= " & searchURL & ", http_host: " & http_host
-	'print "here"
 
 else
 	host_sys_persona = "Const secureURL: " & secureURL & ", http_host: " & http_host
@@ -189,17 +180,17 @@ if not mobile_dev then
 	dsnLessTemps(ORE) =  MSSql & "TempsORESQL"
 	dsnLessTemps(WYO) = MSSql & "TempsWYOSQL"
 	
-	dsnLessTempsAR(BOI) = jetProvider & dsARConnPath & "web.services\TPARBOI.mdb"
-	dsnLessTempsAR(BUR) = jetProvider & dsARConnPath & "web.services\TPARBUR.mdb"
-	dsnLessTempsAR(IDA) = jetProvider & dsARConnPath & "web.services\TPARIDA.mdb"
-	dsnLessTempsAR(PER) = jetProvider & dsARConnPath & "web.services\TPARPER.mdb;"
-	dsnLessTempsAR(PPI) = jetProvider & dsARConnPath & "web.services\TPARPPI.mdb"
-	dsnLessTempsAR(POC) = jetProvider & dsARConnPath & "web.services\TPARPOC.mdb"
-	dsnLessTempsAR(TWI) = jetProvider & dsARConnPath & "web.services\TPARTWI.mdb"
-	dsnLessTempsAR(BLY) = jetProvider & dsARConnPath & "web.services\TPARBLY.mdb"
-	dsnLessTempsAR(BSE) = jetProvider & dsARConnPath & "web.services\TPARBSE.mdb"
-	dsnLessTempsAR(ORE) = jetProvider & dsARConnPath & "web.services\TPARORE.mdb"
-	dsnLessTempsAR(WYO) = jetProvider & dsARConnPath & "web.services\TPARWYO.mdb"
+	dsnLessTempsAR(BOI) = jetProvider & dsLocalPath & "Temps.AR.BOI.mdb"
+	dsnLessTempsAR(BUR) = jetProvider & dsLocalPath & "Temps.AR.BUR.mdb"
+	dsnLessTempsAR(IDA) = jetProvider & dsLocalPath & "Temps.AR.IDA.mdb"
+	dsnLessTempsAR(PER) = jetProvider & dsLocalPath & "Temps.AR.PER.mdb"
+	dsnLessTempsAR(PPI) = jetProvider & dsLocalPath & "Temps.AR.PPI.mdb"
+	dsnLessTempsAR(POC) = jetProvider & dsLocalPath & "Temps.AR.POC.mdb"
+	dsnLessTempsAR(TWI) = jetProvider & dsLocalPath & "Temps.AR.TWI.mdb"
+	dsnLessTempsAR(BLY) = jetProvider & dsLocalPath & "Temps.AR.BLY.mdb"
+	dsnLessTempsAR(BSE) = jetProvider & dsLocalPath & "Temps.AR.BSE.mdb"
+	dsnLessTempsAR(ORE) = jetProvider & dsLocalPath & "Temps.AR.ORE.mdb"
+	dsnLessTempsAR(WYO) = jetProvider & dsLocalPath & "Temps.AR.WYO.mdb"
 	
 else
 	dsnLessTemps(BOI) = MSSql & "TempsBOISQL"
@@ -214,17 +205,17 @@ else
 	dsnLessTemps(ORE) =  MSSql & "TempsORESQL"
 	dsnLessTemps(WYO) = MSSql & "TempsWYOSQL"
 	
-	dsnLessTempsAR(BOI) = jetProvider & dsARConnPath & "TPARBOI.mdb"
-	dsnLessTempsAR(BUR) = jetProvider & dsARConnPath & "TPARBUR.mdb"
-	dsnLessTempsAR(IDA) = jetProvider & dsARConnPath & "TPARIDA.mdb"
-	dsnLessTempsAR(PER) = jetProvider & dsARConnPath & "TPARPER.mdb"
-	dsnLessTempsAR(PPI) = jetProvider & dsARConnPath & "TPARPPI.mdb"
-	dsnLessTempsAR(POC) = jetProvider & dsARConnPath & "TPARPOC.mdb"
-	dsnLessTempsAR(TWI) = jetProvider & dsARConnPath & "TPARTWI.mdb"
-	dsnLessTempsAR(BLY) = jetProvider & dsARConnPath & "TPARBLY.mdb"
-	dsnLessTempsAR(BSE) = jetProvider & dsARConnPath & "TPARBSE.mdb"
-	dsnLessTempsAR(ORE) = jetProvider & dsARConnPath & "TPARORE.mdb"
-	dsnLessTempsAR(WYO) = jetProvider & dsARConnPath & "TPARWYO.mdb"
+	dsnLessTempsAR(BOI) = jetProvider & dsLocalPath & "Temps.AR.BOI.mdb"
+	dsnLessTempsAR(BUR) = jetProvider & dsLocalPath & "Temps.AR.BUR.mdb"
+	dsnLessTempsAR(IDA) = jetProvider & dsLocalPath & "Temps.AR.IDA.mdb"
+	dsnLessTempsAR(PER) = jetProvider & dsLocalPath & "Temps.AR.PER.mdb"
+	dsnLessTempsAR(PPI) = jetProvider & dsLocalPath & "Temps.AR.PPI.mdb"
+	dsnLessTempsAR(POC) = jetProvider & dsLocalPath & "Temps.AR.POC.mdb"
+	dsnLessTempsAR(TWI) = jetProvider & dsLocalPath & "Temps.AR.TWI.mdb"
+	dsnLessTempsAR(BLY) = jetProvider & dsLocalPath & "Temps.AR.BLY.mdb"
+	dsnLessTempsAR(BSE) = jetProvider & dsLocalPath & "Temps.AR.BSE.mdb"
+	dsnLessTempsAR(ORE) = jetProvider & dsLocalPath & "Temps.AR.ORE.mdb"
+	dsnLessTempsAR(WYO) = jetProvider & dsLocalPath & "Temps.AR.WYO.mdb"
 
 end if
 

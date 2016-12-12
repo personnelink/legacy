@@ -787,7 +787,7 @@ end function
 public function print(n)
 	if not isnull(n) then
 		response.write("<pre id=""print"">" & n & "</pre>")
-		if session("no-flush") <> true then response.flush()
+		response.flush()
 	end if
 	print = null
 end function
@@ -800,7 +800,7 @@ end function
 ' DEBUG: output, stop!
 public function Break(n)     
 	response.write("<pre id=""print"">" & n & "</pre>")
-	if session("no-flush") <> true then Response.Flush()
+	Response.Flush()
 	Response.end()
 end function
 

@@ -56,10 +56,6 @@ select case which_method
 		doGetEmployeePlacements
 	case "timesummary"
 		doTimeSummary
-	case "employeetimesummary"
-		doEmployeeTimeSummary
-	case "internaltimesummary"
-		doEmployeeTimeSummary
 	case "updateday"
 		doUpdateDay
 	case "updateweek"
@@ -76,8 +72,6 @@ select case which_method
 		removeTimeSummary
 	case "approveweek"
 		approveTimeSummary
-	case "submitweek"
-		submitTimeSummary
 	case "unapproveweek"
 		unapproveTimeSummary
 	case "updatetimedetail"
@@ -179,6 +173,7 @@ public function updateTimeDetail()
 	dim siteid      : siteid      = getTempsDSN(g_strSite)
 	dim value       : value       = getParameter("t")
 	
+
 	' dim oldDayId
 	' if len(dayid) > 1 then
 		' oldDayId = left(dayid ,1)
@@ -237,16 +232,6 @@ public function updateTimeDetail()
 			.CommandText = "" &_
 				"UPDATE time_detail " &_
 				"SET timetotal=" & value & ", timein=null, timeout=null " &_
-				"WHERE (summaryid=" & summaryid & ") AND (id=" & detailid & ")"
-			.Execute()
-			'.CommandText = sqlNewSum
-		end with
-		
-	case "adjusted"
-		with cmd
-			.CommandText = "" &_
-				"UPDATE time_detail " &_
-				"SET adjusted=" & value & " " &_
 				"WHERE (summaryid=" & summaryid & ") AND (id=" & detailid & ")"
 			.Execute()
 			'.CommandText = sqlNewSum

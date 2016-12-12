@@ -1,12 +1,11 @@
 <!-- #include file='usageReport.classes.asp' -->
 
 <%
-'on error resume next 
 dim foruser : foruser = trim(request.querystring("for"))
 
 dim CustomerUsage
 set CustomerUsage = new cAccountActivity
-CustomerUsage.ItemsPerPage = 400
+CustomerUsage.ItemsPerPage = 100
 CustomerUsage.Page = CInt(Request.QueryString("Page"))
 
 dim linkInvoice, simcust

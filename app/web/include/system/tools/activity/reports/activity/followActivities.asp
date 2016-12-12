@@ -27,9 +27,9 @@ session("window_page_title") = "Activities - Personnel Plus"
 <div id="whoseHereList">
 
  <div id="filtering_options">
-				<div id="show_basic_filters" class="borDkBlue advert pad5 txtWhite bgLtBlue w80"><p><strong>Show Date, Customer, Job Order and Applicant filtering options to include in report</strong></p></div>
+				<div id="show_basic_filters"><p><strong>Show Date, Customer, Job Order and Applicant filtering options to include in report</strong></p></div>
 				<div id="basic_filters" class="hide">
-					<div id="hide_basic_filters"  class=" borDkBlue advert pad5 txtWhite bgLtBlue w80"><p><strong>Hide Date, Customer, Job Order and Applicant filtering options to include in report</strong></p></div>
+					<div id="hide_basic_filters"><p><strong>Hide Date, Customer, Job Order and Applicant filtering options to include in report</strong></p></div>
 					<div id="" class="navPageRecords">
 
 	<p>
@@ -39,21 +39,14 @@ session("window_page_title") = "Activities - Personnel Plus"
 			<label for="onlyactive">
 			<input type="checkbox" id="onlyactive" name="onlyactive" value="1"<%if onlyactive then response.write " checked=""yes"""%> onchange="act_refresh();"/>Only Show Active</label>
 		</span>
-		
-		<span id="reverse_order" style="display:inline;">
-			<label for="reverseorder">
-			<input type="checkbox" id="reverseorder" name="reverseorder" value="1"<%if reverse_order then response.write " checked=""yes"""%> onchange="javascript:document.activity_form.submit();"/>Order by newest first</label>
-		</span>
-
 	</p>
 
-	<ul id="which_dates" class="what_activities what_dates">
+	<ul id="which_dates" class="what_activities">
 		<li><strong>Include what dates:</strong></li>
-		<li><label><input class="noBorder" type="radio" id="act_when_all" name="act_when" value="all" onclick="enter_date('false')"<%=act_all%>>All</label></li>
-		<li><label><input class="noBorder" type="radio" id="act_when_past" name="act_when" value="past" onclick="enter_date('false')"<%=act_past%>>Past</label></li>
-		<li><label><input class="noBorder" type="radio" id="act_when_future" name="act_when" value="future" onclick="enter_date('false')"<%=act_future%>>Future</label></li>
+		<li><label><input class="noBorder" type="radio" id="act_when_all" name="act_when" value="all" onclick="enter_date('false')"<%=act_all%>>All dates</label></li>
+		<li><label><input class="noBorder" type="radio" id="act_when_past" name="act_when" value="past" onclick="enter_date('false')"<%=act_past%>>Past dates</label></li>
+		<li><label><input class="noBorder" type="radio" id="act_when_future" name="act_when" value="future" onclick="enter_date('false')"<%=act_future%>>Future dates</label></li>
 		<li><label><input class="noBorder" type="radio" id="act_when_custom" name="act_when" value="custom" onclick="enter_date('true')"<%=act_custom%>>Other:</label></li>
-		<li><label><input class="noBorder" type="radio" id="act_when_past" name="act_when" value="past" onclick="enter_date('false')"<%=act_past%>>Today</label></li>
 	</ul>
 	
   	<table id="enter_dates" class="<%=show_date_form%>">

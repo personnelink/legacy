@@ -12,17 +12,13 @@ dim MSSql : MSSql    = "Provider=SQLNCLI11;Server=TWIN-MSSQL\TEMPS;Pwd=onlyme;UI
 ' MS deprecated JET, old string: const jetProvider    = "Provider=Microsoft.Jet.OLEDB.4.0;Jet OLEDB:Database Password=onlyme;Data Source="
 
 const jetProvider    = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ="
-const aceProvider    = "Provider=Microsoft.ACE.OLEDB.12.0;Jet OLEDB:Database Password=onlyme;Data Source="
-	
-
 'const msSqlProvider  = "Server=192.168.0.199;User Id=sqlmmartin;Password=!~`K0r7m5;Database="
 dim dsBasePath : dsBasePath = "\\personnelplus.net.\tplus\web.services\"
 dim dsSQLConnPath : dsSQLConnPath = "\\personnelplus.net.\tplus\"
-dim dsARConnPath : dsARConnPath = "\\personnelplus.net.\tplus\"
 'dim dsLocalPath : dsLocalPath = "C:\inetpub\wwwroot\vms.dev\temps\web.services\"
 dim dsLocalPath : dsLocalPath = dsBasePath
 const dsnLessReports = "Provider=Microsoft.Jet.OLEDB.4.0;Jet OLEDB:Database Password=onlyme;Data Source=\\personnelplus.net.\web\reports\vms.mdb"
-dim qtrly_path : qtrly_path = "\\personnelplus.net.\tplus\qtrly\"
+const qtrly_path     = "\\personnelplus.net.\tplus\qtrly\"
 
 '---- Temps Plus Company Codes
 const PER = 0, BUR = 1, BOI = 2, IDA = 3, TWI = 4, PPI = 5, POC = 6, BLY = 7, BSE = 8, ALL = 9, ORE = 10, WYO = 11 'same numbering is used in database schema, for example: tbl_companies.sites
@@ -222,8 +218,6 @@ dim company_weekends
 ' dim company_paytype
 ' dim company_salarytype
 dim company_dsn_site
-
-
 dim g_Company_show_paid
 dim company_location_description
 dim change_sim

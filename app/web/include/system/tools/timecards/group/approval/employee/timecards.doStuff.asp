@@ -1,7 +1,4 @@
 <%
-
-'break "... here ..."
-
 dim Customers
 set Customers = new cCustomers
 
@@ -115,7 +112,7 @@ function objHideCustomer(p_customer, Site)
 			strResponse = strResponse & "" &_
 				"<span class=""HideRow"" " &_
 					"id=""TimeSummary" & p_customer & """ " &_
-					"onclick=""customer.hideorders('" & p_customer & "', 'open')"">" &_
+					"onclick=""customer.hide('" & p_customer & "', '" & Site & "')"">" &_
 				"</span>"
 		
 		objHideCustomer = strResponse

@@ -13,15 +13,10 @@ session("no_header") = true
 ' parameters:
 '	do     = view
 '	id     = customer code
+'	site   = temps site id
 '	status = job order status
-'	id      = code, applicant code or order code
-'	name    = customer name, applicant name or order name
-'	search  = search string
-'	site    = temps site id
-'	context = 'c = customer, a = application, o = order
 '
 '-----------------------------------------------------------------
-
 'flag to toggle using query string or form post data
 dim use_qs
 if request.querystring("use_qs") = "1" then
@@ -31,18 +26,14 @@ else
 end if
 
 'retrieve site id and make sure it's numeric
-dim g_strSite     : g_strSite     = getParameter("site")
-dim qs_customer   : qs_customer   = replace(getParameter("customer"), "'", "''")
-dim apptid        : apptid        = getParameter("apptid")
-dim appointmentid : appointmentid = apptid
-dim context       : context       = getParameter("context")
-dim if_customer   : if_customer   = getParameter("ifc")
-dim search        : search        = getParameter("q")
-dim site          : site          = g_strSite
-dim qsSite        : qsSite        = g_strSite
-dim name          : name          = getParameter("name")
+dim g_strSite : g_strSite = getParameter("site")
 
-dim which_method : which_method = getParameter("do")
+dim apptid
+	apptid = getParameter("apptid")
+
+
+dim which_method
+which_method = getParameter("do")
 select case which_method
 	case "applicantlookup"
 		doApplicantLookUp
@@ -56,10 +47,6 @@ select case which_method
 		doUpdateComment
 	case "lookupcustomer"
 		doCustomerLookup
-	case "lookup"
-		doLookUp
-	case "setvalue"
-		doSetValue
 	case else
 		break "[here]: " & which_method
 end select
@@ -388,155 +375,6 @@ function getPlacementViaAppointment(AppointmentId)
 		set doQuery_cmd = nothing
 	end if
 end function
-
-sub doSetValue
-	
-	dim table_element_or_column_to_update 'figure out where to put the data based on the context
-	select case lcase(trim(context))
-	case "applicant"
-		table_element_or_column_to_update = "ApplicantId"
-	case "customer"
-		table_element_or_column_to_update = "Customer"
-	case "order"
-		table_element_or_column_to_update = "Reference"
-	case else
-		response.write "out of context"
-	end select
-	
-	dim update_temps
-	set update_temps = new cTempsAttribute
-	with update_temps
-		.site        = g_strSite
-		.table       = "Appointments"
-		.element     = table_element_or_column_to_update
-		.newvalue    = search
-		.whereclause = "ID=" & appointmentid
-		.update
-	end with
-
-	set update_temps = nothing
-	
-	response.write 1
-end sub
-
-sub doLookUp
-
-	dim cmd
-	set cmd = server.CreateObject("ADODB.Command")
-	' dim perspective
-	' 'ability to hide staff features for demo'ing
-	' '
-	' perspective = lcase(request.querystring("perspective"))
-
-	if g_strSite  < 1 then g_strSite = PER
-
-	
-	'querystring customer
-	search = lcase(replace(search, "'", "''"))
-	if not userLevelRequired(userLevelPPlusStaff) then
-		response.end 'no access for you
-	end if
-	
-	dim how_many_bob : how_many_bob = 5
-		
-	dim rs
-
-	cmd.ActiveConnection = dsnLessTemps(getTempsDSN(g_strSite))
-	
-	select case lcase(trim(context))
-	case "customer"
-		cmd.CommandText =	"" &_
-			"SELECT DISTINCT TOP " & how_many_bob + 1 & " Customers.Customer AS Code, Customers.CustomerName AS Description, Max(Customers.DateLastActive) AS MaxOfLastActive " & _
-			"FROM Customers " & _
-			"WHERE Customers.Customer Like '%" & search & "%' OR Customers.CustomerName Like '%" & search & "%' " & _
-			"GROUP BY Customers.Customer, Customers.CustomerName, Customers.DateLastActive " & _
-			"ORDER BY Max(Customers.DateLastActive) DESC ,Customers.Customer, Customers.CustomerName "
-	
-	case "order"
-		if len(if_customer) > 0 then
-			dim this_customer
-			this_customer = "(Customers.Customer='" & if_customer & "') AND "
-		end if
-		
-		if isnumeric(search) then 
-			dim search_where
-			search_where = "(Orders.Reference = " & search & " OR Orders.JobNumber = " & search & ")"
-		else
-			if len(if_customer) > 0 then
-				search_where =	"(Orders.JobDescription Like '%" & search & "%' OR Customers.Customer Like '%" & search & "%' OR Customers.CustomerName Like '%" & search & "%')"
-			else
-				search_where =	"(Orders.JobDescription Like '%" & search & "%')"
-			end if
-		end if
-		
-		cmd.CommandText =	"" &_
-			"SELECT DISTINCT TOP " & how_many_bob + 1 & " Orders.Reference AS Code, Orders.JobDescription AS Description, Max(Orders.JobChangedDate) AS MaxOfLastActive " & _
-			"FROM Orders LEFT JOIN Customers ON Customers.Customer = Orders.Customer " & _
-			"WHERE " & this_customer & " " & search_where & _
-			"GROUP BY Orders.Reference, Orders.JobDescription, Orders.JobChangedDate " & _
-			"ORDER BY Max(Orders.JobChangedDate) DESC, Orders.Reference, Orders.JobDescription;"
-
-	case "applicant"
-
-		if isnumeric(search) then 
-			search_where = "(Applicants.ApplicantID=" & search & " OR Applicants.SSNumber=" & search & ")"
-		else
-			search_where =	"(Applicants.LastnameFirst Like '%" & search & "%' OR Applicants.EmployeeNumber Like '%" & search & "%')"
-		end if
-
-	cmd.CommandText =	"" &_
-			"SELECT DISTINCT TOP " & how_many_bob + 1 & " Applicants.ApplicantID AS Code, Applicants.LastnameFirst AS Description, Max(Applicants.AppChangedDate) AS MaxOfLastActive " & _
-			"FROM Applicants " & _
-			"WHERE " & search_where & _
-			"GROUP BY Applicants.ApplicantID, Applicants.LastnameFirst, Applicants.AppChangedDate " & _
-			"ORDER BY Max(Applicants.AppChangedDate) DESC , Applicants.ApplicantID, Applicants.LastnameFirst;"
-	
-	case else
-	
-	end select
-	
-	set rs = cmd.execute()
-	
-	dim i, results_description, results_code, more_than_enough
-	response.write "<table>"
-	
-	do while not rs.eof
-		i = i + 1
-		
-		if i > how_many_bob then
-			more_than_enough = true
-		else
-			
-			
-			results_description = lcase(replace(rs("Description"), "'", "\'"))
-			results_code = lcase(replace(rs("Code"), "'", "\'"))
-			
-			
-			if vartype(results_description) > 1 then results_description = Replace(results_description, search, "<b>" & search & "</b>")
-			if vartype(results_code) > 1 then results_code = Replace(results_code, search, "<b>" & search & "</b>")
-			
-			response.write "<tr onclick=""lookup.set_value('" & context & "','" & appointmentid & "','" & results_code & "', '" & results_description & "');"">"
-			response.write 	"<td class="""">" & results_description & "</td>"
-			response.write 	"<td class="""">" & results_code & "</td>"
-			response.write "</tr>"
-		end if
-		
-		rs.movenext
-	loop 
-	
-	if more_than_enough = true then
-
-		response.write "" &_
-			"<tr>" &_
-				"<td colspan=""6""><i>... " & how_many_bob & " result found ... type more ... </i></td>" &_
-			"</tr>"
-	
-	end if
-
-	response.write "</table><here>" & context & "<here>" & apptid
-
-end sub
-
 
 sub doApplicantLookUp
 	

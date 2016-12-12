@@ -151,11 +151,10 @@ function sign_in() {
 var getMessage = function () {
 	clearTimeout(timer);	
 	var search = document.getElementById("signApplicantIn");
-	var site = document.getElementById("whichCompany");
 
 	// build up the post string when passing variables to the server side page
 	// var PostStr = "variable=value&variable2=value2";
-	var PostStr = "do=lookup&search="+search.value+"&site="+site.value;
+	var PostStr = "do=lookup&search="+search.value;
 	
 	// use the generic function to make the request
 	doAJAXCall('/include/system/tools/whose_here/ajax/?'+PostStr, 'POST', '' + PostStr + '', showMessageResponse);
