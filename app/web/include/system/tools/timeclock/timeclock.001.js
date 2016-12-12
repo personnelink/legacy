@@ -452,7 +452,7 @@ var cost_centers = {
 var timeclock = {
 	show_actions: function (oXML) {
 		var action_div = document.getElementById("chose_action")
-		// alert('hi');
+		alert('hi');
 		action_div.style.display="block";
 		var response = oXML.responseText;
 		action_div.innerHTML = response;

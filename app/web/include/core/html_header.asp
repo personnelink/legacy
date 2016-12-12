@@ -22,12 +22,12 @@ if not isSecure then
 		"</script>"
 end if
 			 
-header_response = header_response & "<!DOCTYPE HTML>" &_
+header_response = header_response & "<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01//EN"" " &_
+	"""http://www.w3.org/TR/html4/strict.dtd"">" &_
 	"<html " & session("htmltag") & " lang=""en"">" &_
 	"<head>" &_
-	"<meta charset=""UTF-8"">" &_
-	"<meta property=""fb:app_id"" content=""203654159645883"" />" &_
-	"<meta property=""fb:admins"" content=""522456439, 100002164718425""/>" &_
+	"<meta http-equiv=""Content-Type"" content=""text/html; charset=iso-8859-1"">" &_
+	"<meta http-equiv=""X-UA-Compatible"" content=""IE=8"" />" &_
 	"<script type=""text/javascript"" src=""/include/js/jQuery-1.10.2.min.js""></script>" &_
 	"<script type=""text/javascript"" src=""/include/core/smoke.js-master/smoke.min.js""></script>" &_
 	social_scripting &_

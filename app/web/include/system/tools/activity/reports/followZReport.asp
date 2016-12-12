@@ -54,7 +54,7 @@ end if
 		
 	dim nPage, nItemsPerPage, nPageCount
 	nPage = CInt(Request.QueryString("Page"))
-	nItemsPerPage = 100
+	nItemsPerPage = 50
 	WhoseHere.PageSize = nItemsPerPage
 	nPageCount = WhoseHere.PageCount
 
@@ -71,8 +71,8 @@ end if
 		tableHeader = "<table style=""width:100%""><tr>" &_
 			"<th class=""padQuarter""></th>" &_
 			"<th class=""TypeZname"">Lastname, First</th>" &_
-			"<th style=""text-align:center;"" class=""TypeZ"">z</th>" &_
-			"<th style=""text-align:center;"" class=""TypeY"">y</th>" &_
+			"<th class=""TypeZ"">z</th>" &_
+			"<th class=""TypeY"">y</th>" &_
 			"<th class=""padQuarter""></th>" &_
 			"</tr>"
 	
@@ -121,10 +121,10 @@ end if
 
 		tableRecord = "<tr>" &_
 			"<td colspan=2></td>" &_
-			"<td class=""alignC""><b>Total: </b>$" & TwoDecimals(TotalZ) & "</td>" &_
-			"<td class=""alignC""><b>Total: </b>$" & TwoDecimals(TotalY) & "</td>" &_
+			"<td class=""alignR""><b>Total: </b>$" & TwoDecimals(TotalZ) & "</td>" &_
+			"<td class=""alignR""><b>Total: </b>$" & TwoDecimals(TotalY) & "</td>" &_
 			"<td></td>" &_
-			"</tr></table>"
+		"</tr></table>"
 
 		Response.write tableRecord
 		Response.write ""

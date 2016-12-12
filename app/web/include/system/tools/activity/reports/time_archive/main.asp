@@ -26,7 +26,6 @@ end if
 %>
 
 <!-- #INCLUDE VIRTUAL='/include/core/init_secure_session.asp' -->
-<script type="text/javascript" src="timeArchive.js"></script>
 <!-- #INCLUDE FILE='timeArchive.do.vb' -->
 <!-- #INCLUDE FILE='timeArchive.html' -->
 <!-- #INCLUDE VIRTUAL='/include/core/pageFooter.asp' -->

@@ -1,9 +1,4 @@
 <%
-
-dim qsSecret, qsUsername
-	qsSecret = request.querystring("secret")
-	qsUsername = request.querystring("token")
-
 Sub ShowVMSLogin 
 	if not is_mobile then
 		showLeftSideMenu = true
@@ -25,20 +20,18 @@ Sub ShowVMSLogin
 	
 	
 	response.write header_response & ie_ifs
-	
-	if session("no-flush") <> true then response.Flush()
+	response.Flush()
 
 	header_response = ""
 	ie_ifs = ""
 
-		
+	UserName = request.form("username")
+	Password = request.form("password")
+	
 	'debugging override, also possibly other collaborative uses with debugging client and employee perspectives
 	if len(qsUsername) > 0 and len(qsSecret) > 0 then
 		UserName = qsUsername
 		Password = qsSecret
-	else
-		UserName = request.form("username")
-		Password = request.form("password")
 	end if 
 	
 	if global_debug then 

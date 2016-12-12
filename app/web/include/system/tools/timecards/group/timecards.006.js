@@ -200,27 +200,6 @@ var customer = {
 				return false;
 				break;
 		}
-	},	getemployeeorders: function (customercode, sitedb, status) {
-	
-		setAttributeClass(document.getElementById(status+"ordersdiv"+customercode), "loading");
-		setAttributeClass(document.getElementById("ctrlCustomers"+customercode), "ShowLess");
-
-		switch(status) {
-			case "closed":
-				var PostStr = "do=getemployeeorders&id=" + customercode + "&site=" + sitedb + "&status=closed";
-				console.log(PostStr);
-				
-				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', customer.showclosedorders);
-				return false;
-				break;
-			case "open":
-				var PostStr = "do=getemployeeorders&id=" + customercode + "&site=" + sitedb;
-				console.log(PostStr);
-				
-				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', customer.showopenorders);
-				return false;
-				break;
-		}
 	},
 	showopenorders: function (oXML) {
 		console.log("in showopenorders ");
@@ -395,23 +374,6 @@ var order = {
 		}
 		
 		var PostStr = "do=getplacements&id=" + reference + "&site=" + sitedb + "&customer=" + custcode;
-		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', this.showplacements);
-		return false;
-	},
-	getemployeeplacements: function (custcode, reference, sitedb) {
-		console.log("ctrl.Orders."+custcode+"."+reference);
-		setAttributeClass(document.getElementById("or"+custcode+reference), "loading");
-		setAttributeClass(document.getElementById("ctrl.order."+custcode+"."+reference), "ShowLess");
-
-		$("#or"+custcode+reference).slideDown( "slow", function() {
-			// Animation complete.
-		});
-
-		document.getElementById("ctrl.order."+custcode+"."+reference).onclick = function() {
-			order.close(custcode,reference,sitedb);return false; 
-		}
-		
-		var PostStr = "do=getemployeeplacements&id=" + reference + "&site=" + sitedb + "&customer=" + custcode;
 		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', this.showplacements);
 		return false;
 	},
@@ -1272,7 +1234,7 @@ var changeAudit = {
 			objAudit.sid=sid;
 			console.log("cid:"+cid)
 
-			if (cid==0) { // change back to cid!==sid later to reengage
+			if (cid!==sid) {
 				smoke.prompt("What is the reason for the change?", function(e){
 					if (e){
 						console.log("inside smoke statement");
@@ -1487,11 +1449,11 @@ var timeclock = {
 		var outselect = document.getElementById("out_"+rowid);
 		var typeselect = document.getElementById("type_"+rowid);
 		
-		 //instantiate the Audit Detail class
-		 var aAuditDetail = new AuditDetail();
-		 aAuditDetail.setAuditId(id);
-		 aAuditDetail.setFieldChanged(timeinput.name);
-		 aAuditDetail.setPreviousValue(timeinput.value);
+		// //instantiate the Audit Detail class
+		// var aAuditDetail = new AuditDetail();
+		// aAuditDetail.setAuditId(id);
+		// aAuditDetail.setFieldChanged(timeinput.name);
+		// aAuditDetail.setPreviousValue(timeinput.value);
 		
 		switch(idtype){
 			case "in":

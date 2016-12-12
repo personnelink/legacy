@@ -360,10 +360,8 @@ function objDaySelect (ByVal workday, rowid, creatorid)
 		"class=""detailday cid" & creatorid & " sid" & user_id & """ onchange=""timeclock.setTime(this.id)"" >" &_
 		"<option value=""""> Day: </option>"
 
-	dim i, day_num
-	for day_num = 2 to 8
-		i = day_num
-		if i = 8 then i = 1
+	dim i
+	for i = 1 to 7
 		if workday = i then
 			strBuffer = strBuffer & "<option value=""" & i & """ selected=""selected"">" & getWorkDayName(i) & "</option>"
 		else

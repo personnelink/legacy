@@ -225,10 +225,10 @@ sub generate_w2
 	'get W2 Info from qtrly database
 	Dim getW2_cmd, getW2
 	Set getW2_cmd = Server.CreateObject ("ADODB.Command")
-	
+
 	With getW2_cmd
-		'print qtrly_path & "web.services\" & "4" & this_site & this_year & ".mdb"
-		.ActiveConnection = aceProvider & qtrly_path & "web.services\" & "4" & this_site & this_year & ".mdb;Jet OLEDB:Database Password=onlyme;"
+
+		.ActiveConnection = jetProvider & qtrly_path & "web.services\" & "4" & this_site & this_year & ".mdb"
 		'.ActiveConnection = dsnLessTemps(this_site)
 		.CommandText = "" &_
 			"SELECT YtdW2Totals.BoxC1, YtdW2Totals.BoxC2, YtdW2Totals.BoxC3, YtdW2Totals.Box17, YtdW2Totals.Box7, " &_

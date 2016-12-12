@@ -1,21 +1,5 @@
 if (!window.console) console = {log: function() {}};
 
-
-function addEventHandler(obj, evt, handler) {
-    if(obj.addEventListener) {
-        // W3C method
-        obj.addEventListener(evt, handler, false);
-    } else if(obj.attachEvent) {
-        // IE method.
-        obj.attachEvent('on'+evt, handler);
-    } else {
-        // Old school method.
-        obj['on'+evt] = handler;
-    }
-}
-
-
-
 function grayOut(vis, options) {
 	scroll(0,0);
   // Pass true to gray out screen, false to ungray
@@ -285,44 +269,6 @@ function submitenter(thisfield,e){
 	else
 	   return true;
 }
-
-var areamap = {
-	load: function()  {
-		var PostStr = "";
-
-		doAJAXCall('area_map/map.htm', 'GET', '' + PostStr + '', areamap.show);		
-	},
-	show: function(oXML){
-		smoke.alert("Select an area from map:\n"+oXML.responseText, function(e){
-				// if (e == "Cancel"){
-					
-					// var PostStr = "do=hidecustomer&id=" + customercode + "&site=" + sitedb;
-					// console.log(PostStr);
-
-
-					// document.getElementById(customercode+".row").remove();
-					// return true;
-				// } else if (e == "No") {
-					// return false;
-				// }
-			}, {
-				ok: "Cancel",
-				cancel: "Nope",
-				classname: "custom-class"
-			});
-	
-	}
-}
-
-var applicant = {
-	open_new: function(elem) {
-			var uri = elem.getAttribute("data-uri").value;
-			console.log("uri:"+uri);
-			
-		}
-		
-	}
-
 
 grayOut(false);
 

@@ -208,7 +208,7 @@ function doClockIn
 			cmd.ActiveConnection = MySql
 			cmd.CommandText = "" &_
 				"INSERT INTO time_summary " &_
-				"(workcode, wc_description, employeenumber, department, costcenter, cc_description, regpay, regbill, otpay, otbill, placementid, customer, site, weekending, createdby, creatorid, foruserid) " &_
+				"(workcode, wc_description, employeenumber, department, costcenter, cc_description, regpay, regbill, otpay, otbill, placementid, customer, site, weekending, createdby, creatorid) " &_
 				"VALUES " &_
 				"(" & insert_string(rs("WorkCode")) & ", " &_
 					insert_string(rs("Description")) & ", " &_
@@ -220,7 +220,7 @@ function doClockIn
 					insert_string(rs("RegBillRate")) & ", " &_
 					insert_string(rs("OvertimePayRate")) & ", " &_
 					insert_string(rs("OvertimeBillRate")) & ", " &_
-					 placementid & ", " & insert_string(customerid) & ", " & getTempsSiteId(siteid)  & ", '" & MySqlFriendlyDate & "', 'T', '" & creatorid & "', '" & creatorid & "');SELECT last_insert_id();"
+					 placementid & ", " & insert_string(customerid) & ", " & getTempsSiteId(siteid)  & ", '" & MySqlFriendlyDate & "', 'T', '" & creatorid & "');SELECT last_insert_id();"
 		'print cmd.CommandText
 		
 		set rs = cmd.execute.nextrecordset

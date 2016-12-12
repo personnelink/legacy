@@ -487,7 +487,6 @@ class cOrders
 	private m_Site
 	private m_Customer
 	private m_Department
-	private m_ApplicantId
 	private m_FromDate
 	private m_ToDate
 	private m_NumberOfPages
@@ -536,13 +535,6 @@ class cOrders
 	public property let Department(p_Department)
 		m_Department = p_Department
 	end property
-		
-	public property get ApplicantId()
-		ApplicantId = m_ApplicantId
-	end property
-	public property let ApplicantId(p_ApplicantId)
-		m_ApplicantId = p_ApplicantId
-	end property	
 
 	public property get Order()
 		Order = m_Order
@@ -696,62 +688,6 @@ class cOrders
 				"WHERE (Orders.Customer='" & me.Customer & "') AND (Orders.JobStatus=2 OR Orders.JobStatus = 4)" & strDepartmentClause & ";"
 	
 			GetClosedOrders = LoadData (strSQL)
-		end function
-
-		public function GetEmployeeOpenOrders()
-			
-			
-			dim strDepartmentClause
-			if len(m_Department) = 0 then
-				'no department restrictions
-				strDepartmentClause = ""
-			elseif instr(m_Department, ",") > 0 then
-				'User is associated with multiple departments. Split them up and build appropriate ad-hoc SQL statement.
-				strDepartmentClause = " AND (Orders.JobNumber=" & replace(replace(m_Department, " ", ""), ",", " OR Orders.JobNumber=") & ")"
-			else
-				'User is associated with a single department
-				strDepartmentClause = "AND (Orders.JobNumber=" & m_Department & ")"
-			end if
-		
-			
-			dim strSql
-			strSql = "" &_
-				"SELECT Orders.Customer, Orders.JobStatus, Orders.JobNumber AS CustomerDept, Orders.Reference, " &_
-				"Orders.JobDescription, Orders.WorkSite1+', '+Orders.WorkSite2 AS WorkSite, Orders.WorkSite3 AS " &_
-				"WorkSitePhone, Orders.OrderDate, Orders.StartDate, Orders.StopDate, Orders.EmailAddress, Orders.EmailFormat " &_
-				"FROM Orders INNER JOIN " &_
-                         "Placements ON Placements.Reference = Orders.Reference " &_
-				"WHERE (Orders.Customer='" & me.Customer & "') AND (Orders.JobStatus<2 OR Orders.JobStatus = 3) " &_
-				"AND (Placements.ApplicantId=" & m_ApplicantId & ") " & strDepartmentClause & ";"
-				
-				''print strSQL
-				
-			GetEmployeeOpenOrders = LoadData (strSQL)
-		end function
-		
-		public function GetEmployeeClosedOrders()
-
-			dim strDepartmentClause
-			if len(m_Department) = 0 then
-				'no department restrictions
-				strDepartmentClause = ""
-			elseif instr(m_Department, ",") > 0 then
-				'User is associated with multiple departments. Split them up and build appropriate ad-hoc SQL statement.
-				strDepartmentClause = " AND (Orders.JobNumber=" & replace(replace(m_Department, " ", ""), ",", " OR Orders.JobNumber=") & ")"
-			else
-				'User is associated with a single department
-				strDepartmentClause = "AND (Orders.JobNumber=" & m_Department & ")"
-			end if
-
-			dim strSql
-			strSql = "" &_
-				"SELECT Orders.Customer, Orders.JobStatus, Orders.JobNumber AS CustomerDept, Orders.Reference, " &_
-				"Orders.JobDescription, Orders.WorkSite1+', '+Orders.WorkSite2 AS WorkSite, Orders.WorkSite3 AS " &_
-				"WorkSitePhone, Orders.OrderDate, Orders.StartDate, Orders.StopDate, Orders.EmailAddress, Orders.EmailFormat " &_
-				"FROM Orders " &_
-				"WHERE (Orders.Customer='" & me.Customer & "') AND (Orders.JobStatus=2 OR Orders.JobStatus = 4)" & strDepartmentClause & ";"
-	
-			GetEmployeeClosedOrders = LoadData (strSQL)
 		end function
 
 		
@@ -1229,39 +1165,6 @@ class cPlacements
 					"ORDER BY Orders.Customer, Applicants.LastnameFirst"
 
 			GetActivePlacements = LoadData (strSQL)
-		end function
-		
-		public function GetActiveEmployeePlacements()
-			dim strSelectCriteria
-			if me.Customer = "@ALL" then
-				strSelectCriteria = ""
-			elseif len(me.Customer) > 0 then
-				strSelectCriteria = "Customers.Customer='" & replace(me.Customer, "@ALL", "*") & "' AND "
-			end if
-
-            if len(m_Order) > 0 then
-                if instr(strSelectCriteria, " AND ") > 0 then
-                    strSelectCriteria = "(" & replace(strSelectCriteria, " AND ", " AND Orders.Reference=" & m_Order & ") AND ")
-                else
-                     strSelectCriteria = "Orders.Reference=" & m_Order & " AND "
-                end if
-            end if
-
-			dim strSql
-			strSql = "SELECT Orders.Customer, Orders.Reference, Placements.EmployeeNumber, Placements.StartDate, " &_
-					"Placements.PStopDate, Customers.CustomerName, Applicants.LastnameFirst, Orders.JobNumber, Orders.JobDescription," &_
-					"Placements.WorkCode, Placements.RegPayRate, Placements.RegBillRate, Placements.PlacementStatus, " &_
-					"Placements.PlacementID, Placements.NeedFinalTime, WorkCodes.Description " &_
-					"FROM (((Placements Placements LEFT OUTER JOIN Orders Orders ON Placements.Reference=Orders.Reference) " &_
-					"LEFT OUTER JOIN WorkCodes WorkCodes ON Placements.WorkCode=WorkCodes.WorkCode) " &_
-					"LEFT OUTER JOIN Applicants Applicants ON Placements.EmployeeNumber=Applicants.EmployeeNumber) " &_
-					"LEFT OUTER JOIN Customers Customers ON Placements.Customer=Customers.Customer " &_
-					"WHERE " & strSelectCriteria & "(Placements.PlacementStatus=3 AND Placements.NeedFinalTime='TRUE' OR Placements.PlacementStatus=0) AND Placements.ApplicantId=" & me.Applicant & " " &_
-					"ORDER BY Orders.Customer, Applicants.LastnameFirst"
-
-				'print strSql
-					
-			GetActiveEmployeePlacements = LoadData (strSQL)
 		end function
 		
 		public function LoadPlacements(strPlacements)

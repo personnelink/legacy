@@ -189,8 +189,6 @@ class cCustomers
 
 		Private Function LoadData(p_strSQL)
 			dim rs
-			print "site: " & me.Site
-			
 			if isnumeric(me.Site) then 'check if site number or site code
 				set rs = GetRSfromDB(p_strSQL, dsnLessTemps(me.Site))
 			else

@@ -148,44 +148,35 @@ function getTempsDSNbyCode(thisCode)
 end function
 
 function getTempsDSN(thisCode)
-	if not isnumeric(thisCode) then 
-		select case trim(lcase(thisCode))
-		case "ida"
-			getTempsDSN = IDA
-		case "per"
-			getTempsDSN = PER
-		case "bur"
-			getTempsDSN = BUR
-		case "boi"
-			getTempsDSN = BOI
-		case "ppi"
-			getTempsDSN = PPI
-		case "bse"
-			getTempsDSN = BSE
-		case "twi"
-			getTempsDSN = TWI
-		case "bly"
-			getTempsDSN = BLY
-		case "poc"
-			getTempsDSN = POC
-		case "ore"
-			getTempsDSN = ORE
-		case "wyo"
-			getTempsDSN = WYO
-		case "na"
-			getTempsDSN = null
-		case else
-			if len(trim(lcase(thisCode))) > 0 and isnumeric(thisCode) then
-				getTempsDSN = CINT(thisCode)
-			else
-				getTempsDSN = -1
-				'print "User Site, Company or VMS2Temps User mapping has not been set in profile"
-			end if
-		end select
-	else
-		getTempsDSN = thisCode
-	end if
-	
+	select case trim(lcase(thisCode))
+	case "ida"
+		getTempsDSN = IDA
+	case "per"
+		getTempsDSN = PER
+	case "bur"
+		getTempsDSN = BUR
+	case "boi"
+		getTempsDSN = BOI
+	case "ppi"
+		getTempsDSN = PPI
+	case "bse"
+		getTempsDSN = BSE
+	case "twi"
+		getTempsDSN = TWI
+	case "bly"
+		getTempsDSN = BLY
+	case "poc"
+		getTempsDSN = POC
+    case "ore"
+		getTempsDSN = ORE
+	case "wyo"
+		getTempsDSN = WYO
+	case "na"
+		getTempsDSN = null
+	case else
+		getTempsDSN = -1
+		'print "User Site, Company or VMS2Temps User mapping has not been set in profile"
+	end select
 end function
 
 public function getCompanyNumber (thisCode)
@@ -516,10 +507,9 @@ end function
 '---------------------------------------------------------------------------------------------------
 function StripSeconds(byVal xTimeBuffer)
 	dim time_pieces
-	on error resume next
 	time_pieces = Split(xTimeBuffer, ":")
 	StripSeconds = time_pieces(0) & ":" & time_pieces(1)
-	on error goto 0
+	
 end function
 
 
@@ -617,29 +607,6 @@ public function SendEmail (sTo, sFrom, sSubject, sBody, sAttachment)
 	dummy = SendEmailwBCC(sTo, "Debug Monitor <debug@personnel.com>", sFrom, sSubject, sBody, sAttachment)
 end function
 
-public function QueueEmail(sTo, sFrom, sSubject, sBody, sAttachment)
-
-dim cmd, rs
-
-set cmd = Server.CreateObject("ADOBD.Command")
-
-with cmd
-	.ActiveConnection = MySql
-	.CommandText = "" & _
-		"CREATE TABLE `pplusvms`.`email_queue` (" & _
-		  "`id` INT NOT NULL," & _
-		  "`to` VARCHAR(45) NULL," & _
-		  "`from` VARCHAR(45) NULL," & _
-		  "`subject` LONGTEXT NULL," & _
-		  "`body` LONGTEXT NULL," & _
-		  "`attachment` VARCHAR(45) NULL," & _
-		  "PRIMARY KEY (`id`))" & _
-		"COMMENT = 'email queueing table for outgoing messages';"
-end with
-
-end function
-
-
 public function SendEmailwBCC (sTo, sBCC, sFrom, sSubject, sBody, sAttachment)
 	dim for_debug
 	for_debug = sBCC
@@ -671,7 +638,6 @@ public function SendEmailwBCC (sTo, sBCC, sFrom, sSubject, sBody, sAttachment)
 	'Break "From: " & sFrom & "<br>" & "To: " & sTo
 
 	'check if message is tagged to be sent as HTML
-	on error resume next
 	if instr(lcase(sBody), "<send_as_html>") > 0 then
 		'remove "tag" and send as HTML
 		sBody = replace(sBody, "<send_as_html>", "")
@@ -702,7 +668,6 @@ public function SendEmailwBCC (sTo, sBCC, sFrom, sSubject, sBody, sAttachment)
 			.Send
 		end With
 	end if
-	on error goto 0
 		
 	set cdoMessage = nothing
 	set cdoConfig = nothing
@@ -834,7 +799,7 @@ end function
 public function print(n)
 	if not isnull(n) then
 		response.write("<pre id=""print"">" & n & "</pre>")
-		if session("no-flush") <> true then response.flush()
+		response.flush()
 	end if
 	print = null
 end function
@@ -947,7 +912,7 @@ function GetRSfromDB(p_strSQL, thisConnection)
 	set rs = Server.CreateObject("adodb.Recordset")
 
 	'Run the SQL
-    'print thisConnection
+    print thisConnection
     'print p_strSQL
 	with rs
 		'print adLockReadOnly

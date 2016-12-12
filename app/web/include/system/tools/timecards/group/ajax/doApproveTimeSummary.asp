@@ -106,7 +106,6 @@ public function approveTimeSummary()
 				"`time_summary`.`modified`, " &_
 				"`time_summary`.`created`, " &_
 				"`time_summary`.`creatorid`, " &_
-				"`time_summary`.`foruserid`, " &_
 				"`time_summary`.`createdby`, " &_
 				user_id & " AS approverid " &_
 			"FROM pplusvms.time_summary " &_
@@ -197,83 +196,7 @@ public function approveTimeSummary()
 	
 end function
 
-public function unapproveTimeSummary()
-		
-	dim summaryid
-	summaryid = getParameter("id")
-	
-	dim cmd
-	set cmd = server.CreateObject("ADODB.Command")
-	
-	cmd.ActiveConnection = MySql
-	
-	cmd.CommandText = "" &_
-		"INSERT IGNORE INTO time_detail " &_
-			"SELECT " &_
-				"`time_detail_archive`.`id`, " &_
-				"`time_detail_archive`.`summaryid`, " &_
-				"`time_detail_archive`.`workday`, " &_
-				"`time_detail_archive`.`timein`, " &_
-				"`time_detail_archive`.`timeout`, " &_
-				"`time_detail_archive`.`timetotal`, " &_
-				"`time_detail_archive`.`timetype`, " &_
-				"`time_detail_archive`.`created`, " &_
-				"`time_detail_archive`.`modified`, " &_
-				"`time_detail_archive`.`creatorId`, " &_
-				"`time_detail_archive`.`createdby` " &_
-			"FROM pplusvms.time_detail_archive " &_
-			"WHERE time_detail_archive.summaryid=" & summaryid & ";" &_
-			"" &_
-		"DELETE time_detail_archive.* FROM pplusvms.time_detail_archive LEFT OUTER JOIN time_detail ON time_detail_archive.id= time_detail.id " &_
-		"WHERE time_detail.summaryid=" & summaryid & ";" &_
-			"" &_
-		"INSERT IGNORE INTO time_summary " &_
-			"SELECT " &_
-				"`time_summary_archive`.`id`, " &_
-				"`time_summary_archive`.`customer`, " &_
-				"`time_summary_archive`.`weekending`, " &_
-				"`time_summary_archive`.`placementid`, " &_
-				"`time_summary_archive`.`department`, " &_
-				"`time_summary_archive`.`costcenter`, " &_
-				"`time_summary_archive`.`regpay`, " &_
-				"`time_summary_archive`.`regbill`, " &_
-				"`time_summary_archive`.`otpay`, " &_
-				"`time_summary_archive`.`otbill`, " &_
-				"`time_summary_archive`.`workcode`, " &_
-				"`time_summary_archive`.`wc_description`, " &_
-				"`time_summary_archive`.`employeenumber`, " &_
-				"`time_summary_archive`.`cc_description`, " &_
-				"`time_summary_archive`.`site`, " &_
-				"`time_summary_archive`.`d1`, " &_
-				"`time_summary_archive`.`d2`, " &_
-				"`time_summary_archive`.`d3`, " &_
-				"`time_summary_archive`.`d4`, " &_
-				"`time_summary_archive`.`d5`, " &_
-				"`time_summary_archive`.`d6`, " &_
-				"`time_summary_archive`.`d7`, " &_
-				"`time_summary_archive`.`rt`, " &_
-				"`time_summary_archive`.`ot`, " &_
-				"`time_summary_archive`.`dt`, " &_
-				"`time_summary_archive`.`exp_tot`, " &_
-				"`time_summary_archive`.`paid`, " &_
-				"`time_summary_archive`.`approved`, " &_
-				"`time_summary_archive`.`received`, " &_
-				"`time_summary_archive`.`modified`, " &_
-				"`time_summary_archive`.`created`, " &_
-				"`time_summary_archive`.`creatorid`, " &_
-				"`time_summary_archive`.`foruserid`, " &_
-				"`time_summary_archive`.`createdby` " &_
-			"FROM pplusvms.time_summary_archive " &_
-			"WHERE id=" & summaryid & ";" &_
-			"" &_
-			"DELETE time_summary_archive.* FROM pplusvms.time_summary_archive LEFT OUTER JOIN time_summary ON time_summary_archive.id=time_summary.id " &_
-			"WHERE time_summary.id=" & summaryid & ";"
-	print cmd.CommandText
-	cmd.execute
 
-	response.write summaryid
-	
-end function
 
 
 %>

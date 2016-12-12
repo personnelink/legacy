@@ -25,13 +25,13 @@ if enrollmentMessage = "true" then
 	enrollmentMessage = set_session("enrollmentMessage", "")
 end if
 
-dim welcomeMessage, welomceMessageTxt
-welcomeMessage = get_session("weclomeMessage")
+dim welcomeMessage, welcomeMessageTxt
+welcomeMessage = get_session("welcomeMessage")
 if len(welcomeMessage) > 0 then
-	response.write(decorateTop("weclomeUser", "marLR10", "Welcome to Personnel Plus"))
+	response.write(decorateTop("welcomeUser", "marLR10", "Welcome to Personnel Plus"))
 	response.write(session("welcomeMessage"))
 	response.write(decorateBottom())
-	welcomeMessage = set_session("weclomeMessage", "")
+	welcomeMessage = set_session("welcomeMessage", "")
 end if
 
 if len(session("homeMessageHeading")) > 0 then

@@ -64,8 +64,6 @@ select case which_method
 		removeTimeSummary
 	case "approveweek"
 		approveTimeSummary
-	case "unapproveweek"
-		unapproveTimeSummary
 	case "updatetimedetail"
 		updateTimeDetail
 	case "audittimechange"

@@ -34,17 +34,28 @@ if not gResettingPassword then
 	
 	errImage = "<img src='/include/images/mainsite/icon_err.gif' alt='Missing or Incorrect Information'>"
 	if not session_signed_in then
-	
 		'print "session_not signed in"
-		if request.cookies("signin") = "true"  then
-			if session_signed_in and user_id = 367 then 
-				response.cookies("signin") = "false"
-				formSignInAction = "Sign In"
-			elseif not session_signed_in then
-				response.cookies("signin") = "false"
-				formSignInAction = "Sign In"
+		dim qsUsername, qsSecret
+		qsUsername = replace(request.QueryString("qsuser"), "'", "''")
+		'qsUsername = replace(qsUsername, """", """""")
+	
+		qsSecret   = replace(request.QueryString("qssecret"), "'", "''")
+		'qsSecret   = replace(qsSecret, """", """""""")
+		
+		if len(qsUsername) > 0 and len(qsSecret) > 0 Then
+			formSignInAction = "Sign In"
+		else
+			if request.cookies("signin") = "true"  then
+				if session_signed_in and user_id = 367 then 
+					response.cookies("signin") = "false"
+					formSignInAction = "Sign In"
+				elseif not session_signed_in then
+					response.cookies("signin") = "false"
+					formSignInAction = "Sign In"
+				end if
 			end if
 		end if
+
 		
 		if formSignInAction = "Sign In" And CheckVMSLogin("password") = "" And CheckVMSLogin("username") = "" then 
 			begin_session(user_id)

@@ -41,8 +41,6 @@
             </th>
             <th>Employee
             </th>
-            <!-- <th>Creator
-            </th> -->
             <th>Cust
             </th>
             <th>Dept/Cost Center
@@ -76,9 +74,9 @@
 			dim searchemployee
 				searchemployee = request.querystring("employee")
 			
-			dim pid, workday, showRow, outtime, intime, day_number, dayin, dayout, strBootTime
+			dim pid, workday, showRow
 
-			dim blnFirstLoop, strPreviousEmployee, strCurrentEmployee, strCreatorName 'change flags
+			dim blnFirstLoop, strPreviousEmployee, strCurrentEmployee 'change flags
 			dim iPreviousTotal
 				blnFirstLoop = true
 
@@ -87,11 +85,12 @@
 			dim intTotalHours, dblTotalBill, dblGrandTotal, dblGrandBill 'total buckets
 			dblTotalBill = 0
 			
-			dim rsChangeAudit, strChangeWhysHTML
+			dim rsChangeAudit
 			dim rsHours
 			
 			do while not rs.eof
 				pid = rs("placementid")
+				workday = rs("created")
 
 				showRow = true
 
@@ -106,7 +105,6 @@
 				'end if
 
 				strCurrentEmployee = rs("lastName") & ", " & rs("firstName")
-				strCreatorName = rs("cLastName") & ", " & rs("cFirstName")
 
 				if len(searchemployee) > 0 then
 					if instr(lcase(strCurrentEmployee), lcase(trim(searchemployee))) = 0 then 
@@ -139,7 +137,7 @@
 						%>
 
 						<tr style="border-bottom: solid black">
-                            <td colspan="9" style="text-align: right">
+                            <td colspan="9" style="text-shadow: #999 0.14em 0.14em 0.2em; text-align: right">
                                 <b>Employee Total:</b>
                             </td>
                             <td><b><%=TwoDecimals(Round(intTotalHours, 2))%></b>
@@ -162,75 +160,15 @@
 
 					end if
 
-					
-					'figure day's over time
-'					if intTotalHours => 40 then 
-'						intOTHours = intRegHours
-
-		
-					
 					intTotalHours = intTotalHours + intRegHours
 					dblTotalBill = dblTotalBill + (cdbl(BillRate(pid))*Round(intRegHours, 2))
 
-					outtime = rs("timeout")
-					intime = rs("timein")
-					day_number = rs("workday")
-					workday = rs("weekending")
-					
-					'correct for sunday
-					if day_number = 1 then day_number = day_number + 7
-					
-					if not isnull(workday) and not isnull(day_number) then
-						workday = DateAdd("d", (-7 + (day_number-1)), rs("weekending"))
-						'print ("weekending: " & rs("weekending") & ", day_number: " & day_number & ", company weekends: " & company_weekends)
-					end if
-					
-					dayin = WeekDayLabel(Weekday(workday))
-					
-					if ConvertHoursIntoDecimal(outtime) < ConvertHoursIntoDecimal(intime) then
-
-						dayout = WeekDayLabel(Weekday(workday + 1))
-					else
-						dayout = WeekDayLabel(Weekday(workday))
-					end if
-					
-					if userLevelRequired(userLevelPPlusStaff) then 
-						strBootTime="<span class=""boot_time"" class=""summary_" & rs("summaryid") & """ onclick=""approval.boot('" & rs("summaryid") & "');"">&nbsp;</span>"
-                    else
-                    	strBootTime=""
-                    end if
-                    
-				
-					if showRow then
-						'check for change
-						cmd.CommandText = "" &_
-							"SELECT time_change_audits.*, tbl_users.lastName, tbl_users.firstName " &_
-							"FROM time_change_audits LEFT JOIN tbl_users ON time_change_audits.changedby = tbl_users.userid " &_
-							"WHERE detailid=" & rs("id") & " ORDER By date_changed DESC;"
-
-						set rsChangeAudit = cmd.Execute()
-						strChangeWhysHTML = ""
-						do while not rsChangeAudit.eof
-							strChangeWhysHTML = strChangeWhysHTML & _
-							"<tr>" & _
-								"<td colspan=""13"" class=""auditrow"">* " & rsChangeAudit("date_changed") & _
-									", edited by " & rsChangeAudit("firstName") & "&nbsp;" & rsChangeAudit("lastName") & ", reason: '" & _
-										rsChangeAudit("changed_why") & "', previous value: '" & rsChangeAudit("previous_value") & "'" & _
-								"</td>" & _
-							"</tr>"
-											
-							rsChangeAudit.movenext
-						loop
-					end if
-
 					%>
-					<tr title="<%=Replace(ClearHTMLTags(strChangeWhysHTML, 2), """", "&quot;")%>">
-                        <td style="padding-right: 10px" ><%=pid%><% if len(strChangeWhysHTML) > 0 then %>*<% else %>&nbsp;&nbsp;<% end if %>
+					<tr>
+                        <td style="padding-right: 10px"><%=pid%>
                         </td>
                         <td style="text-align: left"><div class="namediv"><%=strCurrentEmployee%></div>
                         </td>
-                        <!-- <td style="text-align: left"><div class="namediv"><%=strCreatorName%></div>
-                        </td> -->
                         <td><%=rs("customer")%></td>
                         <td><div class="ccdiv"><%=Department(pid)%></div>
                         </td>
@@ -238,17 +176,17 @@
                         </td>
                         <td><%=WeekDayLabel(rs("workday"))%>
                         </td>
-                        <td><%=intime%>
+                        <td><%=rs("timein")%>
                         </td>
                         <td><%=WeekDayLabel(rs("workday"))%>
                         </td>
-                        <td><%=outtime%>
+                        <td><%=rs("timeout")%>
                         </td>
                         <td><%=TwoDecimals(intRegHours)%>
                         </td>
                         <td>0.00<!--OT Hours-->
                         </td>
-                        <td><%=strBootTime%><%=TwoDecimals(Round(intRegHours, 2))%>
+                        <td><%=TwoDecimals(Round(intRegHours, 2))%>
                             <!--Total Hours-->
                         </td> 
 						<td><div class="namediv"><%=rs("sLastName") & ", " & rs("sFirstName")%></div>
@@ -263,6 +201,25 @@
 				end if
 
 				
+				if showRow then
+					'check for change
+					cmd.CommandText = "" &_
+						"SELECT time_change_audits.*, tbl_users.lastName, tbl_users.firstName " &_
+						"FROM time_change_audits LEFT JOIN tbl_users ON time_change_audits.changedby = tbl_users.userid " &_
+						"WHERE detailid=" & rs("id") & " ORDER By date_changed DESC;"
+
+					set rsChangeAudit = cmd.Execute()
+					do while not rsChangeAudit.eof
+						
+						%>
+						<tr>
+							<td colspan="13" class="auditrow">&nbsp;&nbsp;*&nbsp;<%=rsChangeAudit("date_changed")%>, edited by <%=rsChangeAudit("firstName")%>&nbsp;<%=rsChangeAudit("lastName")%>, reason: "<%=rsChangeAudit("changed_why")%>", previous value: "<%=rsChangeAudit("previous_value")%>"
+							</td>
+						</tr>
+						<%					
+						rsChangeAudit.movenext
+					loop
+				end if
 
 		strPreviousEmployee = strCurrentEmployee
 
@@ -272,7 +229,7 @@
 
  %>
 						<tr style="border-bottom: solid black">
-                            <td colspan="9" style="text-align: right">
+                            <td colspan="9" style="text-shadow: #999 0.14em 0.14em 0.2em; text-align: right">
                                 <b>Employee Total:</b>
                             </td>
                             <td><b><%=TwoDecimals(Round(intTotalHours, 2))%></b>
@@ -299,7 +256,7 @@
     <tfoot>
 
         <tr>
-            <td colspan="9" style="text-align: right; padding-bottom: 1em; font-size: large">
+            <td colspan="9" style="text-shadow: #999 0.14em 0.14em 0.2em; text-align: right; padding-bottom: 1em; font-size: large">
                 <b>Grand Total:</b>
             </td>
             <td style="font-size: larger"><b><%=TwoDecimals(Round(dblGrandTotal, 2))%></b>

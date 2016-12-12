@@ -88,40 +88,27 @@ ul.dropdown-horizontal ul li *.dir {margin: 0;padding:0}
 	right:0px;
 	margin-bottom:5px;
 	padding-right:20px;
-	z-index:100;
+	z-index:100
 }
 #topnav a {color:#FFFFFF;font-weight:bold}
 #topnav a:hover {color:#FFFFF0;font-weight:bold;text-decoration:none}
 #contentcolumn {float:right;width:65em;border-left:1px solid #587299;padding-left:.5em;margin:0;padding-top:0}
 #leftSideMenu {text-align: center;width:13.6em;min-height:10em; float:left;vertical-align:top; overflow:hidden;}
 #communications {border:1px solid #a8a8a8;padding:1px}
-#boxeffect1{width: 70%; height: 30px; padding: 0 15px 15px; font-style: bold; font-size: 90%; box-shadow: horizontal vertical spread colour;}
+
 #lnkStartPage {padding:0 0 0 0.2em;font-weight:bold}
 #lnkStartPage img {padding-right:0.2em;vertical-align:middle; text-align:left} 
 
-#search {height:26px;line-height:26px;background:#e6eee6;color: #333333;border:solid #000000; border-width:1px 0 1px 0;margin:0 0 0 0;text-align:center;clear:both;}
+#search {height:26px;background:#e7eee6;color: #333333;border:solid #000000; border-width:1px 0 1px 0;margin:0 0 0 0;text-align:center;clear:both;}
 
-
-@media all and (min-width: 1001px) {
-
-	#search a {margin:0 13px;width:20em;height:25px;text-decoration:none;display:inline-block;}
-
-}
-
-@media all and (max-width: 1000px) and (min-width: 700px) {
-	
-	#search a {margin:0 13px;width:14em;height:25px;text-decoration:none;display:inline-block;}
-
-}
-
-@media all and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
-
-	#search a {margin:0 13px;width:20em;height:25px;text-decoration:none;display:inline-block;}
-}
+#search a.leftSearch,
+#search a.rightSearch,
+#search a.middleSearch {margin:0 auto;width:30em;height:25px;text-decoration:none; }
+#search a.rightSearch {width:20em;}
 
 #search a.leftSearch {float:left;background:transparent url('/include/style/images/cornersSheet.png') no-repeat left -516px;} /* Client Login */
-#search a.rightSearch {float:right;background:transparent url('/include/style/images/cornersSheet.png') no-repeat right -515px;} /* Timeclock Login */
-#search a.middleSearch {position:relative;top:-5px;background:transparent url('/include/style/images/cornersSheet.png') no-repeat -360px -515px;}
+#search a.rightSearch {float:right;clear:none;background:transparent url('/include/style/images/cornersSheet.png') no-repeat right -515px;} /* Timeclock Login */
+#search a.middleSearch {float:left; background:transparent url('/include/style/images/cornersSheet.png') no-repeat -330px -515px;}
 
 #subContentWrapper {float:right;clear:both;width: 65em}
 
@@ -193,7 +180,6 @@ input.btn {
 	margin:0;
 	width:auto;
 	height:1.9em;
-	line-height:1.9em;
 	cursor:pointer;
 	border:outset 1px #ccc;
 	background:#999;
@@ -225,7 +211,7 @@ div#bread {
 	padding-left: 2px;
 	border: none;
 	list-style: none;
-	display: inline-block;
+	display: inline;
 	}
 .inOrderTo {font-weight:bold;color:red}
 
