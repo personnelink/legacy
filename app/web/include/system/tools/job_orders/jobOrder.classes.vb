@@ -2138,7 +2138,7 @@ class cJobOrder
 					.Customers_CustomerName       = p_RS.fields("CustomerName").value 'Customers_CustomerName
 					.Customers_Phone       = p_RS.fields("Phone").value 'Customers_Phone
 					.Customers_Fax       = p_RS.fields("Fax").value 'Customers_Fax
-					.Customers_EmailAddress       = p_RS.fields("EmailAddress").value 'Customers_EmailAddress
+					.Customers_EmailAddress       = p_RS.fields("Customers.EmailAddress").value 'Customers_EmailAddress
 					.Orders_WorkSite1       = p_RS.fields("WorkSite1").value 'Orders_WorkSite1
 					.Orders_WorkSite2       = p_RS.fields("WorkSite2").value 'Orders_WorkSite2
 					.Orders_WorkSite3       = p_RS.fields("WorkSite3").value 'Orders_WorkSite3
@@ -2149,7 +2149,7 @@ class cJobOrder
 					.Orders_Bill4       = p_RS.fields("Bill4").value 'Orders_Bill4
 					.Customers_SalesTaxExemptNo       = p_RS.fields("SalesTaxExemptNo").value 'Customers_SalesTaxExemptNo
 					.Customers_InvoiceTaxExemptNo       = p_RS.fields("InvoiceTaxExemptNo").value 'Customers_InvoiceTaxExemptNo
-					.Customers_SuspendService       = p_RS.fields("SuspendService").value 'Customers_SuspendService
+					.Customers_SuspendService       = p_RS.fields("Customers.SuspendService").value 'Customers_SuspendService
 					.Customers_ETimeCardStyle       = p_RS.fields("ETimeCardStyle").value 'Customers_ETimeCardStyle
 					.CustomerSkillSets_SkillSetName       = p_RS.fields("SkillSetName").value 'CustomerSkillSets_SkillSetName
 					.Orders_WorkCode1       = p_RS.fields("WorkCode1").value 'Orders_WorkCode1
@@ -2682,25 +2682,6 @@ class cOrderTabs
 				strWhere = "WHERE (Orders.JobStatus<2 OR Orders.JobStatus = 3)"
 			else
 				strWhere = "WHERE (Orders.Customer=""" & me.Customer & """) AND (Orders.JobStatus<2 OR Orders.JobStatus = 3)"
-			end if
-		
-			dim strSql
-			strSql = "" &_
-				"SELECT Orders.StartDate, Orders.OrderDate, Customers.CustomerName, Orders.Customer, " &_
-				"Orders.Reference, Orders.JobNumber, Orders.JobStatus, Orders.JobDescription " &_
-				"FROM Customers INNER JOIN Orders ON Customers.Customer = Orders.Customer  " &_
-				strWhere &_
-				"ORDER By CustomerName, JobDescription, StartDate, OrderDate;"
-
-			GetOpenOrders = LoadData (strSQL)
-		end function
-		
-		public function GetCustomerOrders()
-			dim strWhere
-			if len(me.Customer) = 0 then
-				strWhere = "WHERE (Orders.JobStatus<2 OR Orders.JobStatus = 3)"
-			else
-				strWhere = "WHERE (Orders.Customer=""" & me.Customer & """)"
 			end if
 		
 			dim strSql

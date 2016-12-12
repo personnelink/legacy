@@ -30,7 +30,7 @@ session("window_page_title") = "Timeclock"
 
 
 <script type="text/javascript" src="/include/js/jQuery-1.10.2.min.js"></script>
-<script type="text/javascript" src="timeclock.001.js"></script>
+<script type="text/javascript" src="timeclock.js"></script>
 <body>
 <div id="topleftscrew"></div>
 <div id="toprightscrew"></div>
@@ -77,9 +77,6 @@ session("window_page_title") = "Timeclock"
 
 <a href="javascript:;" onclick="javascript:(function(){var e=document.createElement('script');e.type='text/javascript';e.src='jKeyboard.js.php';document.getElementsByTagName('head')[0].appendChild(e);})();"><div id="personnelinc"><img src="personnelinc.png"></div>
 <div id="clock"><span id="time_span">time</span><span id="date_span">date</span><span id="linkurl">www.personnelinc.com</span></div></a>
-<embed src="clock_in.wav" autostart="false" width="0" height="0" id="clock_in_sound"
-enablejavascript="true">
-<embed src="clock_out.wav" autostart="false" width="0" height="0" id="clock_out_sound"
-enablejavascript="true">
+
 
 <!-- #include virtual='/include/core/dispose_service_session.asp' -->

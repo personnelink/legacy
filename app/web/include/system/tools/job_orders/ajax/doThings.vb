@@ -5,7 +5,6 @@ session("required_user_level") = 2048 'userLevelPPlusStaff
 <!-- #INCLUDE VIRTUAL='/include/core/init_secure_service.asp' -->
 <!-- #INCLUDE VIRTUAL='/include/system/tools/job_orders/jobOrder.classes.vb' -->
 <!-- #INCLUDE file='doLookUpCustomer.asp' -->
-<!-- #INCLUDE file='capturePage.vb' -->
 
 <%
 '-----------------------------------------------------------------
@@ -86,39 +85,20 @@ select case which_method
 		doGetJobOrder
 	case "saveorderinfo"
 		doSaveOrderInfo
-	case "capturepage"
-		doCapturePage
 	case else
 		break "[here]: " & which_method
 end select
 
 function doSaveOrderInfo()
 
-	dim orderkey
-		orderkey = getParameter("element")
-
-	dim arryElementAndAttribute, table_name, attribute_name
-	if instr(orderkey, "_") > 0 then
-		arryElementAndAttribute = split(orderkey, "_")
-		table_name = arryElementAndAttribute(0)
-		attribute_name = arryElementAndAttribute(1)
-	else
-		table_name = "Orders" 'default table
-		attribute_name = orderkey
-	end if
-		
-		
-	dim ordervalue
-		ordervalue = getParameter("value")
-		
-		dim update_orders
+	dim orderkey, ordervalue
 		set update_orders = new cTempsAttribute
 		with update_orders
-			.site = getCompanyNumber(siteid)
-			.table = table_name
-			.element = replace(attribute_name, """", """""")
+			.site = siteid
+			.table = "Orders"
+			.element = replace(getParameter("element"), """", """""")
 			.newvalue = replace(getParameter("value"), """", """""")
-			.whereclause = "(Reference=" & jobref & ")"
+			.whereclause = "(Reference=" & jobref & ") AND (JobNumber=" & dept & ")"
 			.update()
 		end with
 		set update_orders = nothing
@@ -365,7 +345,7 @@ function getOrderTabs
 		.ItemsPerPage = 150
 		.Page = Request.QueryString("WhichPage")
 		' .Company = Request.QueryString("whichCompany")
-		.Customer = customerid
+		' .Customer = Request.QueryString("WhichCustomer")
 		.FromDate = Request.QueryString("fromDate")
 		.ToDate = Request.QueryString("toDate")
 	end with
@@ -373,14 +353,8 @@ function getOrderTabs
 	' if getParameter("status") = "closed" then
 		' JobOrderTabs.GetClosedOrders()
 	' else
-	' end if
-
-	if len(trim(JobOrderTabs.Customer)) > 0 then
-		JobOrderTabs.GetCustomerOrders()
-	
-	else
 		JobOrderTabs.GetOpenOrders()
-	end if
+	' end if
 
 	dim OrderTab, htmlTab
 

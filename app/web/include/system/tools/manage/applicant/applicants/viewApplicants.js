@@ -142,20 +142,4 @@ var showMessageResponse = function (oXML) {
 	document.getElementById("lookup_applicant").innerHTML = response;
 };
 
-
-function act_refresh () {
-	grayOut(true);
-	
-	console.log("test");
-	document.getElementById("viewActivityForm").submit();
-	console.log("test");
-
-	}
-
-function act_refresh_page (this_page) {
-	document.getElementById("WhichPage").value=this_page
-	act_refresh();
-}
-
-
 window.onload = Custom.init;

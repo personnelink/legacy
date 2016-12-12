@@ -34,6 +34,8 @@ dim LastDepartment     : LastDepartment   = 0
 dim firstloop          : firstloop        = true
 dim department_total   : department_total = 0
 
+
+
 dim manage_customer_lnk
 manage_customer_form = "/include/system/tools/manage/customer/?"
 
@@ -81,10 +83,10 @@ for each Customer in Customers.Customers.Items
 			<div class="groupheader" >
 				<%=objShowMore(Customer.CustomerCode, Customer.CustomerName)%>
 				<span class="CustomerCode"><div><%=Customer.CustomerCode%></div></span>				
-				<span class="CustomerName"><div><%=Customer.CustomerName%></div></span>
-				<span class="CustomerAddress"><div><%=Customer.Address & ", " & Customer.Cityline%></div></span>
-				<span class="CustomerContact"><div><%=Customer.Contact%>&nbsp;</div></span>
-				<span class="CustomerPhone"><div><%=FormatPhone(Customer.Phone)%>&nbsp;</div></span>
+				<span class="CustomerName"><div contenteditable="true"><%=Customer.CustomerName%></div></span>
+				<span class="CustomerAddress"><div contenteditable="true"><%=Customer.Address & ", " & Customer.Cityline%></div></span>
+				<span class="CustomerContact"><div contenteditable="true"><%=Customer.Contact%>&nbsp;</div></span>
+				<span class="CustomerPhone"><div contenteditable="true"><%=FormatPhone(Customer.Phone)%>&nbsp;</div></span>
 				<span class="DateLastActive"><div><%=Customer.DateLastActive%>&nbsp;</div></span>
 				<span class="CustomerActivities btnCustomerActivity"><span class="button">
 					<span class="" onclick="activity.load.customer('<%=Customer.CustomerCode%>', '<%=qsActivityURL%>', '<%=Customers.Site%>', 'open')">View Activities</span></span>

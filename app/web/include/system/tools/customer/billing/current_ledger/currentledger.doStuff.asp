@@ -1,8 +1,6 @@
 <!-- #include file='currentledger.class.asp' -->
 <%
 
-'on error resume next
-
 dim AccountActivity
 set AccountActivity = new cAccountActivity
 AccountActivity.ItemsPerPage = 100
@@ -87,20 +85,26 @@ dim invoice_link
 dim invoice_number
 dim row_shade
 
-dim ar_rs, strSQL, htmlAccntBalance
-	'this query creates Account Balance
-	strSQL = "SELECT ARCustomers.OldestUnpaidIDate AS Oldest, ARCustomers.Balance, ARCustomers.Customer " &_
-			"FROM ARCustomers " &_
-			"WHERE ARCustomers.Customer='" & ucase(this_customer) & "';"
-	set ar_rs = GetRSfromDB(strSQL, dsnLessTempsAR(AccountActivity.CompanyId))
-	
-	if not ar_rs.eof then
-		htmlAccntBalance = "  $" & TwoDecimals(ar_rs("Balance")}
-	else
-		htmlAccntBalance = "  <i>Unavailable ... </i>"
-	end if
-
-	set ar_rs = nothing
+function getAccountBalance(thisConnection)
+		set getAccntBalance_cmd = Server.CreateObject("ADODB.Command")
+			with getAccntBalance_cmd
+				.ActiveConnection = thisConnection
+				'.CommandText = "SELECT ARActivity.Oldest, ARActivity.Balance, ARActivity.Customer FROM ARActivity WHERE ARActivity.Customer=""ZIONSB"";"
+				.CommandText = "SELECT ARActivity.Oldest, ARActivity.Balance, ARActivity.Customer " &_
+					"FROM ARActivity " &_
+					"WHERE ARActivity.Customer=""" & ucase(this_customer) & """;"
+				'break getAccntBalance_cmd.CommandText
+				.Prepared = true
+			end with
+			'break getAccntBalance_cmd.CommandText
+			set AccountBalance = getAccntBalance_cmd.Execute
+			
+			if not AccountBalance.eof then
+				getAccountBalance = "  $" & TwoDecimals(AccountBalance("Balance")}
+			else
+				getAccountBalance = "  <i>Unavailable ... </i>"
+			end if
+end function
 
 function checkPendingPayments()
 	dim rsPendingPayments 'pending payment

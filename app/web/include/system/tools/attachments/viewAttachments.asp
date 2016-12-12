@@ -61,7 +61,7 @@ if len(tempsdsn) = 0 then
 end if
 
 checkedText = "checked=""checked"" autocomplete=""off"""
-sgOptionCustomer = request.form("customer")
+sgOptionCustomer = request.form("sgOptionCustomer")
 sgOptionApplicant = request.form("sgOptionApplicant")
 
 if len(search_for) = 0 then
@@ -215,9 +215,6 @@ leftSideMenu = "" &_
 			sGuideString  &_
 			"ORDER BY Applicants.LastnameFirst, Attachments.DescriptionOfFile;"
 
-			
-			'print SQL
-			
 			Set Attachments = Server.CreateObject ("ADODB.RecordSet")
 			Attachments.CursorLocation = 3 ' adUseClient
 
@@ -271,7 +268,7 @@ leftSideMenu = "" &_
 				nPage = 1
 			end if
 
-			nItemsPerPage = 250
+			nItemsPerPage = 125
 			Attachments.PageSize = nItemsPerPage
 			nPageCount = Attachments.PageCount
 

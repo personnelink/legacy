@@ -1,12 +1,10 @@
 <%
 const jsver = "006"
-const mobile_cssver = "001"
 const cssver = "008"
 
 const app_base = "/include/system/tools/timecards/group/"
 
-session("add_css") = "./" & app_base & "timecards." & cssver & ".css" & session("add_css")
-session("mobile_css") = "./" & app_base & "timecards.mobile." & mobile_cssver & ".css" & session("mobile_css")
+session("add_css") = "./" & app_base & "timecards." & cssver & ".css"
 
 %>
 

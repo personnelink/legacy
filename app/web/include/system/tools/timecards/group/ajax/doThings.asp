@@ -1,21 +1,17 @@
-
+<%Option Explicit%>
 <%
-
-const app_base = "/include/system/tools/timecards/group/ajax/"
-
-if not session("required_user_level") > 0 then
-	session("required_user_level") = 2048 'userLevelPPlusStaff
-end if
-
+session("required_user_level") = 2048 'userLevelPPlusStaff
 %>
 <!-- #INCLUDE VIRTUAL='/include/core/init_secure_service.asp' -->
 <!-- #INCLUDE VIRTUAL='/include/system/tools/timecards/group/timecard.classes.asp' -->
-<!-- #include VIRTUAL='/include/system/tools/timecards/group/ajax/doTimeSummary.asp' -->
-<!-- #include VIRTUAL='/include/system/tools/timecards/group/ajax/doTimeDetail.asp' -->
-<!-- #include VIRTUAL='/include/system/tools/timecards/group/ajax/doOrders.asp' -->
-<!-- #include VIRTUAL='/include/system/tools/timecards/group/ajax/doTimePlacements.asp' -->
-<!-- #include VIRTUAL='/include/system/tools/timecards/group/ajax/doApproveTimeSummary.asp' -->
-<!-- #include VIRTUAL='/include/system/tools/timecards/group/ajax/doTimeComments.asp' -->
+
+<!-- #include file='doTimeSummary.asp' -->
+<!-- #include file='doTimeDetail.asp' -->
+<!-- #include file='doOrders.asp' -->
+<!-- #include file='doTimePlacements.asp' -->
+
+<!-- #include file='doApproveTimeSummary.asp' -->
+<!-- #include file='doTimeComments.asp' -->
 
 <%
 '-----------------------------------------------------------------
@@ -48,18 +44,10 @@ which_method = getParameter("do")
 select case which_method
 	case "getorders"
 		doGetOrders
-	case "getemployeeorders"
-		doGetEmployeeOrders
 	case "getplacements"
 		doGetPlacements
-	case "getemployeeplacements"
-		doGetEmployeePlacements
 	case "timesummary"
 		doTimeSummary
-	case "employeetimesummary"
-		doEmployeeTimeSummary
-	case "internaltimesummary"
-		doEmployeeTimeSummary
 	case "updateday"
 		doUpdateDay
 	case "updateweek"
@@ -76,8 +64,6 @@ select case which_method
 		removeTimeSummary
 	case "approveweek"
 		approveTimeSummary
-	case "submitweek"
-		submitTimeSummary
 	case "unapproveweek"
 		unapproveTimeSummary
 	case "updatetimedetail"
@@ -179,6 +165,7 @@ public function updateTimeDetail()
 	dim siteid      : siteid      = getTempsDSN(g_strSite)
 	dim value       : value       = getParameter("t")
 	
+
 	' dim oldDayId
 	' if len(dayid) > 1 then
 		' oldDayId = left(dayid ,1)
@@ -237,16 +224,6 @@ public function updateTimeDetail()
 			.CommandText = "" &_
 				"UPDATE time_detail " &_
 				"SET timetotal=" & value & ", timein=null, timeout=null " &_
-				"WHERE (summaryid=" & summaryid & ") AND (id=" & detailid & ")"
-			.Execute()
-			'.CommandText = sqlNewSum
-		end with
-		
-	case "adjusted"
-		with cmd
-			.CommandText = "" &_
-				"UPDATE time_detail " &_
-				"SET adjusted=" & value & " " &_
 				"WHERE (summaryid=" & summaryid & ") AND (id=" & detailid & ")"
 			.Execute()
 			'.CommandText = sqlNewSum
@@ -400,23 +377,7 @@ public function auditTimeChange()
 end function
 
 
-function getApplicantIdFromUserId(p_uid, p_conn)
 
-	dim rs, cmd
-
-    set rs = Server.CreateObject("adodb.Recordset")
-    set cmd = Server.CreateObject("adodb.Command")
-    
-	cmd.ActiveConnection = MySql
-	cmd.CommandText = "SELECT tbl_applications.in" & getTempsCompCode(p_conn) & " FROM tbl_applications RIGHT JOIN tbl_users on tbl_users.applicationid=tbl_applications.applicationid WHERE tbl_users.userID=" & p_uid
-	
-	set rs = cmd.Execute()
-	if not rs.eof then getApplicantIdFromUserId = rs(0) 'use ordinal number instead of name
-	
-	set rs = nothing
-	set cmd = nothing
-	
-end function
 
 function getParameter(p_name)
 	if use_qs then

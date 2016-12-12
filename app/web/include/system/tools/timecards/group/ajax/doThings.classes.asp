@@ -188,6 +188,4 @@ class cTimeDetail
 	end property
 
 end class
-
-
 %>

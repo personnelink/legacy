@@ -108,7 +108,7 @@ class cAccountActivity
 			m_ToDate = Date()
 			m_FromDate = DateAdd("d", -90, m_ToDate)
 		end if
-		strDateClause = "(ARSummary.InvoiceDate BETWEEN #" & m_FromDate & "# AND #" & m_ToDate & "#)"
+		strDateClause = "(ARSummary.InvoiceDate BETWEEN '" & m_FromDate & "' AND '" & m_ToDate & "')"
 
 		dim strDepartmentClause
 		if len(m_Department) = 0 then
@@ -152,9 +152,6 @@ class cAccountActivity
 					"RIGHT JOIN Orders ON ARSummary.Reference = Orders.Reference " &_
 					strWhereClause & " AND ARSummary.InHistory=FALSE " &_
 					"ORDER BY Orders.JobNumber, Orders.JobDescription, ARSummary.Customer, ARSummary.Invoice"
-					
-					'print strSQL
-					
 					LoadAccountActivity = LoadData (strSQL)
 					
 		
@@ -272,8 +269,7 @@ class cAccountActivity
 
 	Private Function LoadData(p_strSQL)
 		dim rs
-		'print dsnLessTempsAR(m_CompanyId)
-        set rs = GetRSfromDB(p_strSQL, dsnLessTempsAR(m_CompanyId))
+        set rs = GetRSfromDB(p_strSQL, dsnLessTemps(m_CompanyId))
  		FillFromRS(rs)
 		LoadData = rs.recordcount
 		rs. close
