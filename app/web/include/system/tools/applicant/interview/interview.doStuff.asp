@@ -696,7 +696,7 @@ function save_interview ()
 				strNoteTemplate = Replace(strNoteTemplate & vbCrLf & dbQuery("Notes"), Chr(34), Chr(34) & Chr(34))
 				
 				sql = "UPDATE NotesApplicants " &_
-					"SET Notes='+strNoteTemplate+' " &_
+					"SET Notes=" & insert_string(strNoteTemplate) & " " &_
 					"WHERE ApplicantId=" & inTemps(i)
 
 				set dbQuery = dbTemps.Execute(sql)

@@ -23,29 +23,37 @@
 	Dim sql
 	sql = "" & _
 		"SELECT " & _
+			"`summaryid`, " & _
 			"`weekending`, " & _
 			"`created`, " & _
 			"`site`, " & _
 			"`customer`, " & _
 			"`placementid`, " & _
+			"`department`, " & _
+			"`costcenter`, " & _
 			"`creatorid`, " & _
+			"`foruserid`, " & _
 			"`approverid`, " & _
 			"`workday`, " & _
 			"`id`, " & _
 			"TIME_FORMAT(timein, '%T') AS timein, " & _
 			"TIME_FORMAT(timeout, '%T') AS timeout, " & _
-			"`t`.`lastName`, " & _
-			"`t`.`firstName`, " & _
+			"`t`.`lastName` AS cLastName, " & _
+			"`t`.`firstName` AS cFirstName, " & _
+			"`tbl_users`.`lastName`, " & _
+			"`tbl_users`.`firstName`, " & _
 			"`tbl_supervisors`.`lastName` AS sLastName, " & _
 			"`tbl_supervisors`.`firstName` AS sFirstName, " & _
-			" `hours` " & _
+			" `hours`, " & _
+			" `adjustedhours` " & _
 		"FROM " & _
-			"(SELECT `time_summary_archive`.`weekending`, `time_detail_archive`.`created`, `time_summary_archive`.`site`, " & _
-	"`time_summary_archive`.`customer`, `time_summary_archive`.`placementid`, `time_summary_archive`.`creatorid`, " & _
+			"(SELECT `time_summary_archive`.`id` AS summaryid, `time_summary_archive`.`weekending`, `time_detail_archive`.`created`, `time_summary_archive`.`site`, " & _
+	"`time_summary_archive`.`customer`, `time_summary_archive`.`placementid`, `time_summary_archive`.`department`, `time_summary_archive`.`costcenter`, `time_summary_archive`.`creatorid`, `time_summary_archive`.`foruserid`, " & _
 	"`time_summary_archive`.`approverid`, `time_detail_archive`.`workday`, `time_detail_archive`.`id`, " & _
 	"`time_detail_archive`.`timein`, `time_detail_archive`.`timeout`, `tbl_users`.`lastName`, " & _
 	"`tbl_users`.`firstName`, " & _
-	"`time_detail_archive`.`timetotal` as hours " & _
+	"`time_detail_archive`.`timetotal` as hours, " & _
+	"`time_detail_archive`.`adjusted` as adjustedhours " & _
 "FROM time_summary_archive " & _
 "RIGHT JOIN time_detail_archive ON time_summary_archive.id=time_detail_archive.summaryid " & _
 "LEFT JOIN tbl_users ON time_detail_archive.creatorid=tbl_users.userid " & _
@@ -55,12 +63,16 @@
 	"' AND `time_summary_archive`.`weekending` <= '" & mySqlToDate & "') " & _
 			"UNION ALL " &_
 			"SELECT " & _
+				"`time_summary_archive`.`id` AS summaryid, " & _
 				"`time_summary_archive`.`weekending`, " & _
 				"`time_detail_archive`.`created`, " & _
 				"`time_summary_archive`.`site`, " & _
 				"`time_summary_archive`.`customer`, " & _
 				"`time_summary_archive`.`placementid`, " & _
+				"`time_summary_archive`.`department`, " & _
+				"`time_summary_archive`.`costcenter`, " & _
 				"`time_summary_archive`.`creatorid`, " & _
+				"`time_summary_archive`.`foruserid`, " & _
 				"`time_summary_archive`.`approverid`, " & _
 				"`time_detail_archive`.`workday`, " & _
 				"`time_detail_archive`.`id`, " & _
@@ -68,7 +80,8 @@
 				"`time_detail_archive`.`timeout`, " & _
 				"`tbl_users`.`lastName`, " & _
 				"`tbl_users`.`firstName`, " & _
-				"(ABS(TIME_TO_SEC(TIMEDIFF(`time_detail_archive`.`timeout`, `time_detail_archive`.`timein`)))/60)/60 as hours " & _
+				"(ABS(TIME_TO_SEC(TIMEDIFF(`time_detail_archive`.`timeout`, `time_detail_archive`.`timein`)))/60)/60 as hours, " & _
+				"`time_detail_archive`.`adjusted` as adjustedhours " & _
 				"" & _
 			"FROM time_summary_archive " & _
 				"RIGHT JOIN time_detail_archive " & _
@@ -80,12 +93,16 @@
 						"' AND `time_summary_archive`.`weekending` <= '" & mySqlToDate & "') " & _
 			"UNION ALL " & _
 			"SELECT " & _
+				"`time_summary_archive`.`id` AS summaryid, " & _
 				"`time_summary_archive`.`weekending`, " & _
 				"`time_detail_archive`.`created`, " & _
 				"`time_summary_archive`.`site`, " & _
 				"`time_summary_archive`.`customer`, " & _
 				"`time_summary_archive`.`placementid`, " & _
+				"`time_summary_archive`.`department`, " & _
+				"`time_summary_archive`.`costcenter`, " & _
 				"`time_summary_archive`.`creatorid`, " & _
+				"`time_summary_archive`.`foruserid`, " & _
 				"`time_summary_archive`.`approverid`, " & _
 				"`time_detail_archive`.`workday`, " & _
 				"`time_detail_archive`.`id`, " & _
@@ -93,17 +110,20 @@
 				"`time_detail_archive`.`timeout`, " & _
 				"`tbl_users`.`lastName`, " & _
 				"`tbl_users`.`firstName`, " & _
-				"(ABS(TIME_TO_SEC(TIMEDIFF(`time_detail_archive`.`timeout`, `time_detail_archive`.`timein`)))/60)/60 as hours " & _
+				"(TIME_TO_SEC(TIMEDIFF('23:59:59', `time_detail_archive`.`timein`))+" &_
+				"TIME_TO_SEC(TIMEDIFF(`time_detail_archive`.`timeout`, '00:00:00'))) / 60 / 60 AS hours,  " & _
+				"`time_detail_archive`.`adjusted` as adjustedhours " & _
 				"" & _
 			"FROM time_summary_archive " & _
 				"RIGHT JOIN time_detail_archive " & _
 					"ON time_summary_archive.id=time_detail_archive.summaryid " & _
 				"LEFT JOIN tbl_users " & _
 					"ON time_detail_archive.creatorid=tbl_users.userid " & _
-				"WHERE `time_summary_archive`.`customer` like " & insert_string(customer) & " AND (`time_detail_archive`.`timeout` < `time_detail_archive`.`timein`  AND " & _
-						"`time_summary_archive`.`weekending` >= '" & mySqlFromDate & _
+				"WHERE `time_summary_archive`.`customer` like " & insert_string(customer) & " AND (`time_detail_archive`.`timeout` < `time_detail_archive`.`timein`)  AND " & _
+						"(`time_summary_archive`.`weekending` >= '" & mySqlFromDate & _
 						"' AND `time_summary_archive`.`weekending` <= '" & mySqlToDate & "')) AS t LEFT JOIN tbl_users AS tbl_supervisors ON t.approverid = tbl_supervisors.userid " & _
-				"ORDER By t.customer, t.site, t.weekending desc, t.lastName, t.firstName, t.created, t.approverid;"
+						"LEFT JOIN tbl_users ON t.foruserid = tbl_users.userid " & _
+				"ORDER By t.customer, t.site, t.weekending desc, t.costcenter, t.department, t.lastName, t.firstName, t.created, t.approverid;"
 
 				
 				'print sql
@@ -219,7 +239,21 @@ Function WeekDayLabel(daynumber)
         Case 7
             WeekDayLabel = "Sat"
 
+		Case 8 'Correct for scripts that don't trim down for Sunday
+            WeekDayLabel = "Sat"
+
     End Select
 
 End Function
+
+	
+Function ConvertHoursIntoDecimal(D)
+	Dim TB
+    if len(D) > 0 then
+		TB = Split(D, ":")
+		ConvertHoursIntoDecimal = TB(0) + ((TB(1) * 100) / 60) / 100
+	end if
+End Function
+
+
 %>

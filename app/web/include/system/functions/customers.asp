@@ -1,4 +1,5 @@
 <!-- #include virtual='/include/system/functions/common.asp' -->
+
 <%
 dim post_to
 post_to = "maintainCustomer.asp"
@@ -25,6 +26,20 @@ dim PrintStatement
 dim CustomerType
 dim InvoiceFormat
 dim Notes
+
+dim CurrentCustomer
+set CurrentCustomer = new CCurrentCustomer
+
+
+CurrentCustomer.customerNumber = "JERCHE"
+CurrentCustomer.status = "Current"
+CurrentCustomer.entryDate = "01/12/12"
+CurrentCustomer.availableDate = "02/15/15"
+CurrentCustomer.lastAssigned = "Danielle Suarez"
+CurrentCustomer.assignedTo = "Danielle Suarez"
+
+CurrentCustomer.LoadSomething()
+
 
 if len(cust) > 0 then
 

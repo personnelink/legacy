@@ -15,6 +15,8 @@ a.squarebutton, a.squarebutton span, .buttonwrapper, .bug, #bread, .squarebutton
 body {
 	background: none
 }
+
+
 }
 
 /* redefine global id */
@@ -98,10 +100,10 @@ div#topPageRecordsByOrder, div#topPageRecordsByCust {
 	margin: 0 1em 0 0;
 }
 
-div#scrollOrders, div#scrollCustomers {
+#order_activity, div#scrollOrders, div#scrollCustomers {
 	height: 8em;
-	overflow: auto;
-	overflow-X: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 span.select {
@@ -238,7 +240,7 @@ ul.what_activites li a {
 	padding: 20px 0 0 0;
 	font-size: 13px;
 	text-transform: uppercase;
-	line-height : 1;
+	line-height : 1em;
 	font-weight: bold;
 }
 
@@ -338,7 +340,7 @@ span.DateLastActive div {
 }
 
 span.CustomerAddress {
-	width: 16em;
+	width: 20em;
 }
 
 span.CustomerContact {
@@ -519,6 +521,8 @@ td.OrderPhone div {
 
 .OrderActivities {
 	width: 18%;
+	text-align:right;
+	padding-left:4em;
 }
 
 td.OrderActivities div {
@@ -593,6 +597,7 @@ span.col_we {
 
 span.col_we_b {
 	width: 8em;
+	text-align:right;
 }
 
 span.col_day {
@@ -608,27 +613,29 @@ span.col_time {
 }
 
 .col_we {
-	width: 10em;
+	width: 12em;
 }
 
 .col_we_b {
-	width: 9.4em;
+	width: 10em;
 }
 
 .col_day {
-	width: 4em;
+	width: 3em;
 }
 
 .col_spc {
-	width: 1.4em;
+	width: 0.5em;
 }
 
 .col_time {
-	width: 2.4em;
+	width: 2em;
+	vertical-align:middle;
+	text-align:center;
 }
 
 .col_cntrls {
-	width: 13em;
+	width: 14em;
 }
 
 div.notes {
@@ -656,7 +663,7 @@ table.time_detail {
 }
 
 th.delete {
-	width: 14em;
+	width: 26em;
 }
 
 span.table_seperator {
@@ -688,7 +695,14 @@ table.time_summary input.inpWeekEnding {
 
 table.time_detail input {
 	height: 1.2em;
-	width: 4em;
+	width: 3em;
+	margin-bottom: 0;
+}
+
+table.time_detail td.timeinput span {
+	display:block;
+	height: 1.2em;
+	width: 2.8em;
 	margin-bottom: 0;
 }
 
@@ -727,24 +741,33 @@ table.time_summary td.cntrlTimeDetail div.left_margin {
 	width: 18em !important;
 }
 
+table.time_detail th.left_margin,
 table.time_detail td.left_margin {
-	width: 3em;
+	width: 3.5em;
 }
 
 table.time_detail th.weekday {
 	width: 4.4em;
 }
 
+table.time_detail td.weekday span,
 table.time_detail td.weekday select {
 	width: 4.4em;
 }
 
+table.time_detail td.timeinput,
 table.time_detail th.timeinput {
-	width: 6.4em;
+	width: 4.4em;
+	vertical-align:center;
 }
 
+table.time_detail td.timeinput input {
+	width: 3em;
+}
+
+table.time_detail td.timeinput span,
 table.time_detail td.timeinput select {
-	width: 6.4em;
+	width: 5.8em;
 }
 
 table.time_detail td.hourstotal input {
@@ -793,6 +816,7 @@ td.delete_time_detail {
 	text-align: left;
 	margin: 0;
 	padding: 0.4em 0;
+	float:right;
 }
 
 /* confirmation box */
@@ -811,6 +835,7 @@ div#popup {
 .CustomerActivities {
 	width: 8.4em;
 	display: inline-block;
+	padding-left:1em;
 	text-align: right;
 	float: left;
 	clear: right;
@@ -903,6 +928,9 @@ div.leftline, div.joborders, div.timedetails, div.weekendings, div.placements {
 	background-color: transparent;
 	border-left: 1px solid #f0f0f0;
 }
+
+div.timedetails {padding-left:9em !important;}
+
 
 div.timesummaries {
 	margin: 0 0 0 0.8em;

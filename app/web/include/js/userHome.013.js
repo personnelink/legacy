@@ -1,6 +1,6 @@
 document.write('<script type="text/javascript" src="/include/js/global.js"></scr' + 'ipt>');
-
-
+		
+		
 function get_appointments() {
 	var appointments_element = document.getElementById("appointments");
 	if (appointments_element != null){
@@ -22,6 +22,33 @@ var getAppointments = function () {
 
 }
 
+
+//we need to check to see if who = unemployment, if = unemployment then smoke.alert Please contact PP at office. If not unemployment then What kind of work. 
+//we need to connect "unemployment" to the actual database and make certain that it is equalling correctly!!!!!!!!!!!!
+/* function get_unemployment() {
+var employable = document.getElementById("signApplicantIn").value;
+	if (employable = "3710") {
+	smoke.alert("Please contact us at PPlus");
+	
+	} else {
+		smoke.prompt("What kind of work are you looking for?", function(e){
+			if (e =="Yes"){
+		
+				return true;			
+			} else {
+				
+			}, 
+			{
+				ok: "Submit",
+				cancel: "Cancel",
+				classname: "custom-class",
+				reverseButtons: true,
+				value: ""
+			});
+		}
+	}
+} */
+	
 function retrieve_messages() {
 	var messages_element = document.getElementById("messages");
 	if (messages_element != null){
@@ -57,7 +84,6 @@ var showAppointmentsResponse = function (oXML) {
 	}
 };
 
-
 var drugtest = {
 	upload: function () {
 		grayOut(true);
@@ -75,12 +101,39 @@ var retrieve = {
 		} else {
 			alert("Missing some info, aborting.");
 		}
+	},
+	invoice:  function() {
+				
+		var site = prompt("Retrieve for which company code?");
+		var customer = prompt("Retrieve for which customer code?");
+		var invoice = prompt("Which invoice?");
+		console.log("thank you");
+		if (site!=null || customer!=null ||invoice!=null) {
+			window.location.href = "https://www.personnelinc.com/include/system/services/sendPDF.asp?site="+site+"&customer="+customer+"&id="+invoice+"&cat=inv";
+		} else {
+			alert("Missing some info, aborting.");
+		}
 	}
-}
+};
+
+var slide = {
+	closed: function(trigger_elem, target_elem) {
+		$("#"+target_elem).slideUp();
+		$("#"+target_elem).onclick = slide.open(trigger_elem, target_elem);
+	},
+	open: function(trigger_elem, target_elem) {
+		$("#"+target_elem).slideUp();
+		$("#"+target_elem).onclick = slide.open(trigger_elem, target_elem);
+	}
+};
+
 
 
 $( document ).ready(function() {
-
+	// debugger
+	// $("hm_p_58_1").onclick = function() { slide.closed('hm_span_68_1','hm_p_58_1'); };
+	// $("hm_p_58_1").trigger("onclick");
+	get_appointments();
 	console.log("ready.");
 
 });

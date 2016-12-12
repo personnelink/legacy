@@ -27,7 +27,7 @@ end if
 <%
 if session("no_header") <> true then 
 	response.write header_response & ie_ifs
-	response.Flush()
+	if session("no-flush") <> true then response.Flush()
 else
 	session("no_header") = false
 end if 

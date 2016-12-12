@@ -285,7 +285,7 @@ var current_customer = "";
 var user_info_timer;
 var user_info = {
 	lookup: function () {
-		grayOut(true);
+		// grayOut(true);
 		
 		var link = document.getElementById('id_container');
 		link.style.display = 'none';
@@ -341,7 +341,7 @@ var user_info = {
 			doAJAXCall('/include/system/tools/timeclock/ajax/', 'GET', '' + GetStr + '', user_info.update);
 		} else {
 			document.getElementById("cost_center").innerHTML = $("#readerror").html();
-			grayOut(false);
+			// grayOut(false);
 			clearTimeout(user_info_timer);		
 			user_info_timer = setTimeout("user_info.clear()", 2000);
 
@@ -386,13 +386,13 @@ var user_info = {
 		link.style.display = 'block';
 
 		
-		grayOut(false);
+		// grayOut(false);
 		
 
 	},	
 	clear_success: function() {
 		console.log("clearing success...");
-		grayOut(false);
+		// grayOut(false);
 		
 		
 		// $("#id_container").slideDown( "slow", function() {
@@ -427,7 +427,7 @@ var cost_centers = {
 			cost_centers.get_actions(current_placement, current_applicant, current_site, current_customer);
 
 		} else {
-			grayOut(false);
+			// grayOut(false);
 		}
 		clearTimeout(user_info_timer);		
 		user_info_timer = setTimeout("user_info.clear()", 2000);
@@ -452,7 +452,7 @@ var cost_centers = {
 var timeclock = {
 	show_actions: function (oXML) {
 		var action_div = document.getElementById("chose_action")
-		alert('hi');
+		// alert('hi');
 		action_div.style.display="block";
 		var response = oXML.responseText;
 		action_div.innerHTML = response;
@@ -469,7 +469,7 @@ var timeclock = {
 		}
 		
 		
-		grayOut(false);
+		// grayOut(false);
 
 		// give user time extension
 		clearTimeout(user_info_timer);		
@@ -477,7 +477,7 @@ var timeclock = {
 		
 	},
 	clockin: function(placementid, siteid, customer, applicantid){
-		grayOut(true);
+		// grayOut(true);
 		// alert('clock in')
 
 		// var PostStr = "do=getuserdetail&site=0&id=20021"+search.value;
@@ -485,7 +485,7 @@ var timeclock = {
 		doAJAXCall('/include/system/tools/timeclock/ajax/', 'POST', '' + PostStr + '', timeclock.show_status);
 	},
 	clockout: function(placementid, siteid, customer, applicantid) {
-		grayOut(true);
+		// grayOut(true);
 		// alert('clock out')
 
 		// var PostStr = "do=getuserdetail&site=0&id=20021"+search.value;
@@ -493,7 +493,7 @@ var timeclock = {
 		doAJAXCall('/include/system/tools/timeclock/ajax/', 'POST', '' + PostStr + '', timeclock.show_status);	
 	},
 	show_status: function(oXML) {
-		grayOut(false);
+		// grayOut(false);
 	
 		document.getElementById("cost_center").innerHTML = "";
 		document.getElementById("chose_action").innerHTML = "";
@@ -540,7 +540,7 @@ function PlaySound(soundObj) {
 console.log('in play sound');
   var sound = document.getElementById(soundObj);
   if (sound){
-	sound.Play();
+	// sound.Play();
 	console.log('sounded');
 	} else {
 	console.log('not sounded');

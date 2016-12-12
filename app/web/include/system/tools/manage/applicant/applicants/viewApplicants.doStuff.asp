@@ -22,6 +22,15 @@ if len(whichCompany) = 0 then
 	end if
 end if
 
+dim WhichPage
+WhichPage = Request.QueryString("WhichPage")
+if len(WhichPage) = 0 then
+	WhichPage = request.form("WhichPage")
+	if len(WhichPage) = 0 then
+		WhichPage = 1
+	end if
+end if
+
 
 dim likeName
 likeName = Replace(Request.QueryString("likeName"), "'", "''")
@@ -160,7 +169,8 @@ do while not ( Applicants.Eof Or Applicants.AbsolutePage <> nPage )
 end sub
 
 dim nPage
-nPage = CInt(Request.QueryString("Page"))
+
+nPage = CInt(WhichPage)
 function navRecordsByPage(rs)
 
 	nItemsPerPage = 50

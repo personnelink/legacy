@@ -1,7 +1,7 @@
 <%Option Explicit%>
 <%Response.Buffer = False%> 
 <%
-session("add_css") = "./manageUsers.css"
+session("add_css") = "./manageUsers.001.css"
 session("window_page_title") = "Manage Users - Personnel Plus"
 
 dim page_title
@@ -82,9 +82,9 @@ end if
 	VMS_Users.CursorLocation = 3 ' adUseClient
 	
 	if selectedCompany = "0" then
-		SQL = "SELECT userID, firstName, lastName, userName FROM tbl_users WHERE (companyID=" & selectedCompany & " OR companyID is null)" & sSearchString & " ORDER By lastName, firstName Asc"
+		SQL = "SELECT userID, firstName, lastName, userName, creationDate, lastloginDate FROM tbl_users WHERE (companyID=" & selectedCompany & " OR companyID is null)" & sSearchString & " ORDER By lastName, firstName Asc"
 	else	
-		SQL = "SELECT userID, firstName, lastName, userName FROM tbl_users WHERE companyID=" & selectedCompany & " ORDER By lastName, firstName Asc"
+		SQL = "SELECT userID, firstName, lastName, userName, creationDate, lastloginDate  FROM tbl_users WHERE companyID=" & selectedCompany & " ORDER By lastName, firstName Asc"
 	end if
 
 	VMS_Users.Open SQL, MySql
@@ -190,14 +190,17 @@ end if
 	
 	dim srchUserID
 	dim srchUserName
+	dim srchDates
 
 	do while not ( VMS_Users.Eof Or VMS_Users.AbsolutePage <> nPage )
 		srchUserID = VMS_Users("userID")
 		srchUserName = VMS_Users("userName")
-		firstNameLast =  Pcase(VMS_Users("lastName")) & ", " & Pcase(VMS_Users("firstName"))  %>
+		firstNameLast =  Pcase(VMS_Users("lastName")) & ", " & Pcase(VMS_Users("firstName"))
+		srchDates = "born:" & VMS_Users("creationDate") & "<br />last: " & VMS_Users("lastloginDate")
+		%>
         <li>
           <input class="styled" style="border:none;" type="checkbox" name="userID" id="userID" value="<%=userID%>">
-          <a href="?Action=<%=view%>&amp;UserID=<%=srchUserID%><%=qryOptions%>"><%=firstNameLast%><span><%=srchUserName%></span></a></li>
+          <a href="?Action=<%=view%>&amp;UserID=<%=srchUserID%><%=qryOptions%>"><%=firstNameLast%><span><%=srchUserName%><span><%=srchDates%></span></span></a></li>
         <%
 		response.flush
 		VMS_Users.Movenext
@@ -229,6 +232,7 @@ end if
 	dim Title, Department, FirstName, LastName, PrimaryPhone, SecondaryPhone, eMail, ReeMail, AddressOne
 	dim AddressTwo, City, UserState, ZipCode, Country, Password, UserLevel, ConfirmPassword, AlternateeMail
 	dim AssignedTo, SecurityLowScope, SecurityHighScope
+	dim DateCreated, DateLastLogin
 	
 	select case Request.QueryString("action")
 	case add 
@@ -236,25 +240,25 @@ end if
 		AssignedTo = request.form("inpAssignedToCompany")
 				objCompSelector = buildCompanySelector("inpAssignedToCompany", AssignedTo, "")
 		
-		Title = request.form("title")
-		Department = request.form("department")
-		CompanyName = request.form("companyname")
-		FirstName = request.form("nameF")
-		LastName = request.form("nameL")
+		Title = trim(request.form("title"))
+		Department = trim(request.form("department"))
+		CompanyName = trim(request.form("companyname"))
+		FirstName = trim(request.form("nameF"))
+		LastName = trim(request.form("nameL"))
 		PrimaryPhone = FormatPhone(request.form("Pphone"))
 		SecondaryPhone = FormatPhone(request.form("Sphone"))
-		eMail = request.form("email")
-		ReeMail = request.form("reemail")
-		AddressOne = request.form("addOne")
-		AddressTwo = request.form("addTwo")
-		City = request.form("city")
+		eMail = trim(request.form("email"))
+		ReeMail = trim(request.form("reemail"))
+		AddressOne = trim(request.form("addOne"))
+		AddressTwo = trim(request.form("addTwo"))
+		City = trim(request.form("city"))
 		UserState = request.form("state")
-		ZipCode = request.form("zipcode")
-		Country = request.form("country")
-		UserName = request.form("userName")
-		Password = request.form("password")
+		ZipCode = trim(request.form("zipcode"))
+		Country = trim(request.form("country"))
+		UserName = trim(request.form("userName"))
+		Password = unmask_length(request.form("typedpassword"))
 		UserLevel = request.form("security")
-		ConfirmPassword = request.form("retypedpassword")
+		ConfirmPassword = unmask_length(request.form("retypedpassword"))
 		
 	case view
 		SubmitValue = "Update"
@@ -271,6 +275,8 @@ end if
 			    Department = dbQuery("departmentID")
 			    UserLevel = dbQuery("userLevel")
 			    UserName = dbQuery("userName") : CantChangeUserName = "ReadOnly"
+				DateCreated = dbQuery("creationDate")
+				DateLastLogin = dbQuery("lastloginDate")
 			    Password = dbQuery("userPassword")
 			    ConfirmPassword = Password
 			    FirstName = dbQuery("firstName")
@@ -371,13 +377,13 @@ end if
       <p>
         <label for="userName">User Name</label>
         <input type="text" id="userName" name="userName" autocomplete="off" size="60" value="<%=userName%>"  <%=CantChangeUserName%>>
-      </p>      <p>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" autocomplete="off" size="30" value="<%=Password%>" >
+      </p> <p><span class="smaller">Created: <%=DateCreated%>, <br /> Last logged in: <%=DateLastLogin%></span></p>  <p>
+        <label for="typedpassword">Password</label>
+        <input type="password" id="typedpassword" name="typedpassword" autocomplete="off" size="30" value="<%=mask_length(Password, 31)%>" >
       </p>
       <p>
         <label for="retypedpassword">Retype Password</label>
-        <input type="password" id="retypedpassword" name="retypedpassword" size="30" value="<%=ConfirmPassword%>" autocomplete="off">
+        <input type="password" id="retypedpassword" name="retypedpassword" size="30" value="<%=mask_length(ConfirmPassword, 31)%>" autocomplete="off">
       </p>
       <%if CantChangeUserName <> "" then response.write("<input name='UserNameReadOnly' type='hidden' value='true'>")	%>
       <input name="userID" type="hidden" value="<%=selected_userId%>">

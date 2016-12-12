@@ -41,11 +41,7 @@ end select
 </div>
 
 -->
-
-<div class='sbutton' id='gplusone'>
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-<g:plusone size="tall"></g:plusone>
-</div><%
+<%
 
 
 end if

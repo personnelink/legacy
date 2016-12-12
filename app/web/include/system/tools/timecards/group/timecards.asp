@@ -1,24 +1,17 @@
 <%
-const jsver = "006"
-const cssver = "007"
 
-session("add_css") = "./timecards." & cssver & ".css"
 session("required_user_level") = 2048 'userLevelPPlusStaff
 session("window_page_title") = "Time Cards - Personnel Plus"
 
 %>
-<!-- #include virtual='/include/core/init_secure_session.asp' -->
-<script type="text/javascript" src="/include/functions/calendar/calendar.js"></script>
-<script type="text/javascript" src="/include/functions/calendar/calendar-setup.js"></script>
-<script type="text/javascript" src="/include/functions/calendar/lang/calendar-en.js"></script>
-<script type="text/javascript" src="timecards.<%=jsver%>.js"></script>
-<style type="text/css"> @import url("/include/functions/calendar/calendar-blue.css"); </style>
-<!-- #include virtual='/include/system/tools/timecards/group/timecard.classes.asp' -->
+
+<!-- #include virtual='/include/system/tools/timecards/group/app_base.vb' -->
+
 <!-- #include file='timecards.doStuff.asp' -->
 
 <!-- begin presentation stuff -->
 <form id="report_form" name="report_form" action="<%=aspPageName%>" method="get">
-<%=decorateTop("track_activities", "notToShort marLR10", "Time")%>
+
 <div id="whoseHereList"><%	if userLevelRequired(userLevelPPlusStaff) AND perspective <> "customer" then %>
 	<p><%=objCompanySelector(Customers.Site, false, "javascript:document.report_form.submit();")%>
 		<a style="float:right;margin:.25em 1em .25em" class="squarebutton" href="#" onclick="act_refresh('<%=Customers.Customer%>');"><span>Refresh View</span></a>
@@ -30,15 +23,16 @@ session("window_page_title") = "Time Cards - Personnel Plus"
 
 	<%=PageNavigation%>
 
-	<div style="clear:both"><span class="button" style="margin:0 0 0.4em;display:block;float:right;"><span><a style="color:#fff" href="/include/system/tools/activity/reports/Time_Archive/">Time Archive Report</a></span></span></div>
+	<div style="clear:both">
+		<span class="button" style="margin:0 0 0.4em;display:inline-block;float:right;"><span><a style="color:#fff" href="/include/system/tools/activity/reports/time_archive/">Time Archive Report By Employee (w/Change Audits)</a></span></span>
+		<span class="button" style="margin:0 0.4em 0.4em 0;display:inline-block;float:right;"><span><a style="color:#fff" href="/include/system/tools/activity/reports/time_archive/custom/">Time Archive Report By Department</a></span></span>
+	</div>
 	
 <%
 dim LastReference      : LastReference    = 0
 dim LastDepartment     : LastDepartment   = 0
 dim firstloop          : firstloop        = true
 dim department_total   : department_total = 0
-
-
 
 dim manage_customer_lnk
 manage_customer_form = "/include/system/tools/manage/customer/?"
@@ -87,10 +81,10 @@ for each Customer in Customers.Customers.Items
 			<div class="groupheader" >
 				<%=objShowMore(Customer.CustomerCode, Customer.CustomerName)%>
 				<span class="CustomerCode"><div><%=Customer.CustomerCode%></div></span>				
-				<span class="CustomerName"><div contenteditable="true"><%=Customer.CustomerName%></div></span>
-				<span class="CustomerAddress"><div contenteditable="true"><%=Customer.Address & ", " & Customer.Cityline%></div></span>
-				<span class="CustomerContact"><div contenteditable="true"><%=Customer.Contact%>&nbsp;</div></span>
-				<span class="CustomerPhone"><div contenteditable="true"><%=FormatPhone(Customer.Phone)%>&nbsp;</div></span>
+				<span class="CustomerName"><div><%=Customer.CustomerName%></div></span>
+				<span class="CustomerAddress"><div><%=Customer.Address & ", " & Customer.Cityline%></div></span>
+				<span class="CustomerContact"><div><%=Customer.Contact%>&nbsp;</div></span>
+				<span class="CustomerPhone"><div><%=FormatPhone(Customer.Phone)%>&nbsp;</div></span>
 				<span class="DateLastActive"><div><%=Customer.DateLastActive%>&nbsp;</div></span>
 				<span class="CustomerActivities btnCustomerActivity"><span class="button">
 					<span class="" onclick="activity.load.customer('<%=Customer.CustomerCode%>', '<%=qsActivityURL%>', '<%=Customers.Site%>', 'open')">View Activities</span></span>
@@ -112,7 +106,8 @@ Response.write group_footer
 %>
 	
 <!--	<div style="width: 300px; height: 300px; background: yellow" onclick="notify()">Cick here to notify</div> -->
-<span class="button"><span><a style="color:#fff;" href="/include/system/tools/activity/reports/Time_Archive/">Time Archive Report</a></span></span>
+<span class="button"><span><a style="color:#fff;" href="/include/system/tools/activity/reports/time_archive/">Time Archive By Employee (w/Change Audits)</a></span></span>
+<span class="button"><span><a style="color:#fff;" href="/include/system/tools/activity/reports/time_archive/custom/">Time Archive By Department</a></span></span>
 <%=PageNavigation%>
 </div>
 
@@ -122,14 +117,14 @@ Response.write group_footer
 	<span style="display:block;float:right;margin:0 6em 0 0;"><span class="OpenPlacement"></span> = Expecting Final Time card</span>
 </div>
 
-<%=decorateBottom()%>
+
 <input type="hidden" id="WarnedOverwriteDetail" name="WarnedOverwriteDetail" value="no" />
 <input type="hidden" id="WarnedOverwriteSummary" name="WarnedOverwriteSummary" value="no" />
 
 </form>
 
-<!--
-<div id="popup">
+
+<!--<div id="popup">
     <p>Are you sure you want to go to example.com?</p>
     <p>
         <a onclick="document.location='http://example.com/'; return false;">
@@ -139,8 +134,7 @@ Response.write group_footer
             No
         </a>
     </p>
-</div>
--->
+</div>-->
 
 <%
 noSocial = true

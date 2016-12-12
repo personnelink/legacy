@@ -70,6 +70,8 @@ div#upgradesInProgress {background: url('/include/user/images/upgrading.png') no
 .sprite_nav_sites li a:hover div div.hmAttach {background-position:-48px -48px;}
 
 
+
+
 /* employer pane */
 
 .sprite_nav li a div {margin:0 auto 0.4em;height: 48px;width: 48px;}
@@ -122,3 +124,28 @@ div#affiliations div ul li img {margin-right:5px}
 .home {margin:.25em 1em .25em}
 
 #our-mission-is {margin:2em 1em 1em;}
+
+
+#box
+{
+	width: 150px;
+	height: 150px;
+	background: #FFF;
+	border: red dotted 5px;
+	text-align: center;
+	position: absolute;
+	margin-left: -75px;
+	margin-top: -75px;
+	left: 50%;
+	top: 50%;
+	z-index: 20;
+	display: none;
+}
+
+#screen
+{
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: #000;
+}

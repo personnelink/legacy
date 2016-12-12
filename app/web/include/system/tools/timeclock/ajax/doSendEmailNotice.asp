@@ -12,6 +12,10 @@ REM placementid = 36065
 REM sendEmployeeTimeSummaryEmail()
 
 public function sendEmployeeTimeSummaryEmail(MySqlFriendlyDate)
+
+end function
+
+public function futureSendEmployeeTimeSummaryEmail(MySqlFriendlyDate)
 	' retrieve employee's un-submitted time summaries
 	'
 	dim customer
@@ -253,6 +257,7 @@ REM Dim setCustomer_cmd
 		dim SendTo
 		'SendTo = employeeName & "<" & rs("userEmail") & ">"
 		SendTo = employeeName & "<richardksizemore@gmail.com>" 'for testing so all go to Richard for now
+		'SendTo = SendTo & employeeName & "<jpeterson@personnel.com>" 'for testing so all go to Richard for now
 
 		
 		SendEmail SendTo, time_summary_email, replace(dbQuery("subject"), "%deadline%", strDeadline), MessageBody & "<send_as_html>", ""

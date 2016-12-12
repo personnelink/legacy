@@ -7,11 +7,6 @@ case else
 	global_debug = false
 end select
 
-dim qsUsername, qsSecret
-qsUsername = replace(request.QueryString("qsuser"), "'", "''")
-
-qsSecret   = replace(request.QueryString("qssecret"), "'", "''")
-
 
 if global_debug then
 	dim  objFS, debug_log
@@ -130,7 +125,7 @@ end if
 if session("no_header") <> true then 
 
 	response.write header_response & ie_ifs
-	response.Flush()
+	if session("no-flush") <> true then response.Flush()
 else
 	session("no_header") = false
 end if 

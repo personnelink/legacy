@@ -75,7 +75,8 @@ end function
 
 SQL = "SELECT tbl_companies.companyName, tbl_companies.Customer, tbl_companies.weekends, tbl_companies.companyid, " &_
 	"tbl_companies.site, tbl_addresses.address, tbl_addresses.city, tbl_addresses.state, tbl_addresses.zip " &_
-	"FROM tbl_companies LEFT JOIN tbl_addresses ON tbl_companies.addressid=tbl_addresses.addressid "
+	"FROM tbl_companies LEFT JOIN tbl_addresses ON tbl_companies.addressid=tbl_addresses.addressid " &_
+	"ORDER BY tbl_companies.companyName ASC;"
 	'"WHERE " & sSearchString & "tbl_companies.creationDate>='" & fromMySqlFriendlyDate &_
 	'"' AND tbl_companies.creationDate<='" & toMySqlFriendlyDate & "' " &_
 	'"ORDER BY tbl_companies.companyName ASC, tbl_addresses.city ASC;"

@@ -179,10 +179,23 @@ var customer = {
 			button_cancel: "Cancel"
 		});
 	},
+	hideorders: function(customercode, order_div) {
+		var expand_trigger = document.getElementById("ctrlCustomers"+customercode);
+		setAttributeClass(expand_trigger, "ShowMore");
+		$("#"+order_div).slideUp();
+		expand_trigger.onclick = function() {customer.reshoworders(customercode, order_div);};
+	},
+	reshoworders: function(customercode, order_div) {
+		var expand_trigger = document.getElementById("ctrlCustomers"+customercode);
+		setAttributeClass(expand_trigger, "ShowLess");
+		$("#"+order_div).slideDown();
+		expand_trigger.onclick = function() {customer.hideorders(customercode, order_div);};
+	},
 	getorders: function (customercode, sitedb, status) {
-	
 		setAttributeClass(document.getElementById(status+"ordersdiv"+customercode), "loading");
-		setAttributeClass(document.getElementById("ctrlCustomers"+customercode), "ShowLess");
+		var expand_trigger = document.getElementById("ctrlCustomers"+customercode)
+		setAttributeClass(expand_trigger, "ShowLess");
+		expand_trigger.onclick = function() {customer.hideorders(customercode, status+"ordersdiv"+customercode);};
 
 		switch(status) {
 			case "closed":
@@ -194,6 +207,30 @@ var customer = {
 				break;
 			case "open":
 				var PostStr = "do=getorders&id=" + customercode + "&site=" + sitedb;
+				console.log(PostStr);
+				
+				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', customer.showopenorders);
+				return false;
+				break;
+		}
+	},
+	getemployeeorders: function (customercode, sitedb, status) {
+	
+		setAttributeClass(document.getElementById(status+"ordersdiv"+customercode), "loading");
+		var expand_trigger = document.getElementById("ctrlCustomers"+customercode)
+		setAttributeClass(expand_trigger, "ShowLess");
+		expand_trigger.onclick = function() {customer.hideorders(customercode, status+"ordersdiv"+customercode);};
+
+		switch(status) {
+			case "closed":
+				var PostStr = "do=getemployeeorders&id=" + customercode + "&site=" + sitedb + "&status=closed";
+				console.log(PostStr);
+				
+				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', customer.showclosedorders);
+				return false;
+				break;
+			case "open":
+				var PostStr = "do=getemployeeorders&id=" + customercode + "&site=" + sitedb;
 				console.log(PostStr);
 				
 				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', customer.showopenorders);
@@ -217,6 +254,9 @@ var customer = {
 		console.log(status+"ordersdiv"+response[1]);
 		document.getElementById(status+"ordersdiv"+response[1]).innerHTML = response[0];
 		document.getElementById(status+"ordersdiv"+response[1]).setAttribute("class", "");	
+
+		$('#'+status+'ordersdiv'+response[1]).find('.ShowMore').trigger("click");
+
 		return false;
 	},	
 	close: function (row_number, inv_number, site, cust) {
@@ -266,7 +306,7 @@ var customer = {
 
 var activity = {
 	load: {
-		customer: function (customercode, qs, sitedb, status) {
+		customer: function (customercode, site, ref) {
 	
 		// setAttributeClass(document.getElementById(status+"custActivityDiv"+customercode), "loading");
 		//setAttributeClass(document.getElementById("ctrlCustomers"+customercode), "ShowLess");
@@ -288,13 +328,51 @@ var activity = {
 				break;
 			}
 		},
-		order: function (customercode, qs, sitedb, status) {
-		
-		}
+		order: function (customercode, site, ref) {
+			
+			console.log('ready to load');
+			var PostStr = "&whichCompany="+site+"&act_when=all&WhichCustomer="+customercode+"&WhichOrder="+ref+"&v=1&isservice=1&site=" + site;
+
+			// use the generic function to make the request
+			doAJAXCall('/include/system/tools/activity/reports/activity/?'+PostStr, 'POST', '' + PostStr + '', activity.show.order);
+			return false;
+
+			}
 	},
-	show: function (oXML) {
-		var activiy_div = document.getElementById("custActivityDiv"+response[1])
+	show: {
+		customer: function (oXML) {
 	
+		// setAttributeClass(document.getElementById(status+"custActivityDiv"+customercode), "loading");
+		//setAttributeClass(document.getElementById("ctrlCustomers"+customercode), "ShowLess");
+
+		switch(status) {
+			case "closed":
+				var PostStr = "do=getorders&id=" + customercode + "&site=" + sitedb + "&status=closed";
+				console.log(PostStr);
+				
+				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', activity.show.customer);
+				return false;
+				break;
+			case "open":
+				var PostStr = qs;
+				console.log(PostStr);
+				
+				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', customer.show.customer);
+				return false;
+				break;
+			}
+		},
+		order: function (oXML) {
+			
+			var response = oXML.responseText.split("],[");
+			var ref = 2;
+			var html = 1;
+			
+			console.log('ready to load');
+			document.getElementById("order_activity_"+response[ref]).innerHTML = response[html];
+			$("#order_activity_"+response[ref]).slideDown();
+			
+		}
 	},
 	showopenorders: function (oXML) {
 		console.log("in showopenorders ");
@@ -377,6 +455,23 @@ var order = {
 		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', this.showplacements);
 		return false;
 	},
+	getemployeeplacements: function (custcode, reference, sitedb) {
+		console.log("ctrl.Orders."+custcode+"."+reference);
+		setAttributeClass(document.getElementById("or"+custcode+reference), "loading");
+		setAttributeClass(document.getElementById("ctrl.order."+custcode+"."+reference), "ShowLess");
+
+		$("#or"+custcode+reference).slideDown( "slow", function() {
+			// Animation complete.
+		});
+
+		document.getElementById("ctrl.order."+custcode+"."+reference).onclick = function() {
+			order.close(custcode,reference,sitedb);return false; 
+		}
+		
+		var PostStr = "do=getemployeeplacements&id=" + reference + "&site=" + sitedb + "&customer=" + custcode;
+		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', this.showplacements);
+		return false;
+	},
 	showplacements: function (oXML) {
 		// get the response text, into a variable
 		var response = oXML.responseText.split("<!-- [split] -->");
@@ -385,7 +480,7 @@ var order = {
 		document.getElementById("or"+response[1]).innerHTML = response[0];
 		document.getElementById("or"+response[1]).setAttribute("class", "placements");
 		
-		$('#or'+response[1]).find('.ShowMore').trigger("click");
+		// $('#or'+response[1]).find('.ShowMore').trigger("click");
 		
 		return false;
 	},
@@ -452,26 +547,43 @@ var order = {
 
 var placement = {
 	close: function(id, site) {
-		smoke.quiz("Expecting a final time card?", function(e){
-			if (e == "Yes"){
-				document.getElementById("Placement"+id).className = "Working";
-				//do procedure call
-				doAJAXCall('/include/system/tools/activity/reports/etc/ajax/doThings.asp?do=close&id='+id+'&site='+site+'&needfinaltime=true', 'POST', '' + PostStr + '', placement.showexpected);
-			} else if (e == "No") {
-				document.getElementById("Placement"+id).className = "Working";
-				//do procedure call
-				doAJAXCall('/include/system/tools/activity/reports/etc/ajax/doThings.asp?do=close&id='+id+'&site='+site+'&needfinaltime=false', 'POST', '' + PostStr + '', placement.showopen);
-			}
-		}, {
-			button_1: "Yes",
-			button_2: "No",
-			button_cancel: "Cancel"
-		});
-			
-			smoke.prompt("Enter last date worked:", function(e){
-			if (e =="Yes")
-			{
-			return true;
+		
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+		var yyyy = today.getFullYear();
+
+		if(dd<10) {
+			dd='0'+dd
+		} 
+
+		if(mm<10) {
+			mm='0'+mm
+		} 
+
+		today = mm+'/'+dd+'/'+yyyy;
+				
+		smoke.prompt("Enter last date worked:", function(e){
+			if (e) {
+			 var last_week_worked = encodeURIComponent(e);
+			smoke.quiz("Expecting a final time card?", function(e){
+				if (e == "Yes"){
+					//set spinning busy image...
+					document.getElementById("Placement"+id).className = "Working";
+					//do procedure call
+					doAJAXCall('ajax/doThings.asp?do=close&id='+id+'&site='+site+'&needfinaltime=true&we='+last_week_worked, 'POST', '' + PostStr + '', placement.showexpected);
+				} else if (e == "No") {
+					//set spinning busy image...
+					document.getElementById("Placement"+id).className = "Working";
+					//do procedure call
+					doAJAXCall('ajax/doThings.asp?do=close&id='+id+'&site='+site+'&needfinaltime=false&we='+last_week_worked, 'POST', '' + PostStr + '', placement.showopen);
+				}
+			}, {
+				button_1: "Yes",
+				button_2: "No",
+				button_cancel: "Cancel"
+			});
+				return true;
 			}
 			else
 			{
@@ -484,10 +596,9 @@ var placement = {
 			cancel: "Cancel",
 			classname: "custom-class",
 			reverseButtons: true,
-			value: ""
+			value: today
 			});
 			
-		var PostStr = ''
 	},
 	open: function(id, site) {
 		var PostStr = ''
@@ -570,6 +681,65 @@ var timesummary = {
 		// return false;
 		return false;
 	},
+	open_employee: function (placementid, sitedb) {
+		setAttributeClass(document.getElementById("timesummarydiv"+placementid), "loading");
+		setAttributeClass(document.getElementById("TimeSummary"+placementid), "ShowLess");
+		console.log(sitedb);
+		// build up the post string when passing variables to the server side page
+		// var PostStr = "variable=value&variable2=value2";
+		var PostStr = "do=employeetimesummary&id=" + placementid + "&site=" + sitedb;
+		// use the generic function to make the request
+		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', this.show);
+		
+		$("#timesummarydiv"+placementid).slideDown( "slow", function() {
+			// Animation complete.
+		});
+
+		$("#TimeSummary"+placementid).attr("onClick","timesummary.close_employee('"+placementid+"','"+sitedb+"')");
+		
+		return false;
+	},
+	open_internal: function (placementid, sitedb) {
+		setAttributeClass(document.getElementById("timesummarydiv"+placementid), "loading");
+		setAttributeClass(document.getElementById("TimeSummary"+placementid), "ShowLess");
+		console.log(sitedb);
+		// build up the post string when passing variables to the server side page
+		// var PostStr = "variable=value&variable2=value2";
+		var PostStr = "do=internaltimesummary&id=" + placementid + "&site=" + sitedb;
+		// use the generic function to make the request
+		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', this.show);
+		
+		$("#timesummarydiv"+placementid).slideDown( "slow", function() {
+			// Animation complete.
+		});
+
+		$("#TimeSummary"+placementid).attr("onClick","timesummary.close_internal('"+placementid+"','"+sitedb+"')");
+		return false;
+	},
+	edit: function (id) {
+		// span_time_summary_37083_2250
+		// time_summary_input_37083_2250
+		
+		$('#'+id).addClass("hide");
+		var input_row = id.substring(5).replace("time_summary", "time_summary_input");
+		$('#'+input_row).removeClass("hide");
+		
+		console.log('id:'+input_row);
+		
+		return false;
+	},
+	save: function (id) {
+		// span_time_summary_37083_2250
+		// time_summary_input_37083_2250
+		
+		$('#'+id).addClass("hide");
+		var span_row = id.replace("time_summary_input", "span_time_summary");
+		$('#'+span_row).removeClass("hide");
+		
+		console.log('id:'+span_row);
+		
+		return false;
+	},
 	show: function (oXML) {
 		// get the response text, into a variable
 		var response = oXML.responseText.split("<!-- [split] -->");
@@ -578,6 +748,9 @@ var timesummary = {
 		// expect id format example: timesummarydiv30128
 		document.getElementById("timesummarydiv"+response[1]).innerHTML = response[0];
 		document.getElementById("timesummarydiv"+response[1]).setAttribute("class", "timesummaries");
+
+		
+		// $('#timesummarydiv'+response[1]).find('.ShowMore').trigger("click");
 
 		//get id to attach Calendar event trigger
 		
@@ -596,6 +769,8 @@ var timesummary = {
 			});
 			
 		}
+		
+		
 		return false;
 	},
 	close: function (placementid, sitedb) {
@@ -608,6 +783,30 @@ var timesummary = {
 		});
 
 		$("#TimeSummary"+placementid).attr("onClick","timesummary.open('"+placementid+"','"+sitedb+"')");
+		return false;
+	},
+	close_employee: function (placementid, sitedb) {
+		setAttributeClass(document.getElementById("TimeSummary"+placementid), "ShowMore");
+		
+		var summary_div = document.getElementById("timesummarydiv"+placementid);
+		$(summary_div).slideUp( "slow", function() {
+			// Animation complete.
+			summary_div.innerHTML = "";
+		});
+
+		$("#TimeSummary"+placementid).attr("onClick","timesummary.open_employee('"+placementid+"','"+sitedb+"')");
+		return false;
+	},
+	close_internal: function (placementid, sitedb) {
+		setAttributeClass(document.getElementById("TimeSummary"+placementid), "ShowMore");
+		
+		var summary_div = document.getElementById("timesummarydiv"+placementid);
+		$(summary_div).slideUp( "slow", function() {
+			// Animation complete.
+			summary_div.innerHTML = "";
+		});
+
+		$("#TimeSummary"+placementid).attr("onClick","timesummary.open_internal('"+placementid+"','"+sitedb+"')");
 		return false;
 	},
 	add: function (id, sitedb) {
@@ -663,6 +862,9 @@ var timesummary = {
 		});
 	},
 	approve: function (placementid, sitedb, summaryid) {
+		grayOut(true);
+		window.setTimeout(function() {grayOut(false)}, 7500);
+		
 		var summary_div = document.getElementById("timesummarydiv"+placementid);
 	
 		if (summary_div.getAttribute("className")!=null){
@@ -677,8 +879,60 @@ var timesummary = {
 		doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
 		return false;
 	},
+	emp_submit: function (placementid, sitedb, summaryid) {
+		smoke.confirm("By submitting your electronic time card, you are attesting to the best of your knowledge that your information submitted is complete and accurate. You are responsible for any inaccuracy or omission of which you are aware at the time the electronic time card was submitted.", function(e){
+			if (e){
+				var summary_div = document.getElementById("timesummarydiv"+placementid);
+			
+				if (summary_div.getAttribute("className")!=null){
+					summary_div.setAttribute("className", "approved");
+				} else {
+					summary_div.setAttribute("class", "approved");
+				}
+				
+				var PostStr = "do=submitweek&id=" + placementid + "&site=" + sitedb + "&summary=" + summaryid;
+
+				// use the generic function to make the request
+				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timesummary.refresh);
+				return false;
+		
+			}else{
+				return false;
+			}
+		}, {
+			ok: "Submit",
+			cancel: "Cancel",
+			classname: "custom-class",
+			reverseButtons: true
+		});	
+
+
+	},
+	emp_unsubmit: function (placementid, sitedb, summaryid) {
+		smoke.alert("Congratulations your time has already been submitted for approval this week. If you feel that you received this message in error please don't hesitate to contact your local office.", function(e){
+			if (e){
+				var summary_div = document.getElementById("timesummarydiv"+placementid);
+			
+				if (summary_div.getAttribute("className")!=null){
+					summary_div.setAttribute("className", "approved");
+				} else {
+					summary_div.setAttribute("class", "approved");
+				}
+				return false;
+		
+			}else{
+				return false;
+			}
+		}, {
+			ok: "Yes, of course",
+			classname: "custom-class",
+		});	
+
+
+	},
 	refresh: function (oXML) {
 		// get the response text, into a variable
+		grayOut(false);
 		var response = oXML.responseText.split(":");
 		timesummary.open(response[0], response[1]);
 	}
@@ -710,7 +964,7 @@ function disable_enable(oField){
 	if (oField.disabled == true) {
 		oField.disabled = false;
 	} else {
-		oField.disabled=true;
+		oField.disabled = true;
 	}
 }
 
@@ -721,6 +975,32 @@ var ajaxTimeDetailBuffer=new Array(1);
 
 	
 var timedetail = {
+	edit: function (id) {
+		// span_time_summary_37083_2250
+		// time_summary_input_37083_2250
+		
+		$('#'+id).addClass("hide");
+		
+		$('#'+id.replace("span_", "")).removeClass("hide");
+		
+		console.log('id:'+'span_'+id);
+		
+		return false;
+	},
+	save: function (id) {
+		// span_time_summary_37083_2250
+		// time_summary_input_37083_2250
+		
+		$('#'+id.replace("span_", "")).addClass("hide");
+		var span_row = id.replace("span_", "");
+		$('#span_'+span_row).removeClass("hide");
+		
+		console.log('id:'+span_row);
+		
+		return false;
+	},
+
+
 	getdayname: function(weekday) {
 		switch (weekday) {
 			case 2:
@@ -855,7 +1135,7 @@ var timedetail = {
 		// alert(objField.name + "\n\n \
 			// " + "Day of week: " + ids[dayofweek] + "\n\n \
 			// " + "Placement Id: " + ids[placementid] + "\n\n \
-			// " +"Summary Id: "  + ids[summaryid] + "\n\n \
+			// " + "Summary Id: "  + ids[summaryid] + "\n\n \
 			// " + "Field Value: " + objField.value);
 		
 		// Status widget container was dropped
@@ -907,6 +1187,7 @@ var timedetail = {
 		return false;
 	},
 	changewe: function (frmFieldId, sitedb) {
+		console.log('here');
 		oForm = document.forms[0];
 		oField = document.getElementById(frmFieldId);
 		disable_enable(oField);
@@ -1070,8 +1351,9 @@ var timedetail = {
 					var commentdiv = document.getElementById('commentrow_'+placementid+'_'+summaryid+'_'+detailid);
 					commentdiv.className="show";
 					
-					commentdiv.innerHTML = '<span><i>'+e+'&nbsp;-&nbsp;'+user_name+'</i></span>'+commentdiv.innerHTML;
-					
+					$(commentdiv).prepend('<span><i>'+e+'&nbsp;-&nbsp;'+user_name+'</i></span>');
+					$(commentdiv).addClass("comments");
+
 				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', this.updateComments);
 				return true;
 
@@ -1087,6 +1369,7 @@ var timedetail = {
 		});
 	},
 	updateComments: function (oXML) {
+	
 		return false;
 	},
 	addRow: function (tableID) {
@@ -1135,10 +1418,16 @@ var timedetail = {
 			if (e){
 				// backup input values
 				var table=tableID.replace("plcemntTbl_","timedetaildiv");
+				
+				
 				divTimeDetail=document.getElementById(table);
 				timedetail.setBuffer(divTimeDetail);
 				
 				var PostStr = "do=deletetimedetail&detailid="+detailid+"&table="+tableID;
+				
+				$("#span_timedetail"+detailid).remove();
+				$("#timedetail"+detailid).remove();
+				
 				doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timedetail.removeRow);
 				return false;
 			}
@@ -1234,7 +1523,7 @@ var changeAudit = {
 			objAudit.sid=sid;
 			console.log("cid:"+cid)
 
-			if (cid!==sid) {
+			if (cid==sid) { // change back to cid!==sid later to reengage
 				smoke.prompt("What is the reason for the change?", function(e){
 					if (e){
 						console.log("inside smoke statement");
@@ -1314,11 +1603,18 @@ var timeclock = {
 			var workdays=detailentries[i].getElementsByClassName('detailday');
 				var d=workdays[0].options[workdays[0].selectedIndex].innerHTML.toLowerCase();
 				
-			var totalfield=detailentries[i].getElementsByClassName('detailtotal');
+			var adjustedfield=detailentries[i].getElementsByClassName('detailadjusted');
+			if ( !isNaN(adjustedfield[0].value) ){ // check if adjustment
+				if (isNaN(parseFloat(totalsByDay[d]))) {totalsByDay[d]=0;} //set field to zero for calc
+				totalsByDay[d]+=parseFloat(adjustedfield[0].value);
+			} else {
+				var totalfield=detailentries[i].getElementsByClassName('detailtotal');
+				
 				if (!isNaN(totalfield[0].value)){
-					if (isNaN(parseFloat(totalsByDay[d]))) {totalsByDay[d]=0;}
+					if (isNaN(parseFloat(totalsByDay[d]))) {totalsByDay[d]=0;} // set field to zero for calc
 					totalsByDay[d]+=parseFloat(totalfield[0].value);
 				}
+			}
 		}
 		console.log(elem.id);
 		for(var i=0;i<6;i++){
@@ -1329,10 +1625,21 @@ var timeclock = {
 		for(var i=0;i<daysums.length;i++) {
 			
 			var sumid=daysums[i].id.split('_');
+			var sumspan=document.getElementById('span_sum_d'+this.getday(i)+'_'+sumid[2]+'_'+sumid[3]);
 			var sumbox=document.getElementById('sum_d'+this.getday(i)+'_'+sumid[2]+'_'+sumid[3]);
 			sumbox.value=totalsByDay[this.getday(i)].toFixed(2);
+			sumspan.innerHTML=sumbox.value;
 		}
-
+		
+		// retotal super grand total
+		var wk_grand_total = new Number(0);
+		var sum_rt = elem.getElementsByClassName('sum_rt');
+		for(var i=0;i<sum_rt.length;i++) {
+			wk_grand_total = wk_grand_total + Number(sum_rt[i].value);
+		
+		}
+		document.getElementById('superT_'+sumid[2]).innerHTML = wk_grand_total;
+		
 		totalsByDay.forEach(function(entry) {
 			console.log(entry);
 		});
@@ -1409,7 +1716,7 @@ var timeclock = {
 		elemid=id;
 		// console.log(id);
 		var timeid        = id.split("_");
-		var idtype        = timeid[0]; //type of input selected: In, Out, Total, or Type
+		var idtype        = timeid[0]; //type of input selected: In, Out, Total, Adjusted or Type
 		var placementid   = timeid[1];
 		var summaryid     = timeid[2];
 		var detailid      = timeid[3];
@@ -1417,6 +1724,8 @@ var timeclock = {
 		// var workday       = document.getElementById(id).value;
 		var rowid         = placementid+"_"+summaryid+"_"+detailid+"_"+workday;
 		var timeinput     = document.getElementById(id);
+		
+		console.log("time_input_value:"+timeinput.length);
 		
 		// set audit values
 		var objTimeChangeAudit = {
@@ -1433,7 +1742,8 @@ var timeclock = {
 		var timein        = f[timeinput.name][0].value;
 		var timeout       = f[timeinput.name][1].value;
 		var timetotal     = f[timeinput.name][2].value;
-		var timetype      = f[timeinput.name][3].value;
+		var timeadjusted  = f[timeinput.name][3].value;
+		var timetype      = f[timeinput.name][4].value;
 		
 		// remarked 2014.2.4, deprecated and orphaned
 		// if (workday !== timeid[4]) {
@@ -1444,16 +1754,17 @@ var timeclock = {
 			// }
 		// }
 		
+		var adjustedbox = document.getElementById("adjusted_"+rowid);
 		var totalsbox = document.getElementById("total_"+rowid);
 		var inselect = document.getElementById("in_"+rowid);
 		var outselect = document.getElementById("out_"+rowid);
 		var typeselect = document.getElementById("type_"+rowid);
 		
-		// //instantiate the Audit Detail class
-		// var aAuditDetail = new AuditDetail();
-		// aAuditDetail.setAuditId(id);
-		// aAuditDetail.setFieldChanged(timeinput.name);
-		// aAuditDetail.setPreviousValue(timeinput.value);
+		 //instantiate the Audit Detail class
+		 var aAuditDetail = new AuditDetail();
+		 aAuditDetail.setAuditId(id);
+		 aAuditDetail.setFieldChanged(timeinput.name);
+		 aAuditDetail.setPreviousValue(timeinput.value);
 		
 		switch(idtype){
 			case "in":
@@ -1513,6 +1824,19 @@ var timeclock = {
 					timeinput.value=timeinput.defaultValue;
 				};
 				break;
+			case "adjusted":
+				console.log("adjusted");
+				objTimeChangeAudit.id = document.getElementById("adjusted_"+rowid);
+				objTimeChangeAudit.pvalue=timeadjusted;
+				if (changeAudit.compare(objTimeChangeAudit) === true) {
+					var PostStr = "do=updatetimedetail&id=" + id + "&t=" + timeadjusted + "&site=na";
+					doAJAXCall('ajax/doThings.asp?', 'POST', '' + PostStr + '', timeclock.updated);
+					
+				} else {
+					console.log('reverting field');
+					timeinput.value=timeinput.defaultValue;
+				};
+				break;
 			case "type":
 				console.log("update TimeDetail Type");
 				objTimeChangeAudit.pvalue=timetype;
@@ -1540,7 +1864,17 @@ var timeclock = {
 			default:
 				console.log("don't recognize any of the types: " + idtype);
 				break;
-		}		
+		}
+		
+		// sync spans with resultant input values
+		var workday_selector = document.getElementById("workday_"+rowid);
+		document.getElementById("span_adjusted_"+rowid).innerHTML = adjustedbox.value;
+		document.getElementById("span_total_"+rowid).innerHTML = totalsbox.value;
+		document.getElementById("span_in_"+rowid).innerHTML = inselect.value;
+		document.getElementById("span_out_"+rowid).innerHTML = outselect.value;
+		document.getElementById("span_type_"+rowid).innerHTML = typeselect.options[typeselect.selectedIndex].innerHTML;
+		document.getElementById("span_workday_"+rowid).innerHTML = workday_selector.options[workday_selector.selectedIndex].innerHTML;
+		
 	},
 	updated: function(oXML) {
 		console.log(oXML.responseText);

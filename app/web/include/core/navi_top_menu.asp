@@ -11,39 +11,49 @@ dim onClickAction, hrefAction
 header_response = header_response &_
 "<div id=""topnav"">" &_
 	"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""" & baseURL & "/include/content/home.asp"">Home</a>" &_
-	 "&nbsp;&nbsp; | &nbsp;&nbsp;<a href=""" & baseURL & "/include/content/about.asp"">About Personnel Plus</a>" &_
-	 "&nbsp;&nbsp; | &nbsp;&nbsp;<a href=""/case-studies.asp""><a href=""" & baseURL & "/include/content/resources.asp"">Resources</a>" &_
+	 "&nbsp;&nbsp; | &nbsp;&nbsp;<a href=""" & baseURL & "/include/content/about.asp"">About Us</a>" &_
+	 "&nbsp;&nbsp; | &nbsp;&nbsp;<a href=""" & baseURL & "/case-studies.asp"">Studies</a>" &_
+	 "&nbsp;&nbsp; | &nbsp;&nbsp;<a href=""" & baseURL & "/include/content/resources.asp"">Resources</a>" &_
 	 "&nbsp;&nbsp; | &nbsp;&nbsp;<a href=""" & baseURL & "/include/content/contact.asp"">Contact</a>" &_
 "</div>" 
 
+
+if not is_mobile then
 
 header_response = header_response &_
 "<div id=""account"" class=""right"">" &_
     "<ul id=""loginTabs"" class=""clearfix"">" &_
       "<li id=""logInTab"" class=""selected"">"
+
 	  
-if not session_signed_in then 
-		header_response = header_response & "<h2><a href=""" & ifDev & "/userHome.asp"" title=""Log In"">Log In</a></h2>"
-elseif session_signed_in then 
-		header_response = header_response & "<h2><a href=""" & ifDev & "/include/user/signOut.asp"" title=""Log Out"">Log Out</a></h2>"
-end if
+	if not session_signed_in then 
+			header_response = header_response & "<h2><a href=""" & ifDev & "/userHome.asp"" title=""Log In"">Log In</a></h2>"
+	elseif session_signed_in then 
+			header_response = header_response & "<h2><a href=""" & ifDev & "/include/user/signOut.asp"" title=""Log Out"">Log Out</a></h2>"
+	end if
+	
 
-header_response = header_response & "</li><li id=""signUpTab""" 
+	header_response = header_response & "</li><li id=""signUpTab""" 
 
-if session_signed_in then header_response = header_response & "class=""hide"""
+	if session_signed_in then header_response = header_response & "class=""hide"""
 
-if Instr(Request.ServerVariables("URL"), "submitapplication") > 0 then
-	onClickAction = "checkApplication();"
-	hrefAction = "#"
-Else
-	onClickAction = ""
-	hrefAction = secureURL & "/include/system/tools/applicant/application/"
-End if
+	if Instr(Request.ServerVariables("URL"), "submitapplication") > 0 then
+		onClickAction = "checkApplication();"
+		hrefAction = "#"
+	Else
+		onClickAction = ""
+		hrefAction = secureURL & "/include/system/tools/applicant/application/"
+	End if
 
-header_response = header_response & "><h2> <a title=""Apply Now!"" href=""" & hrefAction & """ onClick=""" & onClickAction & """>Apply Now!</a></h2>" &_
+
+	header_response = header_response & "><h2> <a title=""Apply Now!"" href=""" & hrefAction & """ onClick=""" & onClickAction & """>Apply Now!</a></h2>" &_
 	"</li>" &_
     "</ul>" &_
-  "</div></div>" &_
+  "</div>"
+
+end if 
+
+ header_response = header_response & "</div>" &_
 
 "<div id=""search"">" &_
 "<a class=""leftSearch"" href=""" & secureURL & "/userHome.asp"">" &_
@@ -51,7 +61,6 @@ header_response = header_response & "><h2> <a title=""Apply Now!"" href=""" & hr
 "<a class=""middleSearch"" href=""/include/system/tools/applicant/job_postings/"" title=""View Current Job Opportunities"">" &_
 "&nbsp;</a>" &_
 "<a class=""rightSearch"" href=""/include/system/tools/timecardEmp.asp"">&nbsp;</a>" &_
-
 "</div>" &_
 
 "<div id=""subBanner""><div id=""sessionStatus"">"
@@ -65,8 +74,43 @@ if session_signed_in then
 	  "</div>"
 end if
 
-header_response = header_response & "</div>" &_
-	"&nbsp;" &_
+header_response = header_response & "</div>"
+
+if is_mobile then 
+	header_response = header_response &_
+	"<div id=""account"" class=""right"">" &_
+		"<ul id=""loginTabs"" class=""clearfix"">" &_
+		  "<li id=""logInTab"" class=""selected"">"
+
+		  
+		if not session_signed_in then 
+				header_response = header_response & "<h2><a href=""" & ifDev & "/userHome.asp"" title=""Log In"">Log In</a></h2>"
+		elseif session_signed_in then 
+				header_response = header_response & "<h2><a href=""" & ifDev & "/include/user/signOut.asp"" title=""Log Out"">Log Out</a></h2>"
+		end if
+		
+
+		header_response = header_response & "</li><li id=""signUpTab""" 
+
+		if session_signed_in then header_response = header_response & "class=""hide"""
+
+		if Instr(Request.ServerVariables("URL"), "submitapplication") > 0 then
+			onClickAction = "checkApplication();"
+			hrefAction = "#"
+		Else
+			onClickAction = ""
+			hrefAction = secureURL & "/include/system/tools/applicant/application/"
+		End if
+
+
+	header_response = header_response & "><h2> <a title=""Apply Now!"" href=""" & hrefAction & """ onClick=""" & onClickAction & """>Apply Now!</a></h2>" &_
+		"</li>" &_
+		"</ul>" &_
+	  "</div>"
+
+end if
+
+header_response = header_response & "&nbsp;" &_
 	"</div>" &_ 
 	"<div id=""pageNavigation"">" &_
 	"<ul id=""nav"" class=""dropdown dropdown-horizontal"">" &_

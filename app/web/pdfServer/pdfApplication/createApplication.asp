@@ -65,7 +65,6 @@ CurrentApplication.ApplicationId = Request.Form("appID")
 If CurrentApplication.ApplicationId = "" Then
 	CurrentApplication.ApplicationId = Request.QueryString("appID")
 End If
-CurrentApplication.ActiveConnection = MySql
 
 'On Error Resume Next
 
@@ -1534,11 +1533,11 @@ Sub viewApplication (action)
 		case "nampa"
 			SitePath = "\\192.168.4.3\direct$\"
 		case "boise"
-			SitePath = "\\192.168.3.3\direct$\"
+			SitePath = "\\192.168.3.5\direct$\"
 		case "burley"
 			SitePath = "\\192.168.2.4\direct$\"
 		case "pocatello"
-			SitePath = "\\192.168.6.3\direct$\"
+			SitePath = "\\192.168.6.4\direct$\"
 		case else
 			SitePath = "\\personnelplus.net\attached\"
 		end select

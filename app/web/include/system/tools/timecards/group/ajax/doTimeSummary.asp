@@ -17,26 +17,24 @@ public function doTimeSummary()
 		REM "GROUP By time_summary.id, workday ORDER By weekending asc, id asc, workday asc;"
 
 		.CommandText = "" &_
-			"SELECT t.id, t.weekending, t.workday, SUM(t.halftotal) as totalhours, t.creatorid " &_ 
-			"FROM (SELECT time_summary.id, weekending, workday, timetotal AS halftotal, time_summary.creatorid " &_
+			"SELECT t.id, t.weekending, t.workday, SUM(t.halftotal) as totalhours, t.emp_submitted, t.pp_submitted, t.paid, t.approved, t.creatorid " &_ 
+			"FROM (SELECT time_summary.id, weekending, workday, timetotal AS halftotal, emp_submitted, pp_submitted, paid, approved, time_summary.creatorid " &_
 					 "FROM time_summary LEFT JOIN time_detail ON time_summary.id = time_detail.summaryid " &_
-					  "WHERE placementid=" & placementid & " " &_
+					  "WHERE placementid='" & placementid & "' " &_
 				 "UNION ALL " &_
-					"SELECT time_summary.id, weekending, workday, (ABS(TIME_TO_SEC(TIMEDIFF(timeout, timein))))/60/60 AS halftotal, time_summary.creatorid " &_
+					"SELECT time_summary.id, weekending, workday, (ABS(TIME_TO_SEC(TIMEDIFF(timeout, timein))))/60/60 AS halftotal, emp_submitted, pp_submitted, paid, approved, time_summary.creatorid " &_
 					 "FROM time_summary LEFT JOIN time_detail ON time_summary.id = time_detail.summaryid " &_
-					  "WHERE placementid=" & placementid & " AND (timeout > timein) " &_
+					  "WHERE placementid='" & placementid & "' AND (timeout > timein) " &_
 				 "UNION ALL " &_
-					"SELECT time_summary.id, weekending, workday, (ABS(TIME_TO_SEC(TIMEDIFF(ADDTIME(timeout, '24:00:00'), timein))))/60/60 AS halftotal, time_summary.creatorid " &_
+					"SELECT time_summary.id, weekending, workday, (ABS(TIME_TO_SEC(TIMEDIFF(ADDTIME(timeout, '24:00:00'), timein))))/60/60 AS halftotal, emp_submitted, pp_submitted, paid, approved, time_summary.creatorid " &_
 					 "FROM time_summary LEFT JOIN time_detail ON time_summary.id = time_detail.summaryid " &_
-					  "WHERE placementid=" & placementid & " AND (timeout < timein) " &_
+					  "WHERE placementid='" & placementid & "' AND (timeout < timein) " &_
 					 ") t " &_
 			"GROUP By t.id, t.workday ORDER By t.weekending asc, t.id asc, t.workday asc, t.creatorid;"
 			
 	end with
 	
-	'print cmd.CommandText
-	
-	
+ 'print cmd.CommandText
 	dim rs
 	set rs = cmd.execute()
 
@@ -45,8 +43,6 @@ public function doTimeSummary()
 	set this_summary = New cTimeSummary
 	do while not rs.eof
 		current_id = rs("id")
-		
-		'print "rs:" & rs("weekending")
 		
 		if len(last_id) = 0 then
 			last_id = current_id
@@ -114,47 +110,85 @@ public function doTimeSummary()
 
 	dim Summary, i
 	for each Summary in SumOfHours.Items
-%>
-		<table class="time_summary cid<%=Summary.creatorid%>">
-			<tr>
-				<th class="col_we weekending"><span id="TimeDetail<%=placementid & "_" & Summary.id%>" class="ShowMore" onclick="timedetail.open('<%=placementid & "_" & Summary.id%>', '<%=g_strSite%>');">&nbsp;</span>&nbsp;Week Ending:</th>
-				<th class="col_time">&nbsp;</th>
-				<th class="col_day"><%=Summary.DayName(0)%></th>
-				<th class="col_day"><%=Summary.DayName(1)%></th>
-				<th class="col_day"><%=Summary.DayName(2)%></th>
-				<th class="col_day"><%=Summary.DayName(3)%></th>
-				<th class="col_day"><%=Summary.DayName(4)%></th>
-				<th class="col_day"><%=Summary.DayName(5)%></th>
-				<th class="col_day"><%=Summary.DayName(6)%></th>
-				<th class="col_spc"></th>
-				<th class="col_day">Time</th>
-				<th class="col_spc">&nbsp;</th>
-				<th class="col_day">Expense</th>
-				<th class="col_cntrls">&nbsp;</th>
-			</tr></table>
-			
-			<div id="we_connector_<%=placementid & "_" & Summary.id%>" class="no_connector">
-			<table class="time_summary">
-			<tr>
-				<td class="col_we_b weekending"><%=inpWeekEndsOn(company_weekends, placementid, Summary.id, Summary.WeekEnding, "cid" & Summary.creatorid & " sid" & user_id)%></td>
-				<th class="col_time lbl_time">Time:</th>
-				<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>" id="sum_d<%=lcase(Summary.DayName(0))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(0))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(1)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
-				<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(1))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(1))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(2)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
-				<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(2))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(2))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(3)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
-				<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(3))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(3))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(4)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
-				<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(4))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(4))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(5)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
-				<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(5))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(5))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(6)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
-				<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(6))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(6))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(7)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
-				<td class="col_spc">&nbsp;=&nbsp;</td>		
-				<td class="col_day"><input class="cid<%=Summary.creatorid%> sid<%=user_id%>" id="sum_rt_<%=placementid%>_<%=Summary.id%>" name="sum_rt_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.TotalHours%>" onChange="timedetail.changel(this.name, '<%=g_strSite%>')"></td>
-				<td class="col_spc">+</td>		
-				<td class="col_day"><input id="sum_et_<%=placementid%>_<%=Summary.id%>" name="sum_et_<%=placementid%>_<%=Summary.id%>" size="2" disabled="disabled" value="<%=Summary.TotalExpense%>" onChange="timedetail.changel(this.name, '<%=g_strSite%>')"></td>
-				<td class="col_cntrls cntrlTimeDetail">
-					<span class="button" onclick="timesummary.remove('<%=placementid%>', '<%=g_strSite%>', '<%=Summary.id%>');"><span class="remove">Remove</span></span>
-					<span class="button" onclick="timesummary.approve('<%=placementid%>', '<%=g_strSite%>', '<%=Summary.id%>');"><span class="approve">Approve</span></span>
-				</td>
-			</tr>
-		</table>
+		if Summary.id > 0 then
+			%>
+			<table class="time_summary cid<%=Summary.creatorid%>">
+				<tr>
+					<th class="col_we weekending"><span id="TimeDetail<%=placementid & "_" & Summary.id%>" class="ShowMore" onclick="timedetail.open('<%=placementid & "_" & Summary.id%>', '<%=g_strSite%>');">&nbsp;</span>&nbsp;Week Ending:</th>
+					<th class="col_time">&nbsp;</th>
+					<th class="col_day"><%=Summary.DayName(0)%></th>
+					<th class="col_day"><%=Summary.DayName(1)%></th>
+					<th class="col_day"><%=Summary.DayName(2)%></th>
+					<th class="col_day"><%=Summary.DayName(3)%></th>
+					<th class="col_day"><%=Summary.DayName(4)%></th>
+					<th class="col_day"><%=Summary.DayName(5)%></th>
+					<th class="col_day"><%=Summary.DayName(6)%></th>
+					<th class="col_spc"></th>
+					<th class="col_day">Time</th>
+					<th class="col_spc">&nbsp;</th>
+					<th class="col_day">Expense</th>
+					<th class="col_cntrls">&nbsp;</th>
+				</tr></table>
+                
+                
+				<!--start read only-->
+				<div id="we_connector_<%=placementid & "_" & Summary.id%>" class="no_connector">
+				<table class="time_summary" id="span_time_summary_<%=placementid & "_" & Summary.id%>" >
+				<tr>
+					<td class="col_we_b weekending"><%=spanWeekEndsOn(company_weekends, placementid, Summary.id, Summary.WeekEnding, "cid" & Summary.creatorid & " sid" & user_id)%></td>
+					<th class="col_time lbl_time">Time:</th>
+					<td class="col_day"><span class="cid<%=Summary.creatorid%> sid<%=user_id%>" id="span_sum_d<%=lcase(Summary.DayName(0))%>_<%=placementid%>_<%=Summary.id%>"><%=TwoDecimals(0+Summary.Day(1))%></span></td>
+					<td class="col_day"><span class="cid<%=Summary.creatorid%> sid<%=user_id%>" id="span_sum_d<%=lcase(Summary.DayName(1))%>_<%=placementid%>_<%=Summary.id%>"><%=TwoDecimals(0+Summary.Day(2))%></span></td>
+					<td class="col_day"><span class="cid<%=Summary.creatorid%> sid<%=user_id%>" id="span_sum_d<%=lcase(Summary.DayName(2))%>_<%=placementid%>_<%=Summary.id%>"><%=TwoDecimals(0+Summary.Day(3))%></span></td>
+					<td class="col_day"><span class="cid<%=Summary.creatorid%> sid<%=user_id%>" id="span_sum_d<%=lcase(Summary.DayName(3))%>_<%=placementid%>_<%=Summary.id%>"><%=TwoDecimals(0+Summary.Day(4))%></span></td>
+					<td class="col_day"><span class="cid<%=Summary.creatorid%> sid<%=user_id%>" id="span_sum_d<%=lcase(Summary.DayName(4))%>_<%=placementid%>_<%=Summary.id%>"><%=TwoDecimals(0+Summary.Day(5))%></span></td>
+					<td class="col_day"><span class="cid<%=Summary.creatorid%> sid<%=user_id%>" id="span_sum_d<%=lcase(Summary.DayName(5))%>_<%=placementid%>_<%=Summary.id%>"><%=TwoDecimals(0+Summary.Day(6))%></span></td>
+					<td class="col_day"><span class="cid<%=Summary.creatorid%> sid<%=user_id%>" id="span_sum_d<%=lcase(Summary.DayName(6))%>_<%=placementid%>_<%=Summary.id%>"><%=TwoDecimals(0+Summary.Day(7))%></span></td>
+					<td class="col_spc">=</td>		
+					<td class="col_day"><span class="cid<%=Summary.creatorid%> sid<%=user_id%>" id="sum_rt_<%=placementid%>_<%=Summary.id%>"><%=Summary.TotalHours%></span></td>
+					<td class="col_spc">+</td>		
+					<td class="col_day"><span id="sum_et_<%=placementid%>_<%=Summary.id%>" data-name="sum_et_<%=placementid%>_<%=Summary.id%>" size="2" disabled="disabled"><%=Summary.TotalExpense%></span></td>
+					<td class="col_cntrls cntrlTimeDetail">
+						<span class="button" onclick="timesummary.edit('span_time_summary_<%=placementid & "_" & Summary.id%>');"><span class="edit">Edit</span></span>
+						<span class="button" onclick="timesummary.remove('<%=placementid%>', '<%=g_strSite%>', '<%=Summary.id%>');"><span class="remove">Remove</span></span>
+						<span class="button" onclick="timesummary.approve('<%=placementid%>', '<%=g_strSite%>', '<%=Summary.id%>');"><span class="approve">Approve</span></span>
+					</td>
+				</tr>
+			</table>
+            
+            
+            
+            
+            
+            
+            <!--start time summary input-->
+            
+            <table class="time_summary hide" id="time_summary_input_<%=placementid & "_" & Summary.id%>">
+				<tr>
+					<td class="col_we_b weekending"><%=inpWeekEndsOn(company_weekends, placementid, Summary.id, Summary.WeekEnding, "cid" & Summary.creatorid & " sid" & user_id)%></td>
+					<th class="col_time lbl_time">Time:</th>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>" id="sum_d<%=lcase(Summary.DayName(0))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(0))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(1)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(1))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(1))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(2)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(2))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(2))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(3)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(3))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(3))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(4)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(4))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(4))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(5)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(5))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(5))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(6)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(6))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(6))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(7)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_spc">&nbsp;=&nbsp;</td>		
+					<td class="col_day"><input class="cid<%=Summary.creatorid%> sid<%=user_id%> sum_rt" id="sum_rt_<%=placementid%>_<%=Summary.id%>" name="sum_rt_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.TotalHours%>" onChange="timedetail.changel(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_spc">+</td>		
+					<td class="col_day"><input id="sum_et_<%=placementid%>_<%=Summary.id%>" name="sum_et_<%=placementid%>_<%=Summary.id%>" size="2" disabled="disabled" value="<%=Summary.TotalExpense%>" onChange="timedetail.changel(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_cntrls cntrlTimeDetail">
+						<span class="button" onclick="timesummary.save('time_summary_input_<%=placementid & "_" & Summary.id%>');"><span class="remove">Save</span></span>
+						<span class="button" onclick="timesummary.remove('<%=placementid%>', '<%=g_strSite%>', '<%=Summary.id%>');"><span class="remove">Remove</span></span>
+						<span class="button" onclick="timesummary.approve('<%=placementid%>', '<%=g_strSite%>', '<%=Summary.id%>');"><span class="approve">Approve</span></span>
+					</td>
+				</tr>
+			</table>
+		<%
+		end if
+		%>
+		
 		<div id="timedetaildiv<%=placementid & "_" & Summary.id%>" class=""></div>
 		</div>
 		<span class="table_seperator"></span>
@@ -165,7 +199,7 @@ public function doTimeSummary()
 	<table class="time_summary">
 		<tr>
 			<td class="cntrlAddServices">
-				<span class="button addtime" onclick="timesummary.add('<%=placementid%>', '<%=g_strSite%>');"><span>Add Time</span></span>&nbsp;&nbsp;
+				<span class="button addtime" onclick="timesummary.add('<%=placementid%>', '<%=g_strSite%>');"><span>Add Week</span></span>&nbsp;&nbsp;
 				<span class="greybutton addexpense" future_onclick="expense.add('<%=placementid%>', '<%=g_strSite%>');"><span>Add Expense</span></span>&nbsp;&nbsp;
 				<span class="greybutton viewother" future_onclick="placements.view('<%=placementid%>', '<%=g_strSite%>');"><span>View Other Placements</span></span></td>&nbsp;
 			<td colspan="10"></td>
@@ -176,6 +210,457 @@ public function doTimeSummary()
 
 <%
 end function
+
+
+public function doInternalTimeSummary()	
+
+	dim placementid
+	placementid = getParameter("id")
+	
+	dim cmd
+	set cmd = server.CreateObject("ADODB.Command")
+	with cmd
+		.ActiveConnection = MySql
+		REM "SELECT time_summary.id, weekending, workday, SUM(TIME_TO_SEC(TIMEDIFF(timeout, timein))) AS totalhours " &_
+		REM "FROM time_summary LEFT JOIN time_detail ON time_summary.id = time_detail.summaryid " &_
+		REM "WHERE placementid=" & placementid & " " &_
+		REM "GROUP By time_summary.id, workday ORDER By weekending asc, id asc, workday asc;"
+
+		.CommandText = "" &_
+			"SELECT t.id, t.weekending, t.workday, SUM(t.halftotal) as totalhours, t.emp_submitted,  t.pp_submitted, t.paid, t.approved,  t.creatorid " &_ 
+			"FROM (SELECT time_summary.id, weekending, workday, timetotal AS halftotal, emp_submitted, pp_submitted, paid, approved, time_summary.creatorid " &_
+					 "FROM time_summary LEFT JOIN time_detail ON time_summary.id = time_detail.summaryid " &_
+					  "WHERE placementid=" & placementid & " " &_
+				 "UNION ALL " &_
+					"SELECT time_summary.id, weekending, workday, (ABS(TIME_TO_SEC(TIMEDIFF(timeout, timein))))/60/60 AS halftotal, emp_submitted, pp_submitted, paid, approved, time_summary.creatorid " &_
+					 "FROM time_summary LEFT JOIN time_detail ON time_summary.id = time_detail.summaryid " &_
+					  "WHERE placementid=" & placementid & " AND (timeout > timein) " &_
+				 "UNION ALL " &_
+					"SELECT time_summary.id, weekending, workday, (ABS(TIME_TO_SEC(TIMEDIFF(ADDTIME(timeout, '24:00:00'), timein))))/60/60 AS halftotal, emp_submitted, paid, approved, pp_submitted, time_summary.creatorid " &_
+					 "FROM time_summary LEFT JOIN time_detail ON time_summary.id = time_detail.summaryid " &_
+					  "WHERE placementid=" & placementid & " AND (timeout < timein) " &_
+					 ") t " &_
+			"GROUP By t.id, t.workday ORDER By t.weekending asc, t.id asc, t.workday asc, t.creatorid;"
+			
+	end with
+	
+
+	dim rs
+	set rs = cmd.execute()
+
+	dim SumOfHours, this_summary, current_id, last_id, last_week, total_buffer, weekEndingOffset
+	set SumOfHours = Server.CreateObject("Scripting.Dictionary")
+	set this_summary = New cTimeSummary
+	do while not rs.eof
+		current_id = rs("id")
+		
+		if len(last_id) = 0 then
+			last_id = current_id
+			last_week = rs("weekending")		
+		elseif (last_id <> current_id) or rs.eof then
+			last_id = current_id			
+			if not rs.eof then
+				last_week = rs("weekending")
+			end if
+						
+			SumOfHours.Add this_summary.WeekEnding & ":" & this_summary.id, this_summary
+			set this_summary = New cTimeSummary
+		end if
+
+		with this_summary
+			.id         = current_id
+			.creatorid  = rs("creatorid")
+			.WeekEnding = last_week
+		
+		'print "rs:" & rs("creatorid") & ", filtered: " & this_summary.creatorId
+		
+			weekEndingOffset = Weekday(last_week)
+			if weekEndingOffset > 1 then
+				weekEndingOffset = 1
+			else
+				weekEndingOffset = 0
+			end if
+			
+			'print "Hello world" & last_week
+			if vartype(rs("totalhours")) = 14 then 
+				
+				total_buffer = cdbl(rs("totalhours"))
+				if total_buffer < 0 then total_buffer = total_buffer*-1
+				
+			
+				select case rs("workday")   'Changed starting day to 0 instead of 1 Richard 2013.09.27
+				case "1"
+					.Day(0 + weekEndingOffset) = TwoDecimals(total_buffer)
+					.WorkDay = 1
+				case "2"
+					.Day(1 + weekEndingOffset) = TwoDecimals(total_buffer)
+					.WorkDay = 2
+				case "3"
+					.Day(2 + weekEndingOffset) = TwoDecimals(total_buffer)
+					.WorkDay = 3
+				case "4"
+					.Day(3 + weekEndingOffset) = TwoDecimals(total_buffer)
+					.WorkDay = 4
+				case "5"
+					.Day(4 + weekEndingOffset) = TwoDecimals(total_buffer)
+					.WorkDay = 5
+				case "6"
+					.Day(5 + weekEndingOffset) = TwoDecimals(total_buffer)
+					.WorkDay = 6
+				case "7"
+					.Day(6 + weekEndingOffset) = TwoDecimals(total_buffer)
+					.WorkDay = 7
+				end select
+			end if
+		end with
+		rs.movenext
+	loop
+	if not isnull(this_summary.id) then SumOfHours.Add this_summary.WeekEnding & ":" & this_summary.id, this_summary
+	set this_summary = nothing
+
+	dim Summary, i
+	for each Summary in SumOfHours.Items
+		if Summary.id > 0 then
+			%>
+			<table class="time_summary cid<%=Summary.creatorid%>">
+				<tr>
+					<th class="col_we weekending"><span id="TimeDetail<%=placementid & "_" & Summary.id%>" class="ShowMore" onclick="timedetail.open('<%=placementid & "_" & Summary.id%>', '<%=g_strSite%>');">&nbsp;</span>&nbsp;Week Ending:</th>
+					<th class="col_time">&nbsp;</th>
+					<th class="col_day"><%=Summary.DayName(0)%></th>
+					<th class="col_day"><%=Summary.DayName(1)%></th>
+					<th class="col_day"><%=Summary.DayName(2)%></th>
+					<th class="col_day"><%=Summary.DayName(3)%></th>
+					<th class="col_day"><%=Summary.DayName(4)%></th>
+					<th class="col_day"><%=Summary.DayName(5)%></th>
+					<th class="col_day"><%=Summary.DayName(6)%></th>
+					<th class="col_spc"></th>
+					<th class="col_day">Time</th>
+					<th class="col_spc">&nbsp;</th>
+					<th class="col_day">Expense</th>
+					<th class="col_cntrls">&nbsp;</th>
+				</tr></table>
+                
+                
+				<!--start read only-->
+				<div id="we_connector_<%=placementid & "_" & Summary.id%>" class="no_connector">
+				<table class="time_summary" id="span_time_summary_<%=placementid & "_" & Summary.id%>" >
+				<tr>
+					<td class="col_we_b weekending"><%=spanWeekEndsOn(company_weekends, placementid, Summary.id, Summary.WeekEnding, "cid" & Summary.creatorid & " sid" & user_id)%></td>
+					<th class="col_time lbl_time">Time:</th>
+					<td class="col_day"><span class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>" id="sum_d<%=lcase(Summary.DayName(0))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(0))%>_<%=placementid%>_<%=Summary.id%>" size="2"><%=TwoDecimals(0+Summary.Day(1))%></span></td>
+					<td class="col_day"><span class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(1))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(1))%>_<%=placementid%>_<%=Summary.id%>" size="2"><%=TwoDecimals(0+Summary.Day(2))%></span></td>
+					<td class="col_day"><span class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(2))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(2))%>_<%=placementid%>_<%=Summary.id%>" size="2"><%=TwoDecimals(0+Summary.Day(3))%></span></td>
+					<td class="col_day"><span class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(3))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(3))%>_<%=placementid%>_<%=Summary.id%>" size="2"><%=TwoDecimals(0+Summary.Day(4))%></span></td>
+					<td class="col_day"><span class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(4))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(4))%>_<%=placementid%>_<%=Summary.id%>" size="2"><%=TwoDecimals(0+Summary.Day(5))%></span></td>
+					<td class="col_day"><span class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(5))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(5))%>_<%=placementid%>_<%=Summary.id%>" size="2"><%=TwoDecimals(0+Summary.Day(6))%></span></td>
+					<td class="col_day"><span class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(6))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(6))%>_<%=placementid%>_<%=Summary.id%>" size="2"><%=TwoDecimals(0+Summary.Day(7))%></span></td>
+					<td class="col_spc">=</td>		
+					<td class="col_day"><span class="cid<%=Summary.creatorid%> sid<%=user_id%>" id="sum_rt_<%=placementid%>_<%=Summary.id%>"><%=Summary.TotalHours%></span></td>
+					<td class="col_spc">+</td>		
+					<td class="col_day"><span id="sum_et_<%=placementid%>_<%=Summary.id%>" name="sum_et_<%=placementid%>_<%=Summary.id%>" size="2" disabled="disabled"><%=Summary.TotalExpense%></span></td>
+					<td class="col_cntrls cntrlTimeDetail">
+						<span class="button" onclick="timesummary.edit('span_time_summary_<%=placementid & "_" & Summary.id%>');"><span class="edit">Edit</span></span>
+						<span class="button" onclick="timesummary.remove('<%=placementid%>', '<%=g_strSite%>', '<%=Summary.id%>');"><span class="remove">Remove</span></span>
+						<span class="button" onclick="timesummary.approve('<%=placementid%>', '<%=g_strSite%>', '<%=Summary.id%>');"><span class="approve">Approve</span></span>
+					</td>
+				</tr>
+			</table>
+            
+            
+            
+            
+            
+            
+            <!--start time summary input-->
+            
+            <table class="time_summary hide" id="time_summary_input_<%=placementid & "_" & Summary.id%>">
+				<tr>
+					<td class="col_we_b weekending"><%=inpWeekEndsOn(company_weekends, placementid, Summary.id, Summary.WeekEnding, "cid" & Summary.creatorid & " sid" & user_id)%></td>
+					<th class="col_time lbl_time">Time:</th>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>" id="sum_d<%=lcase(Summary.DayName(0))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(0))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(1)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(1))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(1))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(2)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(2))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(2))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(3)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(3))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(3))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(4)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(4))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(4))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(5)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(5))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(5))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(6)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(6))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(6))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(7)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_spc">&nbsp;=&nbsp;</td>		
+					<td class="col_day"><input class="cid<%=Summary.creatorid%> sid<%=user_id%> sum_rt" id="sum_rt_<%=placementid%>_<%=Summary.id%>" name="sum_rt_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.TotalHours%>" onChange="timedetail.changel(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_spc">+</td>		
+					<td class="col_day"><input id="sum_et_<%=placementid%>_<%=Summary.id%>" name="sum_et_<%=placementid%>_<%=Summary.id%>" size="2" disabled="disabled" value="<%=Summary.TotalExpense%>" onChange="timedetail.changel(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_cntrls cntrlTimeDetail">
+						<span class="button" onclick="timesummary.save('time_summary_input_<%=placementid & "_" & Summary.id%>');"><span class="remove">Save</span></span>
+						<span class="button" onclick="timesummary.remove('<%=placementid%>', '<%=g_strSite%>', '<%=Summary.id%>');"><span class="remove">Remove</span></span>
+						<span class="button" onclick="timesummary.approve('<%=placementid%>', '<%=g_strSite%>', '<%=Summary.id%>');"><span class="approve">Approve</span></span>
+					</td>
+				</tr>
+			</table>
+		<%
+		end if
+		%>
+		
+		<div id="timedetaildiv<%=placementid & "_" & Summary.id%>" class=""></div>
+		</div>
+		<span class="table_seperator"></span>
+<%
+	next
+%>	
+
+	<table class="time_summary">
+		<tr>
+			<td class="cntrlAddServices">
+				<span class="button addtime" onclick="timesummary.add('<%=placementid%>', '<%=g_strSite%>');"><span>Add Week</span></span>&nbsp;&nbsp;
+				<span class="greybutton addexpense" future_onclick="expense.add('<%=placementid%>', '<%=g_strSite%>');"><span>Add Expense</span></span>&nbsp;&nbsp;
+				<span class="greybutton viewother" future_onclick="placements.view('<%=placementid%>', '<%=g_strSite%>');"><span>View Other Placements</span></span></td>&nbsp;
+			<td colspan="10"></td>
+		</tr>
+	</table>
+
+	<!-- [split] --><%=placementid%>
+
+<%
+end function
+
+public function doEmployeeTimeSummary()	
+
+	dim placementid
+	placementid = getParameter("id")
+	
+	dim cmd
+	set cmd = server.CreateObject("ADODB.Command")
+	with cmd
+		.ActiveConnection = MySql
+		REM "SELECT time_summary.id, weekending, workday, SUM(TIME_TO_SEC(TIMEDIFF(timeout, timein))) AS totalhours " &_
+		REM "FROM time_summary LEFT JOIN time_detail ON time_summary.id = time_detail.summaryid " &_
+		REM "WHERE placementid=" & placementid & " " &_
+		REM "GROUP By time_summary.id, workday ORDER By weekending asc, id asc, workday asc;"
+
+		.CommandText = "" &_
+			"SELECT t.id, t.weekending, t.workday, SUM(t.halftotal) as totalhours, t.emp_submitted,  t.pp_submitted, t.paid, t.approved,  t.creatorid " &_ 
+			"FROM (SELECT time_summary.id, weekending, workday, timetotal AS halftotal, emp_submitted, pp_submitted, paid, approved, time_summary.creatorid " &_
+					 "FROM time_summary LEFT JOIN time_detail ON time_summary.id = time_detail.summaryid " &_
+					  "WHERE placementid=" & placementid & " " &_
+				 "UNION ALL " &_
+					"SELECT time_summary.id, weekending, workday, (ABS(TIME_TO_SEC(TIMEDIFF(timeout, timein))))/60/60 AS halftotal, emp_submitted, pp_submitted, paid, approved, time_summary.creatorid " &_
+					 "FROM time_summary LEFT JOIN time_detail ON time_summary.id = time_detail.summaryid " &_
+					  "WHERE placementid=" & placementid & " AND (timeout > timein) " &_
+				 "UNION ALL " &_
+					"SELECT time_summary.id, weekending, workday, (ABS(TIME_TO_SEC(TIMEDIFF(ADDTIME(timeout, '24:00:00'), timein))))/60/60 AS halftotal, emp_submitted, pp_submitted, paid, approved, time_summary.creatorid " &_
+					 "FROM time_summary LEFT JOIN time_detail ON time_summary.id = time_detail.summaryid " &_
+					  "WHERE placementid=" & placementid & " AND (timeout < timein) " &_
+					 ") t " &_
+			"GROUP By t.id, t.workday ORDER By t.weekending asc, t.id asc, t.workday asc, t.creatorid;"
+			
+	end with
+	
+
+	dim rs
+	set rs = cmd.execute()
+
+	dim SumOfHours, this_summary, current_id, last_id, last_week, total_buffer, weekEndingOffset
+	set SumOfHours = Server.CreateObject("Scripting.Dictionary")
+	set this_summary = New cTimeSummary
+	do while not rs.eof
+		current_id = rs("id")
+		
+		if len(last_id) = 0 then
+			last_id = current_id
+			last_week = rs("weekending")		
+		elseif (last_id <> current_id) or rs.eof then
+			last_id = current_id			
+			if not rs.eof then
+				last_week = rs("weekending")
+			end if
+						
+			SumOfHours.Add this_summary.WeekEnding & ":" & this_summary.id, this_summary
+			set this_summary = New cTimeSummary
+		end if
+
+		with this_summary
+			.id            = current_id
+			.creatorid     = rs("creatorid")
+			.emp_submitted = rs("emp_submitted")
+			.paid          = rs("paid")
+			.approved      = rs("approved")
+			.pp_submitted  = rs("pp_submitted")
+			.WeekEnding    = last_week
+		
+		'print "rs:" & rs("creatorid") & ", filtered: " & this_summary.creatorId
+		
+			weekEndingOffset = Weekday(last_week)
+			if weekEndingOffset > 1 then
+				weekEndingOffset = 1
+			else
+				weekEndingOffset = 0
+			end if
+			
+			'print "Hello world" & last_week
+			if vartype(rs("totalhours")) = 14 then 
+				
+				total_buffer = cdbl(rs("totalhours"))
+				if total_buffer < 0 then total_buffer = total_buffer*-1
+				
+			
+				select case rs("workday")   'Changed starting day to 0 instead of 1 Richard 2013.09.27
+				case "1"
+					.Day(0 + weekEndingOffset) = TwoDecimals(total_buffer)
+					.WorkDay = 1
+				case "2"
+					.Day(1 + weekEndingOffset) = TwoDecimals(total_buffer)
+					.WorkDay = 2
+				case "3"
+					.Day(2 + weekEndingOffset) = TwoDecimals(total_buffer)
+					.WorkDay = 3
+				case "4"
+					.Day(3 + weekEndingOffset) = TwoDecimals(total_buffer)
+					.WorkDay = 4
+				case "5"
+					.Day(4 + weekEndingOffset) = TwoDecimals(total_buffer)
+					.WorkDay = 5
+				case "6"
+					.Day(5 + weekEndingOffset) = TwoDecimals(total_buffer)
+					.WorkDay = 6
+				case "7"
+					.Day(6 + weekEndingOffset) = TwoDecimals(total_buffer)
+					.WorkDay = 7
+				end select
+			end if
+		end with
+		rs.movenext
+	loop
+	if not isnull(this_summary.id) then SumOfHours.Add this_summary.WeekEnding & ":" & this_summary.id, this_summary
+	set this_summary = nothing
+
+	dim Summary, i
+	for each Summary in SumOfHours.Items
+		if Summary.id > 0 then
+			%>
+			<table class="time_summary cid<%=Summary.creatorid%>">
+				<tr>
+					<th class="col_we weekending"><span id="TimeDetail<%=placementid & "_" & Summary.id%>" class="ShowMore" onclick="timedetail.open('<%=placementid & "_" & Summary.id%>', '<%=g_strSite%>');">&nbsp;</span>&nbsp;Week Ending:</th>
+					<th class="col_time">&nbsp;</th>
+					<th class="col_day"><%=Summary.DayName(0)%></th>
+					<th class="col_day"><%=Summary.DayName(1)%></th>
+					<th class="col_day"><%=Summary.DayName(2)%></th>
+					<th class="col_day"><%=Summary.DayName(3)%></th>
+					<th class="col_day"><%=Summary.DayName(4)%></th>
+					<th class="col_day"><%=Summary.DayName(5)%></th>
+					<th class="col_day"><%=Summary.DayName(6)%></th>
+					<th class="col_spc"></th>
+					<th class="col_day">Time</th>
+					<th class="col_spc">&nbsp;</th>
+					<th class="col_day">Expense</th>
+					<th class="col_cntrls">&nbsp;</th>
+				</tr></table>
+                
+                
+				<!--start read only-->
+				<div id="we_connector_<%=placementid & "_" & Summary.id%>" class="no_connector">
+				<table class="time_summary" id="span_time_summary_<%=placementid & "_" & Summary.id%>" >
+				<tr>
+					<td class="col_we_b weekending"><%=spanWeekEndsOn(company_weekends, placementid, Summary.id, Summary.WeekEnding, "cid" & Summary.creatorid & " sid" & user_id)%></td>
+					<th class="col_time lbl_time">Time:</th>
+					<td class="col_day"><span class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>" id="sum_d<%=lcase(Summary.DayName(0))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(0))%>_<%=placementid%>_<%=Summary.id%>" size="2"><%=TwoDecimals(0+Summary.Day(1))%></span></td>
+					<td class="col_day"><span class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(1))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(1))%>_<%=placementid%>_<%=Summary.id%>" size="2"><%=TwoDecimals(0+Summary.Day(2))%></span></td>
+					<td class="col_day"><span class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(2))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(2))%>_<%=placementid%>_<%=Summary.id%>" size="2"><%=TwoDecimals(0+Summary.Day(3))%></span></td>
+					<td class="col_day"><span class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(3))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(3))%>_<%=placementid%>_<%=Summary.id%>" size="2"><%=TwoDecimals(0+Summary.Day(4))%></span></td>
+					<td class="col_day"><span class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(4))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(4))%>_<%=placementid%>_<%=Summary.id%>" size="2"><%=TwoDecimals(0+Summary.Day(5))%></span></td>
+					<td class="col_day"><span class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(5))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(5))%>_<%=placementid%>_<%=Summary.id%>" size="2"><%=TwoDecimals(0+Summary.Day(6))%></span></td>
+					<td class="col_day"><span class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(6))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(6))%>_<%=placementid%>_<%=Summary.id%>" size="2"><%=TwoDecimals(0+Summary.Day(7))%></span></td>
+					<td class="col_spc">=</td>		
+					<td class="col_day"><span class="cid<%=Summary.creatorid%> sid<%=user_id%>" id="sum_rt_<%=placementid%>_<%=Summary.id%>"><%=Summary.TotalHours%></span></td>
+					<td class="col_spc">+</td>		
+					<td class="col_day"><span id="sum_et_<%=placementid%>_<%=Summary.id%>" name="sum_et_<%=placementid%>_<%=Summary.id%>" size="2" disabled="disabled"><%=Summary.TotalExpense%></span></td>
+					<td class="col_cntrls cntrlTimeDetail">
+						<% if Summary.approval_status = 0 then %>
+						
+						<span class="button" onclick="timesummary.edit('span_time_summary_<%=placementid & "_" & Summary.id%>');"><span class="edit">Edit</span></span>
+						<span class="button" onclick="timesummary.remove('<%=placementid%>', '<%=g_strSite%>', '<%=Summary.id%>');"><span class="remove">Remove</span></span>
+						<span class="button" onclick="timesummary.emp_submit('<%=placementid%>', '<%=g_strSite%>', '<%=Summary.id%>');"><span class="approve"><%=EmployeeButtonText(Summary.approval_status)%></span></span>
+						
+						<% else %>
+						
+						<span class="button" onclick="timesummary.emp_unsubmit('<%=placementid%>', '<%=g_strSite%>', '<%=Summary.id%>');"><span class="approve"><%=EmployeeButtonText(Summary.approval_status)%></span></span>
+						
+						<% end if %>
+						
+					</td>
+				</tr>
+			</table>
+            
+            <!--start time summary input-->
+            
+            <table class="time_summary hide" id="time_summary_input_<%=placementid & "_" & Summary.id%>">
+				<tr>
+					<td class="col_we_b weekending"><%=inpWeekEndsOn(company_weekends, placementid, Summary.id, Summary.WeekEnding, "cid" & Summary.creatorid & " sid" & user_id)%></td>
+					<th class="col_time lbl_time">Time:</th>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>" id="sum_d<%=lcase(Summary.DayName(0))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(0))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(1)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(1))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(1))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(2)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(2))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(2))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(3)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(3))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(3))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(4)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(4))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(4))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(5)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(5))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(5))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(6)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_day"><input class="daysum cid<%=Summary.creatorid%> sid<%=user_id%>"  id="sum_d<%=lcase(Summary.DayName(6))%>_<%=placementid%>_<%=Summary.id%>" name="sum_d<%=lcase(Summary.DayName(6))%>_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.Day(7)%>" onChange="timedetail.change(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_spc">&nbsp;=&nbsp;</td>		
+					<td class="col_day"><input class="cid<%=Summary.creatorid%> sid<%=user_id%> sum_rt" id="sum_rt_<%=placementid%>_<%=Summary.id%>" name="sum_rt_<%=placementid%>_<%=Summary.id%>" size="2" value="<%=Summary.TotalHours%>" onChange="timedetail.changel(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_spc">+</td>		
+					<td class="col_day"><input id="sum_et_<%=placementid%>_<%=Summary.id%>" name="sum_et_<%=placementid%>_<%=Summary.id%>" size="2" disabled="disabled" value="<%=Summary.TotalExpense%>" onChange="timedetail.changel(this.name, '<%=g_strSite%>')"></td>
+					<td class="col_cntrls cntrlTimeDetail">
+						<% if Summary.approval_status = 0 then %>
+						
+						<span class="button" onclick="timesummary.save('time_summary_input_<%=placementid & "_" & Summary.id%>');"><span class="remove">Save</span></span>
+						<span class="button" onclick="timesummary.remove('<%=placementid%>', '<%=g_strSite%>', '<%=Summary.id%>');"><span class="remove">Remove</span></span>
+						
+						<% end if %>
+						
+						<span class="button" onclick="timesummary.<%=lcase(EmployeeButtonText(Summary.approval_status))%>('<%=placementid%>', '<%=g_strSite%>', '<%=Summary.id%>');"><span class="approve"><%=EmployeeButtonText(Summary.approval_status)%></span></span>
+					</td>
+				</tr>
+			</table>
+		<%
+		end if
+		%>
+		
+		<div id="timedetaildiv<%=placementid & "_" & Summary.id%>" class=""></div>
+		</div>
+		<span class="table_seperator"></span>
+<%
+	next
+%>	
+
+	<table class="time_summary">
+		<tr>
+			<td class="cntrlAddServices">
+				<span class="button addtime" onclick="timesummary.add('<%=placementid%>', '<%=g_strSite%>');"><span>Add Week</span></span>&nbsp;&nbsp;
+				<span class="greybutton addexpense" future_onclick="expense.add('<%=placementid%>', '<%=g_strSite%>');"><span>Add Expense</span></span>&nbsp;&nbsp;
+				<span class="greybutton viewother" future_onclick="placements.view('<%=placementid%>', '<%=g_strSite%>');"><span>View Other Placements</span></span></td>&nbsp;
+			<td colspan="10"></td>
+		</tr>
+	</table>
+
+	<!-- [split] --><%=placementid%>
+
+<%
+end function
+
+dim EmployeeButtonText(16)
+	EmployeeButtonText(0) = "Submit"
+	EmployeeButtonText(1) = "Submitted"
+	EmployeeButtonText(3) = "Submitted"
+	EmployeeButtonText(7) = "Approved"
+
+dim InternalButtonText(16)
+	InternalButtonText(0) = "Submit"
+	InternalButtonText(1) = "Submit"
+	InternalButtonText(3) = "Submitted"
+	InternalButtonText(7) = "Approved"
+	
+dim SupervisorButtonText(16)
+	SupervisorButtonText(0) = "Approve"
+	SupervisorButtonText(1) = "Approve"
+	SupervisorButtonText(3) = "Approve"
+	SupervisorButtonText(7) = "Approved"
+	
 
 function inpWeekEndsOn(p_WeekEndsOn, placementid, summaryid, forWeekEnding, sids)
 	dim Today, AdjustedDate, i, WeekEndDate, strBuffer, thisOneSelected, formattedWeekEnding
@@ -205,6 +690,25 @@ function inpWeekEndsOn(p_WeekEndsOn, placementid, summaryid, forWeekEnding, sids
 	end if
 	
 	inpWeekEndsOn = strBuffer
+end function
+
+function spanWeekEndsOn(p_WeekEndsOn, placementid, summaryid, forWeekEnding, sids)
+	dim Today, AdjustedDate, i, WeekEndDate, strBuffer, thisOneSelected, formattedWeekEnding
+	dim noneSelected : noneSelected = true
+
+	if not isnull(forWeekEnding) then
+		formattedWeekEnding = FormatDateTime(forWeekEnding) 
+	end if
+
+	strBuffer = "" &_
+		"<span style=""width:10px; height:10px;"" id=""calReadBtn" & placementid & "_" & summaryid & """>&nbsp;</span>" &_
+		"<span name=""span_slct_we_" & placementid & "_" & summaryid & _
+		"""  id=""span_slct_we_" & placementid & "_" & summaryid & """  onChange=""timedetail.changewe(this.name, '" & g_strSite & "')""" &_
+		"class=""inpWeekEnding " & sids & """>" & formattedWeekEnding & "</span>"
+		
+
+	
+	spanWeekEndsOn = strBuffer
 end function
 
 function getdaynumber(p_day)
@@ -365,7 +869,12 @@ function getWeekending(today, customer)
 	set rs = cmd.Execute()
 
 	dim weekEndsOn
-	weekEndsOn = cint(rs("weekends"))
+
+	if not rs.eof then 
+		weekEndsOn = cint(rs("weekends"))
+	else
+		weekEndsOn = 1
+	end if
 	
 	today = Weekday(Date)
 	
@@ -405,7 +914,7 @@ function getCustomerFromPlacement(placementid, p_conn)
 	end if
 
 	cmd.ActiveConnection = dbConnectionString
-	cmd.CommandText = "SELECT Customer FROM Placements WHERE PlacementId="&placementid
+	cmd.CommandText = "SELECT Customer FROM Placements WHERE PlacementId=" & placementid
 	
 	set rs = cmd.Execute()
 	if not rs.eof then getCustomerFromPlacement = rs("Customer")
@@ -415,7 +924,45 @@ function getCustomerFromPlacement(placementid, p_conn)
 	
 end function
 
+function getUserIdFromApplicantId(applicantid, p_conn)
+
+	dim rs, cmd
+
+    set rs = Server.CreateObject("adodb.Recordset")
+    set cmd = Server.CreateObject("adodb.Command")
+    
+	REM dim dbConnectionString
+	REM if isnumeric(p_conn) then
+		REM dbConnectionString = dsnLessTemps(p_conn)
+	REM elseif len(p_conn) > 3 then
+		REM dbConnectionString = p_conn
+	REM elseif len(p_conn) > 0 then
+		REM dbConnectionString = dsnLessTemps(getCompanyNumber(p_conn))
+	REM end if
+
+	cmd.ActiveConnection = MySql
+	cmd.CommandText = "SELECT tbl_users.userID FROM tbl_applications RIGHT JOIN tbl_users on tbl_users.applicationid=tbl_applications.applicationid WHERE in" & getTempsCompCode(p_conn) & "=" & applicantid
+	
+	set rs = cmd.Execute()
+	if not rs.eof then getUserIdFromApplicantId = rs("userid")
+	
+	set rs = nothing
+	set cmd = nothing
+	
+end function
+
+
 public function addTimeSummary()
+
+	dim p_createdby 		' System flag to track where the time was created from: Timeclock, Hand entered or Paper entry
+	if getParameter("paper") = "true" then
+		p_createdby = "P" 'Paper entry
+	else
+		p_createdby = "H" 'Hand entry
+	end if
+
+	dim p_total_hours : p_total_hours = getParameter("th")
+	
 	dim placementid
 	placementid = getParameter("id")
 
@@ -428,7 +975,7 @@ public function addTimeSummary()
 		.ActiveConnection = dsnLessTemps(g_strSite)
 		
 		.CommandText = "" &_
-			"SELECT Orders.Customer, Orders.JobNumber, Orders.Reference, Orders.JobDescription, Placements.EmployeeNumber, " &_
+			"SELECT Orders.Customer, Orders.JobNumber, Orders.Reference, Orders.JobDescription, Placements.EmployeeNumber, Placements.ApplicantId, " &_
 			"Placements.WorkCode, Placements.RegPayRate, Placements.RegBillRate, Placements.OvertimePayRate, Placements.OvertimeBillRate, WorkCodes.Description " &_
 			"FROM (((Placements Placements LEFT OUTER JOIN Orders Orders ON Placements.Reference=Orders.Reference) " &_
 			"LEFT OUTER JOIN WorkCodes WorkCodes ON Placements.WorkCode=WorkCodes.WorkCode) " &_
@@ -443,56 +990,84 @@ public function addTimeSummary()
 	dim customer
 	customer = getCustomerFromPlacement(placementid, g_strSite)
 	
+	if not rs.eof then dim applicantid : applicantid = rs("ApplicantId")
+		
+	dim vms_userid
+	vms_userid = getUserIdFromApplicantId(rs("ApplicantId"), g_strSite)
+	
 	dim p_weekending, p_today
 	p_weekending = getWeekending(p_today, customer)
 
-	' make mysql friendly
-	p_weekending = Year(p_weekending) & "/" & Month(p_weekending) & "/" & Day(p_weekending)
+	'print "p_weekending: " & p_weekending
 	
+	if p_createdby = "P" then 'Paper entry, set offset back 7 days for default
+		p_weekending = DateAdd("d", -7, p_weekending) 
+	end if
+	
+	dim p_mysql_weekending ' make mysql friendly		
+		p_mysql_weekending = Year(p_weekending) & "/" & Month(p_weekending) & "/" & Day(p_weekending)
 	
 	if not rs.eof then
 
-		with cmd
-			.ActiveConnection = MySql
-			
-			if isnumeric(g_strSite) then
-				.CommandText = "" &_
-					"INSERT INTO time_summary " &_
-					"(workcode, wc_description, employeenumber, department, costcenter, cc_description, regpay, regbill, otpay, otbill, placementid, customer, site, weekending, createdby, creatorid) " &_
-					"VALUES " &_
-					"(" & insert_string(rs("WorkCode")) & ", " &_
-						insert_string(rs("Description")) & ", " &_
-						insert_string(rs("EmployeeNumber")) & ", " &_
-						insert_number(rs("JobNumber")) & ", " &_
-						insert_number(rs("Reference")) & ", " &_
-						insert_string(rs("JobDescription")) & ", " &_
-						insert_string(rs("RegPayRate")) & ", " &_
-						insert_string(rs("RegBillRate")) & ", " &_
-						insert_string(rs("OvertimePayRate")) & ", " &_
-						insert_string(rs("OvertimeBillRate")) & ", " &_
-						
-						placementid & ", " & insert_string(customer) & ", " & g_strSite & ", " & insert_string(p_weekending) & ", 'H', " & insert_number(user_id) & ")"
-			else
-				.CommandText = "" &_
-					"INSERT INTO time_summary " &_
-					"(workcode, wc_description, employeenumber, department, costcenter, cc_description, regpay, regbill, otpay, otbill, placementid, customer, site, weekending, createdby, creatorid) " &_
-					"VALUES " &_
-					"(" & insert_string(rs("WorkCode")) & ", " &_
-						insert_string(rs("Description")) & ", " &_
-						insert_string(rs("EmployeeNumber")) & ", " &_
-						insert_number(rs("JobNumber")) & ", " &_
-						insert_number(rs("Reference")) & ", " &_
-						insert_string(rs("JobDescription")) & ", " &_
-						insert_string(rs("RegPayRate")) & ", " &_
-						insert_string(rs("RegBillRate")) & ", " &_
-						insert_string(rs("OvertimePayRate")) & ", " &_
-						insert_string(rs("OvertimeBillRate")) & ", " &_
-						 placementid & ", " & insert_string(customer) & ", " & getSiteNumber(g_strSite) & ", " & insert_string(p_weekending) & ", 'H', " & insert_number(user_id) & ")"
-			end if
-			
-			'print cmd.CommandText
-			.Execute()
-		end with
+		cmd.ActiveConnection = MySql
+		
+		dim numeric_site 
+		
+		if isnumeric(g_strSite) then
+			numeric_site = g_strSite
+		else
+			numeric_site = getSiteNumber(g_strSite)
+		end if
+		
+		if p_createdby = "P" then
+			cmd.CommandText = "" &_
+				"INSERT INTO time_summary " &_
+				"(workcode, wc_description, employeenumber, department, costcenter, cc_description, regpay, regbill, otpay, otbill, placementid, customer, site, weekending, exp_tot, createdby, foruserid, creatorid, emp_submitted, pp_submitted, received) " &_
+				"VALUES " &_
+				"(" & insert_string(rs("WorkCode")) & ", " &_
+					insert_string(rs("Description")) & ", " &_
+					insert_string(rs("EmployeeNumber")) & ", " &_
+					insert_number(rs("JobNumber")) & ", " &_
+					insert_number(rs("Reference")) & ", " &_
+					insert_string(rs("JobDescription")) & ", " &_
+					insert_string(rs("RegPayRate")) & ", " &_
+					insert_string(rs("RegBillRate")) & ", " &_
+					insert_string(rs("OvertimePayRate")) & ", " &_
+					insert_string(rs("OvertimeBillRate")) & ", " &_
+					placementid & ", " & insert_string(customer) & ", " &_
+					numeric_site & ", " & insert_string(p_mysql_weekending) & ", " &_
+					insert_number(p_total_hours) & ", '" & p_createdby & "', " & insert_number(vms_userid) & ", " &_
+					insert_number(user_id) & ",'1','1','1');SELECT LAST_INSERT_ID();"
+
+		else
+		
+			cmd.CommandText = "" &_
+				"INSERT INTO time_summary " &_
+				"(workcode, wc_description, employeenumber, department, costcenter, cc_description, regpay, regbill, otpay, otbill, placementid, customer, site, weekending, exp_tot, createdby, foruserid, creatorid) " &_
+				"VALUES " &_
+				"(" & insert_string(rs("WorkCode")) & ", " &_
+					insert_string(rs("Description")) & ", " &_
+					insert_string(rs("EmployeeNumber")) & ", " &_
+					insert_number(rs("JobNumber")) & ", " &_
+					insert_number(rs("Reference")) & ", " &_
+					insert_string(rs("JobDescription")) & ", " &_
+					insert_string(rs("RegPayRate")) & ", " &_
+					insert_string(rs("RegBillRate")) & ", " &_
+					insert_string(rs("OvertimePayRate")) & ", " &_
+					insert_string(rs("OvertimeBillRate")) & ", " &_
+					placementid & ", " & insert_string(customer) & ", " &_
+					numeric_site & ", " & insert_string(p_mysql_weekending) & ", " &_
+					insert_number(p_total_hours) & ", '" & p_createdby & "', " & insert_number(vms_userid) & ", " &_
+					insert_number(user_id) & ");SELECT LAST_INSERT_ID();"
+
+		end if
+		
+		'print cmd.CommandText
+		
+		set rs = cmd.execute().nextrecordset
+
+		dim new_summary_id : new_summary_id = rs(0)
+		
 	end if
 		' .CommandText = "" &_
 			' "SELECT weekending, workday, SUM(TIME_TO_SEC(TIMEDIFF(timeout, timein))) AS totalhours " &_
@@ -501,7 +1076,10 @@ public function addTimeSummary()
 			' "GROUP By workday ORDER By weekending desc, workday asc;"
 
 	set cmd = nothing
-	response.write placementid & ":" & g_strSite
+	set rs = nothing
+	
+	response.write placementid & ":" & g_strSite & ":" & new_summary_id & ":" & p_total_hours & ":" & Server.HTMLEncode(p_weekending)
+
 end function
 
 public function removeTimeSummary()

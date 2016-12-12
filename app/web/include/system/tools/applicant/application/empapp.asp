@@ -61,6 +61,56 @@ if formAction = "submit" then session("no_header") = true
     <%=enrollmentMessageTxt%>
     <%=decorateTop("employmentPreferences", "marLR10" & empapp_general, "Employment Information")%>
     <div id="basicInformation">
+	
+      <p>
+        <label for="nameF">First Name</label>
+        <input type="text" id="nameF" name="nameF" size="30" value="<%=firstName%>">
+      </p>
+      <p>
+        <label for="nameL">Last Name</label>
+        <input type="text" id="nameL" name="nameL" size="30" value="<%=lastName%>">
+      </p>
+		<p>
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" size="30" value="<%=email%>">
+      </p>
+      <p>
+        <label for="Pphone">Phone</label>
+        <input type="text" id="Pphone" name="pphone" size="30" value="<%=mainPhone%>">
+      </p>
+      <p>
+        <label for="Sphone">Other Phone</label>
+        <input type="text" id="Sphone" name="sphone" size="30" value="<%=altPhone%>">
+      </p>
+      <p>
+        <label for="addOne">Address</label>
+        <input type="text" id="addressOne" name="addressOne" size="30" value="<%=addressOne%>">
+      </p>
+      <p>
+        <label for="addTwo">Address Two</label>
+        <input type="text" id="addressTwo" name="addressTwo" size="30" value="<%=addressTwo%>">
+      </p>
+      <p>
+        <label for="City">City</label>
+        <input type="text" id="City" name="City" size="20" value="<%=City%>">
+     </p>
+     <p>
+        <label for="state">State</label></td></tr><tr><td>
+        <select id="state" name="state" class="styled">
+          <option value="ID">ID</option>
+          <%=PopulateList("list_locations", "locCode", "locName", "locCode", UserState)%>
+        </select></p>
+    <p>
+        <label for="zipcode">Zip Code</label>
+        <input type="text" id="zipcode" name="zipcode" autocomplete="off" size="19" value="<%=zipcode%>">
+      </p>
+	<p>
+		<label for="country">Country</label></td></tr><tr><td>
+        <select id="country" name="country" class="styled">
+          <option value="USA">USA</option>
+          <option value="CA">CA</option>
+        </select>
+      </p>
         <p>
             <label id="ssnLabel" for="ssn" class="fieldIsGood"><span>&nbsp;</span>SSN</label>
             <input type="text" name="ssn" id="ssn" value="<%=ssn%>" tabindex="1" onblur="check_field(this.name)" class="halfSized" required="required" autocomplete="off">
@@ -85,17 +135,18 @@ if formAction = "submit" then session("no_header") = true
             <input type="text" id="minWageAmount" name="minWageAmount" value="<%=minWageAmount%>" onblur="check_field(this.name)" tabindex="4">
         </p>
         <p>
-            <label>&nbsp;</label><span class="morehelpText">Include all nick names and maiden or prior married names.<br>
-                Enter none or n/a if this does not apply to you.</span>
+  
         </p>
         <p>
 
             <label id="aliasNamesLabel" for="aliasNames" class="fieldIsGood"><span>&nbsp;</span>Alias Names</label>
             <input type="text" name="aliasNames" id="aliasNames" value="<%=aliasNames%>" onblur="check_field(this.name)" tabindex="5" autocomplete="off">
-            <span class="helpText">&nbsp;
+            <span class="helpText"><span class="morehelpText">Include all nick names and maiden or prior married names.<br>
+                Enter none or n/a if this does not apply to you.
             </span>
         </p>
-
+		
+		<p>
         <ul>
             <li>
                 <label id="currentlyEmployedLabel" class="fieldIsGood"><span>&nbsp;</span>Are you currently employed?</label>
@@ -109,6 +160,8 @@ if formAction = "submit" then session("no_header") = true
             </li>
             <li>No</li>
         </ul>
+		</p>
+		<p>
         <ul>
 
             <li>
@@ -121,6 +174,8 @@ if formAction = "submit" then session("no_header") = true
             </li>
             <li>Female</li>
         </ul>
+		</p>
+		<p>
         <!--
 	<ul>
       <label id="maritalStatusLabel" class="fieldIsGood"><span>&nbsp;</span>Are you married or single?</label>
@@ -145,6 +200,8 @@ if formAction = "submit" then session("no_header") = true
             </li>
             <li>No</li>
         </ul>
+		</p>
+		<p>
         <ul>
 
             <li>
@@ -161,8 +218,10 @@ if formAction = "submit" then session("no_header") = true
             </li>
             <li>Any</li>
         </ul>
+		</p>
     </div>
     <div>
+		<p>
         <ul>
             <li>
                 <label id="citizenLabel" class="fieldIsGood"><span>&nbsp;</span>Are you a citizen of the United States?</label>
@@ -175,6 +234,8 @@ if formAction = "submit" then session("no_header") = true
             </li>
             <li>No</li>
         </ul>
+		</p>
+		<p>
         <div id="AuthType" style="" <%if citizen <> "n" then response.write("class=""hide""") %>>
 
             <ul style="width: 70%; float: right; clear: none;">
@@ -211,6 +272,8 @@ if formAction = "submit" then session("no_header") = true
                 </li>
             </ul>
         </div>
+		</p>
+		<p>
         <ul>
 
             <li>
@@ -223,6 +286,8 @@ if formAction = "submit" then session("no_header") = true
             </li>
             <li>No</li>
         </ul>
+		</p>
+		<p>
         <ul>
             <li>
                 <label id="workAgeLabel" class="fieldIsGood"><span>&nbsp;</span>Are you 18 years or older?</label>
@@ -235,6 +300,8 @@ if formAction = "submit" then session("no_header") = true
             </li>
             <li>No</li>
         </ul>
+		</p>
+		<p>
         <ul>
 
             <li>
@@ -247,6 +314,8 @@ if formAction = "submit" then session("no_header") = true
             </li>
             <li>No</li>
         </ul>
+		</p>
+		<p>
         <ul>
             <li>
                 <label>Do you have a Commercial Drivers License?</label>
@@ -267,6 +336,8 @@ if formAction = "submit" then session("no_header") = true
             </li>
             <li>CDL-C</li>
         </ul>
+		</p>
+		<p>
         <ul>
             <li>
                 <label id="autoInsuranceLabel" class="fieldIsGood"><span>&nbsp;</span>Do you have Automobile Insurance?</label>
@@ -279,6 +350,8 @@ if formAction = "submit" then session("no_header") = true
             </li>
             <li>No</li>
         </ul>
+		</p>
+		<p>
         <ul>
             <li>
                 <label id="workRelocateLabel" class="fieldIsGood"><span>&nbsp;</span>Are you planning to relocate for work?</label>
@@ -291,6 +364,8 @@ if formAction = "submit" then session("no_header") = true
             </li>
             <li>No</li>
         </ul>
+		</p>
+		<p>
         <ul>
             <li>
                 <label id="eduLevelLabel" for="eduLevel" class="fieldIsGood"><span>&nbsp;</span>Highest level of education completed</label>
@@ -311,6 +386,8 @@ if formAction = "submit" then session("no_header") = true
                 </select>
             </li>
         </ul>
+		</p>
+		<p>
         <ul>
             <li onclick="javascript:showdiv('FelonyExplain');">
                 <label id="workConvictionLabel" class="fieldIsGood"><span>&nbsp;</span>Have you ever been convicted of a felony or misdemeanor?</label>
@@ -326,12 +403,16 @@ if formAction = "submit" then session("no_header") = true
             </li>
             <li>No</li>
         </ul>
+		</p>
+		<p>
         <ul id="FelonyExplain" <% if workConviction <> "y" then response.write("class=""hide""") %>>
             <li>
                 <label id="workConvictionExplainLabel" for="workConvictionExplain">Please explain your conviction:</label>
                 <textarea name="workConvictionExplain" id="workConvictionExplain" rows="2" cols="33"><%=workConvictionExplain%></textarea>
             </li>
         </ul>
+		</p>
+		<p>
 
         <ul>
             <li onclick="javascript:showdiv('staffing_detail');">
@@ -345,12 +426,16 @@ if formAction = "submit" then session("no_header") = true
             </li>
             <li>No</li>
         </ul>
+		</p>
+		<p>
         <ul id="staffing_detail" <%if staffed <> "y" then response.write("class=" & chr(34) & "hide" & chr(34))%>>
             <li>
                 <label id="who_staffedLabel" for="who_staffed">To which companies did those services send you:</label>
                 <textarea name="who_staffed" id="who_staffed" rows="2" cols="33"><%=who_staffed%></textarea>
             </li>
         </ul>
+		</p>
+		<p>
 
         <ul>
             <li>
@@ -360,14 +445,18 @@ if formAction = "submit" then session("no_header") = true
                 <textarea name="additionalInfo" id="additionalInfo" rows="3" cols="33" tabindex="18"><%=additionalInfo%></textarea>
             </li>
         </ul>
+		</p>
+		<p>
         <ul>
             <li>
                 <label id="heardAboutUsLbl" for="heardAboutUs">How did you hear about Personnel Plus?</label>
             </li>
+		
             <li>
                 <textarea name="heardAboutUs" id="heardAboutUs" rows="3" cols="33" tabindex="18"><%=heardAboutUs%></textarea>
             </li>
         </ul>
+		</p>
     </div>
     <%=decorateBottom()%> <%=decorateTop("emergencyc", "marLR10" & empapp_contacts, "Emergency Contact")%>
     <fieldset id="emergencycontact" class="w4info">
@@ -439,7 +528,7 @@ if formAction = "submit" then session("no_header") = true
 		</div>
 
 	<%=decorateBottom()%>	-->
-    <%=decorateTop("skillsInformation", "marLR10" & empapp_skills, "Skills: Select your related experience")%>
+    <%=decorateTop("skillsInformation", "marLR10" & empapp_skills, "Skills: Select your related experience <span style=""color:red"">(at least 3 required)</span>")%>
     <div id="letsScrollMore">
         <%=presentNewSkills()%>
     </div>
@@ -448,9 +537,9 @@ if formAction = "submit" then session("no_header") = true
     <%=decorateTop("workhistory", "marLRB10" & empapp_workhist, "Most recent employment")%>
     <fieldset id="applicationWorkHistoryOne" class="applicationWorkHistory">
         <legend>Enter your most recent employment information below:</legend>
-        <label for="workhistNAOne" style="width: 32em; margin-bottom: 0.6em; font-weight: bold;">
+        <!--<label for="workhistNAOne" style="width: 32em; margin-bottom: 0.6em; font-weight: bold;">
             <input style="width: 2em; display: inline;" type="checkbox" name="workhistNAOne" id="workhistNAOne" tabindex="25" value="na" onclick="thisdoesntapply('One');">
-            Check here if this section doesn't apply</label>
+            Check here if this section doesn't apply</label>-->
         <ol>
             <li>
                 <label id="employerNameHistOneLabel" for="employerNameHistOne" class="fieldIsGood">Employer Name</label>
@@ -630,7 +719,7 @@ if formAction = "submit" then session("no_header") = true
     <%=decorateBottom()%> <%=decorateTop("w4Supplement", "marLR10" & empapp_w4form, "Form W-4 Supplemental Information")%>
     <table class="w4">
         <tr>
-            <td class="instruct"><strong>A.</strong>&nbsp;Enter “1” for <em>yourself</em> if no one else can claim you as a dependent.</td>
+            <td class="instruct"><strong>A.</strong>&nbsp;Enter "1" for <em>yourself</em> if no one else can claim you as a dependent.</td>
             <td class="exemption"><strong>A.</strong>&nbsp;
         <input type="text" id="w4a" name="w4a" value="<%=w4a%>" tabindex="14"></td>
             <% if instr(empapp_w4form, "hide") = 0 then %>
@@ -640,18 +729,18 @@ if formAction = "submit" then session("no_header") = true
             <% end if%>
         </tr>
         <tr>
-            <td class="instruct"><strong>B.</strong>&nbsp;Enter “1” if:
+            <td class="instruct"><strong>B.</strong>&nbsp;Enter "1" if:
         <ul>
             <li>You are single and have only one job; or</li>
             <li>you are married, have only one job, and your spouse does not work; or</li>
-            <li>your wages from a second job or your spouse’s wages (or the total of both) are $1,500 or less.</li>
+            <li>your wages from a second job or your spouse's wages (or the total of both) are $1,500 or less.</li>
         </ul>
             </td>
             <td class="exemption"><strong>B.</strong>&nbsp;
         <input type="text" id="w4b" name="w4b" value="<%=w4b%>" tabindex="14" onblur="addw4lines()"></td>
         </tr>
         <tr>
-            <td class="instruct"><strong>C</strong>.&nbsp;Enter “1” for your spouse. But, you may choose to enter “-0-” if you are married and have either a working spouse or more than one job. (Entering “-0-” may help you avoid having too little tax withheld.)</td>
+            <td class="instruct"><strong>C</strong>.&nbsp;Enter "1" for your spouse. But, you may choose to enter "-0-" if you are married and have either a working spouse or more than one job. (Entering "-0-" may help you avoid having too little tax withheld.)</td>
             <td class="exemption"><strong>C.</strong>&nbsp;
         <input type="text" id="w4c" name="w4c" value="<%=w4c%>" tabindex="14" onblur="addw4lines()"></td>
         </tr>
@@ -678,9 +767,9 @@ if formAction = "submit" then session("no_header") = true
         <tr>
             <td class="instruct"><strong>G.</strong>&nbsp;Child Tax Credit (including additional child tax credit). See Pub. 972, Child Tax Credit, for more information.
         <ul>
-            <li>if your total income will be less than $61,000 ($90,000 if married), enter “2” for each eligible child; then less “1” if you have three or more eligible children.</li>
-            <li>if your total income will be between $61,000 and $84,000 ($90,000 and $119,000 if married), enter “1” for each eligible
-            child plus “1” additional if you have six or more eligible children.</li>
+            <li>if your total income will be less than $61,000 ($90,000 if married), enter "2" for each eligible child; then less "1" if you have three or more eligible children.</li>
+            <li>if your total income will be between $61,000 and $84,000 ($90,000 and $119,000 if married), enter "1" for each eligible
+            child plus "1" additional if you have six or more eligible children.</li>
         </ul>
             </td>
             <td class="exemption"><strong>G.</strong>&nbsp;
@@ -690,7 +779,7 @@ if formAction = "submit" then session("no_header") = true
             <td class="instruct"><strong>H.</strong>&nbsp;Add lines A through G and enter total here. (<strong>Note.</strong>
             This may be different from the number of exemptions you claim on your tax return.)
       <td class="exemption"><strong>H.</strong>&nbsp;
-        <input type="text" id="w4h" name="w4h" value="<%=w4h%>" tabindex="14" readonly="true"></td>
+        <input type="text" id="w4h" name="w4h" value="<%=w4h%>" tabindex="14" readonly></td>
         </tr>
         <tr>
             <td colspan="2">

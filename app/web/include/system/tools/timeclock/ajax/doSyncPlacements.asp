@@ -54,11 +54,6 @@ public function doSyncPlacements()
 			cmd.execute
 		end if
 
-	
-	
-	
-	
-	
 		rs_summaries.movenext
 	loop
 		

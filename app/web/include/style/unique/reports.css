@@ -185,6 +185,7 @@ table.catActivity { background-color: #FFFF99; border-top:1px solid inset #33333
 table.catActivity td, 
 table.catActivity th { color:#333333; }
 
+.TypeY {width:15%; }
 .padQuarter { width:25%; }
 .TypeZ { width:15%; text-align:right }
 .TypeZname { width:35%; text-align:left; }

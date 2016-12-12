@@ -4,7 +4,7 @@ var checkboxHeight = "25";
 var radioHeight = "25";
 var selectWidth = "190";
 
-document.write('<style type="text/css">input.styled { display: none; } select.styled { position: relative; width: ' + selectWidth + 'px; opacity: 0; filter: alpha(opacity=0); z-index: 5; }</style>');
+document.write('<style type="text/css">input.styled { display: none; } select.styled { position: relative; width: ' + selectWidth + 'px; opacity: 0; filter: alpha(opacity=0); z-index: 5}</style>');
 
 var Custom = {
     init: function () {

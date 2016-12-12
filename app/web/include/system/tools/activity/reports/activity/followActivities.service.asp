@@ -7,6 +7,9 @@ session("window_page_title") = "Activities"
 <!-- #include file='followActivities.doStuff.asp' -->
 
 <!-- begin presentation stuff -->
+<!-- some random html comment [-->],[
+
+<% if not is_a_service then %>
 
 <input id="page_title" name="page_title" type="hidden" class="hidden" value="Activities">
 <%=decorateTop("track_activities", "notToShort marLR10", "Activity Tracks")%>
@@ -39,18 +42,20 @@ session("window_page_title") = "Activities"
 		</td></tr>
 	</table>
 
+	<% end if %>
+	
 	<% 'get page nav records into re-cyclable variable
 		dim rsNavigationLnks : rsNavigationLnks = navRecordsByPage(rsWhoseHere) %>
 
-	<%=rsNavigationLnks%>
+	<% if not is_a_service then response.write rsNavigationLnks %>
 
 	<% showActivityStream rsWhoseHere %>
 
-	<%=rsNavigationLnks%>
+	<% if not is_a_service then rsNavigationLnks %>
 
 
 
-<%=decorateBottom()%>
+<% if not is_a_service then response.write decorateBottom() %>
 
 <%
 'cleanup'
@@ -61,6 +66,10 @@ noSocial = true
 
 'build left side menu'
 leftSideMenu = makeSideMenu ()
+
+%>],[<%=thisOrder%>],[77] <% 'send back some random number to make it look pretty, the parser on other end doesn't care
+
+response.end()
 
 %>
 

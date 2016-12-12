@@ -1,4 +1,5 @@
 <%
+dim g_slctAssignTo
 
 class cAppointment
 
@@ -20,6 +21,7 @@ class cAppointment
 	private m_DispTypeCode
 	private m_EnteredBy
 	private m_AssignedTo
+	private m_SlctAssignTo
 	private m_CustomerCode
 	private m_CustomerName
 	private m_CustomerContact
@@ -81,10 +83,14 @@ class cAppointment
 		m_LastnameFirst = p_LastnameFirst
 	end property
 	public property get LnkMaintain()
-		m_LnkResource = "/include/system/tools/activity/forms/maintainApplicant.asp?"
-		LnkMaintain = "<a href=""" & m_LnkResource & "who=" & m_ApplicantId & "&where=" & whichCompany & """>" &_
-					m_ApplicantId & " : " & m_LastnameFirst
-
+		if m_ApplicantId > 0 then 
+			m_LnkResource = "/include/system/tools/activity/forms/maintainApplicant.asp?"
+			LnkMaintain = "<a href=""" & m_LnkResource & "who=" & m_ApplicantId & "&where=" & whichCompany & """>" &_
+						m_ApplicantId & " : " & m_LastnameFirst
+		else
+			m_LnkResource = "/include/system/tools/activity/forms/maintainApplicant.asp?"
+			LnkMaintain = m_ApplicantId & " : " & m_LastnameFirst
+		end if
 	end property
 	public property let LnkMaintain(p_LnkMaintain)
 		m_LnkMaintain = p_LnkMaintain
@@ -203,6 +209,21 @@ class cAppointment
 		m_AssignedTo = p_AssignedTo
 	end property
 
+	public property get AssignTo()
+		if len(g_slctAssignTo) = 0 then
+			g_slctAssignTo = BuildAssignToSelector()
+		end if
+		
+		m_SlctAssignTo = "" & _
+			"<span id=""span_assignto_" & m_id & """ class=""disposition"" onclick=""assignto.show('" & m_id & "');"">" &_
+			m_AssignedTo &_
+			"</span>" &_
+				replace(g_slctAssignTo, "%m_id%", m_id)
+		
+		AssignTo = m_SlctAssignTo 
+
+	end property
+
 	public property get CustomerCode()
 		CustomerCode = m_CustomerCode
 	end property
@@ -249,6 +270,43 @@ class cAppointment
 
 end class
 
+function BuildAssignToSelector()
+	dim cmd, rs
+	set cmd = server.CreateObject("adodb.command")
+	
+	with cmd
+		.ActiveConnection = MySql
+		.CommandText = "SELECT tUserId FROM pplusvms.tbl_users2temps ORDER By tUserId ASC;"
+	end with
+
+	set rs = cmd.execute()
+	
+	dim strBuffer, recordBuffer
+		strBuffer = "" & _
+			"<span id=""assignto_%m_id%"" class=""hide"">" &_
+				"<select class=""setdispo"" name=""setdisp" & m_id & """ id=""assign_%m_id%"" onblur=""assignto.hide('%m_id%')"" onchange=""assignto.set('%m_id%')"">"
+	
+	do while not rs.eof
+		recordBuffer = rs("tUserId")
+
+		strBuffer = strBuffer & "<option value=""" & recordBuffer & """>" & recordBuffer & "</option>"
+
+		rs.movenext
+	loop
+
+	set rs = nothing
+	set cmd = nothing
+
+	strBuffer = strBuffer & "" & _
+		"</select>" &_
+			"</span>"
+			
+	BuildAssignToSelector = strBuffer
+	
+end function
+
+
+
 class cPlacements
 
 	'Private, class member variable
@@ -287,7 +345,7 @@ class cPlacements
 
 	'#############  Public Functions ##############
 
-		public function GetAllAppointments()
+	public function GetAllAppointments()
 		
 		dim strWhere
 		if onlyactive then

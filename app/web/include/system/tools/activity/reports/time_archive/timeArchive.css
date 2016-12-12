@@ -87,7 +87,7 @@ tr:nth-of-type(even)
 
 tr:nth-of-type(odd)
 {
-    background-color: lightsteelblue;
+    background-color: #e2e8f3;
 }
 
 tr    
@@ -133,6 +133,11 @@ tr.head{background-color: white}
 td.headlabel{float: left; clear: left}
 input.inbox{float: left; clear: left; border-radius: 6px}
 
+.EmpTotalRow {line-height: 2.2em;}
+.CostCenterRow {line-height: 2.2em; border-bottom: solid black}
+
+
+
 
     /***FIRST STYLE THE BUTTON***/
     button#viewbutton{
@@ -164,3 +169,23 @@ input.inbox{float: left; clear: left; border-radius: 6px}
 
 /* time change audit row */
 .auditrow {text-align:left;font-style:italic}
+
+
+/* Boot Time */
+
+.boot_time
+	{
+		background: url('boot.png') top left no-repeat;
+		display:inline-block;
+		margin:0 0.4em 0 0;
+		width:15px;	
+		height:15px;
+		float:right;
+		clear:none;
+	}
+	
+.boot_time:hover {background-position: 0px -16px;
+	cursor:pointer;
+}
+	
+	

@@ -1,0 +1,25 @@
+# use glob syntax.
+syntax: glob
+
+*.elc
+*.pyc
+*~
+*.zip
+*.ps
+*.mdb
+_*.
+dot-net/
+exePush
+thumbs.db
+desktop.ini
+aspnettest/
+iisadmin/
+eol/
+LegacyWeb/
+aspnet_client/
+dfsr/
+include/core (copy)/
+
+# switch to regexp syntax.
+syntax: regexp
+^\.pc/

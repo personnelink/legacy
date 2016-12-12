@@ -39,6 +39,8 @@ div#found_applicants {
 	z-index:1000;
 }
 
+
+
 div#lookup_applicant {padding-left:1em;}
 div#lookup_applicant p {margin-left:2em;}
 
@@ -52,6 +54,33 @@ div#CompanyLookUp {z-index:66;position:absolute;width:36em; min-height:10em;bord
 div#ordertabs {width:17em;min-height:40em;float:right;}
 
 /* search look up div */
+.search_div {
+	position: relative;
+	left: 0;
+	top: -10px;
+}
+
+/* search look up div */
+.search_div div {
+	position:absolute;top:0;left:0;
+	z-index:1002 !important;
+	height:10em;
+	width:24em;
+	cursor:pointer;
+	border: 1px solid #003366;
+	background: #fffbf0 url('etc.png') top right no-repeat;
+}
+
+.search_div div .lookup_results {
+	margin-top: 1.6em;
+	height:80%;
+	width:99%;
+	background:#fffbf0;
+	border:0;
+}
+
+
+
 div#customerlookup {
 	border:1px solid #fff;
 	padding:1px;

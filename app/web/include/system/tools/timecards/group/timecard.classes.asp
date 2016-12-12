@@ -203,7 +203,7 @@ class cCustomers
 				"FROM Customers " &_
 				"INNER JOIN Orders ON (Customers.Customer = Orders.Customer) " &_
 				"AND (Customers.Customer = Orders.Customer) " &_
-				strSelectCriteria & ";"
+				strSelectCriteria & " ORDER By Customers.CustomerName;"
 			
 			'print strSelectCriteria
 			'print strSql
@@ -487,6 +487,7 @@ class cOrders
 	private m_Site
 	private m_Customer
 	private m_Department
+	private m_ApplicantId
 	private m_FromDate
 	private m_ToDate
 	private m_NumberOfPages
@@ -535,6 +536,13 @@ class cOrders
 	public property let Department(p_Department)
 		m_Department = p_Department
 	end property
+		
+	public property get ApplicantId()
+		ApplicantId = m_ApplicantId
+	end property
+	public property let ApplicantId(p_ApplicantId)
+		m_ApplicantId = p_ApplicantId
+	end property	
 
 	public property get Order()
 		Order = m_Order
@@ -688,6 +696,62 @@ class cOrders
 				"WHERE (Orders.Customer='" & me.Customer & "') AND (Orders.JobStatus=2 OR Orders.JobStatus = 4)" & strDepartmentClause & ";"
 	
 			GetClosedOrders = LoadData (strSQL)
+		end function
+
+		public function GetEmployeeOpenOrders()
+			
+			
+			dim strDepartmentClause
+			if len(m_Department) = 0 then
+				'no department restrictions
+				strDepartmentClause = ""
+			elseif instr(m_Department, ",") > 0 then
+				'User is associated with multiple departments. Split them up and build appropriate ad-hoc SQL statement.
+				strDepartmentClause = " AND (Orders.JobNumber=" & replace(replace(m_Department, " ", ""), ",", " OR Orders.JobNumber=") & ")"
+			else
+				'User is associated with a single department
+				strDepartmentClause = "AND (Orders.JobNumber=" & m_Department & ")"
+			end if
+		
+			
+			dim strSql
+			strSql = "" &_
+				"SELECT Orders.Customer, Orders.JobStatus, Orders.JobNumber AS CustomerDept, Orders.Reference, " &_
+				"Orders.JobDescription, Orders.WorkSite1+', '+Orders.WorkSite2 AS WorkSite, Orders.WorkSite3 AS " &_
+				"WorkSitePhone, Orders.OrderDate, Orders.StartDate, Orders.StopDate, Orders.EmailAddress, Orders.EmailFormat " &_
+				"FROM Orders INNER JOIN " &_
+                         "Placements ON Placements.Reference = Orders.Reference " &_
+				"WHERE (Orders.Customer='" & me.Customer & "') AND (Orders.JobStatus<2 OR Orders.JobStatus = 3) " &_
+				"AND (Placements.ApplicantId=" & m_ApplicantId & ") " & strDepartmentClause & ";"
+				
+				''print strSQL
+				
+			GetEmployeeOpenOrders = LoadData (strSQL)
+		end function
+		
+		public function GetEmployeeClosedOrders()
+
+			dim strDepartmentClause
+			if len(m_Department) = 0 then
+				'no department restrictions
+				strDepartmentClause = ""
+			elseif instr(m_Department, ",") > 0 then
+				'User is associated with multiple departments. Split them up and build appropriate ad-hoc SQL statement.
+				strDepartmentClause = " AND (Orders.JobNumber=" & replace(replace(m_Department, " ", ""), ",", " OR Orders.JobNumber=") & ")"
+			else
+				'User is associated with a single department
+				strDepartmentClause = "AND (Orders.JobNumber=" & m_Department & ")"
+			end if
+
+			dim strSql
+			strSql = "" &_
+				"SELECT Orders.Customer, Orders.JobStatus, Orders.JobNumber AS CustomerDept, Orders.Reference, " &_
+				"Orders.JobDescription, Orders.WorkSite1+', '+Orders.WorkSite2 AS WorkSite, Orders.WorkSite3 AS " &_
+				"WorkSitePhone, Orders.OrderDate, Orders.StartDate, Orders.StopDate, Orders.EmailAddress, Orders.EmailFormat " &_
+				"FROM Orders " &_
+				"WHERE (Orders.Customer='" & me.Customer & "') AND (Orders.JobStatus=2 OR Orders.JobStatus = 4)" & strDepartmentClause & ";"
+	
+			GetEmployeeClosedOrders = LoadData (strSQL)
 		end function
 
 		
@@ -1165,6 +1229,39 @@ class cPlacements
 					"ORDER BY Orders.Customer, Applicants.LastnameFirst"
 
 			GetActivePlacements = LoadData (strSQL)
+		end function
+		
+		public function GetActiveEmployeePlacements()
+			dim strSelectCriteria
+			if me.Customer = "@ALL" then
+				strSelectCriteria = ""
+			elseif len(me.Customer) > 0 then
+				strSelectCriteria = "Customers.Customer='" & replace(me.Customer, "@ALL", "*") & "' AND "
+			end if
+
+            if len(m_Order) > 0 then
+                if instr(strSelectCriteria, " AND ") > 0 then
+                    strSelectCriteria = "(" & replace(strSelectCriteria, " AND ", " AND Orders.Reference=" & m_Order & ") AND ")
+                else
+                     strSelectCriteria = "Orders.Reference=" & m_Order & " AND "
+                end if
+            end if
+
+			dim strSql
+			strSql = "SELECT Orders.Customer, Orders.Reference, Placements.EmployeeNumber, Placements.StartDate, " &_
+					"Placements.PStopDate, Customers.CustomerName, Applicants.LastnameFirst, Orders.JobNumber, Orders.JobDescription," &_
+					"Placements.WorkCode, Placements.RegPayRate, Placements.RegBillRate, Placements.PlacementStatus, " &_
+					"Placements.PlacementID, Placements.NeedFinalTime, WorkCodes.Description " &_
+					"FROM (((Placements Placements LEFT OUTER JOIN Orders Orders ON Placements.Reference=Orders.Reference) " &_
+					"LEFT OUTER JOIN WorkCodes WorkCodes ON Placements.WorkCode=WorkCodes.WorkCode) " &_
+					"LEFT OUTER JOIN Applicants Applicants ON Placements.EmployeeNumber=Applicants.EmployeeNumber) " &_
+					"LEFT OUTER JOIN Customers Customers ON Placements.Customer=Customers.Customer " &_
+					"WHERE " & strSelectCriteria & "(Placements.PlacementStatus=3 AND Placements.NeedFinalTime='TRUE' OR Placements.PlacementStatus=0) AND Placements.ApplicantId=" & me.Applicant & " " &_
+					"ORDER BY Orders.Customer, Applicants.LastnameFirst"
+
+				'print strSql
+					
+			GetActiveEmployeePlacements = LoadData (strSQL)
 		end function
 		
 		public function LoadPlacements(strPlacements)
@@ -1649,6 +1746,10 @@ end class
 
 class cTimeSummary
 	private m_id
+	private m_emp_submitted
+	private m_paid
+	private m_approved
+	private m_pp_submitted
 	private m_creatorid
 	private m_WeekEnding
 	private m_DayName(6)
@@ -1675,6 +1776,73 @@ class cTimeSummary
 		m_id = p_id
 	end property
 	
+	public property get approval_status()
+		dim p_response_status : p_response_status = 0
+	
+		if not me.emp_submitted and not me.approved and not me.pp_submitted and not me.paid then ' not submitted, reviewed, approved or paid
+			p_response_status = 0 ' needs submitted, button value 'Submit'
+		
+		elseif me.emp_submitted and not me.approved and not me.pp_submitted and not me.paid then ' not submitted, reviewed, approved or paid
+			p_response_status = 1 ' needs submitted, button value 'Submit'
+			
+		elseif me.emp_submitted and me.pp_submitted  and not me.approved and not me.paid then ' submitted, not reviewed, approved or paid
+			p_response_status = 3 ' submitted, needs reviewed; button value 'Submitted'
+
+		elseif me.emp_submitted and me.pp_submitted and me.approved and not me.paid then ' submitted, not reviewed, approved or paid
+			p_response_status = 7 ' submitted and reviewed, needs approved
+
+		elseif me.emp_submitted and me.pp_submitted and me.approved and me.paid then ' submitted, not reviewed, approved or paid
+			p_response_status = 15 ' submitted, reviewed and approved
+		end if
+
+		approval_status = p_response_status
+		
+	end property
+	
+	public property get emp_submitted()
+		if m_emp_submitted = 1 then 
+			emp_submitted = true
+		else
+			emp_submitted = false
+		end if
+	end property
+	public property let emp_submitted(p_emp_submitted)
+		m_emp_submitted = p_emp_submitted
+	end property
+
+	public property get paid()
+		if m_paid = 1 then 
+			paid = true
+		else
+			paid = false
+		end if	
+	end property
+	public property let paid(p_paid)
+		m_paid = p_paid
+	end property
+
+	public property get approved()
+		if m_approved = 1 then 
+			approved = true
+		else
+			approved = false
+		end if	
+	end property
+	public property let approved(p_approved)
+		m_approved = p_approved
+	end property
+
+	public property get pp_submitted()
+		if m_pp_submitted = 1 then 
+			pp_submitted = true
+		else
+			pp_submitted = false
+		end if	
+	end property
+	public property let pp_submitted(p_pp_submitted)
+		m_pp_submitted = p_pp_submitted
+	end property
+
 	public property get creatorid()
 		creatorid = m_creatorid
 	end property
@@ -1750,10 +1918,15 @@ class cTimeDetail
 	private m_TimeIn
 	private m_TimeOut
 	private m_TotalTime
+	private m_AdjustedTime
 	private m_Hours
 	private m_EnteredBy
 	private m_Created
 	private m_CreatorId
+	private m_emp_submitted
+	private m_paid
+	private m_approved
+	private m_pp_submitted
 	private m_Modified
 
 	public property get PlacementId()
@@ -1832,6 +2005,17 @@ class cTimeDetail
 	public property let TotalTime(p_TotalTime)
 		m_TotalTime = p_TotalTime
 	end property
+	
+	public property get AdjustedTime()
+		AdjustedTime = m_AdjustedTime
+	end property
+	public property let AdjustedTime(p_AdjustedTime)
+		if vartype(p_AdjustedTime) > 1 then
+			m_AdjustedTime = cdbl(p_AdjustedTime)
+		else
+			m_AdjustedTime = 0
+		end if
+	end property
 
 	public property get Hours()
 		Hours = m_Hours
@@ -1862,7 +2046,74 @@ class cTimeDetail
 			m_CreatorId = p_CreatorId
 		end if
 	end property
+
+	public property get approval_status()
+		dim p_response_status : p_response_status = 0
 	
+		if not me.emp_submitted and not me.approved and not me.pp_submitted and not me.paid then ' not submitted, reviewed, approved or paid
+			p_response_status = 0 ' needs submitted, button value 'Submit'
+		
+		elseif me.emp_submitted and not me.approved and not me.pp_submitted and not me.paid then ' not submitted, reviewed, approved or paid
+			p_response_status = 1 ' needs submitted, button value 'Submit'
+			
+		elseif me.emp_submitted and me.pp_submitted  and not me.approved and not me.paid then ' submitted, not reviewed, approved or paid
+			p_response_status = 3 ' submitted, needs reviewed; button value 'Submitted'
+
+		elseif me.emp_submitted and me.pp_submitted and me.approved and not me.paid then ' submitted, not reviewed, approved or paid
+			p_response_status = 7 ' submitted and reviewed, needs approved
+
+		elseif me.emp_submitted and me.pp_submitted and me.approved and me.paid then ' submitted, not reviewed, approved or paid
+			p_response_status = 15 ' submitted, reviewed and approved
+		end if
+
+		approval_status = p_response_status
+		
+	end property
+	
+	public property get emp_submitted()
+		if m_emp_submitted = 1 then 
+			emp_submitted = true
+		else
+			emp_submitted = false
+		end if
+	end property
+	public property let emp_submitted(p_emp_submitted)
+		m_emp_submitted = p_emp_submitted
+	end property
+
+	public property get paid()
+		if m_paid = 1 then 
+			paid = true
+		else
+			paid = false
+		end if	
+	end property
+	public property let paid(p_paid)
+		m_paid = p_paid
+	end property
+
+	public property get approved()
+		if m_approved = 1 then 
+			approved = true
+		else
+			approved = false
+		end if	
+	end property
+	public property let approved(p_approved)
+		m_approved = p_approved
+	end property
+
+	public property get pp_submitted()
+		if m_pp_submitted = 1 then 
+			pp_submitted = true
+		else
+			pp_submitted = false
+		end if	
+	end property
+	public property let pp_submitted(p_pp_submitted)
+		m_pp_submitted = p_pp_submitted
+	end property
+
 	public property get Modified()
 		Modified = m_Modified
 	end property
@@ -1872,5 +2123,392 @@ class cTimeDetail
 
 end class
 
+
+class cTimeClockSession
+	private m_card_swipe
+	private m_search
+	private m_applicant
+	private m_customer
+	private m_customerid
+	private m_site
+	private m_siteid
+	private m_qsSite
+	private m_g_strSite
+	private m_tempsCode
+	private m_applicantid
+	private m_placementid
+	private m_creatorid
+	private m_today
+	private m_weekEndingDate
+	private m_MySqlFriendlyDate
+	private m_SummaryId
+	private m_DetailId
+	private m_Workday
+	private m_ClockedIn
+	private m_TimeIn
+	private m_TimeOut
+
+	public property get card_swipe()
+		card_swipe = m_card_swipe
+	end property
+	public property let card_swipe(p_card_swipe)
+		m_card_swipe = p_card_swipe
+	end property
+
+	public property get search()
+		search = m_search
+	end property
+	public property let search(p_search)
+		'setting search value initializes all other values, each respectively can be overwritten if needed individually later
+	
+		m_search      = replace(p_search, "%", "")
+		
+		m_applicant   = mid(search, 1, 9)
+		m_applicantid = m_applicant
+		m_customer    = mid(search, 13, 6)
+		m_customerid  = m_customer
+		
+		'retrieve site id and make sure it's numeric
+		m_site        = mid(search, 10, 3)
+		m_qsSite      = m_site
+
+		if not isnumeric(m_qsSite) then		
+			m_g_strSite = getSiteNumber(m_qsSite)
+		else
+			m_g_strSite = cdbl(m_qsSite)
+		end if
+
+		m_siteid = m_g_strSite
+		
+		if vartype(siteid) = 0 then
+			siteid = getParameter("site")
+		end if
+	end property
+
+	public property get applicant()
+		applicant = m_applicant
+	end property
+	public property let applicant(p_applicant)
+		m_applicant = p_applicant
+	end property
+
+	public property get customer()
+		customer = m_customer
+	end property
+	public property let customer(p_customer)
+		m_customer = p_customer
+	end property
+
+	public property get customerid()
+		customerid = m_customerid
+	end property
+	public property let customerid(p_customerid)
+		m_customerid = p_customerid
+	end property
+
+	public property get site()
+		site = m_site
+	end property
+	public property let site(p_site)
+		m_site = p_site
+		m_qsSite = m_site
+	end property
+
+	public property get siteid()
+		siteid = m_siteid
+	end property
+	public property let siteid(p_siteid)
+		m_siteid = p_siteid
+	end property
+
+	public property get g_strSite()
+		g_strSite = m_g_strSite
+	end property
+	public property let g_strSite(p_g_strSite)
+		m_g_strSite = p_g_strSite
+	end property
+
+	public property get qsSite()
+		qsSite = m_qsSite
+	end property
+	public property let qsSite(p_qsSite)
+		m_qsSite = p_qsSite
+	end property
+
+	public property get tempsCode()
+		if isnumeric(m_siteid) then
+			tempsCode = getTempsCompCode(m_siteid)
+		elseif len(m_siteid) = 3 then
+			tempsCode = m_siteid
+		end if
+	end property
+	public property let tempsCode(p_tempsCode)
+		m_tempsCode = p_tempsCode
+	end property
+
+	public property get applicantid()
+		applicantid = m_applicantid
+	end property
+	public property let applicantid(p_applicantid)
+		m_applicantid = p_applicantid
+	end property
+
+	public property get placementid()
+		placementid = m_placementid
+	end property
+	public property let placementid(p_placementid)
+		m_placementid = p_placementid
+	end property
+
+	public property get creatorid()
+		if len(cstr(m_creatorid)) = 0 then
+			me.LookupCreatorId()
+		end if
+		creatorid = m_creatorid
+	end property
+	public property let creatorid(p_creatorid)
+		m_creatorid = p_creatorid
+	end property
+
+	public property get today()
+		today = Weekday(Date)
+	end property
+	public property let today(p_today)
+		m_today = p_today
+	end property
+
+	public property get weekEndingDate()
+		if len(cstr(m_weekEndingDate)) = 0 then
+			me.LookupWeekendingDate(date())
+		end if
+		weekEndingDate = m_weekEndingDate
+	end property
+	public property let weekEndingDate(p_weekEndingDate)
+		m_weekEndingDate = p_weekEndingDate
+	end property
+
+	public property get MySqlFriendlyDate()
+		MySqlFriendlyDate = m_MySqlFriendlyDate
+		MySqlFriendlyDate = Year(m_weekEndingDate) & "/" & Month(m_weekEndingDate) & "/" & Day(m_weekEndingDate)
+	end property
+	public property let MySqlFriendlyDate(p_MySqlFriendlyDate)
+		m_MySqlFriendlyDate = p_MySqlFriendlyDate
+	end property
+
+	public property get SummaryId()
+		SummaryId = m_SummaryId
+	end property
+	public property let SummaryId(p_SummaryId)
+		m_SummaryId = p_SummaryId
+	end property
+
+	public property get DetailId()
+		DetailId = m_DetailId
+	end property
+	public property let DetailId(p_DetailId)
+		m_DetailId = p_DetailId
+	end property
+
+	public property get Workday()
+		Workday = m_Workday
+	end property
+	public property let Workday(p_Workday)
+		m_Workday = p_Workday
+	end property
+
+	public property get TimeIn()
+		TimeIn = m_TimeIn
+	end property
+	public property let TimeIn(p_TimeIn)
+		m_TimeIn = p_TimeIn
+	end property
+
+	public property get TimeOut()
+		TimeOut = m_TimeOut
+	end property
+	public property let TimeOut(p_TimeOut)
+		m_TimeOut = p_TimeOut
+	end property
+	
+	public property get ClockedIn()
+		ClockedIn = m_ClockedIn
+	end property
+	public property let ClockedIn(p_ClockedIn)
+		m_ClockedIn = p_ClockedIn
+	end property
+
+
+	'#############  Public Functions ##############
+	public function CheckIfClockedIn()
+		dim cmd 
+		set cmd = server.CreateObject("ADODB.Command") 'global cmd object for module
+
+		with cmd
+			.ActiveConnection = MySql
+			
+			' 'with placementid
+			' .CommandText = "" &_
+				' "SELECT time_detail.timein, time_detail.timeout, time_summary.placementid, time_summary.site, time_detail.workday, time_detail.creatorid, time_detail.id " &_
+					' "FROM pplusvms.time_detail " &_
+					' "LEFT JOIN pplusvms.time_summary on time_summary.id = time_detail.summaryid " &_
+					' "WHERE (placementid=" & placementid & " AND site=" & g_strSite & " AND time_detail.creatorid=" & creatorid & " AND time_detail.created >= NOW() - INTERVAL 16 HOUR) " &_
+					' "AND (time_detail.timein IS NOT NULL AND time_detail.timeout IS NULL) ORDER By time_detail.id desc;"
+
+			'without placement id
+			.CommandText = "" &_
+				"SELECT time_detail.timein, time_detail.timeout, time_summary.placementid, time_summary.site, time_detail.workday, time_detail.creatorid, time_detail.id " &_
+					"FROM pplusvms.time_detail " &_
+					"LEFT JOIN pplusvms.time_summary on time_summary.id = time_detail.summaryid " &_
+					"WHERE (site=" & getTempsSiteId(m_site) & " AND time_detail.creatorid=" & m_creatorid & " AND time_detail.created >= NOW() - INTERVAL 16 HOUR) " &_
+					"AND (time_detail.timein IS NOT NULL AND time_detail.timeout IS NULL) ORDER By time_detail.id desc;"
+		end with
+
+		'print cmd.CommandText
+		
+		if m_applicantid <> "NaN" then
+			dim rs
+			set rs = cmd.Execute()
+			if rs.eof then
+				m_ClockedIn = false
+			else
+				m_ClockedIn = true
+				m_placementid = rs("placementid")
+			end if
+		end if
+	
+	end function
+	
+	public function LookupCreatorId()
+
+			dim cmd
+			set cmd = server.CreateObject("ADODB.Command")
+			with cmd
+				.ActiveConnection = MySql
+				.CommandText = "" &_
+					"SELECT tbl_users.userID, tbl_applications.in" & getTempsCompCode(m_site) & " FROM pplusvms.tbl_applications " &_
+						"INNER JOIN tbl_users on tbl_applications.applicationID=tbl_users.applicationID " &_
+						"WHERE tbl_applications.in" & getTempsCompCode(m_site) & "=" & m_applicantid & ";"
+			end with
+			
+			'print cmd.CommandText
+			dim rs
+			set rs = cmd.Execute()
+			
+			
+			if not rs.eof then
+				LookupCreatorId = rs("userID")
+			else
+				LookupCreatorId = 0
+			end if
+
+		
+	end function
+	
+	public function LookupWeekendingDate(p_today)
+		dim p_weekEndingDate
+		
+		if len(cstr(p_today)) = 0 then p_today = Date()
+		
+		'print "cust: " & customer
+		
+		dim cmd
+		set cmd = server.CreateObject("ADODB.Command")
+		with cmd
+			.ActiveConnection = MySql
+			
+			.CommandText = "" &_
+				"Select weekends FROM tbl_companies WHERE INSTR(Customer, '" & customer & "') > 0;"
+		end with
+		
+		dim rs
+		set rs = cmd.Execute()
+
+		dim p_weekEndsOn
+		p_weekEndsOn = cint(rs("weekends"))
+		
+		p_today = Weekday(Date)
+		
+		'print "today: " & today
+		'print "week ends on: " & p_weekEndsOn
+		
+		if p_today > p_weekEndsOn then
+
+			p_weekEndingDate = DateAdd("d", 7 - (p_today - p_weekEndsOn), Date)
+			
+		elseif today < p_weekEndsOn then
+
+			p_weekEndingDate = DateAdd("d", (p_weekEndsOn - today), Date)
+			
+		elseif today = p_weekEndsOn then
+			p_weekEndingDate = Date
+		else
+			p_weekEndingDate = DateAdd("d", 7 - (p_weekEndsOn - today), Date)
+		end if
+		
+		m_weekEndingDate = p_weekEndingDate
+		GetWeekending = p_weekEndingDate
+	end function
+	
+	public function LoadSomething()
+
+			LoadSomething = LoadData (strSQL)
+	end function
+	
+	
+	'#############  Private Functions ##############
+	'Takes a recordset
+	'Fills the object's properties using the recordset
+	private function FillFromRS(p_RS)
+		'p_RS.PageSize = m_ItemsPerPage
+		p_RS.PageSize = 1
+		dim m_PageCount
+		m_PageCount = p_RS.PageCount
+
+		dim m_Page
+		if m_Page < 1 Or m_Page > m_PageCount then
+			m_Page = 1
+		end if
+
+		if not p_RS.eof then p_RS.AbsolutePage = m_Page
+
+		dim thisOrderTab, id
+		if not ( p_RS.eof Or p_RS.AbsolutePage <> m_Page ) then
+			with me
+
+				'.card_swipe       = p_RS.fields("card_swipe").value 'card_swipe
+				'.search       = p_RS.fields("search").value 'search
+				'.applicant       = p_RS.fields("applicant").value 'applicant
+				'.customer       = p_RS.fields("customer").value 'customer
+				'.customerid       = p_RS.fields("customerid").value 'customerid
+				'.site       = p_RS.fields("site").value 'site
+				'.siteid       = p_RS.fields("siteid").value 'siteid
+				'.tempsCode       = p_RS.fields("tempsCode").value 'tempsCode
+				'.applicantid       = p_RS.fields("applicantid").value 'applicantid
+				'.placementid       = p_RS.fields("placementid").value 'placementid
+				'.creatorid       = p_RS.fields("creatorid").value 'creatorid
+				'.today       = p_RS.fields("today").value 'today
+				'.weekEndingDate       = p_RS.fields("weekEndingDate").value 'weekEndingDate
+				'.MySqlFriendlyDate       = p_RS.fields("MySqlFriendlyDate").value 'MySqlFriendlyDate
+
+			end with
+		end if
+	End Function
+
+	Private Function LoadData(p_strSQL)
+		dim rs
+		if isnumeric(me.Site) then
+			set rs = GetRSfromDB(p_strSQL, dsnLessTemps(me.Site))
+		else
+			set rs = GetRSfromDB(p_strSQL, dsnLessTemps(getCompanyNumber(me.Site)))
+		end if
+		FillFromRS(rs)
+		LoadData = rs.recordcount
+		rs. close
+		set rs = nothing
+	End Function
+
+
+
+end class
 
 %>

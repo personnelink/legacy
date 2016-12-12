@@ -14,7 +14,7 @@
 
 	elseif instr(scriptName, "/include/user/post/") > 0 then
 
-		blogOrSys = "tbl_content"
+		blogOrSys = "tbl_blogs"
 		
 	elseif instr(scriptName, "/job_postings/edit/") > 0 then
 
@@ -25,7 +25,9 @@
 		blogOrSys = "tbl_blogs"
 
 	end if
-		
+	
+	'print blogOrSys
+	
 	dim jobedit
 	select case blogOrSys
 		case "job"

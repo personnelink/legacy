@@ -25,10 +25,10 @@ session("window_page_title") = "Current Ledger - Personnel Plus"
 <%
 	if company_dsn_site > -1 or simsite <> "" then
 		if simsite <> "" and simsite > -1 then
-			thisConnection = dsnLessTemps(simsite)
+			thisConnection = dsnLessTempsAR(simsite)
 			simcust = "where=" & simcust
 		elseif company_dsn_site > 0 then
-			thisConnection = dsnLessTemps(company_dsn_site)
+			thisConnection = dsnLessTempsAR(company_dsn_site)
 			simcust = "cust=" & company_dsn_site
 		end if
 		'if len(this_customer) = 0 then
@@ -44,7 +44,7 @@ session("window_page_title") = "Current Ledger - Personnel Plus"
 			
 						
 			<div id="account_balance">
-				<p id="accntbal">Account balance:<span class="bigger"><%=getAccountBalance(thisConnection)%></span></p>
+				<p id="accntbal">Account balance:<span class="bigger"><%=htmlAccntBalance%></span></p>
 				<a id="mkPayment" href="javascript:;" onclick="payment.show();">Make a payment</a>
 			</div>
 			<div id="make_payment" class="hide">
@@ -129,13 +129,15 @@ dim department_total : department_total = 0
 <%
 				LastJobDescription = Summary.JobDescription
 			end if
-		
+			
+			iTotal = Summary.Total
 			invoice_number = Summary.Invoice
 			running_total = running_total + Summary.Total
 			department_total = department_total + Summary.Total
 			chk_box = "<input type=""checkbox"" name=""ck_boxes"" id=""ck_" &  row_number & """  value=""" & invoice_number & """ onclick=""setPayAmount();"">" &_
 								"<input type=""hidden"" name=""inv_" & invoice_number & """ value=""" & itotal & """>"
 
+'print "itotal: " & itotal
 
 			lnk_open = "<a href=""javascript:;"" onclick=""getInvoice.open('" & row_number & "', '" & invoice_number & "', '" & simsite & "', '" & simcust & "');"">"  
 			

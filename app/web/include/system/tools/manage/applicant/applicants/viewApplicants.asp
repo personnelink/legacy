@@ -10,6 +10,7 @@ if request.QueryString("isservice") = "true" then
 end if
 
 noSocial = true
+
 %>
 <!-- #INCLUDE VIRTUAL='/include/core/init_secure_session.asp' -->
 <script type="text/javascript" src="viewApplicants.js"></script>
@@ -36,6 +37,7 @@ noSocial = true
 <tr><td colspan=3>
       <label style="float:left; clear:left" for="likeName">Search</label>
       <input  style="float:left; clear:left" name="likeName" id="likeName" type="text" value="<%=likeName%>" onKeyPress="return submitenter(this,event)">
+     
 </td></tr>
 <tr><td colspan=3><%=objCompanySelector(whichCompany, false, "javascript:document.manageUsersForm.submit();")%>
 </td></tr>
@@ -45,7 +47,7 @@ noSocial = true
 <%=navRecordsByPage(Applicants)%>
 
 <% showApplicantsTable %>
-
+ 
 </form></div>
 <%=ifNotServiceShow("navbottom")%>
 
